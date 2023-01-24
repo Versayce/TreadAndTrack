@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
+import LoginForm from './components/Auth/LoginForm';
+import SignUpForm from './components/Auth/SignUpForm';
+import NavBar from './components/Main Header/NavBar';
+import ProtectedRoute from './components/Auth/ProtectedRoute';
+import UsersList from './components/Users/UsersList';
+import User from './components/Users/User';
+import EventList from './components/Events/EventList'
 import { authenticate } from './store/session';
 
 function App() {
@@ -40,8 +41,11 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        <ProtectedRoute path='/events' exact={true} >
+          <EventList/>
+        </ProtectedRoute>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <h1>Track && Tread</h1>
         </Route>
       </Switch>
     </BrowserRouter>
