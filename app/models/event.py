@@ -44,7 +44,7 @@ class Event(db.Model):
             "city": self.city,
             "state": self.state,
             "country": self.country,
-            # "lat": self.lat,
+            # "lat": self.lat, #TODO Implement at a later date
             # "lng": self.lng,
             "description": self.description,
             "users": [user.to_dict() for user in self.users],
