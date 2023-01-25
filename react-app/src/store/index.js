@@ -4,6 +4,7 @@ import session from './session'
 
 const rootReducer = combineReducers({
   session,
+  events: e
 });
 
 
