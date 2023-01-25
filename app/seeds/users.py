@@ -4,11 +4,22 @@ from app.models import db, User, environment, SCHEMA
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password', user_image='')
+        username='Demo', 
+        email='demo@aa.io', 
+        password='password', 
+        user_image='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/1998-subaru-22b-sti-1998-subaru-1653928866.jpg?crop=1.00xw:0.920xh;0,0&resize=980:*')
+    
     demo2 = User(
-        username='Demo2', email='demo2@aa.io', password='password', user_image='')
+        username='Demo2', 
+        email='demo2@aa.io', 
+        password='password', 
+        user_image='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/1998-subaru-22b-sti-1998-subaru-1653928866.jpg?crop=1.00xw:0.920xh;0,0&resize=980:*')
+    
     alex = User(
-        username='Alex', email='acastro@aa.io', password='password', user_image='')
+        username='Alex', 
+        email='acastro@aa.io', 
+        password='password', 
+        user_image='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/1998-subaru-22b-sti-1998-subaru-1653928866.jpg?crop=1.00xw:0.920xh;0,0&resize=980:*')
 
     db.session.add(demo)
     db.session.add(demo2)
