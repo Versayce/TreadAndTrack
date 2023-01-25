@@ -14,13 +14,33 @@ def seed_events():
         # lng = "Longitude",
         description = "TEST",
     )
+    
+    test_event2 = Event(
+        owner_id = 2,
+        name = "TEST2",
+        address = "TEST2",
+        city = "TEST2",
+        state = "TEST2",
+        country = "TEST2",
+        # lat = "Latitude",
+        # lng = "Longitude",
+        description = "TEST2",
+    )
 
-    # all_events = [ event1, event2, event3, event4, event5, event6, event7, event8, event9, event10 ]
+    all_events = [ test_event, test_event2 ] 
+                #   event1, event2, event3, event4, event5, event6, event7, event8, event9, event10 ]
     all_users = User.query.all()
     
-    db.session.add(test_event)
+    for i in range(len(all_users)):
+        for j in range(len(all_events)):
+            all_users[i].events.append(all_events[j])
+
+    for event in all_events:
+        db.session.add(event)
     db.session.commit()
+    
     print("Event seeding complete.")
+
 
 def undo_events():
     if environment == "production":

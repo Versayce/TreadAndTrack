@@ -19,9 +19,8 @@ class Event(db.Model):
         __table_args__ = {'schema': SCHEMA}
         
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
-    
-    name = db.Column(db.String(40), nullable=False, unique=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
+    name = db.Column(db.String(40), nullable=False)
     address = db.Column(db.String(40), nullable=False)
     city = db.Column(db.String(40), nullable=False)
     state = db.Column(db.String(40), nullable=False)
@@ -32,7 +31,8 @@ class Event(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow) 
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow) 
     
-    owner = db.relationship("User", back_populates='events')
+    
+    owner = db.relationship("User", back_populates="event")
     users = db.relationship("User", secondary=event_users, back_populates="events")
 
 
@@ -44,8 +44,8 @@ class Event(db.Model):
             "city": self.city,
             "state": self.state,
             "country": self.country,
-            "lat": self.lat,
-            "lng": self.lng,
+            # "lat": self.lat, #TODO Implement at a later date
+            # "lng": self.lng,
             "description": self.description,
             "users": [user.to_dict() for user in self.users],
             "createdAt": self.created_at,

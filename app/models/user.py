@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     user_image = db.Column(db.String(500))
     
+    event = db.relationship('Event', back_populates='owner')
     events = db.relationship('Event', secondary=event_users, back_populates='users')
 
     @property
