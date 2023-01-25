@@ -31,6 +31,8 @@ def seed_events():
                 #   event1, event2, event3, event4, event5, event6, event7, event8, event9, event10 ]
     all_users = User.query.all()
     
+    
+    #seeding the event_users table
     for i in range(len(all_users)):
         for j in range(len(all_events)):
             all_users[i].events.append(all_events[j])
@@ -40,6 +42,7 @@ def seed_events():
     db.session.commit()
     
     print("Event seeding complete.")
+
 
 
 def undo_events():
