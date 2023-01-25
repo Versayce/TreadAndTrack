@@ -1,3 +1,4 @@
+from tkinter import CASCADE
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 import datetime
 
@@ -31,9 +32,9 @@ class Event(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow) 
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow) 
     
-    
     owner = db.relationship("User", back_populates="event")
     users = db.relationship("User", secondary=event_users, back_populates="events")
+    images = db.relationship("EventImages", back_populates="event_id", cascade="all, delete")
 
 
     def to_dict(self):
@@ -48,6 +49,7 @@ class Event(db.Model):
             # "lat": self.lat, #TODO Implement at a later date
             # "lng": self.lng,
             "description": self.description,
+            "images": [image.to_dict() for image in self.images],
             "users": [user.to_dict() for user in self.users],
             "createdAt": self.created_at,
             "updatedAt": self.updated_at,

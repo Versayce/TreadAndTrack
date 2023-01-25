@@ -3,7 +3,7 @@ from app.models import db, environment, SCHEMA, Event, User
 
 def seed_events():
 
-    test_event = Event(
+    main_event = Event(
         owner_id = 1,
         name = "TEST",
         address = "TEST",
@@ -27,7 +27,7 @@ def seed_events():
         description = "TEST2",
     )
 
-    all_events = [ test_event, test_event2 ] 
+    all_events = [ main_event, test_event2 ] 
                 #   event1, event2, event3, event4, event5, event6, event7, event8, event9, event10 ]
     all_users = User.query.all()
     
