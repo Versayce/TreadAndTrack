@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .event import event_users
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -15,7 +16,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     user_image = db.Column(db.String(500))
     
-    # events = db.relationship('Events', back_populates='owner')
+    events = db.relationship('Event', secondary=event_users, back_populates='users')
 
     @property
     def password(self):
