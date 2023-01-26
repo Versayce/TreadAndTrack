@@ -6,7 +6,7 @@ def seed_events():
     main_event = Event(
         owner_id = 1,
         name = "Cars and Coffee Scottsdale",
-        address = "20789 N Pima Rd #210 85255",
+        address = "20789 N Pima Rd #210",
         city = "Scottsdale",
         state = "AZ",
         country = "United States",

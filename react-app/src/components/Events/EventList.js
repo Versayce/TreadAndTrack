@@ -76,11 +76,11 @@ function EventList() {  //TODO add to "home" page component
                 {/* {console.log('', '\n', '==========Event List Component==========', '\n', event , '\n', '')} */}
                 <h1>{event.name}</h1>
                 <img src={`${event.images[0]?.imageUrl}`}></img>
-                <p>{event.address}</p>
-                <p>{event.city}</p>
-                <p>{event.state}</p>
-                <p>{event.zipcode}</p>
-                <p className='event-desc'>{event.description}</p>
+                <EventLocation>
+                    <p>{`${event.city}, ${event.state} ${event.zipcode}`}</p>
+                    <p>{event.address}</p>
+                </EventLocation>
+                <div className='event-desc'>{event.description}</div>
             </EventCard>
         );
     });
@@ -138,13 +138,15 @@ const Wrapper = styled.div`
             /* border: solid #0085a7 2px;   */
             width: 25vw;
             height: 305px;
+            max-height: 250px;
             max-width: 400px;
             min-width: 300px;
             display: flex;
             flex-direction: column;
             margin: 10px;
             padding: 15px;
-            box-shadow: 1px 1px 10px 2px #7c7c7c39;
+            box-shadow: 1px 1px 10px 2px #8f8f8f39;
+            border-radius: 8px;
             & img {
                 width: 100%;
                 height: 130px;
@@ -152,11 +154,18 @@ const Wrapper = styled.div`
                 border-radius: 3px;
             }& h1 {
                 width: 100%;
-                font-size: min(max(18px, 2vw), 28px);
+                font-size: min(max(22px, 2vw), 28px);
                 white-space: nowrap; 
+                margin-bottom: 3px;
             }& .event-desc {
-                overflow-y: hidden;
+                overflow-y: scroll;
+                height: 20%;
+            } :hover {
+                box-shadow: 1px 1px 10px 2px #49494939;
             }
         `
+            const EventLocation = styled.div`
+                border: red 1px solid;
+            `
 
 export default EventList
