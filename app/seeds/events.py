@@ -23,15 +23,20 @@ def seed_events():
     
     test_event2 = Event(
         owner_id = 2,
-        name = "TEST2",
-        address = "TEST2",
-        city = "TEST2",
-        state = "TEST2",
-        country = "TEST2",
-        zipcode = 80000,
+        name = "Event Header",
+        address = "Address",
+        city = "City",
+        state = "State",
+        country = "Country",
+        zipcode = 8000,
         # lat = "Latitude",
         # lng = "Longitude",
-        description = "TEST2",
+        description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 
+                        + "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta " 
+                        + "sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia " 
+                        + "consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui "
+                        + "dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora " 
+                        + "incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
     )
 
     all_events = [ main_event, test_event2 ] 

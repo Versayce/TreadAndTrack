@@ -78,7 +78,7 @@ function EventList() {  //TODO add to "home" page component
                 <img src={`${event.images[0]?.imageUrl}`}></img>
                 <EventLocation>
                     <p>{`${event.city}, ${event.state} ${event.zipcode}`}</p>
-                    <p>{event.address}</p>
+                    {/* <p>{event.address}</p> */}
                 </EventLocation>
                 <div className='event-desc'>{event.description}</div>
             </EventCard>
@@ -88,7 +88,7 @@ function EventList() {  //TODO add to "home" page component
     // Component contents
     return (
         <Wrapper>
-            <h1>Events</h1>
+            <h1>Event List Component</h1>
             <ButtonWrapper>
                 <StyledButton as="button"> Create an Event </StyledButton>
                 <StyledButton as="button" onClick={showModalEvent}> Test Show Modal State </StyledButton>
@@ -138,7 +138,7 @@ const Wrapper = styled.div`
             /* border: solid #0085a7 2px;   */
             width: 25vw;
             height: 305px;
-            max-height: 250px;
+            max-height: 280px;
             max-width: 400px;
             min-width: 300px;
             display: flex;
@@ -152,20 +152,26 @@ const Wrapper = styled.div`
                 height: 130px;
                 object-fit: cover;
                 border-radius: 3px;
+                margin: 4px 0px;
             }& h1 {
                 width: 100%;
                 font-size: min(max(22px, 2vw), 28px);
                 white-space: nowrap; 
-                margin-bottom: 3px;
+            }& p {
+                font-size: min(max(10px, 2vw), 15px);
+                color: #3f3f3fb0;
             }& .event-desc {
                 overflow-y: scroll;
-                height: 20%;
             } :hover {
                 box-shadow: 1px 1px 10px 2px #49494939;
             }
         `
             const EventLocation = styled.div`
-                border: red 1px solid;
+                /* border: red 1px solid; */
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                margin-bottom: 8px;
             `
 
 export default EventList
