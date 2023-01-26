@@ -21,7 +21,7 @@ function EventList() {  //TODO add to "home" page component
 
     // TODO test conditionally rendered modal slice of state:
     const modalState = useSelector(state => state.modal.status)
-    console.log('', '\n', '==========Event List Component==========', '\n', modalState , '\n', '') // Testing data acquisition
+    // console.log('', '\n', '==========Event List Component==========', '\n', modalState , '\n', '') // Testing data acquisition
 
     // Testing EDIT 
     const testEvent1 = {
@@ -94,6 +94,7 @@ function EventList() {  //TODO add to "home" page component
                 <StyledButton as="button" onClick={showModalEvent}> Test Show Modal State </StyledButton>
                 <StyledButton as="button" onClick={hideModalEvent}> Test Hide Modal State </StyledButton>
             </ButtonWrapper>
+            {modalState === true && <TestConditionalRender>Loading Modal</TestConditionalRender>}
             <TestWrapper>{eventCards}</TestWrapper>   
         </Wrapper>
     );
@@ -101,6 +102,9 @@ function EventList() {  //TODO add to "home" page component
 
 
 // TODO //========== STYLING ==========//
+const TestConditionalRender = styled.div`
+    color: red;
+`
 
 const Wrapper = styled.div`
     display: flex;
@@ -111,6 +115,7 @@ const Wrapper = styled.div`
         display: flex;
         flex-direction: row;
         gap: 1vw;
+        margin: 30px 0px;
     `
         const StyledButton = styled.button`
             box-sizing: content-box;
