@@ -127,7 +127,7 @@ const eventReducer = (state = initialState, action) => {
         case LOAD_ONE_EVENT:
             {
                 // console.log('=====INSIDE REDUCER=====', action.event)
-                const newState = { allEvents: {...state.allEvents}, oneEvent: {...state.oneEvent}}
+                const newState = { allEvents: {...state.allEvents}, oneEvent: {}}
                 newState.oneEvent[action.event.id] = action.event
                 return newState; 
             };

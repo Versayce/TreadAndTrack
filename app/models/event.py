@@ -35,7 +35,7 @@ class Event(db.Model):
     # Event can have many users:
     users = db.relationship("User", secondary=event_users, back_populates="events")
     # Event can have many images:
-    images = db.relationship("EventImage", back_populates="event")  #, cascade="all, delete"
+    images = db.relationship("EventImage", back_populates="event", cascade="all, delete")  #, cascade="all, delete"
 
 
     def to_dict(self):
