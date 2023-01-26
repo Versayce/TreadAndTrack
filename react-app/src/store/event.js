@@ -67,7 +67,6 @@ export const getOneEvent = (eventId) => async (dispatch) => {
     
     if(res.ok) {
         const data = await res.json()
-        console.log('=====INSIDE THUNK=====', data)
         dispatch(loadOneEvent(data))
     };
 };

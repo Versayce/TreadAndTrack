@@ -10,6 +10,7 @@ import User from './components/Users/User';
 import EventList from './components/Events/EventList'
 import { authenticate } from './store/session';
 import EventPage from './components/Events/EventPage';
+import ConditonalModal from './components/Modal/ConditionalModal';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -27,6 +28,7 @@ function App() {
   }
 
   return (
+	<>
     <BrowserRouter>
     	<NavBar />
 		<Switch>
@@ -53,8 +55,9 @@ function App() {
 			</Route>
 		</Switch>
     </BrowserRouter>
-    // TODO put conditionally rendering modal here.
-  );
+	<ConditonalModal />
+	</>
+  )
 }
 
 export default App;
