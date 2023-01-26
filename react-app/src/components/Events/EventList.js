@@ -162,6 +162,15 @@ const Wrapper = styled.div`
                 color: #3f3f3fb0;
             }& .event-desc {
                 overflow-y: scroll;
+            }& ::-webkit-scrollbar {
+                width: 6px;
+            }& ::-webkit-scrollbar-track {
+                border: 1px solid #3f3f3f2b;
+                border-radius: 2px;
+            }& ::-webkit-scrollbar-thumb {
+                background-color: #adadad5c;
+                border: 1px solid #ffffff2b;
+                border-radius: 2px;
             } :hover {
                 box-shadow: 1px 1px 10px 2px #49494939;
             }
