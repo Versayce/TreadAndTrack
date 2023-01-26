@@ -102,10 +102,10 @@ function EventList() {  //TODO add to "home" page component
         <Wrapper>
             <h1>Event List Component</h1>
             <ButtonWrapper>
-                <StyledButton as="button" onClick={() => handleCreate}> Create an Event </StyledButton>
+                <StyledButton as="button" onClick={handleCreate}> Create an Event </StyledButton>
                 <StyledButton as="button" onClick={() => handleDelete(event?.id)}> Delete Last Event </StyledButton>
-                <StyledButton as="button" onClick={() => showModalEvent}> Test Show Modal State </StyledButton>
-                <StyledButton as="button" onClick={() => hideModalEvent}> Test Hide Modal State </StyledButton>
+                <StyledButton as="button" onClick={showModalEvent}> Test Show Modal State </StyledButton>
+                <StyledButton as="button" onClick={hideModalEvent}> Test Hide Modal State </StyledButton>
             </ButtonWrapper>
             {modalState === true && <TestConditionalRender>Loading Modal</TestConditionalRender>}
             <TestWrapper>{eventCards}</TestWrapper>   
