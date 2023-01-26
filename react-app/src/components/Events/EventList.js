@@ -68,12 +68,12 @@ function EventList() {  //TODO add to "home" page component
     }
 
 
+    {/* {console.log('', '\n', '==========Event List Component==========', '\n', event , '\n', '')} */}
     
     // Creating event cards with all events for displaying on homepage
     const eventCards = events.map((event) => {
         return (
             <EventCard key={event.id}>
-                {/* {console.log('', '\n', '==========Event List Component==========', '\n', event , '\n', '')} */}
                 <h1>{event.name}</h1>
                 <img src={`${event.images[0]?.imageUrl}`}></img>
                 <EventLocation>
@@ -110,6 +110,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 1700px;
 `
     const ButtonWrapper = styled.div`
         display: flex;
@@ -140,7 +141,7 @@ const Wrapper = styled.div`
         justify-content: center;
         flex: 0 0 33.3333%;
         flex-grow: 1;
-        width: 75%;
+        width: 80%;
         /* gap: 1vw; */
     `
         const EventCard = styled.div`
