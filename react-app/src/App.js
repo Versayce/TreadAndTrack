@@ -11,6 +11,8 @@ import EventList from './components/Events/EventList'
 import { authenticate } from './store/session';
 import EventPage from './components/Events/EventPage';
 import ConditonalModal from './components/Modal/ConditionalModal';
+import styled from 'styled-components';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -39,16 +41,16 @@ function App() {
 				<SignUpForm />
 			</Route>
 			<ProtectedRoute path='/users' exact={true} >
-				<UsersList/>
+				<UsersList />
 			</ProtectedRoute>
 			<ProtectedRoute path='/users/:userId' exact={true} >
 				<User />
 			</ProtectedRoute>
 			<ProtectedRoute path='/events' exact={true} >
-				<EventList/>
+				<EventList />
 			</ProtectedRoute>
 			<ProtectedRoute path='/events/:eventId' exact={true} >
-				<EventPage/>
+				<EventPage />
 			</ProtectedRoute>
 			<Route path='/' exact={true} >
 				<h1>Tread && Track</h1>
@@ -59,5 +61,7 @@ function App() {
 	</>
   )
 }
+
+
 
 export default App;

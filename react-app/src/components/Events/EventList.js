@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components'
 import { createEvent, deleteEvent, getAllEvents, editEventById, getOneEvent, loadOneEvent } from '../../store/event';
 import { useDispatch, useSelector } from 'react-redux'
-import { closeModal, renderCreateEventModal } from '../../store/modal';
+import { renderCreateEventModal } from '../../store/modal';
 
 function EventList() {  //TODO add to "home" page component 
     const dispatch = useDispatch()
@@ -73,10 +73,6 @@ function EventList() {  //TODO add to "home" page component
         dispatch(renderCreateEventModal(params))
     };
 
-    const hideModalEvent = (params) => {
-        dispatch(closeModal(params))
-    }
-
 
     {/* {console.log('', '\n', '==========Event List Component==========', '\n', event , '\n', '')} */}
     
@@ -95,15 +91,31 @@ function EventList() {  //TODO add to "home" page component
         );
     });
   
+
+    const testParams = {
+        modalToLoad: "createModal",
+        param1: "data1",
+        param2: "data2",
+    }
+    const testParams2 = {
+        modalToLoad: "editModal",
+        param1: "data1",
+        param2: "data2",
+    }
+    const testParams3 = {
+        modalToLoad: "closeModal",
+        param1: "data1",
+        param2: "data2",
+    }
+
     // Component contents
     return (
         <Wrapper>
             <h1>Event List Component</h1>
             <ButtonWrapper>
-                <StyledButton as="button" onClick={renderCreateEventModal}> Create an Event </StyledButton>
+                <StyledButton as="button" onClick={showModalEvent(modalState)}> Create an Event </StyledButton>
                 <StyledButton as="button" onClick={() => handleDelete(event?.id)}> Delete Last Event </StyledButton>
-                <StyledButton as="button" onClick={showModalEvent(modalState)}> Test Show Modal State </StyledButton>
-                <StyledButton as="button" onClick={hideModalEvent}> Test Hide Modal State </StyledButton>
+                <StyledButton as="button" onClick={() => showModalEvent(testParams)}> Test Show Modal State </StyledButton>
             </ButtonWrapper>
             {modalState === true && <TestConditionalRender>Loading Modal</TestConditionalRender>}
             <TestWrapper>{eventCards}</TestWrapper>   
