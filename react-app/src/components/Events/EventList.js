@@ -130,9 +130,13 @@ const Wrapper = styled.div`
 
     const TestWrapper = styled.div`
         display: flex;
-        flex-direction: row !important;
-        align-items: flex-start;
-        gap: 1vw;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex: 0 0 33.3333%;
+        flex-grow: 1;
+        width: 75%;
+        /* gap: 1vw; */
     `
         const EventCard = styled.div`
             /* border: solid #0085a7 2px;   */
@@ -166,11 +170,11 @@ const Wrapper = styled.div`
                 width: 6px;
             }& ::-webkit-scrollbar-track {
                 border: 1px solid #3f3f3f2b;
-                border-radius: 2px;
+                border-radius: 8px;
             }& ::-webkit-scrollbar-thumb {
                 background-color: #adadad5c;
                 border: 1px solid #ffffff2b;
-                border-radius: 2px;
+                border-radius: 8px;
             } :hover {
                 box-shadow: 1px 1px 10px 2px #49494939;
             }

@@ -3,6 +3,60 @@ from app.models import db, environment, SCHEMA, Event, User
 
 def seed_events():
 
+    event_template = Event(
+        owner_id = 2,
+        name = "Event Header",
+        address = "Address",
+        city = "City",
+        state = "State",
+        country = "Country",
+        zipcode = 8000,
+        # lat = "Latitude",
+        # lng = "Longitude",
+        description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 
+                        + "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta " 
+                        + "sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia " 
+                        + "consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui "
+                        + "dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora " 
+                        + "incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+    )
+    
+    event_template2 = Event(
+        owner_id = 2,
+        name = "Event Header",
+        address = "Address",
+        city = "City",
+        state = "State",
+        country = "Country",
+        zipcode = 8000,
+        # lat = "Latitude",
+        # lng = "Longitude",
+        description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 
+                        + "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta " 
+                        + "sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia " 
+                        + "consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui "
+                        + "dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora " 
+                        + "incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+    )
+        
+    event_template3 = Event(
+        owner_id = 2,
+        name = "Event Header",
+        address = "Address",
+        city = "City",
+        state = "State",
+        country = "Country",
+        zipcode = 8000,
+        # lat = "Latitude",
+        # lng = "Longitude",
+        description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 
+                        + "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta " 
+                        + "sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia " 
+                        + "consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui "
+                        + "dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora " 
+                        + "incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+    )
+    
     main_event = Event(
         owner_id = 1,
         name = "Cars and Coffee Scottsdale",
@@ -21,14 +75,14 @@ def seed_events():
                         + "incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
     )
     
-    test_event2 = Event(
+    main_event2 = Event(
         owner_id = 2,
-        name = "Event Header",
-        address = "Address",
-        city = "City",
-        state = "State",
-        country = "Country",
-        zipcode = 8000,
+        name = "Pavillions Car Show",
+        address = "9120 E. Talking Stick Way",
+        city = "Scottsdale",
+        state = "AZ",
+        country = "United States",
+        zipcode = 85250,
         # lat = "Latitude",
         # lng = "Longitude",
         description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 
@@ -38,8 +92,9 @@ def seed_events():
                         + "dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora " 
                         + "incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
     )
+    
 
-    all_events = [ main_event, test_event2 ] 
+    all_events = [ main_event, main_event2, event_template, event_template2, event_template3, ] 
                 #   event1, event2, event3, event4, event5, event6, event7, event8, event9, event10 ]
     all_users = User.query.all()
     
