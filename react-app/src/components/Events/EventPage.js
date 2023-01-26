@@ -19,7 +19,7 @@ function EventPage() {
         <>
             <h1>Event Page Component</h1>
         </>
-    );
+    ); 
 }
 
 export default EventPage

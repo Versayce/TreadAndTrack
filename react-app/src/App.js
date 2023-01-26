@@ -9,6 +9,7 @@ import UsersList from './components/Users/UsersList';
 import User from './components/Users/User';
 import EventList from './components/Events/EventList'
 import { authenticate } from './store/session';
+import EventPage from './components/Events/EventPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -27,28 +28,32 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/events' exact={true} >
-          <EventList/>
-        </ProtectedRoute>
-        <Route path='/' exact={true} >
-          <h1>Track && Tread</h1>
-        </Route>
-      </Switch>
+    	<NavBar />
+		<Switch>
+			<Route path='/login' exact={true}>
+				<LoginForm />
+			</Route>
+			<Route path='/sign-up' exact={true}>
+				<SignUpForm />
+			</Route>
+			<ProtectedRoute path='/users' exact={true} >
+				<UsersList/>
+			</ProtectedRoute>
+			<ProtectedRoute path='/users/:userId' exact={true} >
+				<User />
+			</ProtectedRoute>
+			<ProtectedRoute path='/events' exact={true} >
+				<EventList/>
+			</ProtectedRoute>
+			<ProtectedRoute path='/events/:eventId' exact={true} >
+				<EventPage/>
+			</ProtectedRoute>
+			<Route path='/' exact={true} >
+				<h1>Tread && Track</h1>
+			</Route>
+		</Switch>
     </BrowserRouter>
+    // TODO put conditionally rendering modal here.
   );
 }
 

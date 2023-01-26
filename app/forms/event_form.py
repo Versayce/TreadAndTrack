@@ -10,6 +10,7 @@ class EventForm(FlaskForm):
     address = StringField('Address')
     city = StringField('City', validators=[DataRequired()])
     state = StringField('State', validators=[DataRequired()])
+    zipcode = StringField('Zip', validators=[DataRequired()])
     country = StringField('Country', validators=[DataRequired()])
     description = StringField('Description', validators=[DataRequired()])
     submit = SubmitField('Submit')

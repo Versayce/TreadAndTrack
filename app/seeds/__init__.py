@@ -1,6 +1,5 @@
 from flask.cli import AppGroup
 
-from app.seeds.events import undo_events
 from .users import seed_users, undo_users
 from .events import seed_events, undo_events
 from .event_images import seed_event_images, undo_event_images

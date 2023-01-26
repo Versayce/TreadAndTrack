@@ -20,21 +20,22 @@ class Event(db.Model):
         __table_args__ = {'schema': SCHEMA}
         
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     name = db.Column(db.String(40), nullable=False)
     address = db.Column(db.String(40), nullable=False)
     city = db.Column(db.String(40), nullable=False)
     state = db.Column(db.String(40), nullable=False)
+    zipcode = db.Column(db.String(40), nullable=False)
     country = db.Column(db.String(40), nullable=False)
-    # lat = db.Column() #TODO Implement at a later date
-    # lng = db.Column() 
     description = db.Column(db.String(755), nullable=False) 
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow) 
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow) 
-    
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
+    # Evant can have one owner:
     owner = db.relationship("User", back_populates="event")
+    # Event can have many users:
     users = db.relationship("User", secondary=event_users, back_populates="events")
-    images = db.relationship("EventImages", back_populates="event_id", cascade="all, delete")
+    # Event can have many images:
+    images = db.relationship("EventImage", back_populates="event")  #, cascade="all, delete"
 
 
     def to_dict(self):
@@ -45,9 +46,8 @@ class Event(db.Model):
             "address": self.address,
             "city": self.city,
             "state": self.state,
+            "zipcode": self.zipcode,
             "country": self.country,
-            # "lat": self.lat, #TODO Implement at a later date
-            # "lng": self.lng,
             "description": self.description,
             "images": [image.to_dict() for image in self.images],
             "users": [user.to_dict() for user in self.users],

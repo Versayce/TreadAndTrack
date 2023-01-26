@@ -9,7 +9,7 @@ def seed_event_images():
     )
     
     event2_image2 = EventImage(
-        event_id = 1,
+        event_id = 2,
         name = "Second Event Image",
         image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195209/1615165280d7e7634902381174LIPMAN_723833.jpeg"
     )
@@ -19,7 +19,7 @@ def seed_event_images():
     for image in all_images:
         db.session.add(image)
     db.session.commit()
-    print('EventImages seeding completed')
+    print('EventImage seeding completed')
     
     
 def undo_event_images():
