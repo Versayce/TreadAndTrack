@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components'
 import { createEvent, deleteEvent, getAllEvents, editEventById, getOneEvent } from '../../store/event';
 import { useDispatch, useSelector } from 'react-redux'
-import { showModal } from '../../store/modal';
+import { setVisibleStatus } from '../../store/modal';
 
 function EventList() {  //TODO add to "home" page component 
     const dispatch = useDispatch()
@@ -20,8 +20,8 @@ function EventList() {  //TODO add to "home" page component
     // const event = Object.values(eventObj)
 
     // TODO test conditionally rendered modal slice of state:
-    const modalState = useSelector(state => state.events.)
-    // console.log('', '\n', '==========Event List Component==========', '\n', event , '\n', '')
+    const modalState = useSelector(state => state.modal.modalState)
+    console.log('', '\n', '==========Event List Component==========', '\n', modalState , '\n', '') // Testing data acquisition
 
     // Testing EDIT 
     const testEvent1 = {
@@ -59,8 +59,13 @@ function EventList() {  //TODO add to "home" page component
 
     const showModalEvent = (e) => {
         e.preventDefault()
-        dispatch(showModal(true))
+        dispatch(setVisibleStatus(true))
     };
+
+    const hideModalEvent = (e) => {
+        e.preventDefault()
+        dispatch(setVisibleStatus(false))
+    }
 
 
     
@@ -84,12 +89,16 @@ function EventList() {  //TODO add to "home" page component
     return (
         <Wrapper>
             <h1>Events</h1>
-            <StyledButton as="button" onClick={showModalEvent}> Create an Event </StyledButton>
+            <StyledButton as="button"> Create an Event </StyledButton>
+            <StyledButton as="button" onClick={showModalEvent}> Test Show Modal State </StyledButton>
+            <StyledButton as="button" onClick={hideModalEvent}> Test Hide Modal State </StyledButton>
             <TestWrapper>{eventCards}</TestWrapper>   
         </Wrapper>
     );
 }
 
+
+// TODO //========== STYLING ==========//
 const StyledButton = styled.button`
 
 `

@@ -4,22 +4,14 @@
 // The clear modal actions will need to be dispatched when a form is submitted within the modal (onSubmit)
 
 
-const SHOW_MODAL = 'modals/show'
-const HIDE_MODAL = 'modals/hide'
+const SWAP_VISIBILITY = 'modals-show/hide'
 
 
 
 //------------------------------   ACTIONS   ------------------------------//
-export const showModal = (status) => { // Boolean is being passed in and returned
+export const setVisibleStatus = (status) => { // Boolean is being passed in and returned
     return {
-        type: SHOW_MODAL,
-        status
-    };
-};
-
-export const hideModal = (status) => { // Boolean is being passed in and returned
-    return {
-        type: HIDE_MODAL,
+        type: SWAP_VISIBILITY,
         status
     };
 };
@@ -27,21 +19,19 @@ export const hideModal = (status) => { // Boolean is being passed in and returne
 
 //------------------------------   REDUCER   ------------------------------//
 
-const initialState = { modalStatus: false }
+const initialState = { status: false }
 const modalReducer = (state = initialState, action) => {
     switch(action.type) {
 
-        case SHOW_MODAL:
+        case SWAP_VISIBILITY:
             {
-                newState = { ...state.modalStatus }
-                newState.modalStatus = action.status
+                const newState = { ...state.status }
+                newState.status = action.status
+                return newState;
             }
 
-        case HIDE_MODAL:
-            {
-                newState = { ...state.modalStatus }
-                newState.modalStatus = action.status
-            }
+        default:
+            return state;
     }
 }
 
