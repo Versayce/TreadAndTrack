@@ -80,7 +80,7 @@ function EventList() {  //TODO add to "home" page component
                 <p>{event.city}</p>
                 <p>{event.state}</p>
                 <p>{event.zipcode}</p>
-                <p>{event.description}</p>
+                <p className='event-desc'>{event.description}</p>
             </EventCard>
         );
     });
@@ -89,9 +89,11 @@ function EventList() {  //TODO add to "home" page component
     return (
         <Wrapper>
             <h1>Events</h1>
-            <StyledButton as="button"> Create an Event </StyledButton>
-            <StyledButton as="button" onClick={showModalEvent}> Test Show Modal State </StyledButton>
-            <StyledButton as="button" onClick={hideModalEvent}> Test Hide Modal State </StyledButton>
+            <ButtonWrapper>
+                <StyledButton as="button"> Create an Event </StyledButton>
+                <StyledButton as="button" onClick={showModalEvent}> Test Show Modal State </StyledButton>
+                <StyledButton as="button" onClick={hideModalEvent}> Test Hide Modal State </StyledButton>
+            </ButtonWrapper>
             <TestWrapper>{eventCards}</TestWrapper>   
         </Wrapper>
     );
@@ -99,39 +101,62 @@ function EventList() {  //TODO add to "home" page component
 
 
 // TODO //========== STYLING ==========//
-const StyledButton = styled.button`
-
-`
 
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
 `
+    const ButtonWrapper = styled.div`
+        display: flex;
+        flex-direction: row;
+        gap: 1vw;
+    `
+        const StyledButton = styled.button`
+            box-sizing: content-box;
+            text-align: center;
+            border: none;
+            padding: 5px;
+            margin: 5px;
+            width: 150px;
+            height: 40px;
+            border-radius: 5px;
+            &:hover {
+                background-color: #ca3e68;
+                color: white;
+                cursor: pointer;
+            }
+        `
 
-const TestWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1vw;
-`
-
-const EventCard = styled.div`
-    width: 25vw;
-    max-width: 400px;
-    min-width: 300px;
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-    & img {
-        width: 100%;
-        height: 130px;
-        object-fit: cover;
-    }& h1 {
-        width: 100%;
-        font-size: 2vw;
-        white-space: nowrap; 
-    }
-`
+    const TestWrapper = styled.div`
+        display: flex;
+        flex-direction: row !important;
+        align-items: flex-start;
+        gap: 1vw;
+    `
+        const EventCard = styled.div`
+            /* border: solid #0085a7 2px;   */
+            width: 25vw;
+            height: 305px;
+            max-width: 400px;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            padding: 15px;
+            box-shadow: 1px 1px 10px 2px #7c7c7c39;
+            & img {
+                width: 100%;
+                height: 130px;
+                object-fit: cover;
+                border-radius: 3px;
+            }& h1 {
+                width: 100%;
+                font-size: min(max(18px, 2vw), 28px);
+                white-space: nowrap; 
+            }& .event-desc {
+                overflow-y: hidden;
+            }
+        `
 
 export default EventList
