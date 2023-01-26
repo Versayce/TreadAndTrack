@@ -177,6 +177,7 @@ const Wrapper = styled.div`
                 border-radius: 8px;
             } :hover {
                 box-shadow: 1px 1px 10px 2px #49494939;
+                cursor: pointer;
             }
         `
             const EventLocation = styled.div`
