@@ -3,13 +3,14 @@ from app.models import db, environment, SCHEMA, Event, User
 
 def seed_events():
 
-    test_event = Event(
+    main_event = Event(
         owner_id = 1,
-        name = "TEST",
-        address = "TEST",
-        city = "TEST",
-        state = "TEST",
-        country = "TEST",
+        name = "Cars and Coffee Scottsdale",
+        address = "20789 N Pima Rd #210 85255",
+        city = "Scottsdale",
+        state = "AZ",
+        country = "United States",
+        zipcode = 85255,
         # lat = "Latitude",
         # lng = "Longitude",
         description = "TEST",
@@ -22,12 +23,13 @@ def seed_events():
         city = "TEST2",
         state = "TEST2",
         country = "TEST2",
+        zipcode = 80000,
         # lat = "Latitude",
         # lng = "Longitude",
         description = "TEST2",
     )
 
-    all_events = [ test_event, test_event2 ] 
+    all_events = [ main_event, test_event2 ] 
                 #   event1, event2, event3, event4, event5, event6, event7, event8, event9, event10 ]
     all_users = User.query.all()
     
