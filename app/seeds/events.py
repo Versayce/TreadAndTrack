@@ -10,7 +10,7 @@ def seed_events():
         city = "City",
         state = "State",
         country = "Country",
-        zipcode = 8000,
+        zipcode = 80000,
         # lat = "Latitude",
         # lng = "Longitude",
         description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 
@@ -28,7 +28,7 @@ def seed_events():
         city = "City",
         state = "State",
         country = "Country",
-        zipcode = 8000,
+        zipcode = 80000,
         # lat = "Latitude",
         # lng = "Longitude",
         description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 
@@ -46,7 +46,7 @@ def seed_events():
         city = "City",
         state = "State",
         country = "Country",
-        zipcode = 8000,
+        zipcode = 80000,
         # lat = "Latitude",
         # lng = "Longitude",
         description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 

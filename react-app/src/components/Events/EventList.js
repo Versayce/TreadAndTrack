@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components'
-import { createEvent, deleteEvent, getAllEvents, editEventById, getOneEvent } from '../../store/event';
+import { createEvent, deleteEvent, getAllEvents, editEventById, getOneEvent, loadOneEvent } from '../../store/event';
 import { useDispatch, useSelector } from 'react-redux'
 import { setVisibleStatus } from '../../store/modal';
 
@@ -17,11 +17,11 @@ function EventList() {  //TODO add to "home" page component
 
     // TODO remove test useSelectors and data 
     const eventObj = useSelector(state => state.events.oneEvent)
-    // const event = Object.values(eventObj)
+    const event = Object.values(eventObj)[0]
 
     // TODO test conditionally rendered modal slice of state:
     const modalState = useSelector(state => state.modal.status)
-    // console.log('', '\n', '==========Event List Component==========', '\n', modalState , '\n', '') // Testing data acquisition
+    console.log('', '\n', '==========Event List Component==========', '\n', event?.id , '\n', '') // Testing data acquisition
 
     // Testing EDIT 
     const testEvent1 = {
@@ -36,13 +36,14 @@ function EventList() {  //TODO add to "home" page component
     }
     // Testing CREATE
     const testEvent2 = {
-        "owner_id": 3,
-        "name": "testEvent2",
-        "address": "testing creation in component",
-        "city": "testing creation in component",
-        "state": "testing creation in component",
-        "country": "testing creation in component",
+        "name": "Testing Creation",
+        "address": "Address",
+        "city": "City",
+        "state": "State",
+        "country": "Country",
+        "zipcode": 8000,
         "description": "testing creation in component",
+        "owner_id": 1,
     }
 
     useEffect(() => {
@@ -50,12 +51,23 @@ function EventList() {  //TODO add to "home" page component
             return;
         }
         dispatch(getAllEvents())
-        dispatch(getOneEvent(1))
+        // dispatch(getOneEvent(1))
         // dispatch(editEventById(testEvent1))
-        // dispatch(createEvent(testEvent2))
-        // dispatch(deleteEvent(3))
     }, [dispatch, userId]);
     
+
+    const handleCreate = (e) => {
+        e.preventDefault()
+        dispatch(createEvent(testEvent2))
+    }
+
+    const setActiveEvent = (eventId) => {
+        dispatch(getOneEvent(eventId))
+    }
+
+    const handleDelete = (eventId) => {
+        dispatch(deleteEvent(eventId))
+    }
 
     const showModalEvent = (e) => {
         e.preventDefault()
@@ -73,7 +85,7 @@ function EventList() {  //TODO add to "home" page component
     // Creating event cards with all events for displaying on homepage
     const eventCards = events.map((event) => {
         return (
-            <EventCard key={event.id}>
+            <EventCard onClick={() => setActiveEvent(event.id)} key={event.id}>
                 <h1>{event.name}</h1>
                 <img src={`${event.images[0]?.imageUrl}`}></img>
                 <EventLocation>
@@ -90,9 +102,10 @@ function EventList() {  //TODO add to "home" page component
         <Wrapper>
             <h1>Event List Component</h1>
             <ButtonWrapper>
-                <StyledButton as="button"> Create an Event </StyledButton>
-                <StyledButton as="button" onClick={showModalEvent}> Test Show Modal State </StyledButton>
-                <StyledButton as="button" onClick={hideModalEvent}> Test Hide Modal State </StyledButton>
+                <StyledButton as="button" onClick={() => handleCreate}> Create an Event </StyledButton>
+                <StyledButton as="button" onClick={() => handleDelete(event?.id)}> Delete Last Event </StyledButton>
+                <StyledButton as="button" onClick={() => showModalEvent}> Test Show Modal State </StyledButton>
+                <StyledButton as="button" onClick={() => hideModalEvent}> Test Hide Modal State </StyledButton>
             </ButtonWrapper>
             {modalState === true && <TestConditionalRender>Loading Modal</TestConditionalRender>}
             <TestWrapper>{eventCards}</TestWrapper>   

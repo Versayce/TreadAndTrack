@@ -36,7 +36,6 @@ const NavBar = () => {
 const NavStyle = styled.div`
     display: flex;
     flex-direction: row;
-    gap: none;
     justify-content: space-around;
     & span {
         

@@ -8,18 +8,27 @@ function ConditonalModal() {
 
 
     // TODO add logic for changing which modal component renders depending on what parameter props are being passed
+    const RenderComponent = (params) => {
+        switch (params) {
+
+            case params.firstCase: //specify which params are required to render contents
+                {
+                    
+                }
+
+        };
+    };
+
+
+
     return (
-        <Container modalParams={paramObj}>
+        <Container modalParams={}>
             
             {
                 <form>
                     <input></input>
                 </form>
             };
-
-            {
-
-            }
 
         </Container>
     );
