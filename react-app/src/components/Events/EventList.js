@@ -80,7 +80,7 @@ function EventList() {  //TODO add to "home" page component
                 <p>{event.city}</p>
                 <p>{event.state}</p>
                 <p>{event.zipcode}</p>
-                <p>{event.description}</p>
+                <p className='event-desc'>{event.description}</p>
             </EventCard>
         );
     });
@@ -131,16 +131,20 @@ const Wrapper = styled.div`
     const TestWrapper = styled.div`
         display: flex;
         flex-direction: row !important;
-        align-items: center;
+        align-items: flex-start;
         gap: 1vw;
     `
         const EventCard = styled.div`
+            /* border: solid #0085a7 2px;   */
             width: 25vw;
+            height: 305px;
             max-width: 400px;
             min-width: 300px;
             display: flex;
             flex-direction: column;
             margin: 10px;
+            padding: 15px;
+            box-shadow: 1px 1px 10px 2px #7c7c7c39;
             & img {
                 width: 100%;
                 height: 130px;
@@ -148,8 +152,10 @@ const Wrapper = styled.div`
                 border-radius: 3px;
             }& h1 {
                 width: 100%;
-                font-size: 2vw;
+                font-size: min(max(18px, 2vw), 28px);
                 white-space: nowrap; 
+            }& .event-desc {
+                overflow-y: hidden;
             }
         `
 
