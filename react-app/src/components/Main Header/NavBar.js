@@ -2,42 +2,45 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../Auth/LogoutButton';
+import styled from 'styled-components';
 
 const NavBar = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
+    <NavStyle>
+    <span>
+        <NavLink to='/' exact={true} activeClassName='active'>
             Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
+        </NavLink>
+    </span>
+        <NavLink to='/login' exact={true} activeClassName='active'>
             Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
+        </NavLink>
+    <span>
+        <NavLink to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
+        </NavLink>
+    </span>
+        <NavLink to='/users' exact={true} activeClassName='active'>
             Users
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/events' exact={true} activeClassName='active'>
+        </NavLink>
+    <span>
+        <NavLink to='/events' exact={true} activeClassName='active'>
             Events
-          </NavLink>
-        </li>
-        <li>
-          <LogoutButton />
-        </li>
-      </ul>
-    </nav>
+        </NavLink>
+    </span>
+        <LogoutButton />
+    </NavStyle>
   );
 }
+
+const NavStyle = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: none;
+    justify-content: space-around;
+    & span {
+        
+    }
+`
 
 export default NavBar;
