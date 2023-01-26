@@ -21,7 +21,7 @@ function EventList() {  //TODO add to "home" page component
 
     // TODO test conditionally rendered modal slice of state:
     const modalState = useSelector(state => state.modal.modalState)
-    console.log('', '\n', '==========Event List Component==========', '\n', modalState , '\n', '') // Testing data acquisition
+    // console.log('', '\n', '==========Event List Component==========', '\n', modalState , '\n', '') // Testing data acquisition
 
     // Testing EDIT 
     const testEvent1 = {
