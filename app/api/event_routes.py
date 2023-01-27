@@ -42,7 +42,7 @@ def event_by_id(id):
         if request.method == 'GET':
             event_dict = event.to_dict()
             event_dict['users'] = [user.to_dict() for user in event.users]
-            # event_dict['owner'] = event.owner.to_dict()
+            event_dict['owner'] = event.owner.to_dict()
             return event_dict
         
         if request.method == 'PUT':
@@ -55,7 +55,9 @@ def event_by_id(id):
                 event.city = form.data['city']
                 event.state = form.data['state']
                 event.country = form.data['country']
+                event.zipcode = form.data['zipcode']
                 event.description = form.data['description']
+                db.session.commit()
                 return event.to_dict()
             else:
                 return form.errors

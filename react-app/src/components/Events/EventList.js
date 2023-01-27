@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components'
-import { deleteEvent, getAllEvents, getOneEvent } from '../../store/event';
+import { deleteEvent, getAllEvents, getOneEvent, editEventById } from '../../store/event';
 import { useDispatch, useSelector } from 'react-redux'
 import { renderCreateEventModal } from '../../store/modal';
 
@@ -75,8 +75,8 @@ function EventList() {  //TODO add to "home" page component
     const eventCards = events?.map((event) => {
         return (
             <EventCard onClick={() => setActiveEvent(event.id)} key={event.id}>
-                <h1>{event.name}</h1>
-                <img alt='eventimg' src={`${event?.images[0]?.imageUrl}`}></img>
+                <h1>{event?.name}</h1>
+                {event.images && <img alt='eventimg' src={`${event.images[0]?.imageUrl}`}></img>}
                 <EventLocation>
                     <p>{`${event.city}, ${event.state} ${event.zipcode}`}</p>
                 </EventLocation>

@@ -40,6 +40,7 @@ export const addEvent = (event) => {
 // }
 
 export const editEvent = (event) => {
+    console.log('EDIT EVENT ACTION DATA', event)
     return {
         type: EDIT_EVENT,
         event
@@ -92,6 +93,7 @@ export const createEvent = (event, imageUrl) => async (dispatch) => {
         const eventId = data.id
         const name = `event-${eventId}-Image`
         await dispatch(createEventImage(imageUrl, name, eventId))
+        console.log('Event Image Created')
     };
 };
 
@@ -106,20 +108,31 @@ export const createEventImage = (image_url, name, event_id) => async (dispatch) 
     
     if(res.ok) {
         const data = await res.json();
-        console.log('============LOGGING INSIDE OF CREATE IMAGE THUNK=============', data)
     };
 }
 
 
-export const editEventById = (event) => async (dispatch) => {
+export const editEventById = (event, image_url, eventId) => async (dispatch) => {
+    console.log('============LOGGING INSIDE OF EDIT EVENT THUNK=============', event)
+    const {address, city, country, description, name, state, zipcode, owner_id} = event
     const res = await fetch(`/api/events/${event.id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(event)
+        body: JSON.stringify({
+            address,
+            city,
+            country,
+            description,
+            name,
+            state,
+            zipcode,
+            owner_id
+        })
     });
 
     if(res.ok) {
         const data = await res.json();
+        console.log('=============DATA INSIDE EDIT EVENT THUNK==============', data)
         dispatch(editEvent(data))
     };
 };
@@ -168,7 +181,7 @@ const eventReducer = (state = initialState, action) => {
 
         case EDIT_EVENT:
             {
-                const newState = { allEvents: {...state.allEvents}, oneEvent: {...state.oneEvent}}
+                const newState = { allEvents: {...state.allEvents}, oneEvent: {}}
                 newState.allEvents[action.event.id] = action.event
                 newState.oneEvent[action.event.id] = action.event
                 return newState;

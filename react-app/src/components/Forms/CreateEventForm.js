@@ -21,7 +21,7 @@ function CreateEventForm() {
     const currentUser = useSelector(state => state.session.user)
     const owner_id = currentUser.id
 
-    console.log('', '\n', '==========CREATE FORM COMPONENT==========', '\n', owner_id , '\n', '')
+    // console.log('', '\n', '==========CREATE FORM COMPONENT==========', '\n', owner_id , '\n', '')
 
     // const validator = () => {
 

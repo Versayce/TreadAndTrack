@@ -10,13 +10,11 @@ function ConditonalModal() {
     const dispatch = useDispatch();
     const paramObj = useSelector(state => state.modal.params)
 
-    
     const handleChildClicks = (e) => {
         e.stopPropagation()
     }
 
-    // console.log('', '\n', '==========Inside of Conditional Modal==========', paramObj, '\n', '')
-
+    // console.log('', '\n', '==========Inside of Conditional Modal==========', currentEvent, '\n', '')
     // TODO add logic for changing which modal component renders depending on what parameters are being passed
     const renderComponent = (params) => {
         // console.log('======  MODAL-SWITCH  ======:', params)
