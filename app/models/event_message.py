@@ -23,9 +23,9 @@ class EventMessage(db.Model):
         return {
             'id': self.id,
             'body': self.body,
-            'eventId': self.id,
+            'eventId': self.event_id,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
             'authorId': self.author_id,
-            # 'author': self.author.to_dict()
+            'author': self.author.to_dict()
         }

@@ -15,6 +15,7 @@ event_routes = Blueprint('events', __name__)
 @event_routes.route('')
 def event_home():
     all_events = Event.query.all()
+    print('==============CHECKING WITHIN GET ALL EVENTS ROUTE=======================', all_events)
     return {'events': [event.to_dict() for event in all_events]}
 
 
