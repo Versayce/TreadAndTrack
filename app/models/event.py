@@ -36,7 +36,7 @@ class Event(db.Model):
     # Event can have many images:
     images = db.relationship("EventImage", back_populates="event", cascade="all, delete")  #, cascade="all, delete"
     # Event can have many messages:
-    messages = db.relationship('Message', back_populates='event', cascade="all, delete")
+    messages = db.relationship('EventMessage', back_populates='event', cascade="all, delete")
 
     def to_dict(self):
         return {
@@ -50,7 +50,7 @@ class Event(db.Model):
             "country": self.country,
             "description": self.description,
             "images": [image.to_dict() for image in self.images],
-            "users": [user.to_dict() for user in self.users],
+            "messages": [message.to_dict() for message in self.messages],
             "createdAt": self.created_at,
             "updatedAt": self.updated_at,
         }

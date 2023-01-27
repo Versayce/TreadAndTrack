@@ -4,7 +4,7 @@ from .db import db
 from .user import User
 from .event import Event
 from .event_image import EventImage
-# from .event_comments import EventComments
+from .event_message import EventMessage
 # from .car import Car
 # from .car_comments import CarComments
 

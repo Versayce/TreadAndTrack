@@ -3,6 +3,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .events import seed_events, undo_events
 from .event_images import seed_event_images, undo_event_images
+from .event_messages import seed_event_messages, undo_event_messages
 
 from app.models.db import db, environment, SCHEMA
 
@@ -22,9 +23,11 @@ def seed():
         undo_users()
         undo_events()
         undo_event_images()
+        undo_event_messages()
     seed_users()
     seed_events()
     seed_event_images()
+    seed_event_messages()
     # Add other seed functions here
 
 

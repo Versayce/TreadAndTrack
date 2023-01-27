@@ -4,7 +4,7 @@ from flask import Blueprint, request
 from app.forms.event_form import EventForm
 from app.forms.event_image_form import EventImageForm
 from app.forms.event_message_form import EventMessageForm
-from app.models.event_comment import EventMessage
+from app.models.event_message import EventMessage
 from app.models.event_image import EventImage
 from ..models import db, Event, EventMessage
 
