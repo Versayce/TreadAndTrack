@@ -194,6 +194,7 @@ const Wrapper = styled.div`
                 font-size: min(max(10px, 2vw), 15px);
                 color: #3f3f3fb0;
             }& .event-desc {
+                height: 30%;
                 overflow-y: scroll;
             }& ::-webkit-scrollbar {
                 width: 6px;
