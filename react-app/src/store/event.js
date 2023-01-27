@@ -82,7 +82,7 @@ export const getOneEvent = (eventId) => async (dispatch) => {
 
 export const createEvent = (event, imageUrl) => async (dispatch) => {
     console.log('============LOGGING INSIDE OF EDIT EVENT THUNK=============', event)
-    const res = await fetch('/api/events/new', {
+    const res = await fetch('/api/events', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(event)
@@ -101,7 +101,7 @@ export const createEvent = (event, imageUrl) => async (dispatch) => {
 export const createEventImage = (image_url, name, event_id) => async (dispatch) => {
     const imageData = {name, image_url, event_id}
     console.log('CREATING IMAGE', imageData)
-    const res = await fetch('/api/events/images/new', {
+    const res = await fetch('/api/events/images', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(imageData)

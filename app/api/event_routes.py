@@ -16,7 +16,7 @@ def event_home():
     return {'events': [event.to_dict() for event in all_events]}
 
 
-@event_routes.route('/new', methods=['POST'])
+@event_routes.route('', methods=['POST'])
 def new_server():
     form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -70,7 +70,7 @@ def event_by_id(id):
     return { "error": "Server not found", "errorCode" : 404 }, 404
 
 
-@event_routes.route('/images/new', methods=['POST'])
+@event_routes.route('/images', methods=['POST'])
 def add_event_image():
     form = EventImageForm()
     form['csrf_token'].data = request.cookies['csrf_token']
