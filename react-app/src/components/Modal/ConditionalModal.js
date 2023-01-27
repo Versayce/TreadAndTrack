@@ -1,25 +1,29 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { closeModal } from "../../store/modal";
 
 // TODO Create components that render based on available data being sent from state (useSelector)
 function ConditonalModal() {
+    const dispatch = useDispatch();
     const paramObj = useSelector(state => state.modal.params)
 
     
+    const handleChildClicks = (e) => {
+        e.stopPropagation()
+    }
+
     console.log('', '\n', '==========Inside of Conditional Modal==========', paramObj, '\n', '')
 
     // TODO add logic for changing which modal component renders depending on what parameter props are being passed
     const renderComponent = (params) => {
-        console.log('inside of switch:', params)
-
+        // console.log('======  MODAL-SWITCH  ======:', params)
         switch (params?.modalToLoad) {
             case "createModal": //specify which params are required to render contents
                 {
                     console.log('Create Event case hit')
                     return (
-                        <ModalBackground onClick={closeModal()}>
-                            <ModalBody>
+                        <ModalBackground onClick={(e) => dispatch(closeModal())}>
+                            <ModalBody onClick={(e) => handleChildClicks(e)}>
                                 Testing CREATE CASE render
                             </ModalBody>
                         </ModalBackground>
@@ -30,8 +34,8 @@ function ConditonalModal() {
                 {
                     console.log('EDIT Event case hit')
                     return (
-                        <ModalBackground onClick={closeModal()}>
-                            <ModalBody>
+                        <ModalBackground onClick={(e) => dispatch(closeModal())}>
+                            <ModalBody onClick={(e) => handleChildClicks(e)}>
                                 Testing EDIT CASE render
                             </ModalBody>
                         </ModalBackground>
@@ -51,9 +55,9 @@ function ConditonalModal() {
 
 
     return (
-        <Container> 
+        <>
             {renderComponent(paramObj)}
-        </Container>
+        </>
     )
 };
 
@@ -71,13 +75,19 @@ const ModalBackground = styled.div`
     backdrop-filter: blur(3px);
     margin: none;
 `
+
 const ModalBody = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* fixing to center of screen */
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
     margin: auto;
+    /* setting max scaling w/h */
     max-width: 450px;
     max-height: 550px;
     border-radius: 20px;
@@ -85,9 +95,5 @@ const ModalBody = styled.div`
     background: linear-gradient(180deg, #ffffff, #f8f8f8)
 `
 
-
-const Container = styled.div`
-
-`
 
 export default ConditonalModal
