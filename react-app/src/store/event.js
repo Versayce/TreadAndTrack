@@ -2,6 +2,7 @@
 const LOAD_ALL_EVENTS = 'events/LOAD_ALL'
 const LOAD_ONE_EVENT = 'events/LOAD_ONE'
 const ADD_EVENT = 'events/ADD'
+const ADD_IMAGE = 'events/ADDIMAGE'
 const EDIT_EVENT = 'events/EDIT'
 const DELETE_EVENT = 'events/DELETE'
 
@@ -25,11 +26,19 @@ export const loadOneEvent = (event) => {
 };
 
 export const addEvent = (event) => {
+    console.log('============LOGGING INSIDE OF ADD EVENT ACTION=============', event)
     return {
         type: ADD_EVENT,
         event
     };
 };
+
+export const addImage = (image) => {
+    return {
+        type: ADD_IMAGE,
+        image
+    }
+}
 
 export const editEvent = (event) => {
     return {
@@ -72,17 +81,32 @@ export const getOneEvent = (eventId) => async (dispatch) => {
 };
 
 export const createEvent = (event) => async (dispatch) => {
+    const {address, city, country, state, description, name, zipcode, owner_id} = event
+    console.log('============LOGGING INSIDE OF CREATE EVENT THUNK=============', description)
     const res = await fetch('/api/events/new', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(event)
+        body: JSON.stringify({...event})
     });
-
+    
     if(res.ok) {
         const data = await res.json();
         dispatch(addEvent(data))
     };
 };
+
+export const createEventImage = (image) => async (dispatch) => {
+    const res = await fetch('/api/events/images/new', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(image)
+    });
+
+    if(res.ok) {
+        const data = await res.json();
+        dispatch(addImage(data))
+    };
+}
 
 export const editEventById = (event) => async (dispatch) => {
     const res = await fetch(`/api/events/${event.id}`, {

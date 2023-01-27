@@ -9,7 +9,8 @@ const CLOSE_MODAL = 'modals/closeModal'
 
 
 //------------------------------   ACTIONS   ------------------------------//
-export const renderCreateEventModal = (params) => { // Boolean is being passed in and returned
+export const renderCreateEventModal = (params) => { 
+    console.log('inside of CREATE modal action')
     return {
         type: CREATE_EVENT_FORM_MODAL,
         params
@@ -17,7 +18,7 @@ export const renderCreateEventModal = (params) => { // Boolean is being passed i
 };
 
 export const closeModal = () => {
-    console.log('inside of close modal action')
+    console.log('inside of CLOSE modal action')
     return {
         type: CLOSE_MODAL,
     }

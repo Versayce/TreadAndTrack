@@ -1,6 +1,9 @@
+from crypt import methods
 from flask import Blueprint, request
 
 from app.forms.event_form import EventForm
+from app.forms.event_image_form import EventImageForm
+from app.models.event_image import EventImage
 from ..models import db, Event
 
 
@@ -63,3 +66,20 @@ def event_by_id(id):
             return {'message': 'Event Deleted!'}
     
     return { "error": "Server not found", "errorCode" : 404 }, 404
+
+
+@event_routes.route('/images/new', methods=['POST'])
+def add_event_image():
+    form = EventImageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    
+    if form.validate_on_submit():
+        new_image = EventImage
+        form.populate_obj(new_image)
+        
+        db.session.add(new_image)
+        db.session.commit()
+        return new_image.to_dict()
+    
+    else:
+        return form.errors

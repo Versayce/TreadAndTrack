@@ -54,20 +54,15 @@ function EventList() {  //TODO add to "home" page component
         // dispatch(getOneEvent(1))
         // dispatch(editEventById(testEvent1))
     }, [dispatch, userId]);
+
     
-
-    const handleCreate = (e) => {
-        e.preventDefault()
-        dispatch(createEvent(testEvent2))
-    }
-
     const setActiveEvent = (eventId) => {
         dispatch(getOneEvent(eventId))
-    }
+    };
 
     const handleDelete = (eventId) => {
         dispatch(deleteEvent(eventId))
-    }
+    };
 
     const showModalEvent = (params) => {
         dispatch(renderCreateEventModal(params))
@@ -77,14 +72,13 @@ function EventList() {  //TODO add to "home" page component
     {/* {console.log('', '\n', '==========Event List Component==========', '\n', event , '\n', '')} */}
     
     // Creating event cards with all events for displaying on homepage
-    const eventCards = events.map((event) => {
+    const eventCards = events?.map((event) => {
         return (
             <EventCard onClick={() => setActiveEvent(event.id)} key={event.id}>
                 <h1>{event.name}</h1>
-                <img src={`${event.images[0]?.imageUrl}`}></img>
+                {/* <img src={`${event.images[0]?.imageUrl}`}></img> */}
                 <EventLocation>
                     <p>{`${event.city}, ${event.state} ${event.zipcode}`}</p>
-                    {/* <p>{event.address}</p> */}
                 </EventLocation>
                 <div className='event-desc'>{event.description}</div>
             </EventCard>
@@ -92,18 +86,13 @@ function EventList() {  //TODO add to "home" page component
     });
   
 
-    const testParams = {
+    const createModal = {
         modalToLoad: "createModal",
         param1: "data1",
         param2: "data2",
     }
-    const testParams2 = {
+    const editModal = {
         modalToLoad: "editModal",
-        param1: "data1",
-        param2: "data2",
-    }
-    const testParams3 = {
-        modalToLoad: "closeModal",
         param1: "data1",
         param2: "data2",
     }
@@ -113,12 +102,11 @@ function EventList() {  //TODO add to "home" page component
         <Wrapper>
             <h1>Event List Component</h1>
             <ButtonWrapper>
-                <StyledButton as="button" onClick={showModalEvent(modalState)}> Create an Event </StyledButton>
+                {/* <StyledButton as="button" onClick={() => showModalEvent(modalState)}> Create an Event </StyledButton> */}
                 <StyledButton as="button" onClick={() => handleDelete(event?.id)}> Delete Last Event </StyledButton>
-                <StyledButton as="button" onClick={() => showModalEvent(testParams)}> Test Show Modal State </StyledButton>
+                <StyledButton as="button" onClick={() => showModalEvent(createModal)}> Test Show Modal State </StyledButton>
             </ButtonWrapper>
-            {modalState === true && <TestConditionalRender>Loading Modal</TestConditionalRender>}
-            <TestWrapper>{eventCards}</TestWrapper>   
+            <CardsWrapper>{eventCards}</CardsWrapper>   
         </Wrapper>
     );
 }
@@ -157,7 +145,7 @@ const Wrapper = styled.div`
             }
         `
 
-    const TestWrapper = styled.div`
+    const CardsWrapper = styled.div`
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;

@@ -2,6 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { closeModal } from "../../store/modal";
 
+import CreateEventForm from "../Forms/CreateEventForm";
+import EditEventForm from "../Forms/EditEventForm";
+
 // TODO Create components that render based on available data being sent from state (useSelector)
 function ConditonalModal() {
     const dispatch = useDispatch();
@@ -14,7 +17,7 @@ function ConditonalModal() {
 
     console.log('', '\n', '==========Inside of Conditional Modal==========', paramObj, '\n', '')
 
-    // TODO add logic for changing which modal component renders depending on what parameter props are being passed
+    // TODO add logic for changing which modal component renders depending on what parameters are being passed
     const renderComponent = (params) => {
         // console.log('======  MODAL-SWITCH  ======:', params)
         switch (params?.modalToLoad) {
@@ -24,7 +27,7 @@ function ConditonalModal() {
                     return (
                         <ModalBackground onClick={(e) => dispatch(closeModal())}>
                             <ModalBody onClick={(e) => handleChildClicks(e)}>
-                                Testing CREATE CASE render
+                                <CreateEventForm />
                             </ModalBody>
                         </ModalBackground>
                     )
@@ -36,7 +39,7 @@ function ConditonalModal() {
                     return (
                         <ModalBackground onClick={(e) => dispatch(closeModal())}>
                             <ModalBody onClick={(e) => handleChildClicks(e)}>
-                                Testing EDIT CASE render
+                                <EditEventForm />
                             </ModalBody>
                         </ModalBackground>
                     )
