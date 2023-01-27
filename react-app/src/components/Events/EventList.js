@@ -76,7 +76,7 @@ function EventList() {  //TODO add to "home" page component
         return (
             <EventCard onClick={() => setActiveEvent(event.id)} key={event.id}>
                 <h1>{event?.name}</h1>
-                {event.images && <img alt='eventimg' src={`${event.images[0]?.imageUrl}`}></img>}
+                {event.images[0] && <img alt='eventimg' src={`${event.images[0]?.imageUrl}`}></img>}
                 <EventLocation>
                     <p>{`${event.city}, ${event.state} ${event.zipcode}`}</p>
                 </EventLocation>

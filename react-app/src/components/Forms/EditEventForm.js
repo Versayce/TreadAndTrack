@@ -39,7 +39,7 @@ function CreateEventForm() {
         console.log('form submission component', formData)
         e.preventDefault();
         await dispatch(editEventById(formData, imageUrl)) // TODO possibly refactor so dispatching createEvent isn't necessary
-        dispatch(getAllEvents())
+        await dispatch(getAllEvents())
         dispatch(closeModal())
     } 
 
