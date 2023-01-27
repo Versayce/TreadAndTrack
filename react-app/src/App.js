@@ -11,7 +11,6 @@ import EventList from './components/Events/EventList'
 import { authenticate } from './store/session';
 import EventPage from './components/Events/EventPage';
 import ConditonalModal from './components/Modal/ConditionalModal';
-import styled from 'styled-components';
 
 
 function App() {
@@ -61,23 +60,6 @@ function App() {
 	</>
   )
 }
-
-
-const ModalBackground = styled.div`
-    box-sizing: border-box;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #000000d8;
-    backdrop-filter: blur(3px);
-    margin: none;
-`
-
 
 
 export default App;

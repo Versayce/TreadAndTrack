@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components'
-import { createEvent, deleteEvent, getAllEvents, editEventById, getOneEvent, loadOneEvent } from '../../store/event';
+import { deleteEvent, getAllEvents, getOneEvent } from '../../store/event';
 import { useDispatch, useSelector } from 'react-redux'
 import { renderCreateEventModal } from '../../store/modal';
 
@@ -24,27 +24,27 @@ function EventList() {  //TODO add to "home" page component
     console.log('', '\n', '==========Event List Component==========', '\n', modalState , '\n', '') // Testing data acquisition
 
     // Testing EDIT 
-    const testEvent1 = {
-        "id": 2,
-        "owner_id": 2,
-        "name": "testEvent",
-        "address": "testing in component",
-        "city": "testing in component",
-        "state": "testing in component",
-        "country": "testing in component",
-        "description": "testing in component",
-    }
-    // Testing CREATE
-    const testEvent2 = {
-        "name": "Testing Creation",
-        "address": "Address",
-        "city": "City",
-        "state": "State",
-        "country": "Country",
-        "zipcode": 8000,
-        "description": "testing creation in component",
-        "owner_id": 1,
-    }
+    // const testEvent1 = {
+    //     "id": 2,
+    //     "owner_id": 2,
+    //     "name": "testEvent",
+    //     "address": "testing in component",
+    //     "city": "testing in component",
+    //     "state": "testing in component",
+    //     "country": "testing in component",
+    //     "description": "testing in component",
+    // }
+    // // Testing CREATE
+    // const testEvent2 = {
+    //     "name": "Testing Creation",
+    //     "address": "Address",
+    //     "city": "City",
+    //     "state": "State",
+    //     "country": "Country",
+    //     "zipcode": 8000,
+    //     "description": "testing creation in component",
+    //     "owner_id": 1,
+    // }
 
     useEffect(() => {
         if(!userId) {
@@ -69,14 +69,14 @@ function EventList() {  //TODO add to "home" page component
     };
 
 
-    {/* {console.log('', '\n', '==========Event List Component==========', '\n', event , '\n', '')} */}
+    /* {console.log('', '\n', '==========Event List Component==========', '\n', event , '\n', '')} */
     
     // Creating event cards with all events for displaying on homepage
     const eventCards = events?.map((event) => {
         return (
             <EventCard onClick={() => setActiveEvent(event.id)} key={event.id}>
                 <h1>{event.name}</h1>
-                <img src={`${event.images[0]?.imageUrl}`}></img>
+                <img alt='eventimg' src={`${event?.images[0]?.imageUrl}`}></img>
                 <EventLocation>
                     <p>{`${event.city}, ${event.state} ${event.zipcode}`}</p>
                 </EventLocation>
@@ -114,9 +114,7 @@ function EventList() {  //TODO add to "home" page component
 
 
 // TODO //========== STYLING ==========//
-const TestConditionalRender = styled.div`
-    color: red;
-`
+
 
 const Wrapper = styled.div`
     display: flex;

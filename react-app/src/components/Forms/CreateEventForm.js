@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components"
 import { useDispatch, useSelector } from "react-redux";
-import { createEvent, createEventImage, getAllEvents } from "../../store/event";
+import { createEvent, getAllEvents } from "../../store/event";
 import { closeModal } from "../../store/modal";
 
 

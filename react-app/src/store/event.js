@@ -2,7 +2,7 @@
 const LOAD_ALL_EVENTS = 'events/LOAD_ALL'
 const LOAD_ONE_EVENT = 'events/LOAD_ONE'
 const ADD_EVENT = 'events/ADD'
-const ADD_IMAGE = 'events/ADDIMAGE'
+// const ADD_IMAGE = 'events/ADDIMAGE'
 const EDIT_EVENT = 'events/EDIT'
 const DELETE_EVENT = 'events/DELETE'
 
@@ -31,7 +31,7 @@ export const addEvent = (event) => {
         event
     };
 };
-
+//TODO delete unused action
 // export const addImage = (image) => {
 //     return {
 //         type: ADD_IMAGE,
@@ -64,7 +64,7 @@ export const getAllEvents = () => async (dispatch) => {
     
     if(res.ok) {
         const data = await res.json();
-        dispatch(loadAllEvents(data.events))
+        await dispatch(loadAllEvents(data.events))
     };
 };
 
@@ -75,12 +75,11 @@ export const getOneEvent = (eventId) => async (dispatch) => {
     
     if(res.ok) {
         const data = await res.json()
-        dispatch(loadOneEvent(data))
+        await dispatch(loadOneEvent(data))
     };
 };
 
 export const createEvent = (event, imageUrl) => async (dispatch) => {
-    const {address, city, country, state, description, name, zipcode, owner_id} = event
     const res = await fetch('/api/events/new', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -89,10 +88,10 @@ export const createEvent = (event, imageUrl) => async (dispatch) => {
     
     if(res.ok) {
         const data = await res.json();
-        dispatch(addEvent(data))
+        await dispatch(addEvent(data))
         const eventId = data.id
-        const name = 'eventImage'
-        dispatch(createEventImage(imageUrl, name, eventId))
+        const name = `event-${eventId}-Image`
+        await dispatch(createEventImage(imageUrl, name, eventId))
     };
 };
 
@@ -108,7 +107,6 @@ export const createEventImage = (image_url, name, event_id) => async (dispatch) 
     if(res.ok) {
         const data = await res.json();
         console.log('============LOGGING INSIDE OF CREATE IMAGE THUNK=============', data)
-        return data;
     };
 }
 

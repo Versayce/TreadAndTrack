@@ -15,7 +15,7 @@ function ConditonalModal() {
         e.stopPropagation()
     }
 
-    console.log('', '\n', '==========Inside of Conditional Modal==========', paramObj, '\n', '')
+    // console.log('', '\n', '==========Inside of Conditional Modal==========', paramObj, '\n', '')
 
     // TODO add logic for changing which modal component renders depending on what parameters are being passed
     const renderComponent = (params) => {
@@ -23,7 +23,6 @@ function ConditonalModal() {
         switch (params?.modalToLoad) {
             case "createModal": //specify which params are required to render contents
                 {
-                    console.log('Create Event case hit')
                     return (
                         <ModalBackground onClick={(e) => dispatch(closeModal())}>
                             <ModalBody onClick={(e) => handleChildClicks(e)}>
@@ -35,7 +34,6 @@ function ConditonalModal() {
 
             case "editModal":
                 {
-                    console.log('EDIT Event case hit')
                     return (
                         <ModalBackground onClick={(e) => dispatch(closeModal())}>
                             <ModalBody onClick={(e) => handleChildClicks(e)}>
@@ -47,7 +45,6 @@ function ConditonalModal() {
                 
             default:
                 {
-                    console.log('Inside of default case')
                     return null
                 }
 

@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+
+// TODO start filling the page with information and get ready for comments feature.
 function EventPage() {
     let userId
     useEffect(() => {
@@ -12,7 +14,7 @@ function EventPage() {
             // const user = await response.json();
         })();
 
-    }, []);
+    }, [userId]);
 
   
     return (
