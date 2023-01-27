@@ -82,11 +82,10 @@ export const getOneEvent = (eventId) => async (dispatch) => {
 
 export const createEvent = (event) => async (dispatch) => {
     const {address, city, country, state, description, name, zipcode, owner_id} = event
-    console.log('============LOGGING INSIDE OF CREATE EVENT THUNK=============', description)
     const res = await fetch('/api/events/new', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({...event})
+        body: JSON.stringify(event)
     });
     
     if(res.ok) {
@@ -96,6 +95,7 @@ export const createEvent = (event) => async (dispatch) => {
 };
 
 export const createEventImage = (image) => async (dispatch) => {
+    console.log('============LOGGING INSIDE OF CREATE IMAGE THUNK=============', image)
     const res = await fetch('/api/events/images/new', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},

@@ -14,7 +14,7 @@ function CreateEventForm() {
     const [city, setCity] = useState("")
     const [state, setState] = useState("")
     const [country, setCountry] = useState("")
-    const [zip, setZip] = useState("")
+    const [zipcode, setZip] = useState("")
     const [description, setDescription] = useState("")
     const [image, setImage] = useState("")
 
@@ -31,10 +31,11 @@ function CreateEventForm() {
 
     const handleSubmit = async (e) => {
         const imageUrl = image
-        const formData = {name, address, city, state, country, zip, description, owner_id}
+        const formData = {name, address, city, state, country, zipcode, description, owner_id}
+        console.log('form submission component', formData)
         e.preventDefault();
         dispatch(createEvent(formData))
-        // dispatch(createEventImage(imageUrl))
+        dispatch(createEventImage(imageUrl))
         dispatch(closeModal())
     } 
 
@@ -74,13 +75,19 @@ function CreateEventForm() {
             <label>Zip</label>
                 <input 
                 onChange={(e) => setZip(e.target.value)}
-                value={zip}
+                value={zipcode}
                 />
             
             <label>Description</label>
                 <input 
                 onChange={(e) => setDescription(e.target.value)}
                 value={description}
+                />
+            
+            <label>Image Url</label>
+                <input 
+                onChange={(e) => setImage(e.target.value)}
+                value={image}
                 />
 
             <button>Submit</button>
