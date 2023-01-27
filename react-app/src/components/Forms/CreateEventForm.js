@@ -34,7 +34,7 @@ function CreateEventForm() {
         const formData = {name, address, city, state, country, zipcode, description, owner_id}
         console.log('form submission component', formData)
         e.preventDefault();
-        await dispatch(createEvent(formData, imageUrl))
+        await dispatch(createEvent(formData, imageUrl)) // TODO possibly refactor so dispatching createEvent isn't necessary
         dispatch(getAllEvents())
         dispatch(closeModal())
     } 

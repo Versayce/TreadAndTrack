@@ -103,7 +103,7 @@ function EventList() {  //TODO add to "home" page component
             <h1>Event List Component</h1>
             <ButtonWrapper>
                 {/* <StyledButton as="button" onClick={() => showModalEvent(modalState)}> Create an Event </StyledButton> */}
-                <StyledButton as="button" onClick={() => handleDelete(event?.id)}> Delete Last Event </StyledButton>
+                <StyledButton as="button" onClick={() => handleDelete(event?.id)}> Delete Selected Event </StyledButton>
                 <StyledButton as="button" onClick={() => showModalEvent(editModal)}> Edit Last Event </StyledButton>
                 <StyledButton as="button" onClick={() => showModalEvent(createModal)}> Create Event </StyledButton>
             </ButtonWrapper>
@@ -156,7 +156,7 @@ const Wrapper = styled.div`
         width: 80%;
         /* gap: 1vw; */
     `
-        const EventCard = styled.div`
+        const EventCard = styled.section`
             /* border: solid #0085a7 2px;   */
             width: 25vw;
             height: 305px;
