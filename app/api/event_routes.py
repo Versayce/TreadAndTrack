@@ -3,8 +3,10 @@ from flask import Blueprint, request
 
 from app.forms.event_form import EventForm
 from app.forms.event_image_form import EventImageForm
+from app.forms.event_message_form import EventMessageForm
+from app.models.event_comment import EventMessage
 from app.models.event_image import EventImage
-from ..models import db, Event
+from ..models import db, Event, EventMessage
 
 
 event_routes = Blueprint('events', __name__)
@@ -85,3 +87,15 @@ def add_event_image():
     
     else:
         return form.errors
+
+
+@event_routes.route('/<int:id>/messages')
+def get_event_messages(id): 
+    event = Event.query.get(id)
+    if event:
+        event_messages = EventMessage.query.filter(EventMessage.event_id == id).all()
+        event_message_list = {'messages' : [message.to_dict() for message in event_messages]}
+        return event_message_list
+    else:
+        return { 'error': 'Event not found', 'errorCode': 404}, 404
+        

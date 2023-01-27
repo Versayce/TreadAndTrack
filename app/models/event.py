@@ -35,7 +35,8 @@ class Event(db.Model):
     users = db.relationship("User", secondary=event_users, back_populates="events")
     # Event can have many images:
     images = db.relationship("EventImage", back_populates="event", cascade="all, delete")  #, cascade="all, delete"
-
+    # Event can have many messages:
+    messages = db.relationship('Message', back_populates='event', cascade="all, delete")
 
     def to_dict(self):
         return {
