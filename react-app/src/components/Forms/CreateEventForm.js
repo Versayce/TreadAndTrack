@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components"
 import { useDispatch, useSelector } from "react-redux";
-import { createEvent, createEventImage } from "../../store/event";
+import { createEvent, createEventImage, getAllEvents } from "../../store/event";
 import { closeModal } from "../../store/modal";
 
 
@@ -34,8 +34,8 @@ function CreateEventForm() {
         const formData = {name, address, city, state, country, zipcode, description, owner_id}
         console.log('form submission component', formData)
         e.preventDefault();
-        dispatch(createEvent(formData))
-        dispatch(createEventImage(imageUrl))
+        await dispatch(createEvent(formData, imageUrl))
+        dispatch(getAllEvents())
         dispatch(closeModal())
     } 
 

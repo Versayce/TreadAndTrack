@@ -1,8 +1,8 @@
-"""creating initial migration
+"""empty message
 
-Revision ID: e3cae4f92747
+Revision ID: 927daf4f3491
 Revises: 
-Create Date: 2023-01-25 23:31:27.121361
+Create Date: 2023-01-26 23:35:22.816751
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e3cae4f92747'
+revision = '927daf4f3491'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -46,7 +46,7 @@ def upgrade():
     op.create_table('event_images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=40), nullable=False),
-    sa.Column('image_url', sa.String(length=1000), nullable=False),
+    sa.Column('image_url', sa.String(length=1000), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.Column('event_id', sa.Integer(), nullable=False),

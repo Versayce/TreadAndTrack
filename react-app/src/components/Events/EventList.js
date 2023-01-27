@@ -104,7 +104,8 @@ function EventList() {  //TODO add to "home" page component
             <ButtonWrapper>
                 {/* <StyledButton as="button" onClick={() => showModalEvent(modalState)}> Create an Event </StyledButton> */}
                 <StyledButton as="button" onClick={() => handleDelete(event?.id)}> Delete Last Event </StyledButton>
-                <StyledButton as="button" onClick={() => showModalEvent(createModal)}> Test Show Modal State </StyledButton>
+                <StyledButton as="button" onClick={() => showModalEvent(editModal)}> Edit Last Event </StyledButton>
+                <StyledButton as="button" onClick={() => showModalEvent(createModal)}> Create Event </StyledButton>
             </ButtonWrapper>
             <CardsWrapper>{eventCards}</CardsWrapper>   
         </Wrapper>

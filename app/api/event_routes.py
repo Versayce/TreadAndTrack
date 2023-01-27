@@ -74,7 +74,7 @@ def add_event_image():
     form['csrf_token'].data = request.cookies['csrf_token']
     
     if form.validate_on_submit():
-        new_image = EventImage
+        new_image = EventImage()
         form.populate_obj(new_image)
         
         db.session.add(new_image)

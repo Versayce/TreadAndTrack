@@ -10,7 +10,7 @@ class EventImage(db.Model):
         
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), nullable=False)
-    image_url = db.Column(db.String(1000), nullable=False)
+    image_url = db.Column(db.String(1000))
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow) 
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow) 
     
@@ -25,7 +25,6 @@ class EventImage(db.Model):
             "eventId": self.event_id,
             "name": self.name,
             "imageUrl": self.image_url,
-            "image_event": self.event_id,
             "createdAt": self.created_at,
             "updatedAt": self.updated_at,
         }

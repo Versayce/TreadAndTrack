@@ -8,4 +8,4 @@ from wtforms.validators import DataRequired, URL
 class EventImageForm(FlaskForm):
     event_id = IntegerField('Event')
     name = StringField('Name')
-    url = URLField("ImageUrl")
+    image_url = StringField("ImageUrl")

@@ -26,19 +26,18 @@ export const loadOneEvent = (event) => {
 };
 
 export const addEvent = (event) => {
-    console.log('============LOGGING INSIDE OF ADD EVENT ACTION=============', event)
     return {
         type: ADD_EVENT,
         event
     };
 };
 
-export const addImage = (image) => {
-    return {
-        type: ADD_IMAGE,
-        image
-    }
-}
+// export const addImage = (image) => {
+//     return {
+//         type: ADD_IMAGE,
+//         image
+//     }
+// }
 
 export const editEvent = (event) => {
     return {
@@ -62,7 +61,7 @@ export const getAllEvents = () => async (dispatch) => {
     const res = await fetch('/api/events', {
         headers: { "content-Type": "application/json" }
     });
-
+    
     if(res.ok) {
         const data = await res.json();
         dispatch(loadAllEvents(data.events))
@@ -80,7 +79,7 @@ export const getOneEvent = (eventId) => async (dispatch) => {
     };
 };
 
-export const createEvent = (event) => async (dispatch) => {
+export const createEvent = (event, imageUrl) => async (dispatch) => {
     const {address, city, country, state, description, name, zipcode, owner_id} = event
     const res = await fetch('/api/events/new', {
         method: 'POST',
@@ -91,22 +90,28 @@ export const createEvent = (event) => async (dispatch) => {
     if(res.ok) {
         const data = await res.json();
         dispatch(addEvent(data))
+        const eventId = data.id
+        const name = 'eventImage'
+        dispatch(createEventImage(imageUrl, name, eventId))
     };
 };
 
-export const createEventImage = (image) => async (dispatch) => {
-    console.log('============LOGGING INSIDE OF CREATE IMAGE THUNK=============', image)
+export const createEventImage = (image_url, name, event_id) => async (dispatch) => {
+    const imageData = {name, image_url, event_id}
+    console.log('CREATING IMAGE', imageData)
     const res = await fetch('/api/events/images/new', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(image)
+        body: JSON.stringify(imageData)
     });
-
+    
     if(res.ok) {
         const data = await res.json();
-        dispatch(addImage(data))
+        console.log('============LOGGING INSIDE OF CREATE IMAGE THUNK=============', data)
+        return data;
     };
 }
+
 
 export const editEventById = (event) => async (dispatch) => {
     const res = await fetch(`/api/events/${event.id}`, {
