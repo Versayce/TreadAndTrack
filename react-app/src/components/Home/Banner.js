@@ -16,6 +16,7 @@ const Banner = () => {
 const BackgroundImg = styled.div`
     width: 100%;
     height: 300px;
+    box-shadow: 0px 0px 40px -15px;
     & img {
         height: 300px;
         width: 100%;
