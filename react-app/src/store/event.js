@@ -6,6 +6,8 @@ const ADD_EVENT = 'events/ADD'
 const EDIT_EVENT = 'events/EDIT'
 const DELETE_EVENT = 'events/DELETE'
 
+const CLEAR_ONE = 'events/CLEAR_ONE'
+
 // TODO add create and delete thunks/actions
 
 
@@ -51,6 +53,12 @@ export const removeEvent = (eventId) => {
     return {
         type: DELETE_EVENT,
         eventId
+    };
+};
+
+export const clearOneEvent = () => {
+    return {
+        type: CLEAR_ONE
     };
 };
 
@@ -193,6 +201,12 @@ const eventReducer = (state = initialState, action) => {
                 delete newState.allEvents[action.eventId]
                 delete newState.oneEvent[action.eventId]
                 return newState;
+            };
+
+        case CLEAR_ONE:
+            {
+                const newState = { allEvents: {...state.allEvents}, oneEvent: {}}
+                return newState
             };
         
         

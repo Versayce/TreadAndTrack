@@ -37,5 +37,6 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'userImage': self.image,
-            'events': [event.to_dict() for event in self.events]
+            # 'events': [event.to_dict() for event in self.events],
+            'messages': [message.to_dict() for message in self.messages]
         }

@@ -27,5 +27,5 @@ class EventMessage(db.Model):
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
             'authorId': self.author_id,
-            'author': self.author.to_dict()
+            # 'author': self.author
         }
