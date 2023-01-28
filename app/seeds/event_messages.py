@@ -18,19 +18,19 @@ def seed_event_messages():
         body='Message 5 test', event_id=1, author_id=2,
     )
     message6 = EventMessage(
-        body='Message 6 test', event_id=2, author_id=4,
+        body='Message 6 test', event_id=2, author_id=1,
     )
     message7 = EventMessage(
         body='Message 7 test', event_id=2, author_id=1,
     )
     message8 = EventMessage(
-        body='Message 8 test', event_id=3, author_id=5,
+        body='Message 8 test', event_id=3, author_id=3,
     )
     message9 = EventMessage(
         body='Message 9 test', event_id=3, author_id=1,
     )
     message10 = EventMessage(
-        body='Message 10 test', event_id=3, author_id=5,
+        body='Message 10 test', event_id=3, author_id=3,
     )
     message11 = EventMessage(
         body='Message 11 test', event_id=3, author_id=1,
