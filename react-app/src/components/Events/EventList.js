@@ -11,7 +11,7 @@ function EventList() {
 
     // pulling session user from state
     const sessionUser = useSelector(state => state.session.user)
-    const userId = sessionUser.id
+    const userId = sessionUser?.id
 
     const eventObj = useSelector(state => state.events.oneEvent)
     const event = Object.values(eventObj)[0]

@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
     
     event = db.relationship('Event', back_populates='owner')
     events = db.relationship('Event', secondary=event_users, back_populates='users')
-    messages = db.relationship('EventMessage', back_populates='author')
+    messages = db.relationship('EventMessage', back_populates='user')
 
     @property
     def password(self):
@@ -38,5 +38,12 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'userImage': self.image,
             # 'events': [event.to_dict() for event in self.events],
-            'messages': [message.to_dict() for message in self.messages]
+            # 'messages': [message.to_dict() for message in self.messages]
+        }
+        
+    def to_dict_safe(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'profileImage': self.image
         }

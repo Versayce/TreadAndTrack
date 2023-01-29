@@ -45,7 +45,7 @@ const NavStyle = styled.div`
     gap: 2vw;
     padding-right: 100px;
     text-decoration: none;
-    background-color: #313131;
+    background-color: #ffffff;
     color: #dadada;
 `
 
