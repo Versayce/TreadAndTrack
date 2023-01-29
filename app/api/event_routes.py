@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Blueprint, request
 
 from app.forms.event_form import EventForm

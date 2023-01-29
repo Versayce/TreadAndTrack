@@ -15,7 +15,7 @@ class EventMessage(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
     
     # Author can have many messages:
-    author = db.relationship('User', back_populates='messages')
+    user = db.relationship('User', back_populates='messages')
     # Event can have many messages:
     event = db.relationship('Event', back_populates='messages')
     
@@ -26,6 +26,6 @@ class EventMessage(db.Model):
             'eventId': self.event_id,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
-            'authorId': self.author_id,
-            # 'author': self.author
+            # 'authorId': self.author_id,
+            'author': self.user.to_dict_safe()
         }
