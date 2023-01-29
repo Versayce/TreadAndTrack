@@ -66,7 +66,6 @@ export const StyledLink = styled(NavLink)`
         position: absolute;
         content: "";
         bottom: 0;
-        left: 0;
         width: 100%;
         height: 0%;
         background: #bd345d;
