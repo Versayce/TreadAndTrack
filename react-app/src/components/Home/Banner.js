@@ -10,7 +10,7 @@ const Banner = () => {
         <>
             <BackgroundImg>
                 {/* <svg src="/images/testArtboard.svg"></svg> */}
-                {/* <Styles><LogoText /></Styles> */}
+                <Styles><LogoText /></Styles>
                 <img src="/images/WRX_S4_BoatXing.jpg"></img>
             </BackgroundImg>
         </>
@@ -31,6 +31,10 @@ const BackgroundImg = styled.div`
 const Styles = styled.svg`
     background-color: transparent;
     position: absolute;
+    left: -200px;
+    width: 200px;
+    scale: 900%;
+    top: 200px;
     cursor: default;
 `
 
