@@ -34,6 +34,7 @@ export const StyledButton = styled.div`
     }
     &:hover {
         color: #bd345d;
+        cursor: pointer;
     }
     &:hover:after{
         width: 100%;
