@@ -36,12 +36,12 @@ const NavBar = () => {
 
 const NavStyle = styled.div`
     width: 100%;
-    height: 50px;
+    height: 72px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    position: fixed;
+    /* position: fixed; */
     gap: 2vw;
     padding-right: 100px;
     text-decoration: none;
