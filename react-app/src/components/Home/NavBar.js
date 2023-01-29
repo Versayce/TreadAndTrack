@@ -1,4 +1,3 @@
-import {Link} from "react-router-dom";
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../Auth/LogoutButton';
@@ -62,7 +61,7 @@ const NavStyle = styled.nav`
     box-shadow: 0px -16px 15px 8px #464646;
 `
 
-const SvgStyle = styled(Link)`
+const SvgStyle = styled(NavLink)`
     background-color: transparent;
     position: absolute;
     left: 90px;
