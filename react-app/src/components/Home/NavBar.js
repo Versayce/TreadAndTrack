@@ -1,40 +1,51 @@
-
+import {Link} from "react-router-dom";
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../Auth/LogoutButton';
 import styled from 'styled-components';
+import { useSelector } from "react-redux";
+import TTLogo from "./TTLogo";
+import { StyledLink } from "../Theme";
 
 const NavBar = () => {
-  return (
-    <NavStyle>
+    const sessionUser = useSelector(state => state.session.user)
 
-        <NavLink to='/' exact={true} activeClassName='active'>
-            Home
-        </NavLink>
+    console.log('SESSION USER', sessionUser)
 
-        <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-        </NavLink>
+    return (
+        <NavStyle>
 
-        <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-        </NavLink>
+            <SvgStyle>  
+                <TTLogo />
+            </SvgStyle>
 
-        <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-        </NavLink>
+            <StyledLink to='/' exact={true} activeClassName='active'>
+                Home
+            </StyledLink>
 
-        <NavLink to='/events' exact={true} activeClassName='active'>
-            Events
-        </NavLink>
+            <StyledLink to='/login' exact={true} activeClassName='active'>
+                Login
+            </StyledLink>
 
-        <LogoutButton />
+            <StyledLink to='/sign-up' exact={true} activeClassName='active'>
+                Sign Up
+            </StyledLink>
 
-    </NavStyle>
+            <StyledLink to='/events' exact={true} activeClassName='active'>
+                Events
+            </StyledLink>
+
+            {sessionUser && <StyledLink to='/users' exact={true} activeClassName='active'>
+                Garage
+            </StyledLink>}
+
+            {sessionUser && <LogoutButton />}
+
+        </NavStyle>
   );
 }
 
-const NavStyle = styled.div`
+const NavStyle = styled.nav`
     width: 100%;
     height: 72px;
     display: flex;
@@ -48,5 +59,18 @@ const NavStyle = styled.div`
     background-color: #ffffff;
     color: #dadada;
 `
+
+const SvgStyle = styled.svg`
+    background-color: transparent;
+    position: absolute;
+    left: 40px;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+`
+
+
+
+
 
 export default NavBar;
