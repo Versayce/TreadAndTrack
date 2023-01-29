@@ -50,6 +50,8 @@ const EventImage = styled.div`
     width: 100%;
     max-width: 1700px;
     height: 400px;
+    margin-top: 80px;
+    border-radius: 5px;
     background-image: url(${(props) => props.image});
     background-size: cover;
     background-position: center;
