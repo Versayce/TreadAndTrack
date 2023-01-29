@@ -6,11 +6,17 @@ const Footer = () => {
 
     return (
         <>
-            <BackgroundImg>
-                <img src="/wrxLake.jpg" alt=""></img>
-            </BackgroundImg>
+            <Background>
+                
+            </Background>
         </>
     )
 }
+
+const Background = styled.div`
+    width: 100%;
+    height: 150px;
+    background-color: #2b2b2b;
+`
 
 export default Footer

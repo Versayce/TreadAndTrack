@@ -70,7 +70,8 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: auto;
+    /* max-width: 1800px; */
+    height: 50%;
     max-height: 1900px;
 `
     const ButtonWrapper = styled.div`
