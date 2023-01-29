@@ -14,9 +14,9 @@ const NavBar = () => {
     return (
         <NavStyle>
 
-            <SvgStyle to='/' exact={true} activeClassName='active'>  
-                <TTLogo />
-            </SvgStyle>
+            <NavLink to='/' exact={true} activeClassName='active'>  
+                <SvgStyle><TTLogo /></SvgStyle>
+            </NavLink>
 
             <StyledLink to='/' exact={true} activeClassName='active'>
                 Home
@@ -61,12 +61,12 @@ const NavStyle = styled.nav`
     box-shadow: 0px -16px 15px 8px #464646;
 `
 
-const SvgStyle = styled(NavLink)`
-    background-color: transparent;
+const SvgStyle = styled.svg`
+    /* border: solid red 2px; */
     position: absolute;
-    left: 90px;
-    height: 50px;
-    width: 50px;
+    left: -50px;
+    top: -30px;
+    background-color: transparent;
     cursor: pointer;
 `
 

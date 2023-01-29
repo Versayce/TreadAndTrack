@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import LogoText from "./Tread&&TrackLogo"
 import SvgComponent from "./Tread&&TrackLogo"
 
 
@@ -9,7 +10,7 @@ const Banner = () => {
         <>
             <BackgroundImg>
                 {/* <svg src="/images/testArtboard.svg"></svg> */}
-                <Styles><SvgComponent /></Styles>
+                {/* <Styles><LogoText /></Styles> */}
                 <img src="/images/WRX_S4_BoatXing.jpg"></img>
             </BackgroundImg>
         </>
@@ -30,10 +31,6 @@ const BackgroundImg = styled.div`
 const Styles = styled.svg`
     background-color: transparent;
     position: absolute;
-    height: 370px;
-    width: 500px;
-    margin-top: 30px;
-    margin-left: 45px;
     cursor: default;
 `
 
