@@ -48,7 +48,7 @@ const Wrapper = styled.div`
 
 const EventImage = styled.div`
     width: 100%;
-    max-width: 1700px;
+    /* max-width: 1900px; */
     height: 400px;
     margin-top: 80px;
     border-radius: 5px;
