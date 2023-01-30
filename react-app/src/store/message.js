@@ -21,7 +21,6 @@ export const loadOneMessage = (message) => {
 }
 
 export const loadEventMessages = (messages) => {
-    // console.log('---ACTION DATA---', messages) //TODO
     return {
         type: LOAD_EVENT_MESSAGES,
         messages
@@ -77,14 +76,13 @@ export const getEventMessages = (eventId) => async (dispatch) => {
 
     if(res.ok) {
         const data = await res.json();
-        // console.log('---THUNK DATA---', data ) //TODO
         dispatch(loadEventMessages(data))
     }
 }
 
 export const createMessage = (message) => async (dispatch) => {
     const { body, eventId, authorId } = message;
-    console.log('INSIDE OF CREATE MESSAGE THUNK', message)
+
     const res = await fetch('/api/messages/new', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -140,7 +138,6 @@ const messageReducer = (state = initialState, action) => {
 
         case LOAD_EVENT_MESSAGES:
             {
-                // console.log('---REDUCER DATA---', action.messages.messages)
                 const newState = { eventMessages: {...state.eventMessages}, oneMessage: {...state.oneMessage}}
                 action.messages.messages.forEach(message => {
                     newState.eventMessages[message.id] = message;
@@ -150,7 +147,6 @@ const messageReducer = (state = initialState, action) => {
 
         case ADD_MESSAGE:
             {
-                console.log("IN REDUCER", action.message.id)
                 const newState = { eventMessages: {...state.eventMessages}, oneMessage: {...state.oneMessage}}
                 newState.eventMessages[action.message.id] = action.message
                 return newState
