@@ -5,7 +5,8 @@ import MessageForm from '../Forms/CreateMessageForm';
 
 // TODO start filling the page with information and get ready for comments feature.
 function EventCommentsSection() {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
     const currentEventObj = useSelector(state => state.events.oneEvent)
     const event = Object.values(currentEventObj)[0]
 
@@ -17,25 +18,42 @@ function EventCommentsSection() {
     return (
         <>
         <Wrapper>
-            {messages && messages.map(message => (
-                <div key={message.id}>
-                    <p>{`${message.author.username}:`} </p>
-                    <p>{message.body}</p>
-                </div>
-            ))}
-            <MessageForm />
+            <MessageContainer>
+                {messages && messages.map(message => (
+                        <Message key={message.id}>
+                            <p>{`${message.author.username}:`} </p>
+                            <p>{message.body}</p>
+                        </Message>
+                ))}
+            </MessageContainer>
         </Wrapper>
+        <MessageForm />
         </>
     ); 
 }
 
 const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-evenly;
+    border: 3px solid red;
     width: 100%;
     height: 400px;
+    overflow-y: auto;
 `
+
+const MessageContainer = styled.div`
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+`
+
+const Message = styled.div`
+    box-sizing: border-box;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+`
+
 
 export default EventCommentsSection

@@ -4,11 +4,9 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { createMessage } from '../../store/message';
 
-
 // TODO start filling the page with information and get ready for comments feature.
 function MessageForm() {
     const dispatch = useDispatch()
-
     const [body, setBody] = useState("")
 
     const currentEventObj = useSelector(state => state.events.oneEvent)
@@ -23,6 +21,7 @@ function MessageForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setBody("")
         dispatch(createMessage(formData))
     }
   
