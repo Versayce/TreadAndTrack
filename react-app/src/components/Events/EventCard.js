@@ -83,22 +83,24 @@ const Wrapper = styled.div`
                 border-radius: 3px;
                 margin: 4px 0px;
             }& h1 {
+                font-family: Arial, Helvetica, sans-serif;
                 width: 100%;
-                font-size: min(max(22px, 2vw), 28px);
+                font-size: min(max(22px, 2vw), 26px);
                 white-space: nowrap; 
+                color: #5a5a5a;
             }& p {
                 font-size: min(max(10px, 2vw), 15px);
                 color: #3f3f3fb0;
             }& .event-desc {
-                height: 30%;
+                height: 19%;
                 text-overflow:ellipsis;
                 overflow:hidden;
-                // Addition lines for 2 line or multiline ellipsis
+                font-size: 14pt;
+                // multiline ellipsis
                 display: -webkit-box !important;
-                -webkit-line-clamp: 3;
+                -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
                 white-space: normal;
-                
             }& ::-webkit-scrollbar {
                 width: 6px;
             }& ::-webkit-scrollbar-track {

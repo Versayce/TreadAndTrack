@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components"
 import { useDispatch, useSelector } from "react-redux";
 import { createEvent, getAllEvents } from "../../store/event";
@@ -17,21 +17,46 @@ function CreateEventForm() {
     const [zipcode, setZip] = useState("")
     const [description, setDescription] = useState("")
     const [image, setImage] = useState("")
+    const formData = {name, address, city, state, country, zipcode, description, owner_id} //Data being submitted through the form.
+
+    const [errors, setErrors] = useState({
+        nameError: "",
+        addressError: "",
+        cityError: "", 
+        stateError: "",
+        countryError: "",
+        zipError: "",
+        descError: "",
+        imageError: ""
+    })
+
+    useEffect(() => {
+        const errorHandler = () => {
+            if (errors.nameError) {
+                return <span>{errors.nameError}</span>
+            }
+        }
+        errorHandler();
+    }, [errors])
 
     const currentUser = useSelector(state => state.session.user)
     const owner_id = currentUser.id
 
-    // console.log('', '\n', '==========CREATE FORM COMPONENT==========', '\n', owner_id , '\n', '')
+    console.log('', '\n', '==========CREATE FORM COMPONENT==========', '\n', errors , '\n', '')
 
-    // const validator = () => {
+    // creating nice form validations?
+    //
 
-    // }
+    
+    const inputValidator = (formData) => {
+        if (name.length < 2) setErrors(errors.nameError = 'Name must be longer than 2 characters')
+        // if ()
+    }
 
     // console.log('FORM ERRORS: ', formErrors)
 
     const handleSubmit = async (e) => {
         const imageUrl = image
-        const formData = {name, address, city, state, country, zipcode, description, owner_id}
         console.log('form submission component', formData)
         e.preventDefault();
         await dispatch(createEvent(formData, imageUrl)) // TODO possibly refactor so dispatching createEvent isn't necessary
@@ -46,6 +71,7 @@ function CreateEventForm() {
                 onChange={(e) => setName(e.target.value)}
                 value={name}
                 />
+                {<InputError></InputError>}
             
             <label>Address</label>
                 <input 
@@ -94,6 +120,10 @@ function CreateEventForm() {
         </FormWrapper>
     )
 }
+
+const InputError = styled.div`
+    border: 2px solid red;
+`
 
 const FormWrapper = styled.form`
     display: flex;

@@ -45,7 +45,9 @@ const Wrapper = styled.div`
     margin-right: 15%;
 
     & h1 {
+        font-size: 40pt;
         align-items: flex-start;
+        margin: 40px 0;
     }
 `
 
@@ -54,7 +56,7 @@ const EventImage = styled.div`
     /* max-width: 1900px; */
     height: 400px;
     margin-top: 80px;
-    border-radius: 5px;
+    border-radius: 50px 50px 5px 5px;
     background-image: url(${(props) => props.image});
     background-size: cover;
     background-position: center;

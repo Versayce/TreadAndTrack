@@ -22,13 +22,13 @@ const NavBar = () => {
                 Home
             </StyledLink>
 
-            <StyledLink to='/login' exact={true} activeClassName='active'>
+            {!sessionUser && <StyledLink to='/login' exact={true} activeClassName='active'>
                 Login
-            </StyledLink>
+            </StyledLink>}
 
-            <StyledLink to='/sign-up' exact={true} activeClassName='active'>
+            {!sessionUser && <StyledLink to='/sign-up' exact={true} activeClassName='active'>
                 Sign Up
-            </StyledLink>
+            </StyledLink>}
 
             <StyledLink to='/events' exact={true} activeClassName='active'>
                 Events
