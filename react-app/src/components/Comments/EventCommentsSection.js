@@ -25,8 +25,8 @@ function EventCommentsSection() {
         dispatch(deleteMessage(messageId))
     }
 
-    const handleEdit = (messageId) => {
-        dispatch(getOneMessage(messageId));
+    const handleEdit = async (messageId) => {
+        await dispatch(getOneMessage(messageId));
         setFormType("editForm")
         return
     }
@@ -40,7 +40,7 @@ function EventCommentsSection() {
                 {messages && messages.map(message => (
                     <LineWrapper>
                         <Message key={message.id}>
-                            <div>{`${message.author.username}: `}{message.createdAt}</div>
+                            <div>{`${message?.author.username}: `}{message.createdAt}</div>
                             <div>{message.body}</div>
                         </Message>
                         <ButtonWrapper>

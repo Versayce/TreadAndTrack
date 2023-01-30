@@ -2,28 +2,28 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { editMessage } from '../../store/message';
+import { editMessageById } from '../../store/message';
 
 // TODO start filling the page with information and get ready for comments feature.
-function EditMessageForm() {
+function EditMessageForm({ setFormType }) {
     const dispatch = useDispatch()
-    const [body, setBody] = useState("")
-
     const currentMessage = useSelector(state => state.messages.oneMessage)
+    const messageId = currentMessage.id
+    const [body, setBody] = useState(currentMessage?.body)
+
     const currentEventObj = useSelector(state => state.events.oneEvent)
-    const eventId = Object.values(currentEventObj)[0]?.id
+    const event_id = Object.values(currentEventObj)[0]?.id
+
     const sessionUser = useSelector(state => state.session.user)
-    const authorId = sessionUser.id
+    const author_id = sessionUser.id
 
-    // setBody()
-    // const { body, channelId, authorId } = message;
-
-    const formData = {body, "event_id": eventId, "author_id": authorId}
-    console.log("===========MESSAGE FORM COMPONENT==================", currentMessage)
+    const formData = {"id": messageId, body, event_id, author_id}
+    // console.log("===========EDIT FORM COMPONENT==================", currentMessage)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        dispatch(editMessage(formData))
+        dispatch(editMessageById(formData))
+        setFormType("createForm")
     }
   
     return (
@@ -34,6 +34,7 @@ function EditMessageForm() {
                 <input
                     onChange={(e) => setBody(e.target.value)}
                     value={body}
+                    placeholder={currentMessage.body}
                 />
                 <button>Submit</button>
             </FormWrapper>

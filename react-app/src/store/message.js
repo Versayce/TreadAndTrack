@@ -64,7 +64,6 @@ export const clearOneMessage = () => {
 
 export const getOneMessage = (messageId) => async (dispatch) => {
     const res = await fetch(`/api/messages/${messageId}`)
-    console.log('GET ONE MESSAGE THUNK: ', messageId)
     if(res.ok) {
         const data = await res.json();
         dispatch(loadOneMessage(data))
@@ -106,6 +105,7 @@ export const deleteMessage = (messageId) => async (dispatch) => {
 }
 
 export const editMessageById = (message) => async (dispatch) => {
+    console.log('INFORMATION SENT TO EDIT MESSAGE THUNK: ', message)
     const { id, body, eventId, authorId } = message
     const res = await fetch(`/api/messages/${id}`, {
         method: 'PUT',
@@ -119,6 +119,7 @@ export const editMessageById = (message) => async (dispatch) => {
     })
     if(res.ok) {
         const data = await res.json();
+        console.log('DATA FROM EDIT THUNK: ', data)
         dispatch(editMessage(data))
     }
 }
@@ -154,9 +155,10 @@ const messageReducer = (state = initialState, action) => {
 
         case EDIT_MESSAGE:
             {
+                console.log('INSIDE OF EDIT MESSAGE REDUCER', action.message)
                 const newState = { eventMessages: {...state.eventMessages}, oneMessage: {...state.oneMessage}}
                 newState.eventMessages[action.message.id] = action.message
-                newState.oneMessage = action.message
+                newState.oneMessage[action.message.id] = action.message
                 return newState
             }
 
