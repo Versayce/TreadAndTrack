@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { getOneEvent } from '../../store/event';
 import NavBar from '../Home/NavBar';
 import EventCommentsSection from '../Comments/EventCommentsSection';
+import { getEventMessages } from '../../store/message';
 
 
 // TODO start filling the page with information and get ready for comments feature.
@@ -14,11 +15,10 @@ function EventPage() {
     const currentEventObj = useSelector(state => state.events.oneEvent)
     const event = Object.values(currentEventObj)[0]
     const eventImageUrl = event?.images[0].imageUrl
-    // console.log("EVENT PAGE", eventImageUrl)
 
     useEffect(() => {
         dispatch(getOneEvent(eventId))
-        
+        dispatch(getEventMessages(eventId))
     },[dispatch])
   
     return (

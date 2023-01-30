@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import eventReducer from './event';
+import messageReducer from './message';
 import modalReducer from './modal';
 import session from './session'
 
@@ -8,6 +9,7 @@ const rootReducer = combineReducers({
   session,
   events: eventReducer,
   modal: modalReducer,
+  messages: messageReducer
 });
 
 

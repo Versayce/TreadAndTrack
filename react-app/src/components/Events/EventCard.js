@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearOneEvent, getOneEvent } from '../../store/event';
 import { useHistory } from 'react-router-dom';
+import { clearEventMessages } from '../../store/message';
 
 
 // TODO start filling the page with information and get ready for comments feature.
@@ -14,6 +15,7 @@ function EventCard() {
 
 
     const setActiveEventPage = (eventId) => {
+        dispatch(clearEventMessages())
         dispatch(clearOneEvent())
         dispatch(getOneEvent(eventId))
         history.push(`/events/${eventId}`)

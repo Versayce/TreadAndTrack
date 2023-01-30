@@ -34,7 +34,7 @@ def message_by_id(id):
 
         if request.method == 'GET':
             message_dict = message.to_dict()
-            message_dict['author'] = message.author.to_dict()
+            message_dict['author'] = message.user.to_dict_safe()
             return message_dict
 
         if request.method == 'DELETE':

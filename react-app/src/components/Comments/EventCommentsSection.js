@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import MessageForm from '../Forms/MessageForm';
+import MessageForm from '../Forms/CreateMessageForm';
 
 // TODO start filling the page with information and get ready for comments feature.
 function EventCommentsSection() {
@@ -9,7 +9,8 @@ function EventCommentsSection() {
     const currentEventObj = useSelector(state => state.events.oneEvent)
     const event = Object.values(currentEventObj)[0]
 
-    const messages = event?.messages 
+    const messagesObj = useSelector(state => state.messages.eventMessages)
+    const messages = Object.values(messagesObj)
 
     console.log("===========EVENT COMMENTS COMPONENT==================", messages)
   
