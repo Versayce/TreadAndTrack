@@ -59,7 +59,7 @@ const Wrapper = styled.div`
         justify-content: center;
         flex: 0 0 33.3333%;
         width: 100%;
-        gap: 2vw;
+        gap: 1vw;
     `
 
         const EventCards = styled.section`

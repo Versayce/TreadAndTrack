@@ -28,6 +28,9 @@ function EventPage() {
             {event && <EventImage image={eventImageUrl}/>}
             <h1>{event?.name}</h1>
             <p>{event?.description}</p>
+            <p>{event?.address}</p>
+            <p>{`${event?.city}, ${event?.state}`}</p>
+            <p>{event?.zipcode}</p>
             <EventCommentsSection />
         </Wrapper>
         </>

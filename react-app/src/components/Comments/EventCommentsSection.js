@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MessageForm from '../Forms/CreateMessageForm';
+import EditMessageForm from '../Forms/EditMessageForm';
 import { StyledButton } from '../Theme';
+import { deleteMessage, getOneMessage } from '../../store/message';
 
 // TODO start filling the page with information and get ready for comments feature.
 function EventCommentsSection() {
     const dispatch = useDispatch();
+    const [ formType, setFormType ] = useState("createForm")
 
     const sessionUserId = useSelector(state => state.session.user.id)
 
@@ -16,37 +19,59 @@ function EventCommentsSection() {
     const messagesObj = useSelector(state => state.messages.eventMessages)
     const messages = Object.values(messagesObj)
 
-    console.log("===========EVENT COMMENTS COMPONENT==================", sessionUserId === messages[100]?.author.id)
+    // console.log("===========EVENT COMMENTS COMPONENT==================", sessionUserId === messages[1]?.author.id)
+
+    const handleDelete = (messageId) => {
+        dispatch(deleteMessage(messageId))
+    }
+
+    const handleEdit = (messageId) => {
+        dispatch(getOneMessage(messageId));
+        setFormType("editForm")
+        return
+    }
   
     return (
         <>
-        <Wrapper>
+        {formType === "createForm" && <MessageForm />}
+        {formType === "editForm" && <EditMessageForm setFormType={setFormType} />}
+        <MessageBoxWrapper>
             <MessageContainer>
                 {messages && messages.map(message => (
+                    <LineWrapper>
                         <Message key={message.id}>
-                            <p>{`${message.author.username}:`} </p>
-                            <p>{message.body}</p>
-                            {sessionUserId === message.author.id && <CustomButton>Delete</CustomButton>}
+                            <div>{`${message.author.username}: `}{message.createdAt}</div>
+                            <div>{message.body}</div>
                         </Message>
+                        <ButtonWrapper>
+                            {sessionUserId === message.author.id && <CustomButton onClick={() => handleDelete(message?.id)} >Delete</CustomButton>}
+                            {sessionUserId === message.author.id && <CustomButton onClick={() => handleEdit(message?.id)} >Edit</CustomButton>}
+                        </ButtonWrapper>
+                    </LineWrapper>
                 ))}
             </MessageContainer>
-        </Wrapper>
-        <MessageForm />
+        </MessageBoxWrapper>
         </>
     ); 
 }
 
-const Wrapper = styled.div`
-    border: 3px solid red;
+const LineWrapper = styled.div`
+    display: flex;
     width: 100%;
-    height: 400px;
-    overflow-y: auto;
+    justify-content: flex-start;
+`
+
+const MessageBoxWrapper = styled.div`
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    flex-direction: column-reverse;
 `
 
 const MessageContainer = styled.div`
     display: flex;
     flex-direction: column-reverse;
-    width: 100%;
+    width: 50%;
 `
 
 const Message = styled.div`
@@ -54,8 +79,11 @@ const Message = styled.div`
     padding: 20px;
     width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    flex-direction: column;
+`
+
+export const ButtonWrapper = styled.div`
+    display: flex;
     align-items: center;
 `
 
@@ -90,6 +118,7 @@ export const CustomButton = styled.div`
     }
 
 `
+
 
 
 export default EventCommentsSection

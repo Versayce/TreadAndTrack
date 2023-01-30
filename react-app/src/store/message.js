@@ -64,7 +64,7 @@ export const clearOneMessage = () => {
 
 export const getOneMessage = (messageId) => async (dispatch) => {
     const res = await fetch(`/api/messages/${messageId}`)
-
+    console.log('GET ONE MESSAGE THUNK: ', messageId)
     if(res.ok) {
         const data = await res.json();
         dispatch(loadOneMessage(data))

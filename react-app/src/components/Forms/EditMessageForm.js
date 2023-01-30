@@ -2,34 +2,35 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { createMessage } from '../../store/message';
+import { editMessage } from '../../store/message';
 
 // TODO start filling the page with information and get ready for comments feature.
-function MessageForm() {
+function EditMessageForm() {
     const dispatch = useDispatch()
     const [body, setBody] = useState("")
 
+    const currentMessage = useSelector(state => state.messages.oneMessage)
     const currentEventObj = useSelector(state => state.events.oneEvent)
     const eventId = Object.values(currentEventObj)[0]?.id
     const sessionUser = useSelector(state => state.session.user)
     const authorId = sessionUser.id
 
+    // setBody()
     // const { body, channelId, authorId } = message;
 
     const formData = {body, "event_id": eventId, "author_id": authorId}
-    // console.log("===========MESSAGE FORM COMPONENT==================", formData)
+    console.log("===========MESSAGE FORM COMPONENT==================", currentMessage)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setBody("")
-        dispatch(createMessage(formData))
+        dispatch(editMessage(formData))
     }
   
     return (
         <>
         <Wrapper>
             <FormWrapper onSubmit={handleSubmit}>
-                <label>Comment: </label>
+                <label>Edit: </label>
                 <input
                     onChange={(e) => setBody(e.target.value)}
                     value={body}
@@ -59,4 +60,4 @@ const Wrapper = styled.div`
     box-shadow: 1px 1px 10px 2px #d4d4d465;
 `
 
-export default MessageForm
+export default EditMessageForm

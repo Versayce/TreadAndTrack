@@ -33,7 +33,7 @@ const Styles = styled.svg`
     position: absolute;
     left: -200px;
     width: 200px;
-    scale: 900%;
+    scale: 1100%;
     top: 200px;
     pointer-events: none;
     cursor: default;

@@ -70,7 +70,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    /* max-width: 1800px; */
+    max-width: 2450px;
     height: 50%;
     max-height: 1900px;
 `
