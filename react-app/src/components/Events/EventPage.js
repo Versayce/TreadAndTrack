@@ -17,8 +17,13 @@ function EventPage() {
     const eventImageUrl = event?.images[0].imageUrl
 
     useEffect(() => {
-        dispatch(getOneEvent(eventId))
-        dispatch(getEventMessages(eventId))
+
+        const fetcher = async () => {
+            await dispatch(getOneEvent(eventId))
+            await dispatch(getEventMessages(eventId))
+        }
+        fetcher();
+
     },[dispatch])
   
     return (
@@ -31,7 +36,7 @@ function EventPage() {
             <p>{event?.address}</p>
             <p>{`${event?.city}, ${event?.state}`}</p>
             <p>{event?.zipcode}</p>
-            <EventCommentsSection />
+            {event && <EventCommentsSection />}
         </Wrapper>
         </>
     ); 
@@ -41,6 +46,7 @@ const Wrapper = styled.div`
     /* display: flex;
     flex-direction: column; */
     align-items: center;
+    width: 70%;
     margin-left: 15%;
     margin-right: 15%;
 

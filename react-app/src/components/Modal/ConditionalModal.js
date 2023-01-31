@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { closeModal } from "../../store/modal";
 
 import CreateEventForm from "../Forms/CreateEventForm";
+import EventForm from "../Forms/EventForm/CreateEvent"
 import EditEventForm from "../Forms/EditEventForm";
 
-// TODO Create components that render based on available data being sent from state (useSelector)
 function ConditonalModal() {
     const dispatch = useDispatch();
     const paramObj = useSelector(state => state.modal.params)
@@ -15,16 +15,15 @@ function ConditonalModal() {
     }
 
     // console.log('', '\n', '==========Inside of Conditional Modal==========', currentEvent, '\n', '')
-    // TODO add logic for changing which modal component renders depending on what parameters are being passed
     const renderComponent = (params) => {
-        // console.log('======  MODAL-SWITCH  ======:', params)
+        console.log('======  MODAL-SWITCH  ======:', params)
         switch (params?.modalToLoad) {
             case "createModal": //specify which params are required to render contents
                 {
                     return (
                         <ModalBackground onClick={(e) => dispatch(closeModal())}>
                             <ModalBody onClick={(e) => handleChildClicks(e)}>
-                                <CreateEventForm />
+                                <EventForm />
                             </ModalBody>
                         </ModalBackground>
                     )

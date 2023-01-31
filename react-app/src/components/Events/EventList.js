@@ -36,7 +36,7 @@ function EventList() {
 
     const createModal = {
         modalToLoad: "createModal",
-        // param1: "data1",
+        size: "large",
         // param2: "data2",
     }
     const editModal = {
