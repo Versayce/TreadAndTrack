@@ -93,7 +93,7 @@ const EventForm = () => {
         {
             id: 8,
             name: "description",
-            type: "textfield",
+            type: "textarea",
             placeholder: "Description",
             errorMessage: "Description must be at least 50 characters",
             label: "Description",
