@@ -12,6 +12,7 @@ const EventForm = () => {
     const ownerId = currentUser.id
 
     const dispatch = useDispatch()
+    const [errors, setErrors] = useState([])
     const [values, setValues] = useState({
         name: "",
         address: "",
@@ -103,8 +104,13 @@ const EventForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await dispatch(createEvent(values)) 
+        const data = await dispatch(createEvent(values)) 
         await dispatch(getAllEvents())
+        if (data) {
+            setErrors(data)
+            console.log("SUBMITTING FORM WITH: ", data)
+            console.log("SUBMISSION ERRORS: ", errors)
+        }
         history.push("/")
     }
     const onChange = (e) => {
@@ -119,7 +125,7 @@ const EventForm = () => {
                 {inputs.map((input) => (
                     <>
                     <FormInputs key={input.id} {...input} value={values[input.name]} onChange={onChange}/>
-                    <div></div>
+                    <div>{errors}</div>
                     </>
                 ))}
                 <button type="submit">Submit</button>

@@ -23,8 +23,8 @@ function EventPage() {
     useEffect(() => {
 
         const fetcher = async () => {
+            dispatch(getEventMessages(eventId))
             await dispatch(getOneEvent(eventId))
-            await dispatch(getEventMessages(eventId))
         }
         fetcher();
 
@@ -55,7 +55,7 @@ function EventPage() {
             <h1>{event?.name}</h1>
             <p>{event?.description}</p>
             <p>{event?.address}</p>
-            <p>{`${event?.city}, ${event?.state}`}</p>
+            {event && <p>{`${event.city}, ${event.state}`}</p>}
             <p>{event?.zipcode}</p>
             {event && <EventCommentsSection />}
         </Wrapper>
