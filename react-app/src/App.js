@@ -12,6 +12,8 @@ import { authenticate } from './store/session';
 import EventPage from './components/Events/EventPage';
 import ConditonalModal from './components/Modal/ConditionalModal';
 import HomePage from './components/Home/HomePage';
+import EventForm from './components/Forms/EventForm/CreateEvent';
+
 
 
 function App() {
@@ -47,6 +49,9 @@ function App() {
 			</ProtectedRoute>
 			<ProtectedRoute path='/events' exact={true}>
 				<EventList />
+			</ProtectedRoute>
+			<ProtectedRoute path='/events/create' exact={true}>
+				<EventForm />
 			</ProtectedRoute>
 			<ProtectedRoute path='/events/:eventId' exact={true}>
 				<EventPage />

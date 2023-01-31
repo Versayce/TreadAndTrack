@@ -6,6 +6,7 @@ import CreateEventForm from "../Forms/CreateEventForm";
 import EventForm from "../Forms/EventForm/CreateEvent"
 import EditEventForm from "../Forms/EditEventForm";
 
+
 function ConditonalModal() {
     const dispatch = useDispatch();
     const params = useSelector(state => state.modal.params)
@@ -23,8 +24,8 @@ function ConditonalModal() {
                     return (
                         <ModalBackground onClick={(e) => dispatch(closeModal())}>
                             <ModalBody onClick={(e) => handleChildClicks(e)}>
-                                <EventForm />
-                                {/* <CreateEventForm /> */}
+                                {/* <EventForm /> */}
+                                <CreateEventForm />
                             </ModalBody>
                         </ModalBackground>
                     )

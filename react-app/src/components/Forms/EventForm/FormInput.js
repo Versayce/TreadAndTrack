@@ -48,7 +48,7 @@ const FormInput = styled.div`
         color: red;
         display: none;
     }
-    & input:invalid[props.focused: true] ~ span {
+    & input:invalid ~ span {
         display: block;
     }
 `

@@ -72,7 +72,7 @@ function CreateEventForm() {
     } 
 
     return (
-        <FormWrapper method="post" onSubmit={handleSubmit}>
+        <FormWrapper method="post" onSubmit={() => handleSubmit}>
             <label>Name</label>
                 <input 
                 onChange={(e) => setName(e.target.value)}
@@ -128,7 +128,7 @@ function CreateEventForm() {
                 />
                 {image.length > 0 && imageError ? <InputError>{imageError}</InputError> : <EmptyError></EmptyError>}
 
-            <button>Submit</button>
+            <button type="submit">Submit</button>
         </FormWrapper>
     )
 }

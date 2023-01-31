@@ -1,8 +1,15 @@
 import FormInputs from "./FormInput"
 import styled from "styled-components"
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { createEvent, getAllEvents } from "../../../store/event"
+import { useSelector } from "react-redux"
 
 const EventForm = () => {
+    const currentUser = useSelector(state => state.session.user)
+    const ownerId = currentUser.id
+
+    const dispatch = useDispatch()
     const [values, setValues] = useState({
         name: "",
         address: "",
@@ -10,8 +17,9 @@ const EventForm = () => {
         state: "",
         country: "",
         zipcode: "",
-        desc: "",
-        image: "",
+        description: "",
+        image_url: "",
+        owner_id: ownerId
     })
 
     const inputs = [
@@ -72,7 +80,7 @@ const EventForm = () => {
         },
         {
             id: 7,
-            name: "image",
+            name: "image_url",
             type: "text",
             placeholder: "Image",
             errorMessage: "Must be valid URL",
@@ -82,7 +90,7 @@ const EventForm = () => {
         {
             id: 8,
             name: "description",
-            type: "text",
+            type: "textfield",
             placeholder: "Description",
             errorMessage: "Description must be at least 50 characters",
             label: "Description",
@@ -91,9 +99,10 @@ const EventForm = () => {
     ]
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        const formData = new FormData(e.target)
+        await dispatch(createEvent(values)) 
+        await dispatch(getAllEvents())
     }
     const onChange = (e) => {
         setValues({...values, [e.target.name]: e.target.value})
@@ -110,7 +119,7 @@ const EventForm = () => {
                     <div></div>
                     </>
                 ))}
-                <button>Submit</button>
+                <button type="submit">Submit</button>
             </form>
         </Form>
     )

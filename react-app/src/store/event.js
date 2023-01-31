@@ -89,7 +89,6 @@ export const getOneEvent = (eventId) => async (dispatch) => {
 };
 
 export const createEvent = (event, imageUrl) => async (dispatch) => {
-    console.log('============LOGGING INSIDE OF EDIT EVENT THUNK=============', event)
     const res = await fetch('/api/events', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -101,14 +100,12 @@ export const createEvent = (event, imageUrl) => async (dispatch) => {
         await dispatch(addEvent(data))
         const eventId = data.id
         const name = `event-${eventId}-Image`
-        await dispatch(createEventImage(imageUrl, name, eventId))
-        console.log('Event Image Created', imageUrl, name, eventId)
+        await dispatch(createEventImage(event.image_url, name, eventId))
     };
 };
 
 export const createEventImage = (image_url, name, event_id) => async (dispatch) => {
     const imageData = {name, image_url, event_id}
-    console.log('CREATING IMAGE', imageData)
     const res = await fetch('/api/events/images', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -181,7 +178,7 @@ const eventReducer = (state = initialState, action) => {
 
         case ADD_EVENT:
             {
-                const newState = { allEvents: {...state.allEvents}, oneEvent: {...state.oneEvent}}
+                const newState = { allEvents: {...state.allEvents}, oneEvent: {}}
                 newState.allEvents[action.event.id] = action.event
                 newState.oneEvent[action.event.id] = action.event
                 return newState;
