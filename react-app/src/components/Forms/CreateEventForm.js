@@ -128,7 +128,7 @@ function CreateEventForm() {
                 />
                 {image.length > 0 && imageError ? <InputError>{imageError}</InputError> : <EmptyError></EmptyError>}
 
-            <button disabled={errors}>Submit</button>
+            <button>Submit</button>
         </FormWrapper>
     )
 }

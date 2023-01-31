@@ -8,15 +8,15 @@ import EditEventForm from "../Forms/EditEventForm";
 
 function ConditonalModal() {
     const dispatch = useDispatch();
-    const paramObj = useSelector(state => state.modal.params)
+    const params = useSelector(state => state.modal.params)
 
     const handleChildClicks = (e) => {
         e.stopPropagation()
     }
 
-    // console.log('', '\n', '==========Inside of Conditional Modal==========', currentEvent, '\n', '')
+    console.log('', '\n', '==========Inside of Conditional Modal==========', params, '\n', '')
     const renderComponent = (params) => {
-        console.log('======  MODAL-SWITCH  ======:', params)
+        // console.log('======  MODAL-SWITCH  ======:', params)
         switch (params?.modalToLoad) {
             case "createModal": //specify which params are required to render contents
                 {
@@ -24,6 +24,7 @@ function ConditonalModal() {
                         <ModalBackground onClick={(e) => dispatch(closeModal())}>
                             <ModalBody onClick={(e) => handleChildClicks(e)}>
                                 <EventForm />
+                                {/* <CreateEventForm /> */}
                             </ModalBody>
                         </ModalBackground>
                     )
@@ -52,7 +53,7 @@ function ConditonalModal() {
 
     return (
         <>
-            {renderComponent(paramObj)}
+            {renderComponent(params)}
         </>
     )
 };
@@ -84,8 +85,12 @@ const ModalBody = styled.div`
     bottom: 0;
     margin: auto;
     /* setting max scaling w/h */
-    max-width: 450px;
-    max-height: 550px;
+    width: auto;
+    height: auto;
+    overflow-y: scroll;
+    max-width: 60%;
+    min-width: 440px;
+    max-height: 80%;
     border-radius: 20px;
     /* Modal Background: */
     background: linear-gradient(180deg, #ffffff, #f8f8f8)
