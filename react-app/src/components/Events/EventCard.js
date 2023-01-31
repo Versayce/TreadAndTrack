@@ -46,7 +46,7 @@ function EventCard() {
 
 const Wrapper = styled.div`
     width: 100%;
-    margin: 100px 0;
+    margin: 40px 0;
 `
 
     const CardsWrapper = styled.div`

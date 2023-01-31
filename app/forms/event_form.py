@@ -4,6 +4,9 @@ from wtforms import StringField, SubmitField, IntegerField
 from wtforms.validators import DataRequired
 
 
+
+
+
 class EventForm(FlaskForm):
     owner_id = IntegerField('Owner')
     name = StringField('Name', validators=[DataRequired()])

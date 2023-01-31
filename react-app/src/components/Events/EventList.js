@@ -47,23 +47,17 @@ function EventList() {
 
     // Component contents
     return (
+        <>
+        <StyledHeading>Main Events</StyledHeading>
         <Wrapper>
-
-            <ButtonWrapper>
-                <StyledButton as="button" onClick={() => handleDelete(event?.id)}> Delete Selected Event </StyledButton>
-                <StyledButton as="button" onClick={() => showModalEvent(editModal)}> Edit Last Event </StyledButton>
-                <StyledButton as="button" onClick={() => showModalEvent(createModal)}> Create Event </StyledButton>
-            </ButtonWrapper>
-
             <EventCard /> 
-
         </Wrapper>
+        </>
     );
 }
 
 
 // TODO //========== STYLING ==========//
-
 
 const Wrapper = styled.div`
     display: flex;
@@ -74,26 +68,17 @@ const Wrapper = styled.div`
     height: 50%;
     max-height: 1900px;
 `
-    const ButtonWrapper = styled.div`
-        display: flex;
-        flex-direction: row;
-        gap: 1vw;
-        margin: 30px 0px;
-    `
-        const StyledButton = styled.button`
-            box-sizing: content-box;
-            text-align: center;
-            border: none;
-            padding: 5px;
-            margin: 5px;
-            width: 150px;
-            height: 40px;
-            border-radius: 5px;
-            &:hover {
-                background-color: #ca3e68;
-                color: white;
-                cursor: pointer;
-            }
-        `
+const StyledHeading = styled.h1`
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-top: 60px;
+    margin-bottom: 0px;
+    margin-left: 230px;
+    font-size: 35pt;
+    color: #bd345d;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+`
+
 
 export default EventList

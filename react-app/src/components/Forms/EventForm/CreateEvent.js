@@ -4,8 +4,10 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { createEvent, getAllEvents } from "../../../store/event"
 import { useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
 
 const EventForm = () => {
+    const history = useHistory()
     const currentUser = useSelector(state => state.session.user)
     const ownerId = currentUser.id
 
@@ -103,6 +105,7 @@ const EventForm = () => {
         e.preventDefault()
         await dispatch(createEvent(values)) 
         await dispatch(getAllEvents())
+        history.push("/")
     }
     const onChange = (e) => {
         setValues({...values, [e.target.name]: e.target.value})
