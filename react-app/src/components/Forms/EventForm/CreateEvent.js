@@ -214,11 +214,12 @@ const FormWrapper = styled.div`
 const Form = styled.form`
     /* box-sizing: border-box; */
     width: 60%;
+    max-width: 850px;
     display: grid;
     grid-gap: 0px;
     padding: 60px;
-    margin: 100px;
-    border-radius: 40px;
+    margin: 200px 0 200px 0px;
+    border-radius: 10px;
     background-image: linear-gradient(to bottom, #f6f6f6, #f8f8f8, #fafafa, #fdfdfd, #ffffff);
     box-shadow: 1px 1px 10px 2px #8f8f8fd6;
     grid-template-areas:
@@ -237,7 +238,7 @@ const Form = styled.form`
 const SubmitButton = styled.button`
     padding: 10px;
     width: auto;
-    margin: 10% 33% 0 33%;
+    margin: 5% 8% 15% 8%;
     border: none;
     grid-area: submit;
     border-radius: 8px;
