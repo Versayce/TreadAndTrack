@@ -94,14 +94,16 @@ const HeaderWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ececec;
+    background: linear-gradient(to top, #f0f0f0, #f8f8f8); 
     border-radius: 0 0 30px 30px;
 `
 
 const SlantedDiv = styled.div`
     height: 90px;
     width: 100%;
-    background-color: #242424;
+    background: -webkit-linear-gradient(to left, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #363636, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+;
     position: relative;
     overflow: hidden;
     :after {
