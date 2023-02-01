@@ -67,6 +67,7 @@ const FormInputs = (props) => {
 }
 
 const FormInput = styled.div`
+    font-family: Arial, Helvetica, sans-serif;
     grid-area: ${props => props.style.gridArea};
     display: flex;
     justify-content: center;

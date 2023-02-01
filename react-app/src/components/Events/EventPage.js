@@ -52,20 +52,68 @@ function EventPage() {
         <NavBar />
         <Wrapper>
             {event && <EventImage image={eventImageUrl}/>}
-            {event?.owner?.id === currentUser.id && <ButtonWrapper>
-                <StyledButton as="button" onClick={() => handleDelete(event?.id)}> Delete Event </StyledButton>
-                <StyledButton as="button" onClick={() => showModalEvent(editModal)}> Edit Event </StyledButton>
-            </ButtonWrapper>}
-            <h1>{event?.name}</h1>
-            <p>{event?.description}</p>
-            <p>{event?.address}</p>
-            {event && <p>{`${event.city}, ${event.state}`}</p>}
-            <p>{event?.zipcode}</p>
+            <SlantedDiv></SlantedDiv>
+            <HeaderWrapper>
+                <h1>{event?.name}</h1>
+                {event?.owner?.id === currentUser.id && <ButtonWrapper>
+                    <StyledButton as="button" onClick={() => handleDelete(event?.id)}> Delete Event </StyledButton>
+                    <StyledButton as="button" onClick={() => showModalEvent(editModal)}> Edit Event </StyledButton>
+                </ButtonWrapper>}
+            </HeaderWrapper>
+            <StyledDescription>{event?.description}</StyledDescription>
+            <LocationInfo>
+                <p>{event?.address}</p>
+                {event && <p>{`${event.city}, ${event.state}`}</p>}
+                <p>{event?.zipcode}</p>
+            </LocationInfo>
             {event && <EventCommentsSection />}
         </Wrapper>
         </>
     ); 
 }
+
+const StyledDescription = styled.div`
+    max-width: 850px;
+    word-wrap: break-word;
+    font-size: 14pt;
+    margin-top: 100px;
+    margin-left: 40px;
+`
+
+const LocationInfo = styled.div`
+        max-width: 850px;
+        word-wrap: break-word;
+        font-size: 12pt;
+        margin: 10px;
+        color: #919191;
+        font-style: italic;
+        margin-top: 60px;
+`
+
+const HeaderWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ececec;
+    border-radius: 0 0 30px 30px;
+`
+
+const SlantedDiv = styled.div`
+    height: 90px;
+    width: 100%;
+    background-color: #242424;
+    position: relative;
+    overflow: hidden;
+    :after {
+    height: 100%;
+    width: 100%;
+    background-color: #ca3e68;
+    position: absolute;
+    content: "";
+    transform: rotate(6deg);
+    transform-origin: top left;
+    }
+`
 
 const Wrapper = styled.div`
     /* display: flex;
@@ -79,10 +127,15 @@ const Wrapper = styled.div`
         font-size: 40pt;
         align-items: flex-start;
         margin: 40px 0;
+        margin-left: 25px;
+        color: #27000c;
     }
     & p {
+        max-width: 850px;
         word-wrap: break-word;
         font-size: 14pt;
+        margin: 10px;
+        margin-left: 30px;
     }
 `
 
@@ -98,11 +151,12 @@ const EventImage = styled.div`
     /* background-image: url("http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195228/16151652507e763490238117473LIPMAN_723787-1200x800.jpeg"); */
 `
 const ButtonWrapper = styled.div`
-display: flex;
-flex-direction: row;
-gap: 1vw;
-margin: 30px 0px;
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    margin: 0px 30px;
 `
+
 const StyledButton = styled.button`
     box-sizing: content-box;
     text-align: center;
@@ -111,7 +165,9 @@ const StyledButton = styled.button`
     margin: 5px;
     width: 150px;
     height: 40px;
-    border-radius: 5px;
+    border-radius: 15px;
+    background-color: #353535;
+    color: white;
     &:hover {
         background-color: #ca3e68;
         color: white;

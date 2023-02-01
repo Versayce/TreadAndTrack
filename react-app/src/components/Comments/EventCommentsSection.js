@@ -67,6 +67,7 @@ const MessageBoxWrapper = styled.div`
     margin-top: 50px;
     justify-content: center;
     flex-direction: column-reverse;
+    margin-left: 40px;
 `
 
 const MessageContainer = styled.div`
