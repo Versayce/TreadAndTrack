@@ -47,19 +47,19 @@ def seed_event_images():
     event7_image1 = EventImage(
         event_id = 7,
         name = "Fifth Event Image1",
-        image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195213/16151652407e763490238117473LIPMAN_723765.jpeg"
+        image_url = "https://i0.wp.com/stanceworks.com/wp-content/uploads/2013/11/stanceworks-volvo-142-slammed.jpg?ssl=1"
     )
     
     event8_image1 = EventImage(
         event_id = 8,
         name = "Fifth Event Image1",
-        image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195213/16151652407e763490238117473LIPMAN_723765.jpeg"
+        image_url = "https://jdmsmoke.com/wp-content/uploads/2023/01/82890334_3339085816165701_2668071106325250048_o-768x512.jpg"
     )
     
     event9_image1 = EventImage(
         event_id = 9,
         name = "Fifth Event Image1",
-        image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195213/16151652407e763490238117473LIPMAN_723765.jpeg"
+        image_url = "https://i0.wp.com/stanceworks.com/wp-content/uploads/2017/05/josh_2002_1.jpg?w=1200&ssl=1"
     )
     
     event10_image1 = EventImage(
