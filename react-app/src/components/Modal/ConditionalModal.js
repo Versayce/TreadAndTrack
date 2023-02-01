@@ -1,10 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { closeModal } from "../../store/modal";
-
 import CreateEventForm from "../Forms/CreateEventForm";
-import EventForm from "../Forms/EventForm/CreateEvent"
-import EditEventForm from "../Forms/EditEventForm";
+import EditEventForm from "../Forms/EventForm/EditEvent.js";
 
 
 function ConditonalModal() {
@@ -15,7 +13,7 @@ function ConditonalModal() {
         e.stopPropagation()
     }
 
-    console.log('', '\n', '==========Inside of Conditional Modal==========', params, '\n', '')
+    // console.log('', '\n', '==========Inside of Conditional Modal==========', params, '\n', '')
     const renderComponent = (params) => {
         // console.log('======  MODAL-SWITCH  ======:', params)
         switch (params?.modalToLoad) {
@@ -24,7 +22,6 @@ function ConditonalModal() {
                     return (
                         <ModalBackground onClick={(e) => dispatch(closeModal())}>
                             <ModalBody onClick={(e) => handleChildClicks(e)}>
-                                {/* <EventForm /> */}
                                 <CreateEventForm />
                             </ModalBody>
                         </ModalBackground>

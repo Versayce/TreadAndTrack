@@ -60,8 +60,8 @@ function App() {
     			<HomePage />
 			</Route>
 		</Switch>
-    </BrowserRouter>
 	<ConditonalModal />
+    </BrowserRouter>
 	</>
   )
 }

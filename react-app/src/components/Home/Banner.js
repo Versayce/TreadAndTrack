@@ -1,17 +1,18 @@
+import { useSelector } from "react-redux"
 import styled from "styled-components"
 import LogoText from "./Tread&&TrackLogo"
 import SvgComponent from "./Tread&&TrackLogo"
 
 
 const Banner = () => {
-
+    const currentUser = useSelector(state => state.session.user)
 
     return (
         <>
             <BackgroundImg>
                 {/* <svg src="/images/testArtboard.svg"></svg> */}
                 <Styles><LogoText /></Styles>
-                <img src="/images/WRX_S4_BoatXing.jpg"></img>
+                {currentUser ? <img src="/images/WRX_S4_BoatXing.jpg"></img> : <img src="/images/wrxLake.jpg"></img>}
             </BackgroundImg>
         </>
     )

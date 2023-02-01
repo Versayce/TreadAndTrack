@@ -2,16 +2,17 @@ import FormInputs from "./FormInput"
 import styled from "styled-components"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { createEvent, getAllEvents } from "../../../store/event"
+import { editEventById, getAllEvents } from "../../../store/event"
 import { useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
-import NavBar from "../../Home/NavBar"
-import Footer from "../../Home/Footer"
+import { closeModal } from "../../../store/modal"
 
-const EventForm = () => {
-    const history = useHistory()
+const EditEventForm = () => {
     const currentUser = useSelector(state => state.session.user)
     const ownerId = currentUser.id
+
+    const currentEventObj = useSelector(state => state.events.oneEvent)
+    const currentEvent = Object.values(currentEventObj)[0]
+    console.log('==========EDIT EVENT FORM==========', currentEvent)
 
     const dispatch = useDispatch()
     const [errors, setErrors] = useState([])
@@ -25,6 +26,7 @@ const EventForm = () => {
     const [image_url, setImageUrl] = useState("")
 
     const formData = {
+        "id": currentEvent.id,
         name,
         address,
         city,
@@ -32,7 +34,6 @@ const EventForm = () => {
         country,
         zipcode,
         description,
-        image_url,
         "owner_id": ownerId
     }
 
@@ -177,16 +178,15 @@ const EventForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const data = await dispatch(createEvent(formData)) 
+        await dispatch(editEventById(formData, image_url)) 
         await dispatch(getAllEvents())
-        history.push("/")
+        dispatch(closeModal())
     }
 
     return (
-        <FormWrapper>
-            <NavBar />
+        // <FormWrapper>
             <Form onSubmit={handleSubmit}>
-                <Header>Create Event</Header>
+                <Header>Edit Event</Header>
                     {inputs.map((input) => (
                         <>
                         <FormInputs key={input.id} {...input} />
@@ -195,33 +195,32 @@ const EventForm = () => {
                     ))}
                 <SubmitButton type="submit">Submit</SubmitButton>
             </Form>
-            <Footer />
-        </FormWrapper>
+        // </FormWrapper>
     )
 }
 
-const FormWrapper = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #adadad;
-    background-image: url("/images/wrxLake.jpg");
-    background-position: top;
-`
+// const FormWrapper = styled.div`
+//     width: 100%;
+//     height: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     background-color: #adadad;
+//     background-image: url("/images/wrxLake.jpg");
+//     background-position: top;
+// `
 
 const Form = styled.form`
     /* box-sizing: border-box; */
-    width: 60%;
-    max-width: 850px;
+    width: 80%;
+    /* max-width: 850px; */
     display: grid;
-    grid-gap: 0px;
-    padding: 60px;
-    margin: 300px 0 400px 0px;
-    border-radius: 10px;
-    background-image: linear-gradient(to bottom, #f6f6f6, #f8f8f8, #fafafa, #fdfdfd, #ffffff);
-    box-shadow: 1px 1px 10px 2px #8f8f8fd6;
+    /* grid-gap: 0px; */
+    /* padding: 60px; */
+    /* margin: 300px 0 400px 0px; */
+    /* border-radius: 10px; */
+    /* background-image: linear-gradient(to bottom, #f6f6f6, #f8f8f8, #fafafa, #fdfdfd, #ffffff); */
+    /* box-shadow: 1px 1px 10px 2px #8f8f8fd6; */
     grid-template-areas:
     "header header header"
     "nameInput addressInput cityInput"
@@ -258,4 +257,4 @@ const Header = styled.h1`
 `
 
 
-export default EventForm
+export default EditEventForm
