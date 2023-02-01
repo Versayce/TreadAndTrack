@@ -35,7 +35,7 @@ const NavBar = () => {
             {!sessionUser && <LoginButton />}
 
             {sessionUser && <StyledLink to='/events/create' exact={true} activeClassName='active'>
-                Create Event
+                Host Event
             </StyledLink>}
 
             {sessionUser && <StyledLink to='/users' exact={true} activeClassName='active'>
