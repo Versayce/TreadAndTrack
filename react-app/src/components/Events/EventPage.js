@@ -76,6 +76,9 @@ const Wrapper = styled.div`
         align-items: flex-start;
         margin: 40px 0;
     }
+    & p {
+        word-wrap: break-word;
+    }
 `
 
 const EventImage = styled.div`
