@@ -4,13 +4,13 @@ from wtforms import StringField, SubmitField, IntegerField
 from wtforms.validators import DataRequired, ValidationError
 
 
-class EventForm(FlaskForm):
+class CarForm(FlaskForm):
     owner_id = IntegerField('Owner')
     name = StringField('Name', validators=[DataRequired()])
     address = StringField('Address', validators=[DataRequired()])
-    city = StringField('City', validators=[DataRequired()])
     state = StringField('State', validators=[DataRequired()])
-    zipcode = StringField('Zip', validators=[DataRequired()])
-    country = StringField('Country', validators=[DataRequired()])
+    year = StringField('Year', validators=[DataRequired()])
+    make = StringField('Make', validators=[DataRequired()])
+    model = StringField('Model', validators=[DataRequired()])
     description = StringField('Description', validators=[DataRequired()])
     submit = SubmitField('Submit')
