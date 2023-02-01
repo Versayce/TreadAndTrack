@@ -101,8 +101,8 @@ const HeaderWrapper = styled.div`
 const SlantedDiv = styled.div`
     height: 90px;
     width: 100%;
-    background: -webkit-linear-gradient(to left, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #363636, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #1d1d1d;
+    /* background: linear-gradient(to right, #222222, #000000); */
 ;
     position: relative;
     overflow: hidden;
@@ -124,7 +124,6 @@ const Wrapper = styled.div`
     width: 70%;
     margin-left: 15%;
     margin-right: 15%;
-
     & h1 {
         font-size: 40pt;
         align-items: flex-start;

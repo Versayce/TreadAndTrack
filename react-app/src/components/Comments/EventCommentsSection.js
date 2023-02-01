@@ -60,6 +60,7 @@ const LineWrapper = styled.div`
     display: flex;
     width: 100%;
     justify-content: flex-start;
+    word-wrap: break-word;
 `
 
 const MessageBoxWrapper = styled.div`
