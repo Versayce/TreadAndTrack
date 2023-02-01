@@ -70,6 +70,7 @@ const Wrapper = styled.div`
 `
 const StyledHeading = styled.h1`
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 100;
     margin-top: 60px;
     margin-bottom: 0px;
     margin-left: 230px;

@@ -1,55 +1,89 @@
 import styled from "styled-components"
 import { useState } from "react"
 
+const isValid = (value, pattern) => {
+    const regex = new RegExp(pattern)
+    const result = regex.test(value)
+    return result
+}
+
 const FormInputs = (props) => {
     const [focused, setFocused] = useState(false)
-    const {label, errorMessage, onChange, id, ...inputProps} = props
-    console.log('INPUT PROPS', props)
+    const {label, errorMessage, onChange, required, id, style, value, pattern, name, type, placeholder, row, col} = props
+    // console.log('INPUT PROPS', props)
 
+    
     const handleFocus = (e) => {
         setFocused(true)
+        console.log('HANDLE FOCUS: ', focused)
+    }
+
+    const handleChange = (e) => {
+        onChange?.(e.target.value)
     }
 
     return (
         <>
             {/* <img src={`${image}`}/> */}
-            <FormInput> 
+            <FormInput style={style}> 
                 <label>{label}</label>
-                <input {...inputProps} onChange={onChange} onBlur={handleFocus} focused={focused.toString} />
-                <span>{errorMessage}</span>
+                {type != "textarea" ? <input  //TODO destructure all of the props
+                    name={name}
+                    type={type}
+                    placeholder={placeholder}
+                    required={required}
+                    pattern={pattern}
+                    onChange={handleChange} 
+                    onBlur={handleFocus} 
+                    focused={focused.toString()} 
+                    value={value}
+                /> : <textarea 
+                    name={name}
+                    type={type}
+                    placeholder={placeholder}
+                    required={required}
+                    pattern={pattern}
+                    onChange={handleChange} 
+                    onBlur={handleFocus} 
+                    focused={focused.toString()} 
+                    value={value}
+                />}
+                {!isValid(value, pattern) && focused ? <span>{errorMessage}</span> : <span></span>}
             </FormInput>
         </>
     )
 }
 
 const FormInput = styled.div`
+    grid-area: ${props => props.style.gridArea};
     display: flex;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
+    align-content: center;
+    width: 100%;
     input {
-        padding: 10px;
+        padding: 8px;
         margin: 5px 0px;
-        width: 300px;
-        border-radius: 5px;
+        width: ${props => props.style.widthPercent};
+        border-radius: 4px;
         border: 1px solid grey;
     }
     label {
         font-size: 12px;
         color: grey;
     }
-    div {
-        height: 12px;
-    }
     span {
-        height: 12px;
+        min-height: 16px;
         font-size: 12px;
         padding: 3px;
         margin-bottom: 10px;
-        color: red;
-        display: none;
+        color: #af2d54;
     }
-    & input:invalid ~ span {
-        display: block;
+    textarea {
+        width: ${props => props.style.width};
+        height: ${props => props.style.height};
+        margin-left: 30px;
     }
 `
 

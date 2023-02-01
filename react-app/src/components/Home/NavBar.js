@@ -9,7 +9,7 @@ import { StyledLink } from "../Theme";
 const NavBar = () => {
     const sessionUser = useSelector(state => state.session.user)
 
-    console.log('SESSION USER', sessionUser)
+    // console.log('SESSION USER', sessionUser)
 
     return (
         <NavStyle>

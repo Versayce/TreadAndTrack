@@ -8,6 +8,7 @@ import { createMessage } from '../../store/message';
 function MessageForm() {
     const dispatch = useDispatch()
     const [body, setBody] = useState("")
+    const [error, setError] = useState([])
 
     const currentEventObj = useSelector(state => state.events.oneEvent)
     const eventId = Object.values(currentEventObj)[0]?.id
