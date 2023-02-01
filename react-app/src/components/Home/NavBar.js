@@ -5,11 +5,10 @@ import styled from 'styled-components';
 import { useSelector } from "react-redux";
 import TTLogo from "./TTLogo";
 import { StyledLink } from "../Theme";
+import LoginButton from '../Auth/LoginButton';
 
 const NavBar = () => {
     const sessionUser = useSelector(state => state.session.user)
-
-    // console.log('SESSION USER', sessionUser)
 
     return (
         <NavStyle>
@@ -22,17 +21,18 @@ const NavBar = () => {
                 Home
             </StyledLink>
 
+            {sessionUser && <StyledLink to='/events' exact={true} activeClassName='active'>
+                Events
+            </StyledLink>}
+
             {!sessionUser && <StyledLink to='/sign-up' exact={true} activeClassName='active'>
                 Sign Up
             </StyledLink>}
 
-            {!sessionUser && <StyledLink to='/login' exact={true} activeClassName='active'>
+            {/* {!sessionUser && <StyledLink to='/login' exact={true} activeClassName='active'>
                 Login
-            </StyledLink>}
-
-            <StyledLink to='/events' exact={true} activeClassName='active'>
-                Events
-            </StyledLink>
+            </StyledLink>} */}
+            {!sessionUser && <LoginButton />}
 
             {sessionUser && <StyledLink to='/events/create' exact={true} activeClassName='active'>
                 Create Event

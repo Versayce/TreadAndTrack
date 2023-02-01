@@ -52,7 +52,7 @@ const FormInputs = (props) => {
                 /> : <textarea 
                     name={name}
                     type={type}
-                    placeholder={placeholder}
+                    placeholder={placeholder} //TODO remove redundant props
                     required={required}
                     pattern={pattern}
                     onChange={handleChange} 

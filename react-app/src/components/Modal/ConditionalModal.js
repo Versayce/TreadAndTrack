@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { closeModal } from "../../store/modal";
 import CreateEventForm from "../Forms/CreateEventForm";
 import EditEventForm from "../Forms/EventForm/EditEvent.js";
+import LoginForm from "../Auth/LoginForm"
 
 
 function ConditonalModal() {
@@ -13,9 +14,9 @@ function ConditonalModal() {
         e.stopPropagation()
     }
 
-    // console.log('', '\n', '==========Inside of Conditional Modal==========', params, '\n', '')
+    console.log('', '\n', '==========Inside of Conditional Modal==========', params, '\n', '')
     const renderComponent = (params) => {
-        // console.log('======  MODAL-SWITCH  ======:', params)
+        console.log('======  MODAL-SWITCH  ======:', params)
         switch (params?.modalToLoad) {
             case "createModal": //specify which params are required to render contents
                 {
@@ -34,6 +35,18 @@ function ConditonalModal() {
                         <ModalBackground onClick={(e) => dispatch(closeModal())}>
                             <ModalBody onClick={(e) => handleChildClicks(e)}>
                                 <EditEventForm />
+                            </ModalBody>
+                        </ModalBackground>
+                    )
+                }
+            
+            case "loginModal":
+                {
+                    console.log('within login modal case', params)
+                    return (
+                        <ModalBackground onClick={(e) => dispatch(closeModal())}>
+                            <ModalBody onClick={(e) => handleChildClicks(e)}>
+                                <LoginForm />
                             </ModalBody>
                         </ModalBackground>
                     )
@@ -86,10 +99,11 @@ const ModalBody = styled.div`
     width: auto;
     height: auto;
     overflow-y: scroll;
-    max-width: 60%;
+    width: 60%;
+    max-width: 850px;
     min-width: 440px;
-    max-height: 80%;
-    border-radius: 20px;
+    max-height: 60%;
+    border-radius: 10px;
     /* Modal Background: */
     background: linear-gradient(180deg, #ffffff, #f8f8f8)
 `

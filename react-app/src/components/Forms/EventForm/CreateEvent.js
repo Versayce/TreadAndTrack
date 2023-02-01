@@ -145,8 +145,8 @@ const EventForm = () => {
             placeholder: "Image",
             errorMessage: "Please enter a valid URL",
             label: "Image",
-            required: true,
-            pattern: "^https?://.*",
+            // required: true,
+            // pattern: "^https?://.*",
             onChange: setImageUrl,
             value: image_url,
             style: {

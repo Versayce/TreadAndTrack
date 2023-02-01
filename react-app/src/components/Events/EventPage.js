@@ -18,7 +18,7 @@ function EventPage() {
     const event = Object.values(currentEventObj)[0]
     const eventImageUrl = event?.images[0].imageUrl
 
-    console.log("EVENTPAGE=====================", currentUser)
+    // console.log("EVENTPAGE=====================", currentUser)
 
     useEffect(() => {
 
@@ -41,6 +41,10 @@ function EventPage() {
 
     const editModal = {
         modalToLoad: "editModal",
+        styles: {
+            width: "",
+            height: ""
+        }
     }
   
     return (
@@ -78,15 +82,16 @@ const Wrapper = styled.div`
     }
     & p {
         word-wrap: break-word;
+        font-size: 14pt;
     }
 `
 
 const EventImage = styled.div`
     width: 100%;
     /* max-width: 1900px; */
-    height: 400px;
+    height: 600px;
     margin-top: 80px;
-    border-radius: 50px 50px 5px 5px;
+    border-radius: 100px 100px 0px 0px;
     background-image: url(${(props) => props.image});
     background-size: cover;
     background-position: center;
