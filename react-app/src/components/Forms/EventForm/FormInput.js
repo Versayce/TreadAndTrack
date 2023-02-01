@@ -28,7 +28,7 @@ const FormInputs = (props) => {
     
     const handleFocus = (e) => {
         setFocused(true)
-        console.log('HANDLE FOCUS: ', focused)
+        // console.log('HANDLE FOCUS: ', focused)
     }
 
     const handleChange = (e) => {

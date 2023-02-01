@@ -14,7 +14,7 @@ const EventForm = () => {
     const ownerId = currentUser.id
 
     const dispatch = useDispatch()
-    const [errors, setErrors] = useState([])
+    // const [errors, setErrors] = useState([])
     const [name, setName] = useState("")
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
@@ -145,8 +145,8 @@ const EventForm = () => {
             placeholder: "Image",
             errorMessage: "Please enter a valid URL",
             label: "Image",
-            // required: true,
-            // pattern: "^https?://.*",
+            required: true,
+            pattern: "^https?://.*",
             onChange: setImageUrl,
             value: image_url,
             style: {
@@ -190,7 +190,7 @@ const EventForm = () => {
                     {inputs.map((input) => (
                         <>
                         <FormInputs key={input.id} {...input} />
-                        <div>{errors}</div>
+                        {/* <div>{errors}</div> */}
                         </>
                     ))}
                 <SubmitButton type="submit">Submit</SubmitButton>
@@ -223,11 +223,11 @@ const Form = styled.form`
     background-image: linear-gradient(to bottom, #f6f6f6, #f8f8f8, #fafafa, #fdfdfd, #ffffff);
     box-shadow: 1px 1px 10px 2px #8f8f8fd6;
     grid-template-areas:
-    "header header header"
-    "nameInput addressInput cityInput"
-    "stateInput countryInput zipcodeInput"
-    "descInput descInput imageInput"
-    "descInput descInput submit"
+        "header header header"
+        "nameInput addressInput cityInput"
+        "stateInput countryInput zipcodeInput"
+        "descInput descInput imageInput"
+        "descInput descInput submit"
     ;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
