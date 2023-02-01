@@ -10,6 +10,7 @@ function EditMessageForm({ setFormType }) {
     const currentMessage = useSelector(state => state.messages.oneMessage)
     const messageId = currentMessage.id
     const [body, setBody] = useState(currentMessage?.body)
+    const [error, setError] = useState([])
 
     const currentEventObj = useSelector(state => state.events.oneEvent)
     const event_id = Object.values(currentEventObj)[0]?.id
@@ -22,8 +23,15 @@ function EditMessageForm({ setFormType }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        dispatch(editMessageById(formData))
-        setFormType("createForm")
+        if(body.length > 0 && body.length < 50){
+            setError([])
+            setBody("")
+            await dispatch(editMessageById(formData))
+            setFormType("createForm")
+        } else {
+            setError("Comment must be between 1 and 50 chars")
+            setBody("")
+        }
     }
   
     return (
@@ -36,6 +44,7 @@ function EditMessageForm({ setFormType }) {
                     value={body}
                     placeholder={currentMessage.body}
                 />
+                <span>{error}</span>
                 <button>Submit</button>
             </FormWrapper>
         </Wrapper>
@@ -49,6 +58,9 @@ const FormWrapper = styled.form`
     justify-content: center;
     align-content: center;
     margin-left: 40px;
+    & span {
+        color: #ca3e68;
+    }
 `
 
 const Wrapper = styled.div`

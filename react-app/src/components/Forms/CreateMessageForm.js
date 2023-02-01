@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useState } from 'react';
 import { createMessage } from '../../store/message';
+import { useEffect } from 'react';
 
 // TODO start filling the page with information and get ready for comments feature.
 function MessageForm() {
@@ -20,12 +21,24 @@ function MessageForm() {
     const formData = {body, "event_id": eventId, "author_id": authorId}
     // console.log("===========MESSAGE FORM COMPONENT==================", formData)
 
+    useEffect(() => {
+        if(body.length > 0 && body.length < 50) {
+            setError([])
+        }
+    }, [body])
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setBody("")
-        dispatch(createMessage(formData))
+        if(body.length > 0 && body.length < 50){
+            setError([])
+            setBody("")
+            await dispatch(createMessage(formData))
+        }else {
+            setError("Comment must be between 1 and 50 chars")
+            setBody("")
+        }
     }
-  
+    
     return (
         <>
         <Wrapper>
@@ -35,6 +48,7 @@ function MessageForm() {
                     onChange={(e) => setBody(e.target.value)}
                     value={body}
                 />
+                <span>{error}</span>
                 <button>Submit</button>
             </FormWrapper>
         </Wrapper>
@@ -48,6 +62,9 @@ const FormWrapper = styled.form`
     justify-content: center;
     align-content: center;
     margin-left: 40px;
+    & span {
+        color: #ca3e68;
+    }
 `
 
 const Wrapper = styled.div`
