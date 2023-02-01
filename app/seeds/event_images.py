@@ -35,10 +35,52 @@ def seed_event_images():
     event5_image1 = EventImage(
         event_id = 5,
         name = "Fifth Event Image1",
+        image_url = "https://i.ytimg.com/vi/0SQKWP-FDTE/maxresdefault.jpg"
+    )
+    
+    event6_image1 = EventImage(
+        event_id = 6,
+        name = "Fifth Event Image1",
+        image_url = "https://i0.wp.com/stanceworks.com/wp-content/uploads/2010/11/FC-RX7-gold-slammed-title.jpg?fit=1200%2C560&ssl=1"
+    )
+    
+    event7_image1 = EventImage(
+        event_id = 7,
+        name = "Fifth Event Image1",
+        image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195213/16151652407e763490238117473LIPMAN_723765.jpeg"
+    )
+    
+    event8_image1 = EventImage(
+        event_id = 8,
+        name = "Fifth Event Image1",
+        image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195213/16151652407e763490238117473LIPMAN_723765.jpeg"
+    )
+    
+    event9_image1 = EventImage(
+        event_id = 9,
+        name = "Fifth Event Image1",
+        image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195213/16151652407e763490238117473LIPMAN_723765.jpeg"
+    )
+    
+    event10_image1 = EventImage(
+        event_id = 10,
+        name = "Fifth Event Image1",
         image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195213/16151652407e763490238117473LIPMAN_723765.jpeg"
     )
 
-    all_images = [ event1_image1, event1_image2, event2_image1, event3_image1, event4_image1, event5_image1 ]
+    all_images = [ 
+        event1_image1, 
+        event1_image2, 
+        event2_image1, 
+        event3_image1, 
+        event4_image1, 
+        event5_image1, 
+        event6_image1, 
+        event7_image1, 
+        event8_image1,
+        event9_image1,
+        event10_image1,
+    ]
     # Seeding using all_images list
     for image in all_images:
         db.session.add(image)

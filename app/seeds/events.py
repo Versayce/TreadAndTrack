@@ -93,8 +93,98 @@ def seed_events():
                         + "incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
     )
     
+    event_template4 = Event(
+        owner_id = 2,
+        name = "Event Header",
+        address = "Address",
+        city = "City",
+        state = "State",
+        country = "Country",
+        zipcode = 80000,
+        # lat = "Latitude",
+        # lng = "Longitude",
+        description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 
+                        + "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta " 
+                        + "sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia " 
+                        + "consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui "
+                        + "dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora " 
+                        + "incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+    )
+    
+    event_template5 = Event(
+        owner_id = 2,
+        name = "Event Header",
+        address = "Address",
+        city = "City",
+        state = "State",
+        country = "Country",
+        zipcode = 80000,
+        # lat = "Latitude",
+        # lng = "Longitude",
+        description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 
+                        + "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta " 
+                        + "sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia " 
+                        + "consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui "
+                        + "dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora " 
+                        + "incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+    )
+    
+    event_template6 = Event(
+        owner_id = 2,
+        name = "Event Header",
+        address = "Address",
+        city = "City",
+        state = "State",
+        country = "Country",
+        zipcode = 80000,
+        # lat = "Latitude",
+        # lng = "Longitude",
+        description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 
+                        + "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta " 
+                        + "sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia " 
+                        + "consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui "
+                        + "dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora " 
+                        + "incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+    )
+    
+    event_template7 = Event(
+        owner_id = 2,
+        name = "Event Header",
+        address = "Address",
+        city = "City",
+        state = "State",
+        country = "Country",
+        zipcode = 80000,
+        # lat = "Latitude",
+        # lng = "Longitude",
+        description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 
+                        + "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta " 
+                        + "sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia " 
+                        + "consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui "
+                        + "dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora " 
+                        + "incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+    )
+    
+    event_template8 = Event(
+        owner_id = 2,
+        name = "Event Header",
+        address = "Address",
+        city = "City",
+        state = "State",
+        country = "Country",
+        zipcode = 80000,
+        # lat = "Latitude",
+        # lng = "Longitude",
+        description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 
+                        + "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta " 
+                        + "sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia " 
+                        + "consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui "
+                        + "dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora " 
+                        + "incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+    )
+    
 
-    all_events = [ main_event, main_event2, event_template, event_template2, event_template3, ] 
+    all_events = [ main_event, main_event2, event_template, event_template2, event_template3, event_template4, event_template5, event_template6, event_template7, event_template8 ] 
                 #   event1, event2, event3, event4, event5, event6, event7, event8, event9, event10 ]
     all_users = User.query.all()
     

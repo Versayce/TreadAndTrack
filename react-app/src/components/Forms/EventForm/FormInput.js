@@ -9,7 +9,20 @@ const isValid = (value, pattern) => {
 
 const FormInputs = (props) => {
     const [focused, setFocused] = useState(false)
-    const {label, errorMessage, onChange, required, id, style, value, pattern, name, type, placeholder, row, col} = props
+    const {
+        label, 
+        errorMessage, 
+        onChange, 
+        required, 
+        id, 
+        style, 
+        value, 
+        pattern, 
+        name, 
+        type, 
+        row, 
+        col, 
+        placeholder } = props
     // console.log('INPUT PROPS', props)
 
     
@@ -24,7 +37,6 @@ const FormInputs = (props) => {
 
     return (
         <>
-            {/* <img src={`${image}`}/> */}
             <FormInput style={style}> 
                 <label>{label}</label>
                 {type != "textarea" ? <input  //TODO destructure all of the props
