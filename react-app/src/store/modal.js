@@ -40,7 +40,7 @@ const modalReducer = (state = initialState, action) => {
 
         case CLOSE_MODAL:
             {
-                const newState = { ...state.params }
+                const newState = { params: {} }
                 newState.params = {}
                 return newState;
             }

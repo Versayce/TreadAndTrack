@@ -42,13 +42,13 @@ const FormInputs = (props) => {
                 {type != "textarea" ? <input  //TODO destructure all of the props
                     name={name}
                     type={type}
+                    value={value}
                     placeholder={placeholder}
                     required={required}
                     pattern={pattern}
                     onChange={handleChange} 
                     onBlur={handleFocus} 
                     focused={focused.toString()} 
-                    value={value}
                 /> : <textarea 
                     name={name}
                     type={type}

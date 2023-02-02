@@ -143,7 +143,7 @@ const EventForm = () => {
             name: "image_url",
             type: "text",
             placeholder: "Image",
-            errorMessage: "Please enter a valid URL",
+            errorMessage: "Please enter a URL beginning with https",
             label: "Image",
             required: true,
             pattern: "^https?://.*",

@@ -2,29 +2,30 @@ import FormInputs from "./FormInput"
 import styled from "styled-components"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { editEventById, getAllEvents } from "../../../store/event"
+import { editEventById, getAllEvents, getOneEvent } from "../../../store/event"
 import { useSelector } from "react-redux"
 import { closeModal } from "../../../store/modal"
 
 const EditEventForm = () => {
+    const dispatch = useDispatch()
+    const currentEventObj = useSelector(state => state.events.oneEvent)
+    const currentEvent = Object.values(currentEventObj)[0]
     const currentUser = useSelector(state => state.session.user)
     const ownerId = currentUser.id
 
-    const currentEventObj = useSelector(state => state.events.oneEvent)
-    const currentEvent = Object.values(currentEventObj)[0]
-    console.log('==========EDIT EVENT FORM==========', currentEvent)
-
-    const dispatch = useDispatch()
     const [errors, setErrors] = useState([])
-    const [name, setName] = useState("")
-    const [address, setAddress] = useState("")
-    const [city, setCity] = useState("")
-    const [state, setState] = useState("")
-    const [country, setCountry] = useState("")
-    const [zipcode, setZipcode] = useState("")
-    const [description, setDescription] = useState("")
-    const [image_url, setImageUrl] = useState("")
+    const [name, setName] = useState(currentEvent.name)
+    const [address, setAddress] = useState(currentEvent.address)
+    const [city, setCity] = useState(currentEvent.city)
+    const [state, setState] = useState(currentEvent.state)
+    const [country, setCountry] = useState(currentEvent.country)
+    const [zipcode, setZipcode] = useState(currentEvent.zipcode)
+    const [description, setDescription] = useState(currentEvent.description)
+    const [image_url, setImageUrl] = useState(currentEvent.images[0].imageUrl)
+    
 
+    console.log('==========EDIT EVENT FORM==========', currentEvent)
+    
     const formData = {
         "id": currentEvent.id,
         name,
@@ -47,11 +48,10 @@ const EditEventForm = () => {
             id: 1,
             name: "name",
             type: "text",
-            placeholder: "Name",
-            errorMessage: "Name should be 3-12 characters",
+            errorMessage: "Name should be 3-30 characters",
             label: "Name",
             required: true,
-            pattern: "^[A-Za-z0-9]{3,12}$",
+            pattern: "^[A-Za-z0-9 ]{3,30}$",
             onChange: setName,
             value: name,
             style: {
@@ -63,11 +63,11 @@ const EditEventForm = () => {
             id: 2,
             name: "address",
             type: "text",
-            placeholder: "Address",
-            errorMessage: "Address should 6-12 characters",
+            placeholder: currentEvent.address,
+            errorMessage: "Address should 6-30 characters",
             label: "Address",
             required: true,
-            pattern: "^[A-Za-z0-9]{6,12}$",
+            pattern: "^[A-Za-z0-9# ]{6,30}$",
             onChange: setAddress,
             value: address,
             style: {
@@ -79,11 +79,11 @@ const EditEventForm = () => {
             id: 3,
             name: "city",
             type: "text",
-            placeholder: "City",
-            errorMessage: "City should 4-10 characters",
+            placeholder: currentEvent.city,
+            errorMessage: "City should 4-20 characters",
             label: "City",
             required: true,
-            pattern: "^[A-Za-z0-9]{4,10}$",
+            pattern: "^[A-Za-z0-9 ]{4,20}$",
             onChange: setCity,
             value: city,
             style: {
@@ -95,11 +95,11 @@ const EditEventForm = () => {
             id: 4,
             name: "state",
             type: "text",
-            placeholder: "State",
+            placeholder: currentEvent.state,
             errorMessage: "State should be 2-10 characters",
             label: "State",
             required: true,
-            pattern: "^[A-Za-z0-9]{2,10}$",
+            pattern: "^[A-Za-z0-9 ]{2,10}$",
             onChange: setState,
             value: state,
             style: {
@@ -111,11 +111,11 @@ const EditEventForm = () => {
             id: 5,
             name: "country",
             type: "text",
-            placeholder: "Country",
-            errorMessage: "Country should be 2-10 characters",
+            placeholder: currentEvent.country,
+            errorMessage: "Country should be 2-20 characters",
             label: "Country",
             required: true,
-            pattern: "^[A-Za-z0-9]{2,10}$",
+            pattern: "^[A-Za-z0-9 ]{2,20}$",
             onChange: setCountry,
             value: country,
             style: {
@@ -127,7 +127,7 @@ const EditEventForm = () => {
             id: 6,
             name: "zipcode",
             type: "text",
-            placeholder: "ZipCode",
+            placeholder: currentEvent.zipcode,
             errorMessage: "Zipcode must be 5 numbers",
             label: "ZipCode",
             required: true,
@@ -143,8 +143,8 @@ const EditEventForm = () => {
             id: 7,
             name: "image_url",
             type: "text",
-            placeholder: "Image",
-            errorMessage: "Please enter a valid URL",
+            placeholder: currentEvent.images[0].imageUrl,
+            errorMessage: "Enter a URL containing https://",
             label: "Image",
             required: true,
             pattern: "^https?://.*",
@@ -159,7 +159,7 @@ const EditEventForm = () => {
             id: 8,
             name: "description",
             type: "textarea",
-            placeholder: "Description",
+            placeholder: currentEvent.description,
             errorMessage: "Max length 700",
             label: "Description",
             required: true,
@@ -180,6 +180,7 @@ const EditEventForm = () => {
         e.preventDefault()
         await dispatch(editEventById(formData, image_url)) 
         await dispatch(getAllEvents())
+        await dispatch(getOneEvent(currentEvent.id))
         dispatch(closeModal())
     }
 

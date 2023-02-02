@@ -51,7 +51,7 @@ function EventPage() {
         <>
         <NavBar />
         <Wrapper>
-            {event && <EventImage image={eventImageUrl}/>}
+            {eventImageUrl && <EventImage src={eventImageUrl} onError={e => {e.currentTarget.src = "/images/wrxLake.jpg";}}/>}
             <SlantedDiv></SlantedDiv>
             <HeaderWrapper>
                 <h1>{event?.name}</h1>
@@ -103,7 +103,6 @@ const SlantedDiv = styled.div`
     width: 100%;
     background: #1d1d1d;
     /* background: linear-gradient(to right, #222222, #000000); */
-;
     position: relative;
     overflow: hidden;
     :after {
@@ -140,15 +139,17 @@ const Wrapper = styled.div`
     }
 `
 
-const EventImage = styled.div`
+const EventImage = styled.img`
     width: 100%;
     /* max-width: 1900px; */
     height: 600px;
     margin-top: 80px;
+    margin-bottom: -5px;
     border-radius: 100px 100px 0px 0px;
     background-image: url(${(props) => props.image});
     background-size: cover;
     background-position: center;
+    object-fit: cover;
     /* background-image: url("http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195228/16151652507e763490238117473LIPMAN_723787-1200x800.jpeg"); */
 `
 const ButtonWrapper = styled.div`
