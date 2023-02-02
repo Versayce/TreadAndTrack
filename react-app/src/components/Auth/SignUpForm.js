@@ -18,11 +18,16 @@ const SignUpForm = () => {
     e.preventDefault();
     setErrors([])
     if(password === repeatPassword){
-      if(email.includes("@")){
+
+      if(email.includes("@")) {
         const data = await dispatch(signUp(username, email, password));
-        console.log('SIGNUP DATA ================ :>>>>>>>>>', data)
+        // console.log('SIGNUP DATA ================ :>>>>>>>>>', data)
         if (data) {
-          setErrors(data)
+          const emailError = data[0]?.split(":")[1]
+          const passwordError = data[1]?.split(":")[1]
+          let authErrors = []
+          authErrors.push(emailError, passwordError)
+          setErrors(authErrors);
         }
         else dispatch(closeModal())
       }else {
@@ -55,49 +60,50 @@ const SignUpForm = () => {
 
   return (
     <StyledForm onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
+      <h1>Signup</h1>
+      <InputWrapper>
         <label>User Name</label>
-        <input
+        <StyledInput
           type='text'
           name='username'
           onChange={updateUsername}
           value={username}
-        ></input>
-      </div>
-      <div>
+          ></StyledInput>
+      </InputWrapper>
+      <InputWrapper>
         <label>Email</label>
-        <input
+        <StyledInput
           type='text'
           name='email'
           onChange={updateEmail}
           value={email}
-        ></input>
-      </div>
-      <div>
+          ></StyledInput>
+      </InputWrapper>
+      <InputWrapper>
         <label>Password</label>
-        <input
+        <StyledInput
           type='password'
           name='password'
           onChange={updatePassword}
           value={password}
-        ></input>
-      </div>
-      <div>
+          ></StyledInput>
+      </InputWrapper>
+      <InputWrapper>
         <label>Repeat Password</label>
-        <input
+        <StyledInput
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
-        ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
+          ></StyledInput>
+      </InputWrapper>
+          <ErrorMessages>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </ErrorMessages>
+      <StyledButton type='submit'>Sign Up</StyledButton>
     </StyledForm>
   );
 };

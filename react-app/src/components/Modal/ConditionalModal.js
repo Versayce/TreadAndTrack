@@ -58,9 +58,9 @@ function ConditonalModal() {
                     console.log('within login modal case', params)
                     return (
                         <ModalBackground onClick={(e) => dispatch(closeModal())}>
-                            <LoginModalBody onClick={(e) => handleChildClicks(e)}>
+                            <SignupModalBody onClick={(e) => handleChildClicks(e)}>
                                 <SignUpForm />
-                            </LoginModalBody>
+                            </SignupModalBody>
                         </ModalBackground>
                     )
                 }
@@ -132,11 +132,33 @@ const LoginModalBody = styled.div`
     bottom: 0;
     margin: auto;
     /* setting max scaling w/h */
-    height: auto;
+    height: 450px;
     overflow-y: scroll;
     max-width: 400px;
     min-width: 300px;
     max-height: 45%;
+    border-radius: 10px;
+    /* Modal Background: */
+    background: linear-gradient(180deg, #ffffff, #f8f8f8)
+`
+
+const SignupModalBody = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* fixing to center of screen */
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    /* setting max scaling w/h */
+    min-height: 510px;
+    overflow-y: scroll;
+    max-width: 500px;
+    min-width: 300px;
+    max-height: 47%;
     border-radius: 10px;
     /* Modal Background: */
     background: linear-gradient(180deg, #ffffff, #f8f8f8)

@@ -64,6 +64,7 @@ const LoginForm = () => {
       </InputWrapper>
       {errors && <ErrorMessages>{errors.map((error, idx) => <div key={idx}>{error}</div>)}</ErrorMessages>}
       <StyledButton type='submit'>Login</StyledButton>
+      <StyledButton>Demo User</StyledButton>
     </StyledForm>
   );
 };
@@ -115,6 +116,7 @@ export const StyledButton = styled.button`
     font-family: sans-serif;
     text-decoration: none;
     color: #333;
+    margin-bottom: 10px;
     /* border: 2px solid #333; */
     letter-spacing: 2px;
     text-align: center;
