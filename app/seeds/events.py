@@ -6,6 +6,7 @@ def seed_events():
     event_template = Event(
         owner_id = 2,
         name = "Event Header",
+        banner_image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195228/16151652507e763490238117473LIPMAN_723787-1200x800.jpeg",
         address = "Address",
         city = "City",
         state = "State",
@@ -24,6 +25,7 @@ def seed_events():
     event_template2 = Event(
         owner_id = 2,
         name = "Event Header",
+        banner_image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195209/1615165280d7e7634902381174LIPMAN_723833.jpeg",
         address = "Address",
         city = "City",
         state = "State",
@@ -42,6 +44,7 @@ def seed_events():
     event_template3 = Event(
         owner_id = 2,
         name = "Event Header",
+        banner_image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195118/1998_subaru_22b_16167694959f98764da1998_subaru_22b_161676949466e7dff9f98764da87a09876-6a1c-4a96-985b-d054cf10e649-BMQ4Dk-scaled.jpeg",
         address = "Address",
         city = "City",
         state = "State",
@@ -60,6 +63,7 @@ def seed_events():
     main_event = Event(
         owner_id = 1,
         name = "Cars and Coffee Scottsdale",
+        banner_image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195159/16151652649d5d7e7634902LIPMAN_723808.jpeg",
         address = "20789 N Pima Rd #210",
         city = "Scottsdale",
         state = "AZ",
@@ -78,6 +82,7 @@ def seed_events():
     main_event2 = Event(
         owner_id = 2,
         name = "Pavillions Car Show",
+        banner_image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195113/161516528338117473eb6LIPMAN_723857.jpeg",
         address = "9120 E. Talking Stick Way",
         city = "Scottsdale",
         state = "AZ",
@@ -96,6 +101,7 @@ def seed_events():
     event_template4 = Event(
         owner_id = 2,
         name = "Event Header",
+        banner_image_url = "https://i.ytimg.com/vi/0SQKWP-FDTE/maxresdefault.jpg",
         address = "Address",
         city = "City",
         state = "State",
@@ -114,6 +120,7 @@ def seed_events():
     event_template5 = Event(
         owner_id = 2,
         name = "Event Header",
+        banner_image_url = "https://i0.wp.com/stanceworks.com/wp-content/uploads/2010/11/FC-RX7-gold-slammed-title.jpg?fit=1200%2C560&ssl=1",
         address = "Address",
         city = "City",
         state = "State",
@@ -132,6 +139,7 @@ def seed_events():
     event_template6 = Event(
         owner_id = 2,
         name = "Event Header",
+        banner_image_url = "https://i0.wp.com/stanceworks.com/wp-content/uploads/2013/11/stanceworks-volvo-142-slammed.jpg?ssl=1",
         address = "Address",
         city = "City",
         state = "State",
@@ -150,6 +158,7 @@ def seed_events():
     event_template7 = Event(
         owner_id = 2,
         name = "Event Header",
+        banner_image_url = "https://jdmsmoke.com/wp-content/uploads/2023/01/82890334_3339085816165701_2668071106325250048_o-768x512.jpg",
         address = "Address",
         city = "City",
         state = "State",
@@ -168,6 +177,7 @@ def seed_events():
     event_template8 = Event(
         owner_id = 2,
         name = "Event Header",
+        banner_image_url = "https://i0.wp.com/stanceworks.com/wp-content/uploads/2017/05/josh_2002_1.jpg?w=1200&ssl=1",
         address = "Address",
         city = "City",
         state = "State",

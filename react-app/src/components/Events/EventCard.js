@@ -26,7 +26,7 @@ function EventCard() {
         return (
             <EventCards onClick={() => setActiveEventPage(event.id)} key={event.id}>
                 <h1>{event?.name}</h1>
-                {event.images[event.images.length - 1]?.imageUrl != "" ? <img alt='eventimg' src={`${event.images[event.images.length - 1]?.imageUrl}`} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/> : <img alt='placeholder' src='/images/placeholderImage.png'/>}
+                {event.bannerImage ? <img alt='eventimg' src={`${event.bannerImage}`} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/> : <img alt='placeholder' src='/images/placeholderImage.png'/>}
                 <EventLocation>
                     <p>{`${event.city}, ${event.state} ${event.zipcode}`}</p>
                 </EventLocation>

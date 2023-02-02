@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 26953aef9539
+Revision ID: 5fd2327ae952
 Revises: 
-Create Date: 2023-01-28 22:29:20.597142
+Create Date: 2023-02-02 08:23:34.289929
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '26953aef9539'
+revision = '5fd2327ae952'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,6 +28,20 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+    op.create_table('cars',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=40), nullable=False),
+    sa.Column('year', sa.String(length=40), nullable=False),
+    sa.Column('make', sa.String(length=40), nullable=False),
+    sa.Column('model', sa.String(length=40), nullable=False),
+    sa.Column('state', sa.String(length=40), nullable=False),
+    sa.Column('description', sa.String(length=200), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.Column('owner_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('events',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=40), nullable=False),
@@ -37,10 +51,21 @@ def upgrade():
     sa.Column('zipcode', sa.String(length=40), nullable=False),
     sa.Column('country', sa.String(length=40), nullable=False),
     sa.Column('description', sa.String(length=755), nullable=False),
+    sa.Column('banner_image_url', sa.String(length=755), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('car_images',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=40), nullable=False),
+    sa.Column('image_url', sa.String(length=1000), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.Column('car_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['car_id'], ['cars.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('event_images',
@@ -79,6 +104,8 @@ def downgrade():
     op.drop_table('event_users')
     op.drop_table('event_messages')
     op.drop_table('event_images')
+    op.drop_table('car_images')
     op.drop_table('events')
+    op.drop_table('cars')
     op.drop_table('users')
     # ### end Alembic commands ###
