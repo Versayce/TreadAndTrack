@@ -34,6 +34,13 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  const handleDemoLogin = () => {
+    const email = "demo@aa.io"
+    const password = "password"
+    dispatch(login(email, password))
+    dispatch(closeModal())
+  }
+
   if (user) {
     return <Redirect to='/' />;
   }
@@ -64,7 +71,7 @@ const LoginForm = () => {
       </InputWrapper>
       {errors && <ErrorMessages>{errors.map((error, idx) => <div key={idx}>{error}</div>)}</ErrorMessages>}
       <StyledButton type='submit'>Login</StyledButton>
-      <StyledButton>Demo User</StyledButton>
+      <StyledButton onClick={handleDemoLogin}>Demo</StyledButton>
     </StyledForm>
   );
 };
