@@ -51,7 +51,7 @@ function EventPage() {
         <>
         <NavBar />
         <Wrapper>
-            {eventImageUrl && <EventImage src={eventImageUrl} onError={e => {e.currentTarget.src = "/images/wrxLake.jpg";}}/>}
+            {eventImageUrl && <EventImage src={eventImageUrl} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/>}
             <SlantedDiv></SlantedDiv>
             <HeaderWrapper>
                 <h1>{event?.name}</h1>
