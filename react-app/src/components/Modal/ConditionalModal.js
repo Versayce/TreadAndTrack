@@ -4,6 +4,7 @@ import { closeModal } from "../../store/modal";
 import CreateEventForm from "../Forms/CreateEventForm";
 import EditEventForm from "../Forms/EventForm/EditEvent.js";
 import LoginForm from "../Auth/LoginForm"
+import SignUpForm from "../Auth/SignUpForm";
 
 
 function ConditonalModal() {
@@ -13,6 +14,7 @@ function ConditonalModal() {
     const handleChildClicks = (e) => {
         e.stopPropagation()
     }
+
 
     console.log('', '\n', '==========Inside of Conditional Modal==========', params, '\n', '')
     const renderComponent = (params) => {
@@ -42,12 +44,23 @@ function ConditonalModal() {
             
             case "loginModal":
                 {
+                    return (
+                        <ModalBackground onClick={(e) => dispatch(closeModal())}>
+                            <LoginModalBody onClick={(e) => handleChildClicks(e)}>
+                                <LoginForm />
+                            </LoginModalBody>
+                        </ModalBackground>
+                    )
+                }
+
+            case "signupModal":
+                {
                     console.log('within login modal case', params)
                     return (
                         <ModalBackground onClick={(e) => dispatch(closeModal())}>
-                            <ModalBody onClick={(e) => handleChildClicks(e)}>
-                                <LoginForm />
-                            </ModalBody>
+                            <LoginModalBody onClick={(e) => handleChildClicks(e)}>
+                                <SignUpForm />
+                            </LoginModalBody>
                         </ModalBackground>
                     )
                 }
@@ -96,13 +109,34 @@ const ModalBody = styled.div`
     bottom: 0;
     margin: auto;
     /* setting max scaling w/h */
-    width: auto;
     height: auto;
     overflow-y: scroll;
-    width: 60%;
-    max-width: 850px;
-    min-width: 440px;
-    max-height: 60%;
+    width: 50%;
+    max-width: 1000px;
+    min-width: 540px;
+    max-height: 45%;
+    border-radius: 10px;
+    /* Modal Background: */
+    background: linear-gradient(180deg, #ffffff, #f8f8f8)
+`
+
+const LoginModalBody = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* fixing to center of screen */
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    /* setting max scaling w/h */
+    height: auto;
+    overflow-y: scroll;
+    max-width: 400px;
+    min-width: 300px;
+    max-height: 45%;
     border-radius: 10px;
     /* Modal Background: */
     background: linear-gradient(180deg, #ffffff, #f8f8f8)

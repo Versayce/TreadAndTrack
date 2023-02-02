@@ -16,15 +16,15 @@ function EventPage() {
     const currentUser = useSelector(state => state.session.user)
     const currentEventObj = useSelector(state => state.events.oneEvent)
     const event = Object.values(currentEventObj)[0]
-    const eventImageUrl = event?.images[0].imageUrl
+    const eventImageUrl = event?.images[event.images.length - 1].imageUrl
 
-    // console.log("EVENTPAGE=====================", currentUser)
+    console.log("EVENTPAGE=====================", event)
 
     useEffect(() => {
 
         const fetcher = async () => {
-            dispatch(getEventMessages(eventId))
             await dispatch(getOneEvent(eventId))
+            await dispatch(getEventMessages(eventId))
         }
         fetcher();
 

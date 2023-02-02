@@ -4,7 +4,7 @@ import { closeModal, renderCreateEventModal } from '../../store/modal';
 import { logout } from '../../store/session';
 import { StyledButton } from '../Theme';
 
-const LoginButton = () => {
+const SignupButton = () => {
     const dispatch = useDispatch()
 
     const onLogin = async (modalProps) => {
@@ -12,8 +12,8 @@ const LoginButton = () => {
         await dispatch(renderCreateEventModal(modalProps))
     };
 
-    const loginModal = {
-        modalToLoad: "loginModal",
+    const signupModal = {
+        modalToLoad: "signupModal",
         styles: {
             size: {
                 height: "",
@@ -29,9 +29,9 @@ const LoginButton = () => {
 
 
     return ( 
-        <StyledButton onClick={() => onLogin(loginModal)}><span>Login</span></StyledButton> 
+        <StyledButton onClick={() => onLogin(signupModal)}><span>Signup</span></StyledButton> 
     );
 };
 
 
-export default LoginButton;
+export default SignupButton;
