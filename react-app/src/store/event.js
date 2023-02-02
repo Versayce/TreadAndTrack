@@ -28,6 +28,7 @@ export const loadOneEvent = (event) => {
 };
 
 export const addEvent = (event) => {
+    console.log('addEvent ACTION: ', event)
     return {
         type: ADD_EVENT,
         event
@@ -88,7 +89,7 @@ export const getOneEvent = (eventId) => async (dispatch) => {
     };
 };
 
-export const createEvent = (event, imageUrl) => async (dispatch) => {
+export const createEvent = (event) => async (dispatch) => {
     const res = await fetch('/api/events', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -97,42 +98,30 @@ export const createEvent = (event, imageUrl) => async (dispatch) => {
     
     if(res.ok) {
         const data = await res.json();
-        await dispatch(addEvent(data))
-        const eventId = data.id
-        const name = `event-${eventId}-Image`
-        await dispatch(createEventImage(event.image_url, name, eventId))
+        dispatch(addEvent(data))
     };
 };
 
-export const createEventImage = (image_url, name, event_id) => async (dispatch) => {
-    const imageData = {name, image_url, event_id}
-    const res = await fetch('/api/events/images', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(imageData)
-    });
+// export const createEventImage = (image_url, name, event_id) => async (dispatch) => {
+//     const imageData = {name, image_url, event_id}
+//     const res = await fetch('/api/events/images', {
+//         method: 'POST',
+//         headers: {'Content-Type': 'application/json'},
+//         body: JSON.stringify(imageData)
+//     });
     
-    if(res.ok) {
-        const data = await res.json();
-    };
-}
+//     if(res.ok) {
+//         const data = await res.json();
+//     };
+// }
 
 
-export const editEventById = (event, image_url, eventId) => async (dispatch) => {
-    const {address, city, country, description, name, state, zipcode, owner_id} = event
+export const editEventById = (event) => async (dispatch) => {
+    console.log('INSIDE OF EDIT EVENT THUNK===========', event)
     const res = await fetch(`/api/events/${event.id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            address,
-            city,
-            country,
-            description,
-            name,
-            state,
-            zipcode,
-            owner_id
-        })
+        body: JSON.stringify(event)
     });
 
     if(res.ok) {

@@ -32,7 +32,7 @@ const EventForm = () => {
         country,
         zipcode,
         description,
-        image_url,
+        "banner_image_url": image_url,
         "owner_id": ownerId
     }
 

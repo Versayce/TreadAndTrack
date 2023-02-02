@@ -16,9 +16,9 @@ function EventPage() {
     const currentUser = useSelector(state => state.session.user)
     const currentEventObj = useSelector(state => state.events.oneEvent)
     const event = Object.values(currentEventObj)[0]
-    const eventImageUrl = event?.images[event.images.length - 1].imageUrl
+    const eventImageUrl = event?.bannerImage
 
-    console.log("EVENTPAGE=====================", event)
+    // console.log("EVENTPAGE=====================", event)
 
     useEffect(() => {
 

@@ -21,10 +21,9 @@ const EditEventForm = () => {
     const [country, setCountry] = useState(currentEvent.country)
     const [zipcode, setZipcode] = useState(currentEvent.zipcode)
     const [description, setDescription] = useState(currentEvent.description)
-    const [image_url, setImageUrl] = useState(currentEvent.images[0].imageUrl)
+    const [image_url, setImageUrl] = useState(currentEvent.bannerImage)
     
 
-    console.log('==========EDIT EVENT FORM==========', currentEvent)
     
     const formData = {
         "id": currentEvent.id,
@@ -35,9 +34,11 @@ const EditEventForm = () => {
         country,
         zipcode,
         description,
+        "banner_image_url": image_url,
         "owner_id": ownerId
     }
-
+    console.log('==========EDIT EVENT FORM==========', formData)
+    
     const styles = {
         width: "80%",
         widthDesc: "90%"
@@ -143,7 +144,7 @@ const EditEventForm = () => {
             id: 7,
             name: "image_url",
             type: "text",
-            placeholder: currentEvent.images[0].imageUrl,
+            placeholder: currentEvent.bannerImage,
             errorMessage: "Enter a URL containing https://",
             label: "Image",
             required: true,
@@ -178,7 +179,7 @@ const EditEventForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await dispatch(editEventById(formData, image_url)) 
+        await dispatch(editEventById(formData)) 
         await dispatch(getAllEvents())
         await dispatch(getOneEvent(currentEvent.id))
         dispatch(closeModal())

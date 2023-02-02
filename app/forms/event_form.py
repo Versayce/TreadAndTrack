@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, ValidationError
 
 class EventForm(FlaskForm):
     owner_id = IntegerField('Owner')
-    banner_image_url = StringField('Banner Image', validators=[DataRequired()])
+    banner_image_url = StringField('Banner')
     name = StringField('Name', validators=[DataRequired()])
     address = StringField('Address', validators=[DataRequired()])
     city = StringField('City', validators=[DataRequired()])

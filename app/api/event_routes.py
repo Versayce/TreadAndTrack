@@ -52,6 +52,7 @@ def event_by_id(id):
             form['csrf_token'].data = request.cookies['csrf_token']
             if form.validate_on_submit():
                 event.owner_id = form.data['owner_id']
+                event.banner_image_url = form.data['banner_image_url']
                 event.name = form.data['name']
                 event.address = form.data['address']
                 event.city = form.data['city']

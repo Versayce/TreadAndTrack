@@ -26,7 +26,7 @@ class Event(db.Model):
     zipcode = db.Column(db.String(40), nullable=False)
     country = db.Column(db.String(40), nullable=False)
     description = db.Column(db.String(755), nullable=False) 
-    banner_image_url = db.Column(db.String(755), nullable=True)
+    banner_image_url = db.Column(db.String(755), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow) 
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow) 
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)

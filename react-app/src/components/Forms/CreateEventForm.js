@@ -21,7 +21,17 @@ function CreateEventForm() {
     const currentUser = useSelector(state => state.session.user)
     const owner_id = currentUser.id
 
-    const formData = {name, address, city, state, country, zipcode, description, owner_id} //Data being submitted through the form.
+    const formData = {
+        name, 
+        address, 
+        city, 
+        state, 
+        country, 
+        zipcode, 
+        description, 
+        owner_id, 
+        "banner_image_url": image
+    } //Data being submitted through the form.
 
     const [nameError, setNameError] = useState()
     const [addressError, setAddressError] = useState()
@@ -58,15 +68,14 @@ function CreateEventForm() {
 
     }, [name, address, city, state, country, zipcode, description, image])
     
-    console.log('', '\n', '==========CREATE FORM COMPONENT==========', '\n', errors , '\n', '')
+    console.log('', '\n', '==========CREATE FORM COMPONENT==========', '\n', formData , '\n', '')
 
     
 
     const handleSubmit = async (e) => {
-        const imageUrl = image
-        console.log('form submission component', formData)
         e.preventDefault();
-        await dispatch(createEvent(formData, imageUrl)) 
+        console.log('form submission component', formData)
+        await dispatch(createEvent(formData)) 
         await dispatch(getAllEvents())
         dispatch(closeModal())
     } 
