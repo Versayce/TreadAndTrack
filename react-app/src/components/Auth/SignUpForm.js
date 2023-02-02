@@ -18,12 +18,16 @@ const SignUpForm = () => {
     e.preventDefault();
     setErrors([])
     if(password === repeatPassword){
-      const data = await dispatch(signUp(username, email, password));
-      // console.log('SIGNUP DATA ================ :>>>>>>>>>', data)
-      if (data) {
-        setErrors(data)
+      if(email.includes("@")){
+        const data = await dispatch(signUp(username, email, password));
+        console.log('SIGNUP DATA ================ :>>>>>>>>>', data)
+        if (data) {
+          setErrors(data)
+        }
+        else dispatch(closeModal())
+      }else {
+        setErrors(["Please input a valid email"])
       }
-      else dispatch(closeModal())
     }else {
       setErrors(["Please input matching passwords"])
     }

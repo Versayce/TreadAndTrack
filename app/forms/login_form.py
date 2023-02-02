@@ -10,7 +10,7 @@ def user_exists(form, field):
     user = User.query.filter(User.email == email).first()
     if not user:
         raise ValidationError('Email provided does not exist')
-
+    
 
 def password_matches(form, field):
     # Checking if password matches
