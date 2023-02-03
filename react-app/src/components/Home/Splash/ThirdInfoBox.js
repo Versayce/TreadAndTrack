@@ -76,7 +76,7 @@ const MainHeader = styled.div`
         color: #070707;
         margin-top: 100px;
         margin-bottom: 100px;
-        font-size: 40px;
+        font-size: 45px;
     }p {
         color: #5e5e5e;
         width: 70%;

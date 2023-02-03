@@ -5,7 +5,7 @@ const MainInfo = () => {
     return (
         <InfoWrapper>
             <MainHeader>
-                <h2>Welcome to Tread&Track</h2>
+                <h2>Welcome to Tread&&Track</h2>
                 <h1>Creating and hosting car events made easier</h1>
                 <p>Tread and Track is a car centric, event hosting platform. 
                     Linking thousands of people who share a passion for cars together.  
@@ -49,7 +49,7 @@ const MainHeader = styled.div`
     h1 {
         color: #bd345d;
         margin-top: 30px;
-        font-size: 40px;
+        font-size: 45px;
     }h2 {
         color: #5e5e5e;
     }p {

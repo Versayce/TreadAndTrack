@@ -37,7 +37,7 @@ const MainHeader = styled.div`
     h1 {
         color: #ffffff;
         margin-top: 100px;
-        font-size: 40px;
+        font-size: 45px;
     }h2 {
         color: #ffffff;
         font-weight: 100;
