@@ -50,12 +50,14 @@ const MainHeader = styled.div`
         color: #bd345d;
         margin-top: 30px;
         font-size: 45px;
+        text-align: center;
     }h2 {
         color: #5e5e5e;
     }p {
         color: #5e5e5e;
         width: 70%;
         margin-top: 20px;
+        text-align: center;
     }   
 `
 

@@ -61,7 +61,7 @@ const MainContainer = styled.div`
         margin-top: 20px;
     }p {
         margin-bottom: 50px;
-        width: 50%;
+        max-width: 70%;
     }img {
         max-width: 60%;
         height: 100%;
