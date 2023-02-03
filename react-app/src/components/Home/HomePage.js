@@ -5,6 +5,7 @@ import Footer from "./Footer"
 import { useSelector } from "react-redux"
 import MainInfo from "./Splash/MainInfo"
 import SecondaryInformation from "./Splash/SecondaryInformation"
+import ThirdInfoBox from "./Splash/ThirdInfoBox"
 
 //TODO refactor to split non-logged in components into another file. 
 
@@ -17,6 +18,7 @@ const HomePage = () => {
             <Banner />
             {!currentUser && <MainInfo />}
             {!currentUser && <SecondaryInformation />}
+            {!currentUser && <ThirdInfoBox />}
             {currentUser && <EventList />}  
             <Footer />
         </>

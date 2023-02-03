@@ -9,7 +9,7 @@ const MainInfo = () => {
                 <h1>Creating and hosting car events made easier</h1>
                 <p>Tread and Track is a car centric, event hosting platform. 
                     Linking thousands of people who share a passion for cars together.  
-                    Joing or host your event today!
+                    Join or host your event today!
                 </p>
             </MainHeader>
             <CardWrapper>
@@ -19,7 +19,7 @@ const MainInfo = () => {
                 </InfoCard>  
                 <InfoCard>
                     <h1>Expand your audience</h1>
-                    <p>‎Tap into the world’s largest events marketplace and expand your reach with social marketing tools powered by our exclusive data.</p>
+                    <p>Tap into the world’s largest events marketplace and expand your reach with social marketing tools powered by our exclusive data.</p>
                 </InfoCard>
                 <InfoCard>
                     <h1>Build a community</h1>
