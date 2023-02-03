@@ -26,11 +26,14 @@ def email_exists(form, field):
     if user: 
         raise ValidationError('Email is already in use')
     
-    
+def username_length_check(form, field):
+    username = field.data
+    if len(username) <= 3:
+        raise ValidationError('Username must be longer than 3 characters')
 
     
 class SignUpForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired(), username_exists])
+    username = StringField('username', validators=[DataRequired(message="Please input a username greater than 3 characters"), username_length_check, username_exists])
     email = StringField('email', validators=[DataRequired(), user_exists])
     image = StringField('Image')
     password = StringField('password', validators=[DataRequired()])

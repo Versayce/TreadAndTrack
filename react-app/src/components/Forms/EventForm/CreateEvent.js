@@ -33,12 +33,12 @@ const EventForm = () => {
         zipcode,
         description,
         "banner_image_url": image_url,
-        "owner_id": ownerId
+        "owner_id": ownerId,
     }
 
     const styles = {
         width: "80%",
-        widthDesc: "90%"
+        widthDesc: "90%",
     }
 
     const inputs = [
