@@ -201,28 +201,10 @@ const EditEventForm = () => {
     )
 }
 
-// const FormWrapper = styled.div`
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     background-color: #adadad;
-//     background-image: url("/images/wrxLake.jpg");
-//     background-position: top;
-// `
 
 const Form = styled.form`
-    /* box-sizing: border-box; */
     width: 80%;
-    /* max-width: 850px; */
     display: grid;
-    /* grid-gap: 0px; */
-    /* padding: 60px; */
-    /* margin: 300px 0 400px 0px; */
-    /* border-radius: 10px; */
-    /* background-image: linear-gradient(to bottom, #f6f6f6, #f8f8f8, #fafafa, #fdfdfd, #ffffff); */
-    /* box-shadow: 1px 1px 10px 2px #8f8f8fd6; */
     grid-template-areas:
     "header header header"
     "nameInput addressInput cityInput"

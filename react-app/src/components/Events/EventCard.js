@@ -75,6 +75,9 @@ const Wrapper = styled.div`
             margin: 10px;
             padding: 15px;
             box-shadow: 1px 1px 10px 2px #8f8f8f39;
+            position: relative;
+            top: 0;
+            transition: top ease 0.5s, box-shadow 0.5s ease-in-out;
             border-radius: 3px;
             & img {
                 width: 100%;
@@ -113,6 +116,7 @@ const Wrapper = styled.div`
             } :hover {
                 box-shadow: 1px 1px 10px 2px #49494939;
                 cursor: pointer;
+                top: -2px;
             }
         `
             const EventLocation = styled.div`
