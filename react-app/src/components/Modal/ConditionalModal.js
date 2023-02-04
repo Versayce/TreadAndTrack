@@ -137,7 +137,7 @@ const LoginModalBody = styled.div`
     overflow-y: scroll;
     max-width: 400px;
     min-width: 300px;
-    max-height: 45%;
+    max-height: 450px;
     border-radius: 10px;
     /* Modal Background: */
     background: linear-gradient(180deg, #ffffff, #f8f8f8)
