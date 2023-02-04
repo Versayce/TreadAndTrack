@@ -73,7 +73,7 @@ const MainHeader = styled.div`
     flex-direction: column;
     align-items: center;
     h1 {
-        color: #070707;
+        color: #641b31;
         margin-top: 100px;
         margin-bottom: 100px;
         font-size: 45px;

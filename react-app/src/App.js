@@ -13,6 +13,7 @@ import EventPage from './components/Events/EventPage';
 import ConditonalModal from './components/Modal/ConditionalModal';
 import HomePage from './components/Home/HomePage';
 import EventForm from './components/Forms/EventForm/CreateEvent';
+import NavBar from './components/Home/NavBar';
 
 
 
@@ -48,6 +49,7 @@ function App() {
 				<User />
 			</ProtectedRoute>
 			<ProtectedRoute path='/events' exact={true}>
+				<NavBar />
 				<EventList />
 			</ProtectedRoute>
 			<ProtectedRoute path='/events/create' exact={true}>
