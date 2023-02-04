@@ -37,7 +37,7 @@ const EditEventForm = () => {
         "banner_image_url": image_url,
         "owner_id": ownerId
     }
-    console.log('==========EDIT EVENT FORM==========', formData)
+    // console.log('==========EDIT EVENT FORM==========', formData)
     
     const styles = {
         width: "80%",
