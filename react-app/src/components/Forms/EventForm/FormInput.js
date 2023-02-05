@@ -97,6 +97,7 @@ const FormInput = styled.div`
         width: ${props => props.style.width};
         height: ${props => props.style.height};
         margin-left: 30px;
+        resize: none;
     }
 `
 
