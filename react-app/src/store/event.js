@@ -1,3 +1,5 @@
+import { getLocationCoords } from "./geocode"
+
 // Defining action type variables
 const LOAD_ALL_EVENTS = 'events/LOAD_ALL'
 const LOAD_ONE_EVENT = 'events/LOAD_ONE'
@@ -20,7 +22,7 @@ export const loadAllEvents = (events) => {
 };
 
 export const loadOneEvent = (event) => {
-    // console.log('=====INSIDE ACTION=====', event)
+    console.log('=====INSIDE ACTION=====', event)
     return {
         type: LOAD_ONE_EVENT,
         event
@@ -28,7 +30,6 @@ export const loadOneEvent = (event) => {
 };
 
 export const addEvent = (event) => {
-    console.log('addEvent ACTION: ', event)
     return {
         type: ADD_EVENT,
         event
@@ -43,7 +44,6 @@ export const addEvent = (event) => {
 // }
 
 export const editEvent = (event) => {
-    console.log('EDIT EVENT ACTION DATA', event)
     return {
         type: EDIT_EVENT,
         event
@@ -79,13 +79,16 @@ export const getAllEvents = () => async (dispatch) => {
 };
 
 export const getOneEvent = (eventId) => async (dispatch) => {
+    console.log("EVENT ID IN GET THUNK: ", eventId)
     const res = await fetch(`/api/events/${eventId}`, {
         headers: { "content-type": "application/json" }
     });
     
     if(res.ok) {
         const data = await res.json()
+        console.log("RES DATA WITHIN GET ONE EVENT THUNK", data)
         await dispatch(loadOneEvent(data))
+        await dispatch(getLocationCoords(data))
     };
 };
 

@@ -7,6 +7,7 @@ import EventCommentsSection from '../Comments/EventCommentsSection';
 import { getEventMessages } from '../../store/message';
 import { renderCreateEventModal } from '../../store/modal';
 import { deleteEvent, getOneEvent } from '../../store/event';
+import { getLocationCoords } from '../../store/geocode';
 
 // TODO start filling the page with information and get ready for comments feature.
 function EventPage() {
@@ -18,15 +19,16 @@ function EventPage() {
     const event = Object.values(currentEventObj)[0]
     const eventImageUrl = event?.bannerImage
 
-    // console.log("EVENTPAGE=====================", event)
-
+    
+    console.log("EVENTPAGE=====================", event)
     useEffect(() => {
-
+        
         const fetcher = async () => {
             await dispatch(getOneEvent(eventId))
             await dispatch(getEventMessages(eventId))
+            // await dispatch(getLocationCoords(event))
         }
-        fetcher();
+        fetcher()
 
     },[dispatch])
 
