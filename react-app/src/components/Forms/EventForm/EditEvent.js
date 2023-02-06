@@ -65,10 +65,10 @@ const EditEventForm = () => {
             name: "address",
             type: "text",
             placeholder: currentEvent.address,
-            errorMessage: "Address should 6-30 characters",
+            errorMessage: "Address should 6-40 characters",
             label: "Address",
             required: true,
-            pattern: "^[A-Za-z0-9# ]{6,30}$",
+            pattern: "^[A-Za-z0-9# ]{6,40}$",
             onChange: setAddress,
             value: address,
             style: {
@@ -164,7 +164,7 @@ const EditEventForm = () => {
             errorMessage: "Max length 700",
             label: "Description",
             required: true,
-            pattern: "^[A-Za-z0-9]{0,700}$",
+            pattern: "^[A-Za-z0-9 ]{0,700}$",
             onChange: setDescription,
             value: description,
             style: {
