@@ -162,7 +162,7 @@ const EventForm = () => {
             errorMessage: "Max length 700",
             label: "Description",
             required: true,
-            pattern: "^[A-Za-z0-9 ]{0,700}$",
+            pattern: "^[A-Za-z0-9.,! ]{0,700}$",
             onChange: setDescription,
             value: description,
             style: {
