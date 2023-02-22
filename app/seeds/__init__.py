@@ -3,6 +3,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .events import seed_events, undo_events
 from .cars import seed_cars, undo_cars
+from .car_images import seed_car_images, undo_car_images
 from .event_images import seed_event_images, undo_event_images
 from .event_messages import seed_event_messages, undo_event_messages
 
@@ -21,16 +22,18 @@ def seed():
         # command, which will  truncate all tables prefixed with 
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
-        undo_cars()
         undo_users()
         undo_events()
         undo_event_images()
         undo_event_messages()
+        undo_cars()
+        undo_car_images()
     seed_users()
     seed_events()
     seed_event_images()
     seed_event_messages()
     seed_cars()
+    seed_car_images()
     # Add other seed functions here
 
 
@@ -41,4 +44,5 @@ def undo():
     undo_events()
     undo_event_images()
     undo_cars()
+    undo_car_images()
     # Add other undo functions here
