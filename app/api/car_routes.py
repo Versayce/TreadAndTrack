@@ -60,5 +60,5 @@ def car_by_id(id):
             db.session.commit()
             return {'message': 'Car Deleted!'}
     
-    return { "error": "Server not found", "errorCode" : 404 }, 404
+    return { "error": "Car not found", "errorCode" : 404 }, 404
         
