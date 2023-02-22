@@ -70,7 +70,7 @@ def event_by_id(id):
             db.session.commit()
             return {'message': 'Event Deleted!'}
     
-    return { "error": "Server not found", "errorCode" : 404 }, 404
+    return { "error": "Event not found", "errorCode" : 404 }, 404
 
 
 @event_routes.route('/images', methods=['POST'])
