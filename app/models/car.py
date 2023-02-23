@@ -39,6 +39,23 @@ class Car(db.Model):
             "description": self.description,
             "owner": self.owner.to_dict(),
             "images": [image.to_dict() for image in self.images],
+            "likes": [like.to_dict() for like in self.likes],
+            "createdAt": self.created_at,
+            "updatedAt": self.updated_at,
+        }
+
+    def to_dict_likes(self):
+        return {
+            "id": self.id,
+            "ownerId": self.owner_id,
+            "name": self.name,
+            "year": self.year,
+            "make": self.make,
+            "model": self.model,
+            "state": self.state,
+            "description": self.description,
+            "owner": self.owner.to_dict(),
+            "images": [image.to_dict() for image in self.images],
             "createdAt": self.created_at,
             "updatedAt": self.updated_at,
         }

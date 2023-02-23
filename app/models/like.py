@@ -15,12 +15,12 @@ class Like(db.Model):
     car = db.relationship('Car', back_populates='likes')
 
 
-def to_dict(self):
-    return {
-        "id": self.id,
-        "userId": self.user_id,
-        "carId": self.car_id,
-        "createdAt": self.created_at,
-        "user": self.user.to_dict_safe(),
-        "car": self.car.to_dict(),
-    }
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "userId": self.user_id,
+            "carId": self.car_id,
+            "createdAt": self.created_at,
+            "user": self.user.to_dict_safe(),
+            # "car": self.car.to_dict_likes(),
+        }
