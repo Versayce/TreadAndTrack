@@ -40,6 +40,7 @@ class Car(db.Model):
             "owner": self.owner.to_dict(),
             "images": [image.to_dict() for image in self.images],
             "likes": [like.to_dict() for like in self.likes],
+            "likeCount": len(self.likes),
             "createdAt": self.created_at,
             "updatedAt": self.updated_at,
         }
@@ -56,6 +57,7 @@ class Car(db.Model):
             "description": self.description,
             "owner": self.owner.to_dict(),
             "images": [image.to_dict() for image in self.images],
+            "likeCount": len(self.likes),
             "createdAt": self.created_at,
             "updatedAt": self.updated_at,
         }

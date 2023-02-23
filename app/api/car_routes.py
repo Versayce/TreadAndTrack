@@ -65,7 +65,7 @@ def car_by_id(id):
     
     return { "error": "Car not found", "errorCode" : 404 }, 404
 
-@car_routes.route('/like/<int:id>', methods=['GET'])
+@car_routes.route('/like/<int:id>', methods=['POST'])
 def like_car_by_id(id):
     car = Car.query.get(id)
     like = Like.query.filter_by(user_id=current_user.id, car_id=id).first()
