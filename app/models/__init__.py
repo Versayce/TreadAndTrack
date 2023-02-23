@@ -6,6 +6,7 @@ from .event import Event
 from .event_image import EventImage
 from .event_message import EventMessage
 from .car import Car
+from .like import Like
 from .car_image import CarImage
 
 from .db import environment, SCHEMA

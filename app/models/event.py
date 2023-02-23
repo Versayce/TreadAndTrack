@@ -13,9 +13,9 @@ if environment == 'production':
 
 
 class Event(db.Model):
-    __tablename__ = "events"
+    __tablename__ = 'events'
     
-    if environment == "production":
+    if environment == 'production':
         __table_args__ = {'schema': SCHEMA}
         
     id = db.Column(db.Integer, primary_key=True)
@@ -31,13 +31,13 @@ class Event(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow) 
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     # Evant can have one owner:
-    owner = db.relationship("User", back_populates="event")
+    owner = db.relationship('User', back_populates='event')
     # Event can have many users:
-    users = db.relationship("User", secondary=event_users, back_populates="events")
+    users = db.relationship('User', secondary=event_users, back_populates='events')
     # Event can have many images:
-    images = db.relationship("EventImage", back_populates="event", cascade="all, delete")  #, cascade="all, delete"
+    images = db.relationship('EventImage', back_populates='event', cascade='all, delete')  #, cascade="all, delete"
     # Event can have many messages:
-    messages = db.relationship('EventMessage', back_populates='event', cascade="all, delete")
+    messages = db.relationship('EventMessage', back_populates='event', cascade='all, delete')
 
     def to_dict(self):
         return {

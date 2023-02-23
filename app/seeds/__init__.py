@@ -3,6 +3,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .events import seed_events, undo_events
 from .cars import seed_cars, undo_cars
+from .car_likes import seed_likes, undo_likes
 from .car_images import seed_car_images, undo_car_images
 from .event_images import seed_event_images, undo_event_images
 from .event_messages import seed_event_messages, undo_event_messages
@@ -28,12 +29,14 @@ def seed():
         undo_event_messages()
         undo_cars()
         undo_car_images()
+        undo_likes()
     seed_users()
     seed_events()
     seed_event_images()
     seed_event_messages()
     seed_cars()
     seed_car_images()
+    seed_likes()
     # Add other seed functions here
 
 
@@ -45,4 +48,5 @@ def undo():
     undo_event_images()
     undo_cars()
     undo_car_images()
+    undo_likes()
     # Add other undo functions here

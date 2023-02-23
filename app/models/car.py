@@ -22,6 +22,8 @@ class Car(db.Model):
     owner = db.relationship("User", back_populates="car")
     # Car can have many images:
     images = db.relationship("CarImage", back_populates="car", cascade="all, delete")  #, cascade="all, delete"
+    # Car can have many likes:
+    likes = db.relationship('Like', back_populates='car')
 
     
 

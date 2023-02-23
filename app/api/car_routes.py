@@ -1,7 +1,10 @@
+from pprint import pprint
 from flask import Blueprint, request
+from flask_login import current_user
 
 from app.forms.car_form import CarForm
 from app.models.car import Car
+from app.models.like import Like
 from ..models import db
 
 
@@ -61,4 +64,23 @@ def car_by_id(id):
             return {'message': 'Car Deleted!'}
     
     return { "error": "Car not found", "errorCode" : 404 }, 404
-        
+
+@car_routes.route('/like/<int:id>', methods=['GET'])
+def like_car_by_id(id):
+    car = Car.query.get(id)
+    like = Like.query.filter_by(user_id=current_user.id, car_id=id).first()
+    print('SOMETHING HERE++++++++++++++++++++++++++++++++++++++++++++', like)
+    
+    if not car:
+        return { "error": "Car not found", "errorCode" : 404 }, 404
+    elif like:
+        db.session.delete(like)
+        db.session.commit()
+        return {'message': 'Car Unliked'}
+    else:
+        like = Like(user_id=current_user.id, car_id=id)
+        db.session.add(like)
+        db.session.commit()
+        return {'message': 'Car Liked'}
+    
+    # return { "error": "Car not found", "errorCode" : 404 }, 404

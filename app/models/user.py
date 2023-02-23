@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
     event = db.relationship('Event', back_populates='owner')
     events = db.relationship('Event', secondary=event_users, back_populates='users')
     messages = db.relationship('EventMessage', back_populates='user')
+    likes = db.relationship('Like', back_populates='user')
 
     @property
     def password(self):

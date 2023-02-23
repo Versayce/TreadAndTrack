@@ -22,7 +22,7 @@ class CarImage(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "carId": self.event_id,
+            "carId": self.car_id,
             "name": self.name,
             "imageUrl": self.image_url,
             "createdAt": self.created_at,
