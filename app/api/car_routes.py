@@ -69,18 +69,23 @@ def car_by_id(id):
 def like_car_by_id(id):
     car = Car.query.get(id)
     like = Like.query.filter_by(user_id=current_user.id, car_id=id).first()
-    print('SOMETHING HERE++++++++++++++++++++++++++++++++++++++++++++', like)
     
     if not car:
         return { "error": "Car not found", "errorCode" : 404 }, 404
     elif like:
         db.session.delete(like)
         db.session.commit()
-        return {'message': 'Car Unliked'}
+        return {
+            'message': f'Car {id} Unliked',
+            'carId' : id
+        }
     else:
         like = Like(user_id=current_user.id, car_id=id)
         db.session.add(like)
         db.session.commit()
-        return {'message': 'Car Liked'}
+        return {
+            'message': f'Car {id} Liked',
+            'carId' : id
+        }
     
     # return { "error": "Car not found", "errorCode" : 404 }, 404
