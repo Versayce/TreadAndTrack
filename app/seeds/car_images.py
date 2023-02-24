@@ -15,31 +15,31 @@ def seed_car_images():
     )
     
     car1_image3 = CarImage(
-        car_id = 2,
+        car_id = 1,
         name = "Second Car Image1",
         image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195118/1998_subaru_22b_16167694959f98764da1998_subaru_22b_161676949466e7dff9f98764da87a09876-6a1c-4a96-985b-d054cf10e649-BMQ4Dk-scaled.jpeg"
     )
         
     car2_image1 = CarImage(
-        car_id = 3,
+        car_id = 2,
         name = "Third Car Image1",
         image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195159/16151652649d5d7e7634902LIPMAN_723808.jpeg"
     )
     
     car2_image2 = CarImage(
-        car_id = 4,
+        car_id = 2,
         name = "Fourth Car Image1",
         image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195113/161516528338117473eb6LIPMAN_723857.jpeg"
     )
     
     car2_image3 = CarImage(
-        car_id = 5,
+        car_id = 2,
         name = "Fifth Car Image1",
         image_url = "https://i.ytimg.com/vi/0SQKWP-FDTE/maxresdefault.jpg"
     )
     
     car2_image4 = CarImage(
-        car_id = 6,
+        car_id = 2,
         name = "Fifth Car Image1",
         image_url = "https://i0.wp.com/stanceworks.com/wp-content/uploads/2010/11/FC-RX7-gold-slammed-title.jpg?fit=1200%2C560&ssl=1"
     )
