@@ -5,8 +5,6 @@ import { getOneCar, clearOneCar, LikeCar } from '../../store/car';
 // import { useHistory } from 'react-router-dom';
 
 
-
-// TODO start filling the page with information and get ready for comments feature.
 function CarCard() {
     // const history = useHistory()
     const dispatch = useDispatch();
@@ -24,14 +22,13 @@ function CarCard() {
     const carCards = cars?.map((car) => {
         let liked;
         for(const like of car.likes) {
-            console.log(like)
             if (like.userId === sessionUser.id) {
                 liked = true
             }
         }
         
         return (
-            <CarCards onClick={function(){setActiveCarPage(car.id)}} key={car.id}>
+            <CarCards onClick={() => setActiveCarPage(car.id)} key={car.id}>
                 <h1>{car?.name}</h1>
                 {car.images[0]?.imageUrl ? <img alt='eventimg' src={`${car.images[0]?.imageUrl}`} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/> : <img alt='placeholder' src='/images/placeholderImage.png'/>}
                 <CarInfo>

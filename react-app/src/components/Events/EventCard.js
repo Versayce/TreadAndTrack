@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom';
 import { clearEventMessages } from '../../store/message';
 
 
-// TODO start filling the page with information and get ready for comments feature.
 function EventCard() {
     const history = useHistory()
     const dispatch = useDispatch();

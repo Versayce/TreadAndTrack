@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { renderCreateEventModal } from '../../store/modal';
 import { useHistory } from 'react-router-dom';
 import EventCard from './EventCard';
-import CarCard from '../Cars/CarList';
+import CarCard from '../Cars/CarCard';
 import { getAllCars } from '../../store/car';
 
 function EventList() { 
