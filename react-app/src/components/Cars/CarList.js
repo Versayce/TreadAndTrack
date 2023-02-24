@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOneCar, clearOneCar } from '../../store/car';
+import { getOneCar, clearOneCar, LikeCar, loadAllCars } from '../../store/car';
 import { useHistory } from 'react-router-dom';
 import { clearEventMessages } from '../../store/message';
 
@@ -14,23 +14,25 @@ function CarCard() {
     const cars = Object.values(carsObj)
 
 
-    const setActiveEventPage = (carId) => {
-        dispatch(clearEventMessages())
-        dispatch(clearOneCar())
-        dispatch(getOneCar(carId))
-        history.push(`/cars/${carId}`)
+    const setActiveCarPage = async (carId) => {
+        // dispatch(clearOneCar())
+        // console.log('================= LIKING CAR ====================', carId)
+        await dispatch(clearOneCar())
+        await dispatch(LikeCar(carId))
+        await dispatch(getOneCar(carId))
+        // history.push(`/cars/${carId}`)
     };
 
 
     const carCards = cars?.map((car) => {
         return (
-            <CarCards onClick={() => setActiveEventPage(car.id)} key={car.id}>
+            <CarCards onClick={() => setActiveCarPage(car.id)} key={car.id}>
                 <h1>{car?.name}</h1>
                 {car.bannerImage ? <img alt='eventimg' src={`${car.bannerImage}`} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/> : <img alt='placeholder' src='/images/placeholderImage.png'/>}
                 <CarInfo>
                     <p>{`${car.year}, ${car.make} ${car.model}`}</p>
                 </CarInfo>
-                <div className='car-desc'>{car.name}</div>
+                <div className='car-desc'>{car.likeCount}</div>
             </CarCards>
         );
     });

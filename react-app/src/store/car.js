@@ -61,7 +61,7 @@ export const getAllCars = () => async (dispatch) => {
     
     if(res.ok) {
         const data = await res.json();
-        console.log('getting all cars DATA ===========', data)
+        // console.log('getting all cars DATA ===========', data)
         await dispatch(loadAllCars(data.cars))
     };
 };
@@ -117,7 +117,7 @@ export const editCarById = (car) => async (dispatch) => {
     };
 };
 
-export const deleteEvent = (carId) => async (dispatch) => {
+export const deleteCar = (carId) => async (dispatch) => {
     const res = await fetch(`/api/cars/${carId}`, {
         method: 'DELETE'
     })
@@ -126,6 +126,17 @@ export const deleteEvent = (carId) => async (dispatch) => {
         dispatch(removeCar(carId))
     };
 };
+
+export const LikeCar = (carId) => async (dispatch) => {
+    const res = await fetch(`/api/cars/like/${carId}`, {
+        method: 'POST'
+    })
+
+    if(res.ok) {
+        const data = await res.json()
+        return data
+    }
+}
 
 
 //------------------------------   REDUCER   ------------------------------//

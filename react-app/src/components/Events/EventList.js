@@ -17,36 +17,21 @@ function EventList() {
 
     const eventObj = useSelector(state => state.events.oneEvent)
     const event = Object.values(eventObj)[0]
+
+    const carObj = useSelector(state => state.cars.oneCar)
+    const car = Object.values(carObj)[0]
     
-    // console.log('', '\n', '==========Event List Component==========', '\n', 'DATA' , '\n', '') 
+    // console.log('', '\n', '==========Event List Component==========', '\n', car , '\n', '') 
 
     useEffect(() => {
-        if(!userId) {
-            return;
-        }
+        if(!userId) return;
         dispatch(getAllEvents())
+    }, [ dispatch, userId ]);
+
+    useEffect(() => {
+        if(!userId) return;
         dispatch(getAllCars())
-    }, [dispatch, userId]);
-
-
-    const handleDelete = (eventId) => {
-        dispatch(deleteEvent(eventId))
-    };
-
-    const showModalEvent = (params) => {
-        dispatch(renderCreateEventModal(params))
-    };
-
-    const createModal = {
-        modalToLoad: "createModal",
-        size: "large",
-        // param2: "data2",
-    }
-    const editModal = {
-        modalToLoad: "editModal",
-        // param1: "data1",
-        // param2: "data2",
-    }
+    }, [ dispatch, userId, car?.likeCount ]);
 
     // Component contents
     return (
