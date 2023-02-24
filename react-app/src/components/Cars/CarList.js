@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneCar, clearOneCar, LikeCar } from '../../store/car';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 
 
 // TODO start filling the page with information and get ready for comments feature.
 function CarCard() {
-    const [liked, setLiked] = useState(false)
-    const history = useHistory()
+    // const history = useHistory()
     const dispatch = useDispatch();
     const carsObj = useSelector(state => state.cars.allCars)
     const cars = Object.values(carsObj)
@@ -21,20 +20,6 @@ function CarCard() {
         await dispatch(getOneCar(carId))
         // history.push(`/cars/${carId}`)
     };
-
-    // const checkIfLiked = (car) => {
-    //     const likes = car.likes
-    //     console.log('checking liked car', likes)
-    //     for(const like of likes) {
-    //         console.log(like)
-    //         if (like.userId === sessionUser.id) {
-    //             liked = true
-    //         }else {
-    //             liked = false
-    //         }
-    //     }
-    // }
-
 
     const carCards = cars?.map((car) => {
         let liked;
