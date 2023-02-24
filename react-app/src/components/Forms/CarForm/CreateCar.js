@@ -60,38 +60,6 @@ const EventForm = () => {
         },
         {
             id: 2,
-            name: "address",
-            type: "text",
-            placeholder: "Address",
-            errorMessage: "Address should 6-40 characters",
-            label: "Address",
-            required: true,
-            pattern: "^[A-Za-z0-9# ]{6,40}$",
-            onChange: setAddress,
-            value: address,
-            style: {
-                gridArea: "addressInput",
-                widthPercent: styles.width
-            }
-        },
-        {
-            id: 3,
-            name: "city",
-            type: "text",
-            placeholder: "City",
-            errorMessage: "City should 4-20 characters",
-            label: "City",
-            required: true,
-            pattern: "^[A-Za-z0-9 ]{4,20}$",
-            onChange: setCity,
-            value: city,
-            style: {
-                gridArea: "cityInput",
-                widthPercent: styles.width
-            }
-        },
-        {
-            id: 4,
             name: "state",
             type: "text",
             placeholder: "State",
@@ -107,16 +75,48 @@ const EventForm = () => {
             }
         },
         {
-            id: 5,
-            name: "country",
+            id: 3,
+            name: "year",
             type: "text",
-            placeholder: "Country",
-            errorMessage: "Country should be 2-20 characters",
-            label: "Country",
+            placeholder: "Year",
+            errorMessage: "Year should be four numbers",
+            label: "Year",
+            required: true,
+            pattern: "^[0-9]{4}$",
+            onChange: setCity,
+            value: year,
+            style: {
+                gridArea: "cityInput",
+                widthPercent: styles.width
+            }
+        },
+        {
+            id: 4,
+            name: "make",
+            type: "text",
+            placeholder: "Make",
+            errorMessage: "Make should be 2-20 characters",
+            label: "Make",
+            required: true,
+            pattern: "^[A-Za-z0-9 ]{2,20}$",
+            onChange: setState,
+            value: make,
+            style: {
+                gridArea: "stateInput",
+                widthPercent: styles.width
+            }
+        },
+        {
+            id: 5,
+            name: "model",
+            type: "text",
+            placeholder: "Model",
+            errorMessage: "Model should be 2-20 characters",
+            label: "Model",
             required: true,
             pattern: "^[A-Za-z0-9 ]{2,20}$",
             onChange: setCountry,
-            value: country,
+            value: model,
             style: {
                 gridArea: "countryInput",
                 widthPercent: styles.width
@@ -124,38 +124,6 @@ const EventForm = () => {
         },
         {
             id: 6,
-            name: "zipcode",
-            type: "text",
-            placeholder: "ZipCode",
-            errorMessage: "Zipcode must be 5 numbers",
-            label: "ZipCode",
-            required: true,
-            pattern: "^[0-9]{5}$",
-            onChange: setZipcode,
-            value: zipcode,
-            style: {
-                gridArea: "zipcodeInput",
-                widthPercent: styles.width
-            }
-        },
-        {
-            id: 7,
-            name: "image_url",
-            type: "text",
-            placeholder: "Image",
-            errorMessage: "Enter a URL containing https://",
-            label: "Image",
-            required: true,
-            pattern: "^https?://.*",
-            onChange: setImageUrl,
-            value: image_url,
-            style: {
-                gridArea: "imageInput",
-                widthPercent: styles.width
-            }
-        },
-        {
-            id: 8,
             name: "description",
             type: "textarea",
             placeholder: "Description",
@@ -171,7 +139,7 @@ const EventForm = () => {
                 width: "95%",
                 height: "100%"
             }
-        }
+        },
     ]
 
 
