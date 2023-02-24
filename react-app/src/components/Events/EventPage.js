@@ -66,7 +66,6 @@ function EventPage() {
                 {event && <p>{`${event.city}, ${event.state}`}</p>}
                 <p>{event?.zipcode}</p>
             </LocationInfo>
-            {/* <div id='map_canvas'>TEST MAP</div> */}
             {event && <EventCommentsSection />}
         </Wrapper>
         </>
