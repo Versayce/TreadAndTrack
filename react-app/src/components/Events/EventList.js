@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { renderCreateEventModal } from '../../store/modal';
 import { useHistory } from 'react-router-dom';
 import EventCard from './EventCard';
+import CarCard from '../Cars/CarList';
+import { getAllCars } from '../../store/car';
 
 function EventList() { 
     const dispatch = useDispatch()
@@ -23,6 +25,7 @@ function EventList() {
             return;
         }
         dispatch(getAllEvents())
+        dispatch(getAllCars())
     }, [dispatch, userId]);
 
 
@@ -51,6 +54,11 @@ function EventList() {
         <StyledHeading>Main Events</StyledHeading>
         <Wrapper>
             <EventCard /> 
+        </Wrapper>
+
+        <StyledHeading>Featured Cars</StyledHeading>
+        <Wrapper>
+            <CarCard /> 
         </Wrapper>
         </>
     );

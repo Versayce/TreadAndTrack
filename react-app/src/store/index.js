@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import eventReducer from './event';
 import messageReducer from './message';
 import modalReducer from './modal';
+import carReducer from './car';
 import session from './session'
 
 const rootReducer = combineReducers({
     session,
     events: eventReducer,
+    cars: carReducer,
     modal: modalReducer,
     messages: messageReducer
 });

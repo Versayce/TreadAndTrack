@@ -61,6 +61,7 @@ export const getAllCars = () => async (dispatch) => {
     
     if(res.ok) {
         const data = await res.json();
+        console.log('getting all cars DATA ===========', data)
         await dispatch(loadAllCars(data.cars))
     };
 };

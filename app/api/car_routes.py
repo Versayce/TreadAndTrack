@@ -76,7 +76,7 @@ def like_car_by_id(id):
         db.session.delete(like)
         db.session.commit()
         return {
-            'message': f'Car {id} Unliked',
+            'message': f'{current_user.username} Unliked Car with ID NO. {id}',
             'carId' : id
         }
     else:
@@ -84,8 +84,6 @@ def like_car_by_id(id):
         db.session.add(like)
         db.session.commit()
         return {
-            'message': f'Car {id} Liked',
+            'message': f'{current_user.username} Liked Car with ID NO. {id}',
             'carId' : id
         }
-    
-    # return { "error": "Car not found", "errorCode" : 404 }, 404
