@@ -23,8 +23,7 @@ function CarCard() {
 
     const carCards = cars?.map((car) => {
         let liked;
-        const likes = car.likes
-        for(const like of likes) {
+        for(const like of car.likes) {
             console.log(like)
             if (like.userId === sessionUser.id) {
                 liked = true
