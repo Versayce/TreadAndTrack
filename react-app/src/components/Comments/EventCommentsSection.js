@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import MessageForm from '../Forms/CreateMessageForm';
-import EditMessageForm from '../Forms/EditMessageForm';
+import MessageForm from '../Forms/MessageForm/CreateMessageForm';
+import EditMessageForm from '../Forms/MessageForm/EditMessageForm';
 import { StyledButton } from '../Theme';
 import { deleteMessage, getOneMessage } from '../../store/message';
 

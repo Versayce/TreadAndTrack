@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components'
-import { deleteEvent, getAllEvents, getOneEvent, clearOneEvent } from '../../store/event';
+import { getAllEvents } from '../../store/event';
 import { useDispatch, useSelector } from 'react-redux'
-import { renderCreateEventModal } from '../../store/modal';
-import { useHistory } from 'react-router-dom';
 import EventCard from './EventCard';
 import CarCard from '../Cars/CarCard';
 import { getAllCars } from '../../store/car';

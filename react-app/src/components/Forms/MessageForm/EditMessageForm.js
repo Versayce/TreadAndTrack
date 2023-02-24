@@ -2,51 +2,48 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { createMessage } from '../../store/message';
-import { useEffect } from 'react';
+import { editMessageById } from '../../../store/message';
 
 // TODO start filling the page with information and get ready for comments feature.
-function MessageForm() {
+function EditMessageForm({ setFormType }) {
     const dispatch = useDispatch()
-    const [body, setBody] = useState("")
+    const currentMessage = useSelector(state => state.messages.oneMessage)
+    const messageId = currentMessage.id
+    const [body, setBody] = useState(currentMessage?.body)
     const [error, setError] = useState([])
+    
 
     const currentEventObj = useSelector(state => state.events.oneEvent)
-    const eventId = Object.values(currentEventObj)[0]?.id
+    const event_id = Object.values(currentEventObj)[0]?.id
+
     const sessionUser = useSelector(state => state.session.user)
-    const authorId = sessionUser.id
+    const author_id = sessionUser.id
 
-    // const { body, channelId, authorId } = message;
+    const formData = {"id": messageId, body, event_id, author_id}
+    // console.log("===========EDIT FORM COMPONENT==================", currentMessage)
 
-    const formData = {body, "event_id": eventId, "author_id": authorId}
-    // console.log("===========MESSAGE FORM COMPONENT==================", formData)
-
-    useEffect(() => {
-        if(body.length > 0 && body.length < 50) {
-            setError([])
-        }
-    }, [body])
-    
     const handleSubmit = async (e) => {
         e.preventDefault()
         if(body.length > 0 && body.length < 50){
             setError([])
             setBody("")
-            await dispatch(createMessage(formData))
-        }else {
+            await dispatch(editMessageById(formData))
+            setFormType("createForm")
+        } else {
             setError("Comment must be between 1 and 50 chars")
             setBody("")
         }
     }
-    
+  
     return (
         <>
         <Wrapper>
             <FormWrapper onSubmit={handleSubmit}>
-                <label>Comment: </label>
+                <label>Edit: </label>
                 <input
                     onChange={(e) => setBody(e.target.value)}
                     value={body}
+                    placeholder={currentMessage.body}
                 />
                 <span>{error}</span>
                 <button>Submit</button>
@@ -78,4 +75,4 @@ const Wrapper = styled.div`
     box-shadow: 1px 1px 10px 2px #d4d4d465;
 `
 
-export default MessageForm
+export default EditMessageForm
