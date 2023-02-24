@@ -4,7 +4,7 @@ import { closeModal } from "../../store/modal";
 import EditEventForm from "../Forms/EventForm/EditEvent.js";
 import LoginForm from "../Auth/LoginForm"
 import SignUpForm from "../Auth/SignUpForm";
-import { StyledButton } from "../Theme";
+
 
 
 function ConditonalModal() {
@@ -16,7 +16,7 @@ function ConditonalModal() {
     }
 
 
-    console.log('', '\n', '==========Inside of Conditional Modal==========', params, '\n', '')
+    // console.log('', '\n', '==========Inside of Conditional Modal==========', params, '\n', '')
     const renderComponent = (params) => {
         console.log('======  MODAL-SWITCH  ======:', params)
         switch (params?.modalToLoad) {

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MessageForm from '../Forms/MessageForm/CreateMessageForm';
 import EditMessageForm from '../Forms/MessageForm/EditMessageForm';
-import { StyledButton } from '../Theme';
 import { deleteMessage, getOneMessage } from '../../store/message';
 
 // TODO start filling the page with information and get ready for comments feature.
@@ -12,9 +11,6 @@ function EventCommentsSection() {
     const [ formType, setFormType ] = useState("createForm")
 
     const sessionUserId = useSelector(state => state.session.user.id)
-
-    const currentEventObj = useSelector(state => state.events.oneEvent)
-    const event = Object.values(currentEventObj)[0]
 
     const messagesObj = useSelector(state => state.messages.eventMessages)
     const messages = Object.values(messagesObj)

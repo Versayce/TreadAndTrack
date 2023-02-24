@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { closeModal, renderCreateEventModal } from '../../store/modal';
-import { logout } from '../../store/session';
+import { renderCreateEventModal } from '../../store/modal';
 import { StyledButton } from '../Theme';
 
 const SignupButton = () => {

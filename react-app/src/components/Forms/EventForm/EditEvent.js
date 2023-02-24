@@ -13,7 +13,7 @@ const EditEventForm = () => {
     const currentUser = useSelector(state => state.session.user)
     const ownerId = currentUser.id
 
-    const [errors, setErrors] = useState([])
+    // const [errors, setErrors] = useState([])
     const [name, setName] = useState(currentEvent.name)
     const [address, setAddress] = useState(currentEvent.address)
     const [city, setCity] = useState(currentEvent.city)
@@ -192,7 +192,7 @@ const EditEventForm = () => {
                     {inputs.map((input) => (
                         <>
                         <FormInputs key={input.id} {...input} />
-                        <div>{errors}</div>
+                        {/* <div>{errors}</div> */}
                         </>
                     ))}
                 <SubmitButton type="submit">Submit</SubmitButton>

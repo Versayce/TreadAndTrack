@@ -22,7 +22,7 @@ const ThirdInfoBox = () => {
                     <h2>Share on social</h2>
                     <p>Event-goers searching for unique things to do account for 1 out of 4 tickets sold on Eventbrite with personalized recommendations in our consumer app and newsletters.</p>
                 </div>
-                <img src="/splashImage_thick.png"/>
+                <img src="/splashImage_thick.png" alt="splashimg"/>
             </MainContainer>
         </InfoWrapper>
     )

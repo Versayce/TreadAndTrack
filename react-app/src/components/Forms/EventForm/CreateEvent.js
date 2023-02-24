@@ -177,7 +177,7 @@ const EventForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const data = await dispatch(createEvent(formData)) 
+        await dispatch(createEvent(formData)) 
         await dispatch(getAllEvents())
         history.push("/")
     }

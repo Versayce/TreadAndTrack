@@ -80,8 +80,6 @@ export const getEventMessages = (eventId) => async (dispatch) => {
 }
 
 export const createMessage = (message) => async (dispatch) => {
-    const { body, eventId, authorId } = message;
-
     const res = await fetch('/api/messages/new', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},

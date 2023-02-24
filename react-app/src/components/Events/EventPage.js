@@ -28,7 +28,7 @@ function EventPage() {
         }
         fetcher();
 
-    },[dispatch])
+    },[dispatch, eventId])
 
     const handleDelete = (eventId) => {
         dispatch(deleteEvent(eventId))

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import styled, { keyframes } from 'styled-components';
 import { logout } from '../../store/session';
 import { StyledButton } from '../Theme';
 

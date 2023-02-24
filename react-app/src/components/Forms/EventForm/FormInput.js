@@ -14,14 +14,14 @@ const FormInputs = (props) => {
         errorMessage, 
         onChange, 
         required, 
-        id, 
+        // id, 
         style, 
         value, 
         pattern, 
         name, 
         type, 
-        row, 
-        col, 
+        // row, 
+        // col, 
         placeholder } = props
     // console.log('INPUT PROPS', props)
 
@@ -39,7 +39,7 @@ const FormInputs = (props) => {
         <>
             <FormInput style={style}> 
                 <label>{label}</label>
-                {type != "textarea" ? <input  //TODO destructure all of the props
+                {type !== "textarea" ? <input  //TODO destructure all of the props
                     name={name}
                     type={type}
                     value={value}
