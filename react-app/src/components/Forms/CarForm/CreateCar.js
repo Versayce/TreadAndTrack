@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom"
 import NavBar from "../../Home/NavBar"
 import Footer from "../../Home/Footer"
 
-const EventForm = () => {
+const CarForm = () => {
     const history = useHistory()
     const currentUser = useSelector(state => state.session.user)
     const ownerId = currentUser.id
@@ -221,4 +221,4 @@ const Header = styled.h1`
 `
 
 
-export default EventForm
+export default CarForm

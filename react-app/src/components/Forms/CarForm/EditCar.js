@@ -6,7 +6,7 @@ import { editEventById, getAllEvents, getOneEvent } from "../../../store/event"
 import { useSelector } from "react-redux"
 import { closeModal } from "../../../store/modal"
 
-const EditEventForm = () => {
+const EditCarForm = () => {
     const dispatch = useDispatch()
     const currentEventObj = useSelector(state => state.events.oneEvent)
     const currentEvent = Object.values(currentEventObj)[0]
@@ -241,4 +241,4 @@ const Header = styled.h1`
 `
 
 
-export default EditEventForm
+export default EditCarForm
