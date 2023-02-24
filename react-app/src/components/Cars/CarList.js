@@ -1,38 +1,60 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOneCar, clearOneCar, LikeCar, loadAllCars } from '../../store/car';
+import { getOneCar, clearOneCar, LikeCar } from '../../store/car';
 import { useHistory } from 'react-router-dom';
-import { clearEventMessages } from '../../store/message';
+
 
 
 // TODO start filling the page with information and get ready for comments feature.
 function CarCard() {
+    const [liked, setLiked] = useState(false)
     const history = useHistory()
     const dispatch = useDispatch();
     const carsObj = useSelector(state => state.cars.allCars)
     const cars = Object.values(carsObj)
-
+    const sessionUser = useSelector(state => state.session.user)
 
     const setActiveCarPage = async (carId) => {
-        // dispatch(clearOneCar())
-        // console.log('================= LIKING CAR ====================', carId)
         await dispatch(clearOneCar())
         await dispatch(LikeCar(carId))
         await dispatch(getOneCar(carId))
         // history.push(`/cars/${carId}`)
     };
 
+    // const checkIfLiked = (car) => {
+    //     const likes = car.likes
+    //     console.log('checking liked car', likes)
+    //     for(const like of likes) {
+    //         console.log(like)
+    //         if (like.userId === sessionUser.id) {
+    //             liked = true
+    //         }else {
+    //             liked = false
+    //         }
+    //     }
+    // }
+
 
     const carCards = cars?.map((car) => {
+        let liked;
+        const likes = car.likes
+        for(const like of likes) {
+            console.log(like)
+            if (like.userId === sessionUser.id) {
+                liked = true
+            }
+        }
+        
         return (
-            <CarCards onClick={() => setActiveCarPage(car.id)} key={car.id}>
+            <CarCards onClick={function(){setActiveCarPage(car.id)}} key={car.id}>
                 <h1>{car?.name}</h1>
-                {car.bannerImage ? <img alt='eventimg' src={`${car.bannerImage}`} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/> : <img alt='placeholder' src='/images/placeholderImage.png'/>}
+                {car.images[0]?.imageUrl ? <img alt='eventimg' src={`${car.images[0]?.imageUrl}`} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/> : <img alt='placeholder' src='/images/placeholderImage.png'/>}
                 <CarInfo>
                     <p>{`${car.year}, ${car.make} ${car.model}`}</p>
                 </CarInfo>
-                <div className='car-desc'>{car.likeCount}</div>
+                <div className='car-desc'>{`Likes: ${car.likeCount}`}</div>
+                { liked ? <div>{`Liked`}</div> : <div>{`Unliked`}</div>}
             </CarCards>
         );
     });

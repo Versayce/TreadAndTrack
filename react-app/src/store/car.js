@@ -131,9 +131,10 @@ export const LikeCar = (carId) => async (dispatch) => {
     const res = await fetch(`/api/cars/like/${carId}`, {
         method: 'POST'
     })
-
+    
     if(res.ok) {
         const data = await res.json()
+        console.log(data.message)
         return data
     }
 }

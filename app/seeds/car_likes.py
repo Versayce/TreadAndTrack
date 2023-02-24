@@ -22,12 +22,24 @@ def seed_likes():
         car_id = 2,
         user_id = 2,
     )
+    
+    car2_like3 = Like(
+        car_id = 2,
+        user_id = 3,
+    )
+    
+    car2_like4 = Like(
+        car_id = 2,
+        user_id = 4,
+    )
 
     all_likes = [ 
             car1_like1, 
             car1_like2, 
             car2_like1, 
             car2_like2, 
+            car2_like3,
+            car2_like4,  
         ]
 
     for like in all_likes:

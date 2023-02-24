@@ -21,9 +21,16 @@ def seed_users():
         password='password', 
         image='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/1998-subaru-22b-sti-1998-subaru-1653928866.jpg?crop=1.00xw:0.920xh;0,0&resize=980:*')
 
+    likeBot = User(
+        username='LikeBot', 
+        email='likebot@aa.io', 
+        password='password', 
+        image='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/1998-subaru-22b-sti-1998-subaru-1653928866.jpg?crop=1.00xw:0.920xh;0,0&resize=980:*')
+
     db.session.add(demo)
     db.session.add(demo2)
     db.session.add(alex)
+    db.session.add(likeBot)
     db.session.commit()
     print("User seeding complete.")
 
