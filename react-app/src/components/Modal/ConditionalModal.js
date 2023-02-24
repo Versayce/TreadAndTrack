@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { closeModal } from "../../store/modal";
-import CreateEventForm from "../Forms/CreateEventForm";
 import EditEventForm from "../Forms/EventForm/EditEvent.js";
 import LoginForm from "../Auth/LoginForm"
 import SignUpForm from "../Auth/SignUpForm";
@@ -21,17 +20,6 @@ function ConditonalModal() {
     const renderComponent = (params) => {
         console.log('======  MODAL-SWITCH  ======:', params)
         switch (params?.modalToLoad) {
-            case "createModal": //specify which params are required to render contents
-                {
-                    return (
-                        <ModalBackground onClick={(e) => dispatch(closeModal())}>
-                            <ModalBody onClick={(e) => handleChildClicks(e)}>
-                                <CreateEventForm />
-                            </ModalBody>
-                        </ModalBackground>
-                    )
-                }
-
             case "editModal":
                 {
                     return (
