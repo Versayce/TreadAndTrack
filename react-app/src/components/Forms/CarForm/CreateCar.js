@@ -14,25 +14,20 @@ const EventForm = () => {
     const ownerId = currentUser.id
 
     const dispatch = useDispatch()
-    // const [errors, setErrors] = useState([])
     const [name, setName] = useState("")
-    const [address, setAddress] = useState("")
-    const [city, setCity] = useState("")
     const [state, setState] = useState("")
-    const [country, setCountry] = useState("")
-    const [zipcode, setZipcode] = useState("")
+    const [year, setYear] = useState("")
+    const [make, setMake] = useState("")
+    const [model, setModel] = useState("")
     const [description, setDescription] = useState("")
-    const [image_url, setImageUrl] = useState("")
 
     const formData = {
         name,
         address,
-        city,
         state,
-        country,
-        zipcode,
+        make,
+        model,
         description,
-        "banner_image_url": image_url,
         "owner_id": ownerId,
     }
 
@@ -83,7 +78,7 @@ const EventForm = () => {
             label: "Year",
             required: true,
             pattern: "^[0-9]{4}$",
-            onChange: setCity,
+            onChange: setYear,
             value: year,
             style: {
                 gridArea: "cityInput",
@@ -99,7 +94,7 @@ const EventForm = () => {
             label: "Make",
             required: true,
             pattern: "^[A-Za-z0-9 ]{2,20}$",
-            onChange: setState,
+            onChange: setMake,
             value: make,
             style: {
                 gridArea: "stateInput",
@@ -115,7 +110,7 @@ const EventForm = () => {
             label: "Model",
             required: true,
             pattern: "^[A-Za-z0-9 ]{2,20}$",
-            onChange: setCountry,
+            onChange: setModel,
             value: model,
             style: {
                 gridArea: "countryInput",
