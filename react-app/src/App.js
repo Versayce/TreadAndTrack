@@ -14,6 +14,7 @@ import ConditonalModal from './components/Modal/ConditionalModal';
 import HomePage from './components/Home/HomePage';
 import EventForm from './components/Forms/EventForm/CreateEvent';
 import NavBar from './components/Home/NavBar';
+import CarForm from './components/Forms/CarForm/CreateCar';
 
 
 
@@ -42,8 +43,8 @@ function App() {
 			<Route path='/sign-up' exact={true}>
 				<SignUpForm />
 			</Route>
-			<ProtectedRoute path='/users' exact={true}>
-				<UsersList />
+			<ProtectedRoute path='/cars/create' exact={true}>
+				<CarForm />
 			</ProtectedRoute>
 			<ProtectedRoute path='/users/:userId' exact={true}>
 				<User />

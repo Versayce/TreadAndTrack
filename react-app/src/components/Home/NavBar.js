@@ -26,23 +26,17 @@ const NavBar = () => {
                 Events
             </StyledLink>}
 
-            {/* {!sessionUser && <StyledLink to='/sign-up' exact={true} activeClassName='active'>
-                Sign Up
-            </StyledLink>} */}
             {!sessionUser && <SignupButton />}
 
-            {/* {!sessionUser && <StyledLink to='/login' exact={true} activeClassName='active'>
-                Login
-            </StyledLink>} */}
             {!sessionUser && <LoginButton />}
 
             {sessionUser && <StyledLink to='/events/create' exact={true} activeClassName='active'>
                 Host Event
             </StyledLink>}
 
-            {/* {sessionUser && <StyledLink to='/users' exact={true} activeClassName='active'>  
+            {sessionUser && <StyledLink to='/cars/create' exact={true} activeClassName='active'>  
                 Garage
-            </StyledLink>} */} 
+            </StyledLink>} 
 
             {sessionUser && <LogoutButton />}
 

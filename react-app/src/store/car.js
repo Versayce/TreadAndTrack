@@ -78,7 +78,7 @@ export const getOneCar = (carId) => async (dispatch) => {
 };
 
 export const createCar = (car) => async (dispatch) => {
-    const res = await fetch('/api/cars', {
+    const res = await fetch('/api/cars/new', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(car)

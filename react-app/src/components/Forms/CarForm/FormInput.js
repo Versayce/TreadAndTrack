@@ -28,7 +28,6 @@ const FormInputs = (props) => {
     
     const handleFocus = (e) => {
         setFocused(true)
-        // console.log('HANDLE FOCUS: ', focused)
     }
 
     const handleChange = (e) => {
@@ -68,7 +67,6 @@ const FormInputs = (props) => {
 
 const FormInput = styled.div`
     font-family: Arial, Helvetica, sans-serif;
-    grid-area: ${props => props.style.gridArea};
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -94,9 +92,8 @@ const FormInput = styled.div`
         color: #af2d54;
     }
     textarea {
-        width: ${props => props.style.width};
+        width: ${props => props.style.widthPercent};
         height: ${props => props.style.height};
-        margin-left: 30px;
         resize: none;
     }
 `
