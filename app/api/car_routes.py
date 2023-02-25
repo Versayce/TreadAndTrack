@@ -3,7 +3,9 @@ from flask import Blueprint, request
 from flask_login import current_user
 
 from app.forms.car_form import CarForm
+from app.forms.car_image_form import CarImageForm
 from app.models.car import Car
+from app.models.car_image import CarImage
 from app.models.like import Like
 from ..models import db
 
@@ -15,7 +17,7 @@ def car_home():
     all_cars = Car.query.all()
     return {'cars': [car.to_dict() for car in all_cars]}
 
-@car_routes.route('', methods=['POST'])
+@car_routes.route('/new', methods=['POST'])
 def new_car():
     form = CarForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -87,3 +89,20 @@ def like_car_by_id(id):
             'message': f'{current_user.username} Liked Car with ID NO. {id}',
             'carId' : id
         }
+
+
+@car_routes.route('/images/new', methods=['POST'])
+def add_car_image():
+    form = CarImageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    
+    if form.validate_on_submit():
+        new_image = CarImage()
+        form.populate_obj(new_image)
+        
+        db.session.add(new_image)
+        db.session.commit()
+        return new_image.to_dict()
+    
+    else:
+        return form.errors
