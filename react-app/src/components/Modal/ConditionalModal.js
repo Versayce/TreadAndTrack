@@ -4,6 +4,7 @@ import { closeModal } from "../../store/modal";
 import EditEventForm from "../Forms/EventForm/EditEvent.js";
 import LoginForm from "../Auth/LoginForm"
 import SignUpForm from "../Auth/SignUpForm";
+import EditCarForm from "../Forms/CarForm/EditCar";
 
 
 
@@ -27,6 +28,17 @@ function ConditonalModal() {
                             <ModalBody onClick={(e) => handleChildClicks(e)}>
                                 <EditEventForm />
                             </ModalBody>
+                        </ModalBackground>
+                    )
+                }
+
+            case "editCarModal":
+                {
+                    return (
+                        <ModalBackground onClick={(e) => dispatch(closeModal())}>
+                            <EditModalBody onClick={(e) => handleChildClicks(e)}>
+                                <EditCarForm />
+                            </EditModalBody>
                         </ModalBackground>
                     )
                 }
@@ -126,6 +138,28 @@ const LoginModalBody = styled.div`
     max-width: 400px;
     min-width: 300px;
     max-height: 450px;
+    border-radius: 10px;
+    /* Modal Background: */
+    background: linear-gradient(180deg, #ffffff, #f8f8f8)
+`
+
+const EditModalBody = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* fixing to center of screen */
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    /* setting max scaling w/h */
+    height: 750px;
+    overflow-y: scroll;
+    max-width: 500px;
+    min-width: 400px;
+    max-height: 750px;
     border-radius: 10px;
     /* Modal Background: */
     background: linear-gradient(180deg, #ffffff, #f8f8f8)

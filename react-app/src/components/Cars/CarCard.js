@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneCar, clearOneCar, LikeCar } from '../../store/car';
+import { renderCreateEventModal } from '../../store/modal';
+
 // import { useHistory } from 'react-router-dom';
 
 
@@ -14,9 +16,21 @@ function CarCard() {
 
     const setActiveCarPage = async (carId) => {
         await dispatch(clearOneCar())
-        await dispatch(LikeCar(carId))
+        // await dispatch(LikeCar(carId))
         await dispatch(getOneCar(carId))
         // history.push(`/cars/${carId}`)
+    };
+
+    const editCarModal = {
+        modalToLoad: "editCarModal",
+        styles: {
+            width: "",
+            height: ""
+        }
+    }
+
+    const showModalEvent = (params) => {
+        dispatch(renderCreateEventModal(params))
     };
 
     const carCards = cars?.map((car) => {
@@ -36,6 +50,7 @@ function CarCard() {
                 </CarInfo>
                 <div className='car-desc'>{`Likes: ${car.likeCount}`}</div>
                 { liked ? <div>{`Liked`}</div> : <div>{`Unliked`}</div>}
+                <StyledButton as="button" onClick={() => showModalEvent(editCarModal)}>Edit Car</StyledButton>
             </CarCards>
         );
     });
@@ -48,6 +63,24 @@ function CarCard() {
         </Wrapper>
     ); 
 }
+
+const StyledButton = styled.button`
+    box-sizing: content-box;
+    text-align: center;
+    border: none;
+    padding: 5px;
+    margin: 5px;
+    width: 150px;
+    height: 40px;
+    border-radius: 15px;
+    background-color: #353535;
+    color: white;
+    &:hover {
+        background-color: #ca3e68;
+        color: white;
+        cursor: pointer;
+    }
+`
 
 const Wrapper = styled.div`
     width: 100%;
