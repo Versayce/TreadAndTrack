@@ -35,7 +35,7 @@ const NavBar = () => {
             </StyledLink>}
 
             {sessionUser && <StyledLink to='/cars/create' exact={true} activeClassName='active'>  
-                Garage
+                Upload Car
             </StyledLink>} 
 
             {sessionUser && <LogoutButton />}
