@@ -147,7 +147,7 @@ const Wrapper = styled.div`
             position: relative;
             top: 0;
             transition: top ease 0.5s, box-shadow 0.5s ease-in-out;
-            border-radius: 3px;
+            border-radius: 30px;
             & img {
                 width: 100%;
                 height: 130px;
