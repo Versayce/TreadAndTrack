@@ -12,6 +12,7 @@ const EditCarForm = () => {
     const currentCar = Object.values(currentCarObj)[0]
     const currentUser = useSelector(state => state.session.user)
     const ownerId = currentUser.id
+    const carId = currentCar?.id
 
     console.log("CURRENT CAR OBJ WITHIN EDIT CAR FORM", currentCar)
 
@@ -24,6 +25,7 @@ const EditCarForm = () => {
     const [description, setDescription] = useState("")
     
     const formData = {
+        id: carId,
         "owner_id": ownerId,
         name,
         state,

@@ -29,7 +29,9 @@ function CarCard() {
         }
     }
 
-    const showModalEvent = (params) => {
+    const showModalEvent = (params, carId) => {
+        console.log('params================', carId)
+        dispatch(getOneCar(carId))
         dispatch(renderCreateEventModal(params))
     };
 
@@ -50,7 +52,7 @@ function CarCard() {
                 </CarInfo>
                 <div className='car-desc'>{`Likes: ${car.likeCount}`}</div>
                 { liked ? <div>{`Liked`}</div> : <div>{`Unliked`}</div>}
-                <StyledButton as="button" onClick={() => showModalEvent(editCarModal)}>Edit Car</StyledButton>
+                <StyledButton as="button" onClick={() => showModalEvent(editCarModal, car.id)}>Edit Car</StyledButton>
             </CarCards>
         );
     });

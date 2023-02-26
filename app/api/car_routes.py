@@ -50,10 +50,10 @@ def car_by_id(id):
             if form.validate_on_submit():
                 car.owner_id = form.data['owner_id']
                 car.name = form.data['name']
-                car.year = form.data['address']
-                car.make = form.data['city']
-                car.model = form.data['state']
-                car.state = form.data['country']
+                car.year = form.data['year']
+                car.make = form.data['make']
+                car.model = form.data['model']
+                car.state = form.data['state']
                 car.description = form.data['description']
                 db.session.commit()
                 return car.to_dict()
