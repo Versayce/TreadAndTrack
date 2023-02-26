@@ -55,7 +55,7 @@ function CarCard() {
                     <p>{`${car.year}, ${car.make} ${car.model}`}</p>
                 </CarInfo>
                 <BottomInfo>
-                    { liked ? <div><i class="fa-solid fa-heart"></i></div> : <div><i class="fa-regular fa-heart"></i></div>}
+                    { liked ? <div><i className="fa-solid fa-heart"></i></div> : <div><i className="fa-regular fa-heart"></i></div>}
                     <div>{`${car.likeCount}`}</div>
                 </BottomInfo>
             </CarCards>
