@@ -45,14 +45,18 @@ function CarCard() {
         
         return (
             <CarCards onClick={() => setActiveCarPage(car.id)} key={car.id}>
-                <h1>{car?.name}</h1>
+                <TopInfo>
+                    <h1>{car?.name}</h1>
+                    {sessionUser.id === car.ownerId && <StyledButton as="button" onClick={() => showModalEvent(editCarModal, car.id)}>Edit Car</StyledButton>}
+                </TopInfo>
                 {car.previewImage ? <img alt='eventimg' src={`${car.previewImage}`} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/> : <img alt='placeholder' src='/images/placeholderImage.png'/>}
                 <CarInfo>
                     <p>{`${car.year}, ${car.make} ${car.model}`}</p>
                 </CarInfo>
-                <div className='car-desc'>{`Likes: ${car.likeCount}`}</div>
-                { liked ? <div>{`Liked`}</div> : <div>{`Unliked`}</div>}
-                {sessionUser.id === car.ownerId && <StyledButton as="button" onClick={() => showModalEvent(editCarModal, car.id)}>Edit Car</StyledButton>}
+                <BottomInfo>
+                    { liked ? <div>{`Liked`}</div> : <div>{`Unliked`}</div>}
+                    <div>{`Likes: ${car.likeCount}`}</div>
+                </BottomInfo>
             </CarCards>
         );
     });
@@ -66,15 +70,29 @@ function CarCard() {
     ); 
 }
 
+const TopInfo = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+`
+
+const BottomInfo = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 20px;
+`
+
 const StyledButton = styled.button`
     box-sizing: content-box;
     text-align: center;
     border: none;
-    padding: 5px;
-    margin: 5px;
-    width: 150px;
-    height: 40px;
-    border-radius: 15px;
+    padding: 4px;
+    margin: 4px;
+    width: 70px;
+    height: 20px;
+    border-radius: 10px;
     background-color: #353535;
     color: white;
     &:hover {
@@ -106,7 +124,6 @@ const Wrapper = styled.div`
             /* border: solid #0085a7 2px;   */
             background-color: #ffffff;
             width: 25vw;
-            height: 305px;
             max-height: 250px;
             max-width: 400px;
             min-width: 300px;
@@ -134,25 +151,6 @@ const Wrapper = styled.div`
             }& p {
                 font-size: min(max(10px, 2vw), 15px);
                 color: #3f3f3fb0;
-            }& .event-desc {
-                height: 19%;
-                text-overflow:ellipsis;
-                overflow:hidden;
-                font-size: 14pt;
-                // multiline ellipsis
-                display: -webkit-box !important;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                white-space: normal;
-            }& ::-webkit-scrollbar {
-                width: 6px;
-            }& ::-webkit-scrollbar-track {
-                border: 1px solid #3f3f3f2b;
-                border-radius: 8px;
-            }& ::-webkit-scrollbar-thumb {
-                background-color: #adadad5c;
-                border: 1px solid #ffffff2b;
-                border-radius: 8px;
             } :hover {
                 box-shadow: 1px 1px 10px 2px #49494939;
                 cursor: pointer;
