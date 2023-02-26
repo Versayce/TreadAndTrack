@@ -52,14 +52,14 @@ function EventPage() {
         <NavBar />
         <Wrapper>
             {eventImageUrl && <EventImage src={eventImageUrl} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/>}
-            <SlantedDiv></SlantedDiv>
-            <HeaderWrapper>
+            {event && <SlantedDiv></SlantedDiv>}
+            {event && <HeaderWrapper>
                 <h1>{event?.name}</h1>
                 {event?.owner?.id === currentUser.id && <ButtonWrapper>
                     <StyledButton as="button" onClick={() => handleDelete(event?.id)}> Delete Event </StyledButton>
                     <StyledButton as="button" onClick={() => showModalEvent(editModal)}> Edit Event </StyledButton>
                 </ButtonWrapper>}
-            </HeaderWrapper>
+            </HeaderWrapper>}
             <StyledDescription>{event?.description}</StyledDescription>
             <LocationInfo>
                 <p>{event?.address}</p>
