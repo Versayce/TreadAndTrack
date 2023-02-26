@@ -55,8 +55,8 @@ function CarCard() {
                     <p>{`${car.year}, ${car.make} ${car.model}`}</p>
                 </CarInfo>
                 <BottomInfo>
-                    { liked ? <div>{`Liked`}</div> : <div>{`Unliked`}</div>}
-                    <div>{`Likes: ${car.likeCount}`}</div>
+                    { liked ? <div><i class="fa-solid fa-heart"></i></div> : <div><i class="fa-regular fa-heart"></i></div>}
+                    <div>{`${car.likeCount}`}</div>
                 </BottomInfo>
             </CarCards>
         );
@@ -82,7 +82,10 @@ const BottomInfo = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     align-items: flex-start;
-    gap: 20px;
+    gap: 5px;
+    & i {
+        color: #ca3e68;
+    }
 `
 
 const StyledButton = styled.button`
