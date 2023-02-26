@@ -44,17 +44,17 @@ function CarCard() {
         }
         
         return (
-            <CarCards onClick={() => setActiveCarPage(car.id)} key={car.id}>
+            <CarCards onClick={() => setActiveCarPage(car.id)} key={car.id} car={car}>
                 <TopInfo>
                     <h1>{car?.name}</h1>
                     {sessionUser.id === car.ownerId && <StyledButton as="button" onClick={() => showModalEvent(editCarModal, car.id)}>Edit Car</StyledButton>}
                     {sessionUser.id === car.ownerId && <StyledButton as="button" onClick={() => dispatch(deleteCar(car.id))}>Delete</StyledButton>}
                 </TopInfo>
-                {car.previewImage ? <img alt='eventimg' src={`${car.previewImage}`} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/> : <img alt='placeholder' src='/images/placeholderImage.png'/>}
-                <CarInfo>
-                    <p>{`${car.year}, ${car.make} ${car.model}`}</p>
-                </CarInfo>
+                {/* {car.previewImage ? <img alt='eventimg' src={`${car.previewImage}`} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/> : <img alt='placeholder' src='/images/placeholderImage.png'/>} */}
                 <BottomInfo>
+                    <CarInfo>
+                        {/* <p>{`${car.year}, ${car.make} ${car.model}`}</p> */}
+                    </CarInfo>
                     { liked ? <div><i className="fa-solid fa-heart"></i></div> : <div><i className="fa-regular fa-heart"></i></div>}
                     <div>{`${car.likeCount}`}</div>
                 </BottomInfo>
@@ -85,6 +85,9 @@ const BottomInfo = styled.div`
     gap: 5px;
     & i {
         color: #ca3e68;
+    } div {
+        color: #ffffff;
+        text-shadow: 1px 1px 1px #49494939
     }
 `
 
@@ -126,13 +129,18 @@ const Wrapper = styled.div`
 
         const CarCards = styled.section`
             /* border: solid #0085a7 2px;   */
-            background-color: #ffffff;
+            /* background-color: #ffffff; */
+            background-image: url(${props => `${props.car.previewImage}`});
+            background-size: cover;
+            object-fit: cover;
             width: 25vw;
-            max-height: 250px;
-            max-width: 400px;
-            min-width: 300px;
+            height: 170px;
+            min-height: 170px;
+            max-width: 350px;
+            min-width: 250px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             margin: 10px;
             padding: 15px;
             box-shadow: 1px 1px 10px 2px #8f8f8f39;
@@ -151,7 +159,8 @@ const Wrapper = styled.div`
                 width: 100%;
                 font-size: min(max(22px, 2vw), 26px);
                 white-space: nowrap; 
-                color: #5a5a5a;
+                color: #ffffff;
+                text-shadow: 1px 1px 1px #49494939
             }& p {
                 font-size: min(max(10px, 2vw), 15px);
                 color: #3f3f3fb0;
