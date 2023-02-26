@@ -10,6 +10,7 @@ class Car(db.Model):
         
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), nullable=False)
+    preview_image = db.Column(db.String(755), nullable=False)
     year = db.Column(db.String(40), nullable=False)
     make = db.Column(db.String(40), nullable=False)
     model = db.Column(db.String(40), nullable=False)
@@ -32,6 +33,7 @@ class Car(db.Model):
             "id": self.id,
             "ownerId": self.owner_id,
             "name": self.name,
+            "previewImage": self.preview_image,
             "year": self.year,
             "make": self.make,
             "model": self.model,

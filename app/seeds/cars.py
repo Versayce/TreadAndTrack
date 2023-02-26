@@ -7,6 +7,7 @@ def seed_cars():
     car_template = Car(
         owner_id = 2,
         name = "22B Impreza",
+        preview_image = "https://www.topcarrating.com/subaru/1998-subaru-impreza-22b-sti.jpg",
         year = 1998,
         make = "Subaru",
         model = "22B",
@@ -17,6 +18,7 @@ def seed_cars():
     car_template2 = Car(
         owner_id = 1,
         name = "Some Civic",
+        preview_image = "https://www.motortrend.com/uploads/f/48674023.jpg?fit=around%7C1000:625",
         year = 1998,
         make = "Honda",
         model = "Civic Type R",

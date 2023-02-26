@@ -46,13 +46,13 @@ function CarCard() {
         return (
             <CarCards onClick={() => setActiveCarPage(car.id)} key={car.id}>
                 <h1>{car?.name}</h1>
-                {car.images[0]?.imageUrl ? <img alt='eventimg' src={`${car.images[0]?.imageUrl}`} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/> : <img alt='placeholder' src='/images/placeholderImage.png'/>}
+                {car.previewImage ? <img alt='eventimg' src={`${car.previewImage}`} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/> : <img alt='placeholder' src='/images/placeholderImage.png'/>}
                 <CarInfo>
                     <p>{`${car.year}, ${car.make} ${car.model}`}</p>
                 </CarInfo>
                 <div className='car-desc'>{`Likes: ${car.likeCount}`}</div>
                 { liked ? <div>{`Liked`}</div> : <div>{`Unliked`}</div>}
-                <StyledButton as="button" onClick={() => showModalEvent(editCarModal, car.id)}>Edit Car</StyledButton>
+                {sessionUser.id === car.ownerId && <StyledButton as="button" onClick={() => showModalEvent(editCarModal, car.id)}>Edit Car</StyledButton>}
             </CarCards>
         );
     });

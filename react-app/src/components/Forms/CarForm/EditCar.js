@@ -18,6 +18,7 @@ const EditCarForm = () => {
 
     const [errors, setErrors] = useState([])
     const [name, setName] = useState("")
+    const [previewImage, setPreviewImage] = useState("")
     const [state, setState] = useState("")
     const [year, setYear] = useState("")
     const [make, setMake] = useState("")
@@ -28,6 +29,7 @@ const EditCarForm = () => {
         id: carId,
         "owner_id": ownerId,
         name,
+        "preview_image": previewImage,
         state,
         year,
         make,
@@ -59,6 +61,22 @@ const EditCarForm = () => {
         },
         {
             id: 2,
+            name: "previewImage",
+            type: "text",
+            placeholder: "Image",
+            errorMessage: "Enter a URL containing https://",
+            label: "Image",
+            required: true,
+            pattern: "^https?://.*",
+            onChange: setPreviewImage,
+            value: previewImage,
+            style: {
+                gridArea: "imageInput",
+                widthPercent: styles.width
+            }
+        },
+        {
+            id: 3,
             name: "state",
             type: "text",
             placeholder: currentCar?.state,
@@ -74,7 +92,7 @@ const EditCarForm = () => {
             }
         },
         {
-            id: 3,
+            id: 4,
             name: "year",
             type: "text",
             placeholder: currentCar?.year,
@@ -90,7 +108,7 @@ const EditCarForm = () => {
             }
         },
         {
-            id: 4,
+            id: 5,
             name: "make",
             type: "text",
             placeholder: currentCar?.make,
@@ -106,7 +124,7 @@ const EditCarForm = () => {
             }
         },
         {
-            id: 5,
+            id: 6,
             name: "model",
             type: "text",
             placeholder: currentCar?.model,
@@ -122,7 +140,7 @@ const EditCarForm = () => {
             }
         },
         {
-            id: 6,
+            id: 7,
             name: "description",
             type: "textarea",
             placeholder: currentCar?.description,

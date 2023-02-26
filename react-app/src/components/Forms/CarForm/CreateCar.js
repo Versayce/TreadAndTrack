@@ -15,6 +15,7 @@ const CarForm = () => {
 
     const dispatch = useDispatch()
     const [name, setName] = useState("")
+    const [previewImage, setPreviewImage] = useState("")
     const [state, setState] = useState("")
     const [year, setYear] = useState("")
     const [make, setMake] = useState("")
@@ -24,6 +25,7 @@ const CarForm = () => {
     const formData = {
         "owner_id": ownerId,
         name,
+        "preview_image": previewImage,
         state,
         year,
         make,
@@ -55,6 +57,22 @@ const CarForm = () => {
         },
         {
             id: 2,
+            name: "previewImage",
+            type: "text",
+            placeholder: "Image",
+            errorMessage: "Enter a URL containing https://",
+            label: "Image",
+            required: true,
+            pattern: "^https?://.*",
+            onChange: setPreviewImage,
+            value: previewImage,
+            style: {
+                gridArea: "imageInput",
+                widthPercent: styles.width
+            }
+        },
+        {
+            id: 3,
             name: "state",
             type: "text",
             placeholder: "State",
@@ -70,7 +88,7 @@ const CarForm = () => {
             }
         },
         {
-            id: 3,
+            id: 4,
             name: "year",
             type: "text",
             placeholder: "Year",
@@ -86,7 +104,7 @@ const CarForm = () => {
             }
         },
         {
-            id: 4,
+            id: 5,
             name: "make",
             type: "text",
             placeholder: "Make",
@@ -102,7 +120,7 @@ const CarForm = () => {
             }
         },
         {
-            id: 5,
+            id: 6,
             name: "model",
             type: "text",
             placeholder: "Model",
@@ -118,7 +136,7 @@ const CarForm = () => {
             }
         },
         {
-            id: 6,
+            id: 7,
             name: "description",
             type: "textarea",
             placeholder: "Description",
