@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOneCar, clearOneCar, LikeCar } from '../../store/car';
+import { getOneCar, clearOneCar, LikeCar, deleteCar } from '../../store/car';
 import { renderCreateEventModal } from '../../store/modal';
 
 // import { useHistory } from 'react-router-dom';
@@ -48,6 +48,7 @@ function CarCard() {
                 <TopInfo>
                     <h1>{car?.name}</h1>
                     {sessionUser.id === car.ownerId && <StyledButton as="button" onClick={() => showModalEvent(editCarModal, car.id)}>Edit Car</StyledButton>}
+                    {sessionUser.id === car.ownerId && <StyledButton as="button" onClick={() => dispatch(deleteCar(car.id))}>Delete</StyledButton>}
                 </TopInfo>
                 {car.previewImage ? <img alt='eventimg' src={`${car.previewImage}`} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/> : <img alt='placeholder' src='/images/placeholderImage.png'/>}
                 <CarInfo>
@@ -90,7 +91,7 @@ const StyledButton = styled.button`
     border: none;
     padding: 4px;
     margin: 4px;
-    width: 70px;
+    width: 85px;
     height: 20px;
     border-radius: 10px;
     background-color: #353535;

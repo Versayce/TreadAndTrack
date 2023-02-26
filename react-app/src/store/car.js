@@ -180,8 +180,8 @@ const carReducer = (state = initialState, action) => {
         case DELETE_CAR:
             {
                 const newState = { allCars: {...state.allCars}, oneCar: {...state.oneCar}}
-                delete newState.allCars[action.eventId]
-                delete newState.oneCar[action.eventId]
+                delete newState.allCars[action.carId]
+                delete newState.oneCar[action.carId]
                 return newState;
             };
 
