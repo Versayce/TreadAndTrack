@@ -16,7 +16,7 @@ function CarCard() {
 
     const setActiveCarPage = async (carId) => {
         await dispatch(clearOneCar())
-        // await dispatch(LikeCar(carId))
+        await dispatch(LikeCar(carId))
         await dispatch(getOneCar(carId))
         // history.push(`/cars/${carId}`)
     };
