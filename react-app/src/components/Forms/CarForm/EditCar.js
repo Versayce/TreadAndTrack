@@ -16,7 +16,7 @@ const EditCarForm = () => {
 
     console.log("CURRENT CAR OBJ WITHIN EDIT CAR FORM", currentCar)
 
-    const [errors, setErrors] = useState([])
+    // const [errors, setErrors] = useState([])
     const [name, setName] = useState("")
     const [previewImage, setPreviewImage] = useState("")
     const [state, setState] = useState("")
