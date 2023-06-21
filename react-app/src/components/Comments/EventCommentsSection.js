@@ -53,6 +53,8 @@ function EventCommentsSection() {
 }
 
 const LineWrapper = styled.div`
+    border: solid 2px red;
+    border-color: 2px red;
     display: flex;
     width: 100%;
     justify-content: flex-start;
@@ -68,6 +70,7 @@ const MessageBoxWrapper = styled.div`
 `
 
 const MessageContainer = styled.div`
+    border: solid 2px green;
     display: flex;
     flex-direction: column-reverse;
     width: 50%;
