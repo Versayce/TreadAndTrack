@@ -34,7 +34,7 @@ function MessageForm({ mostRecentMessage }) {
             mostRecentMessage.current?.scrollIntoView({
                 behavior: "smooth",
                 block: "nearest",
-                inline: "start",
+                inline: "center",
             });
         }else {
             setError("Comment must be between 1 and 50 chars")

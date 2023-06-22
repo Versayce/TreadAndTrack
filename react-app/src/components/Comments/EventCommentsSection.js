@@ -24,14 +24,6 @@ function EventCommentsSection() {
         setFormType("editForm")
         return
     }
-
-    // useEffect(() => {
-    //     mostRecentMessage.current?.scrollIntoView({
-    //         behavior: "smooth",
-    //         block: "nearest",
-    //         inline: "start",
-    //     });
-    // }, [messages])
     
     return (
         <>
@@ -45,6 +37,7 @@ function EventCommentsSection() {
                             <div>{`${message?.author.username}: `}{message.updatedAt}</div>
                             <div>{message.body}</div>
                         </Message>
+                        {/* TODO edit button location so that text wont push buttons outside of div area */}
                         <ButtonWrapper>
                             {sessionUserId === message.author.id && <CustomButton onClick={() => handleDelete(message?.id)} >Delete</CustomButton>}
                             {sessionUserId === message.author.id && <CustomButton onClick={() => handleEdit(message?.id)} >Edit</CustomButton>}
@@ -60,14 +53,6 @@ function EventCommentsSection() {
     ); 
 }
 
-const LineWrapper = styled.div`
-    border: solid 2px red;
-    border-color: 2px red;
-    display: flex;
-    width: 100%;
-    justify-content: flex-start;
-    word-wrap: break-word;
-`
 
 const MessageBoxWrapper = styled.div`
     display: flex;
@@ -87,6 +72,16 @@ const MessageContainer = styled.div`
     overscroll-behavior: contain;
 `
 
+const LineWrapper = styled.div`
+    border: solid 2px red;
+    border-color: 2px red;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-start;
+    word-wrap: break-word;
+`
+
 const Message = styled.div`
     box-sizing: border-box;
     padding: 20px;
@@ -98,6 +93,8 @@ const Message = styled.div`
 export const ButtonWrapper = styled.div`
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    margin: 7px;
 `
 
 export const CustomButton = styled.div`
@@ -105,7 +102,7 @@ export const CustomButton = styled.div`
     align-items: center;
     justify-content: center;
     width: 50px;
-    height: 20px;
+    height: 17px;
     line-height: 40px;
     font-size: 13px;
     font-family: sans-serif;
@@ -129,7 +126,6 @@ export const CustomButton = styled.div`
         color: #ffffff;
         cursor: pointer;
     }
-
 `
 
 export default EventCommentsSection
