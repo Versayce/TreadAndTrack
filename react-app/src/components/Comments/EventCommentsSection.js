@@ -37,7 +37,7 @@ function EventCommentsSection() {
                             <div>{`${message?.author.username}: `}{message.updatedAt}</div>
                             <div>{message.body}</div>
                         </Message>
-                        {/* TODO edit button location so that text wont push buttons outside of div area */}
+        
                         <ButtonWrapper>
                             {sessionUserId === message.author.id && <CustomButton onClick={() => handleDelete(message?.id)} >Delete</CustomButton>}
                             {sessionUserId === message.author.id && <CustomButton onClick={() => handleEdit(message?.id)} >Edit</CustomButton>}
