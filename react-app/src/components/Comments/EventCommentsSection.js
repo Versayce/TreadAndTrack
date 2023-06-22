@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MessageForm from '../Forms/MessageForm/CreateMessageForm';
@@ -12,7 +12,7 @@ function EventCommentsSection() {
     const sessionUserId = useSelector(state => state.session.user.id)
     const messagesObj = useSelector(state => state.messages.eventMessages)
     const messages = Object.values(messagesObj)
-    const mostRecentMessage = useRef(null)
+    const mostRecentMessage = useRef(null) //For scrolling to most recent message
     
     const handleDelete = (messageId) => {
         dispatch(deleteMessage(messageId))
@@ -76,8 +76,10 @@ const MessageBoxWrapper = styled.div`
 const MessageContainer = styled.div`
     border: solid 2px green;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     width: 50%;
+    height: 200px;
+    overflow-y: scroll;
 `
 
 const Message = styled.div`
