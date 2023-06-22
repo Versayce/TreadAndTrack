@@ -25,14 +25,18 @@ function EventCommentsSection() {
         return
     }
 
-    useEffect(() => {
-        mostRecentMessage.current?.scrollIntoView();
-    }, [messages])
+    // useEffect(() => {
+    //     mostRecentMessage.current?.scrollIntoView({
+    //         behavior: "smooth",
+    //         block: "nearest",
+    //         inline: "start",
+    //     });
+    // }, [messages])
     
     return (
         <>
-        {formType === "createForm" && <MessageForm />}
-        {formType === "editForm" && <EditMessageForm setFormType={setFormType} />}
+        {formType === "createForm" && <MessageForm mostRecentMessage={mostRecentMessage}/>}
+        {formType === "editForm" && <EditMessageForm setFormType={setFormType} mostRecentMessage={mostRecentMessage} />}
         <MessageBoxWrapper>
             <MessageContainer>
                 {messages && messages.map(message => (
@@ -80,6 +84,7 @@ const MessageContainer = styled.div`
     width: 50%;
     height: 400px;
     overflow-y: scroll;
+    overscroll-behavior: contain;
 `
 
 const Message = styled.div`
