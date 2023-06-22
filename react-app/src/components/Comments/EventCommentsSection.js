@@ -9,25 +9,26 @@ import { deleteMessage, getOneMessage } from '../../store/message';
 function EventCommentsSection() {
     const dispatch = useDispatch();
     const [ formType, setFormType ] = useState("createForm")
-
     const sessionUserId = useSelector(state => state.session.user.id)
-
     const messagesObj = useSelector(state => state.messages.eventMessages)
     const messages = Object.values(messagesObj)
-
-    // console.log("===========EVENT COMMENTS COMPONENT==================", sessionUserId === messages[1]?.author.id)
-
+    const mostRecentMessage = useRef(null)
+    
     const handleDelete = (messageId) => {
         dispatch(deleteMessage(messageId))
         setFormType("createForm")
     }
-
+    
     const handleEdit = async (messageId) => {
         await dispatch(getOneMessage(messageId));
         setFormType("editForm")
         return
     }
-  
+
+    useEffect(() => {
+        mostRecentMessage.current?.scrollIntoView();
+    }, [messages])
+    
     return (
         <>
         {formType === "createForm" && <MessageForm />}
@@ -46,6 +47,9 @@ function EventCommentsSection() {
                         </ButtonWrapper>
                     </LineWrapper>
                 ))}
+
+                <div ref={mostRecentMessage} />
+
             </MessageContainer>
         </MessageBoxWrapper>
         </>
@@ -120,7 +124,5 @@ export const CustomButton = styled.div`
     }
 
 `
-
-
 
 export default EventCommentsSection
