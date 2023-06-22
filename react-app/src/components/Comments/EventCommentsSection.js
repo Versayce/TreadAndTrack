@@ -32,7 +32,7 @@ function EventCommentsSection() {
         <MessageBoxWrapper>
             <MessageContainer>
                 {messages && messages.map(message => (
-                    <LineWrapper key={message.id}>
+                    <LineWrapper key={message.id} user={sessionUserId} message={message.author.id}>
                         <Message>
                             <div>{`${message?.author.username}: `}{message.updatedAt}</div>
                             <div>{message.body}</div>
@@ -63,7 +63,6 @@ const MessageBoxWrapper = styled.div`
 `
 
 const MessageContainer = styled.div`
-    border: solid 2px green;
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -73,13 +72,14 @@ const MessageContainer = styled.div`
 `
 
 const LineWrapper = styled.div`
-    border: solid 2px red;
-    border-color: 2px red;
     display: flex;
     flex-direction: column;
     width: 100%;
     justify-content: flex-start;
     word-wrap: break-word;
+    background-color: ${props => 
+        props.user === props.message ? "#f5f5f5" : "transparent"
+    }
 `
 
 const Message = styled.div`
