@@ -5,13 +5,13 @@ import MessageForm from '../Forms/MessageForm/CreateMessageForm';
 import EditMessageForm from '../Forms/MessageForm/EditMessageForm';
 import { deleteMessage, getOneMessage } from '../../store/message';
 
-// TODO start filling the page with information and get ready for comments feature.
 function EventCommentsSection() {
     const dispatch = useDispatch();
     const [ formType, setFormType ] = useState("createForm")
     const sessionUserId = useSelector(state => state.session.user.id)
     const messagesObj = useSelector(state => state.messages.eventMessages)
     const messages = Object.values(messagesObj)
+    //TODO Fix bug with ref being scrolled to on page load 
     const mostRecentMessage = useRef(null) //For scrolling to most recent message
     
     const handleDelete = (messageId) => {
@@ -48,7 +48,7 @@ function EventCommentsSection() {
                     </LineWrapper>
                 ))}
 
-                <div ref={mostRecentMessage} />
+                <div ref={mostRecentMessage} /> {/* Reference for our useEffect to target and run .scrollIntoView() when we add a new message */ }
 
             </MessageContainer>
         </MessageBoxWrapper>
@@ -78,7 +78,7 @@ const MessageContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 50%;
-    height: 200px;
+    height: 400px;
     overflow-y: scroll;
 `
 
