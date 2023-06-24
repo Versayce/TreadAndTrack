@@ -12,7 +12,6 @@ function EditMessageForm({ setFormType }) {
     const [body, setBody] = useState(currentMessage?.body)
     const [error, setError] = useState([])
     
-
     const currentEventObj = useSelector(state => state.events.oneEvent)
     const event_id = Object.values(currentEventObj)[0]?.id
 

@@ -6,7 +6,7 @@ import { createMessage } from '../../../store/message';
 import { useEffect } from 'react';
 
 // TODO start filling the page with information and get ready for comments feature.
-function MessageForm() {
+function MessageForm({ mostRecentMessage }) {
     const dispatch = useDispatch()
     const [body, setBody] = useState("")
     const [error, setError] = useState([])
@@ -15,11 +15,9 @@ function MessageForm() {
     const eventId = Object.values(currentEventObj)[0]?.id
     const sessionUser = useSelector(state => state.session.user)
     const authorId = sessionUser.id
-
     // const { body, channelId, authorId } = message;
 
     const formData = {body, "event_id": eventId, "author_id": authorId}
-    // console.log("===========MESSAGE FORM COMPONENT==================", formData)
 
     useEffect(() => {
         if(body.length > 0 && body.length < 50) {
@@ -33,6 +31,11 @@ function MessageForm() {
             setError([])
             setBody("")
             await dispatch(createMessage(formData))
+            mostRecentMessage.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+                inline: "center",
+            });
         }else {
             setError("Comment must be between 1 and 50 chars")
             setBody("")

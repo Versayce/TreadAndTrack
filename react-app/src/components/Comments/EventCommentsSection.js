@@ -1,63 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MessageForm from '../Forms/MessageForm/CreateMessageForm';
 import EditMessageForm from '../Forms/MessageForm/EditMessageForm';
 import { deleteMessage, getOneMessage } from '../../store/message';
 
-// TODO start filling the page with information and get ready for comments feature.
 function EventCommentsSection() {
     const dispatch = useDispatch();
     const [ formType, setFormType ] = useState("createForm")
-
     const sessionUserId = useSelector(state => state.session.user.id)
-
     const messagesObj = useSelector(state => state.messages.eventMessages)
     const messages = Object.values(messagesObj)
-
-    // console.log("===========EVENT COMMENTS COMPONENT==================", sessionUserId === messages[1]?.author.id)
-
+    //TODO Fix bug with ref being scrolled to on page load 
+    const mostRecentMessage = useRef(null) //For scrolling to most recent message
+    
     const handleDelete = (messageId) => {
         dispatch(deleteMessage(messageId))
         setFormType("createForm")
     }
-
+    
     const handleEdit = async (messageId) => {
         await dispatch(getOneMessage(messageId));
         setFormType("editForm")
         return
     }
-  
+    
     return (
         <>
-        {formType === "createForm" && <MessageForm />}
-        {formType === "editForm" && <EditMessageForm setFormType={setFormType} />}
+        {formType === "createForm" && <MessageForm mostRecentMessage={mostRecentMessage}/>}
+        {formType === "editForm" && <EditMessageForm setFormType={setFormType} mostRecentMessage={mostRecentMessage} />}
         <MessageBoxWrapper>
             <MessageContainer>
                 {messages && messages.map(message => (
-                    <LineWrapper key={message.id}>
+                    <LineWrapper key={message.id} user={sessionUserId} message={message.author.id}>
                         <Message>
                             <div>{`${message?.author.username}: `}{message.updatedAt}</div>
                             <div>{message.body}</div>
                         </Message>
+        
                         <ButtonWrapper>
                             {sessionUserId === message.author.id && <CustomButton onClick={() => handleDelete(message?.id)} >Delete</CustomButton>}
                             {sessionUserId === message.author.id && <CustomButton onClick={() => handleEdit(message?.id)} >Edit</CustomButton>}
                         </ButtonWrapper>
                     </LineWrapper>
                 ))}
+
+                <div ref={mostRecentMessage} /> {/* Reference for our useEffect to target and run .scrollIntoView() when we add a new message */ }
+
             </MessageContainer>
         </MessageBoxWrapper>
         </>
     ); 
 }
 
-const LineWrapper = styled.div`
-    display: flex;
-    width: 100%;
-    justify-content: flex-start;
-    word-wrap: break-word;
-`
 
 const MessageBoxWrapper = styled.div`
     display: flex;
@@ -69,8 +64,22 @@ const MessageBoxWrapper = styled.div`
 
 const MessageContainer = styled.div`
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     width: 50%;
+    height: 400px;
+    overflow-y: scroll;
+    overscroll-behavior: contain;
+`
+
+const LineWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-start;
+    word-wrap: break-word;
+    background-color: ${props => 
+        props.user === props.message ? "#f5f5f5" : "transparent"
+    }
 `
 
 const Message = styled.div`
@@ -84,6 +93,8 @@ const Message = styled.div`
 export const ButtonWrapper = styled.div`
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    margin: 7px;
 `
 
 export const CustomButton = styled.div`
@@ -91,7 +102,7 @@ export const CustomButton = styled.div`
     align-items: center;
     justify-content: center;
     width: 50px;
-    height: 20px;
+    height: 17px;
     line-height: 40px;
     font-size: 13px;
     font-family: sans-serif;
@@ -115,9 +126,6 @@ export const CustomButton = styled.div`
         color: #ffffff;
         cursor: pointer;
     }
-
 `
-
-
 
 export default EventCommentsSection
