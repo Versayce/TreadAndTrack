@@ -61,16 +61,6 @@ function MessageForm({ mostRecentMessage }) {
     ); 
 }
 
-const FormWrapper = styled.form`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    & span {
-        color: #ca3e68;
-    }
-`
-
 const Wrapper = styled.div`
     box-sizing: border-box;
     padding: 10px;
@@ -79,6 +69,17 @@ const Wrapper = styled.div`
     height: 100px;
     background: linear-gradient(180deg, rgba(255,255,255,1) 0%, #f7f7f7 100%);
     box-shadow: 1px 1px 5px 1px #d4d4d465;
+    margin-top: 10px;
+`
+
+const FormWrapper = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    & span {
+        color: #ca3e68;
+    }
 `
 
 const MainForm = styled.div`
