@@ -27,8 +27,6 @@ function EventCommentsSection() {
     
     return (
         <>
-        {formType === "createForm" && <MessageForm mostRecentMessage={mostRecentMessage}/>}
-        {formType === "editForm" && <EditMessageForm setFormType={setFormType} mostRecentMessage={mostRecentMessage} />}
         <MessageBoxWrapper>
             <MessageContainer>
                 {messages && messages.map(message => (
@@ -49,6 +47,8 @@ function EventCommentsSection() {
 
             </MessageContainer>
         </MessageBoxWrapper>
+        {formType === "createForm" && <MessageForm mostRecentMessage={mostRecentMessage}/>}
+        {formType === "editForm" && <EditMessageForm setFormType={setFormType} mostRecentMessage={mostRecentMessage} />}
         </>
     ); 
 }
@@ -59,7 +59,6 @@ const MessageBoxWrapper = styled.div`
     margin-top: 50px;
     justify-content: center;
     flex-direction: column-reverse;
-    margin-left: 40px;
 `
 
 const MessageContainer = styled.div`
@@ -78,7 +77,12 @@ const LineWrapper = styled.div`
     justify-content: flex-start;
     word-wrap: break-word;
     background-color: ${props => 
-        props.user === props.message ? "#f5f5f5" : "transparent"
+        props.user === props.message ? "#fafafa" : "transparent"
+    };
+    margin: 5px;
+    border-radius: 10px;
+    :hover {
+        
     }
 `
 

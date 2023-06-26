@@ -57,16 +57,14 @@ const FormWrapper = styled.form`
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    margin-left: 40px;
     & span {
         color: #ca3e68;
     }
 `
 
 const Wrapper = styled.div`
-    margin-top: 50px;
     box-sizing: border-box;
-    padding: 20px;
+
     border-radius: 10px;
     width: 50%;
     height: 100px;

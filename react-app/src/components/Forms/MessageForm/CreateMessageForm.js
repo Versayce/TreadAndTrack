@@ -47,12 +47,14 @@ function MessageForm({ mostRecentMessage }) {
         <Wrapper>
             <FormWrapper onSubmit={handleSubmit}>
                 <label>Comment: </label>
-                <input
-                    onChange={(e) => setBody(e.target.value)}
-                    value={body}
-                />
-                <span>{error}</span>
-                <button>Submit</button>
+                <MainForm>
+                    <CommentInput
+                        onChange={(e) => setBody(e.target.value)}
+                        value={body}
+                    />
+                    <span>{error}</span>
+                    <SubmitButton>Submit</SubmitButton>
+                </MainForm>
             </FormWrapper>
         </Wrapper>
         </>
@@ -64,21 +66,33 @@ const FormWrapper = styled.form`
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    margin-left: 40px;
     & span {
         color: #ca3e68;
     }
 `
 
 const Wrapper = styled.div`
-    margin-top: 50px;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     width: 50%;
     height: 100px;
     background: linear-gradient(180deg, rgba(255,255,255,1) 0%, #f7f7f7 100%);
-    box-shadow: 1px 1px 10px 2px #d4d4d465;
+    box-shadow: 1px 1px 5px 1px #d4d4d465;
+`
+
+const MainForm = styled.div`
+    display: flex;
+    width: 100%;
+    padding: 10px 0px 0px 0px
+`
+
+const CommentInput = styled.input`
+    width: 100%;
+`
+
+const SubmitButton = styled.button`
+    width: 50px;
 `
 
 export default MessageForm
