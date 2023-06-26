@@ -39,18 +39,31 @@ function EditMessageForm({ setFormType }) {
         <Wrapper>
             <FormWrapper onSubmit={handleSubmit}>
                 <label>Edit: </label>
-                <input
-                    onChange={(e) => setBody(e.target.value)}
-                    value={body}
-                    placeholder={currentMessage.body}
-                />
-                <span>{error}</span>
-                <button>Submit</button>
+                <MainForm>
+                    <CommentInput
+                        onChange={(e) => setBody(e.target.value)}
+                        value={body}
+                        placeholder={currentMessage.body}
+                    />
+                    <span>{error}</span>
+                    <SubmitButton>Submit</SubmitButton>
+                </MainForm>
             </FormWrapper>
         </Wrapper>
         </>
     ); 
 }
+
+const Wrapper = styled.div`
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 10px;
+    width: 50%;
+    height: 100px;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, #f7f7f7 100%);
+    box-shadow: 1px 1px 5px 1px #d4d4d465;
+    margin-top: 10px;
+`
 
 const FormWrapper = styled.form`
     display: flex;
@@ -62,14 +75,18 @@ const FormWrapper = styled.form`
     }
 `
 
-const Wrapper = styled.div`
-    box-sizing: border-box;
+const MainForm = styled.div`
+    display: flex;
+    width: 100%;
+    padding: 10px 0px 0px 0px
+`
 
-    border-radius: 10px;
-    width: 50%;
-    height: 100px;
-    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, #f7f7f7 100%);
-    box-shadow: 1px 1px 10px 2px #d4d4d465;
+const CommentInput = styled.input`
+    width: 100%;
+`
+
+const SubmitButton = styled.button`
+    width: 50px;
 `
 
 export default EditMessageForm
