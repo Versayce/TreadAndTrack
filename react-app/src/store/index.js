@@ -5,13 +5,15 @@ import messageReducer from './message';
 import modalReducer from './modal';
 import carReducer from './car';
 import session from './session'
+import mapReducer from './map';
 
 const rootReducer = combineReducers({
     session,
     events: eventReducer,
     cars: carReducer,
     modal: modalReducer,
-    messages: messageReducer
+    messages: messageReducer,
+    mapsKey: mapReducer,
 });
 
 
