@@ -83,7 +83,6 @@ function EventPage() {
 const StyledDescription = styled.div`
     word-wrap: break-word;
     font-size: 14pt;
-    margin-top: 100px;
     margin-left: 40px;
 `
 
@@ -108,6 +107,7 @@ const EventBody = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
+    margin-top: 100px;
 `
 
 const EventInfoWrapper = styled.div`
@@ -117,9 +117,12 @@ const EventInfoWrapper = styled.div`
 `
 
 const MapWrapper = styled.div`
+    box-sizing: border-box;
     width: 50%;
-    height: 200px;
+    height: 500px;
     border: solid red 2px;
+    border-radius: 20px;
+    margin: 0 5% 0 5%;
 `
 
 const SlantedDiv = styled.div`

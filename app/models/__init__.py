@@ -8,5 +8,6 @@ from .event_message import EventMessage
 from .car import Car
 from .like import Like
 from .car_image import CarImage
+from .listing import Listing
 
 from .db import environment, SCHEMA
