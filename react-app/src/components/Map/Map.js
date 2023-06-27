@@ -113,7 +113,6 @@ const Map = () => {
 }
 
 const PlacesAutocomplete = ({ setSelected, setCityMarkers }) => {
-
     const {
         ready,
         value,
