@@ -7,6 +7,7 @@ import EventCommentsSection from '../Comments/EventCommentsSection';
 import { getEventMessages } from '../../store/message';
 import { renderCreateEventModal } from '../../store/modal';
 import { deleteEvent, getOneEvent } from '../../store/event';
+import MapContainer from '../Map/MapContainer';
 
 // TODO start filling the page with information and get ready for comments feature.
 function EventPage() {
@@ -60,20 +61,26 @@ function EventPage() {
                     <StyledButton as="button" onClick={() => showModalEvent(editModal)}> Edit Event </StyledButton>
                 </ButtonWrapper>}
             </HeaderWrapper>}
-            <StyledDescription>{event?.description}</StyledDescription>
-            <LocationInfo>
-                <p>{event?.address}</p>
-                {event && <p>{`${event.city}, ${event.state}`}</p>}
-                <p>{event?.zipcode}</p>
-            </LocationInfo>
-            {event && <EventCommentsSection />}
+            <EventBody>
+                <EventInfoWrapper>
+                    <StyledDescription>{event?.description}</StyledDescription>
+                    <LocationInfo>
+                        <p>{event?.address}</p>
+                        {event && <p>{`${event.city}, ${event.state}`}</p>}
+                        <p>{event?.zipcode}</p>
+                    </LocationInfo>
+                    {event && <EventCommentsSection />}
+                </EventInfoWrapper>
+                <MapWrapper>
+                    <MapContainer />
+                </MapWrapper>
+            </EventBody>
         </Wrapper>
         </>
     ); 
 }
 
 const StyledDescription = styled.div`
-    max-width: 850px;
     word-wrap: break-word;
     font-size: 14pt;
     margin-top: 100px;
@@ -81,13 +88,12 @@ const StyledDescription = styled.div`
 `
 
 const LocationInfo = styled.div`
-        max-width: 850px;
-        word-wrap: break-word;
-        font-size: 12pt;
-        margin: 10px;
-        color: #919191;
-        font-style: italic;
-        margin-top: 60px;
+    word-wrap: break-word;
+    font-size: 12pt;
+    margin: 10px;
+    color: #919191;
+    font-style: italic;
+    margin-top: 60px;
 `
 
 const HeaderWrapper = styled.div`
@@ -96,6 +102,24 @@ const HeaderWrapper = styled.div`
     align-items: center;
     background: linear-gradient(to top, #f0f0f0, #f8f8f8); 
     border-radius: 0 0 30px 30px;
+`
+
+const EventBody = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+`
+
+const EventInfoWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+`
+
+const MapWrapper = styled.div`
+    width: 50%;
+    height: 200px;
+    border: solid red 2px;
 `
 
 const SlantedDiv = styled.div`

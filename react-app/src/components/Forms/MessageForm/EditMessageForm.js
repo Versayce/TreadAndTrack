@@ -58,7 +58,7 @@ const Wrapper = styled.div`
     box-sizing: border-box;
     padding: 10px;
     border-radius: 10px;
-    width: 50%;
+    width: 100%;
     height: 100px;
     background: linear-gradient(180deg, rgba(255,255,255,1) 0%, #f7f7f7 100%);
     box-shadow: 1px 1px 5px 1px #d4d4d465;

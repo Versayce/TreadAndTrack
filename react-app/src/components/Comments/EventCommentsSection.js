@@ -65,7 +65,7 @@ const MessageContainer = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
     height: 400px;
     overflow-y: scroll;
     overscroll-behavior: contain;
