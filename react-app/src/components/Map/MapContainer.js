@@ -17,7 +17,8 @@ const MapContainer = () => {
     if (!key) return null
 
     return (
-        <Maps apiKey={key} />
+        // <Maps apiKey={key} />
+        <TestMap apiKey={key} />
     )
 }
 
