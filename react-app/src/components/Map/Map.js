@@ -28,7 +28,7 @@ const Map = ({ apiKey }) => {
         boxShadow: "2px 3px 10px 0px #36363621",
     };
     
-    const renderMap = () => {
+    const RenderMap = () => {
         // const onLoad = useCallback(
         //     function onLoad (mapInstance) {
         //         console.log("...Google Map Loaded...");
@@ -51,7 +51,7 @@ const Map = ({ apiKey }) => {
         return <div>Map cannot be loaded at this time</div>
     }
 
-    return isLoaded ? renderMap() : Spinner()
+    return isLoaded ? RenderMap() : Spinner()
 }
 
 export default React.memo(Map)

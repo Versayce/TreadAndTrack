@@ -16,10 +16,10 @@ const LoadAnimation = styled.div`
     position: relative;
     margin: auto;
     top: 40%;
-    border: 10px solid #f3f3f3;
-    border-top: 10px solid #3498db;
+    border: 15px solid #f3f3f3;
+    border-top: 15px solid #ca3e68;
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    animation: 1s ${spin} linear infinite;
+    width: 100px;
+    height: 100px;
+    animation: .9s ${spin} linear infinite;
 `
