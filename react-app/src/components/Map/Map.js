@@ -20,8 +20,8 @@ const Map = ({ apiKey }) => {
     }), []);
 
     const styles = {
-        width: "800px",
-        height: "500px",
+        width: "100%",
+        height: "100%",
         borderRadius: 20,
         border: "solid 4px #7924321d",
         boxShadow: "2px 3px 10px 0px #36363621",
