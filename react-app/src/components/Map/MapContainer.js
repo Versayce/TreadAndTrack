@@ -6,7 +6,6 @@ import Map from './Map';
 
 const MapContainer = () => {
     const key = useSelector(state => state.mapsKey.key)
-    console.log(key)
     const dispatch = useDispatch()
     useEffect(() => {
         if (!key) {
