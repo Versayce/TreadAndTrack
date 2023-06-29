@@ -120,7 +120,6 @@ const MapWrapper = styled.div`
     box-sizing: border-box;
     width: 50%;
     height: 500px;
-    border: solid red 2px;
     border-radius: 20px;
     margin: 0 5% 0 5%;
 `
