@@ -53,7 +53,6 @@ function EventPage() {
         <NavBar />
         <Wrapper>
             {eventImageUrl && <EventImage src={eventImageUrl} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/>}
-            {event && <SlantedDiv></SlantedDiv>}
             {event && <HeaderWrapper>
                 <h1>{event?.name}</h1>
                 {event?.owner?.id === currentUser.id && <ButtonWrapper>
@@ -122,24 +121,6 @@ const MapWrapper = styled.div`
     height: 500px;
     border-radius: 20px;
     margin: 0 5% 0 5%;
-`
-
-const SlantedDiv = styled.div`
-    height: 90px;
-    width: 100%;
-    background: #1d1d1d;
-    /* background: linear-gradient(to right, #222222, #000000); */
-    position: relative;
-    overflow: hidden;
-    :after {
-    height: 100%;
-    width: 100%;
-    background-color: #ca3e68;
-    position: absolute;
-    content: "";
-    transform: rotate(6deg);
-    transform-origin: top left;
-    }
 `
 
 const Wrapper = styled.div`
