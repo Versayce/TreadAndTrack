@@ -71,7 +71,7 @@ function EventPage() {
                     {event && <EventCommentsSection />}
                 </EventInfoWrapper>
                 <MapWrapper>
-                    <MapContainer />
+                    {event && <MapContainer />}
                 </MapWrapper>
             </EventBody>
         </Wrapper>
