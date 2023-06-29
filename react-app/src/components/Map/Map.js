@@ -1,5 +1,6 @@
 import React, { useMemo, useCallback, useState, useRef } from "react";
 import { GoogleMap, useJsApiLoader, useLoadScript, Marker } from "@react-google-maps/api";
+import Spinner from "../Spinner/Spinner";
 
 const options = {
     zoomControlOptions: {
@@ -50,7 +51,7 @@ const Map = ({ apiKey }) => {
         return <div>Map cannot be loaded at this time</div>
     }
 
-    return isLoaded ? renderMap() : <div>Loading Map...</div>
+    return isLoaded ? renderMap() : Spinner()
 }
 
 export default React.memo(Map)
