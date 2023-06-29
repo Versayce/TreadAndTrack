@@ -43,10 +43,6 @@ function App() {
 			<Route path='/sign-up' exact={true}>
 				<SignUpForm />
 			</Route>
-			//TODO remove test map route 
-			<Route path='/map' exact={true}>
-				<MapContainer />
-			</Route>
 			<ProtectedRoute path='/cars/create' exact={true}>
 				<CarForm />
 			</ProtectedRoute>
