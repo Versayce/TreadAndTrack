@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
 import { useHistory, useParams } from 'react-router-dom';
+import styled from 'styled-components';
 import NavBar from '../Home/NavBar';
 import EventCommentsSection from '../Comments/EventCommentsSection';
 import { getEventMessages } from '../../store/message';
 import { renderCreateEventModal } from '../../store/modal';
 import { deleteEvent, getOneEvent } from '../../store/event';
 import MapContainer from '../Map/MapContainer';
+import Footer from '../Home/Footer';
 
 // TODO start filling the page with information and get ready for comments feature.
 function EventPage() {
@@ -22,7 +23,7 @@ function EventPage() {
     // console.log("EVENTPAGE=====================", event)
 
     useEffect(() => {
-
+        
         const fetcher = async () => {
             await dispatch(getOneEvent(eventId))
             await dispatch(getEventMessages(eventId))
@@ -75,6 +76,7 @@ function EventPage() {
                 </MapWrapper>
             </EventBody>
         </Wrapper>
+        <Footer />
         </>
     ); 
 }
@@ -116,7 +118,6 @@ const EventInfoWrapper = styled.div`
 `
 
 const MapWrapper = styled.div`
-    box-sizing: border-box;
     width: 50%;
     height: 500px;
     border-radius: 20px;
