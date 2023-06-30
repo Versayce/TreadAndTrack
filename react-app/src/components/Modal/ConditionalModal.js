@@ -56,7 +56,6 @@ function ConditonalModal() {
 
             case "signupModal":
                 {
-                    console.log('within login modal case', params)
                     return (
                         <ModalBackground onClick={(e) => dispatch(closeModal())}>
                             <SignupModalBody onClick={(e) => handleChildClicks(e)}>
