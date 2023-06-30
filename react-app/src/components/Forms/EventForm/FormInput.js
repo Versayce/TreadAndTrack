@@ -23,43 +23,73 @@ const FormInputs = (props) => {
         // row, 
         // col, 
         placeholder } = props
-    // console.log('INPUT PROPS', props)
-
     
     const handleFocus = (e) => {
         setFocused(true)
-        // console.log('HANDLE FOCUS: ', focused)
     }
 
     const handleChange = (e) => {
         onChange?.(e.target.value)
     }
 
+    const renderInputs = (type) => {
+        //TODO edit prop assignment 
+        switch (type) {
+            case "text":
+                {
+                    return (
+                        <input  
+                            name={name}
+                            type={type}
+                            value={value}
+                            placeholder={placeholder}
+                            required={required}
+                            pattern={pattern}
+                            onChange={handleChange} 
+                            onBlur={handleFocus} 
+                            focused={focused.toString()} 
+                        />
+                    )
+                }
+
+            case "textarea":
+                {
+                    return (
+                        <textarea 
+                            name={name}
+                            type={type}
+                            placeholder={placeholder}
+                            required={required}
+                            pattern={pattern}
+                            onChange={handleChange} 
+                            onBlur={handleFocus} 
+                            focused={focused.toString()} 
+                            value={value}
+                        />
+                    )
+                }
+            //TODO add google places input and remove old address field(s) 
+            // case "google-places":
+            //     {
+            //         return (
+
+            //         )
+            //     }
+                
+            default:
+                {
+                    return null
+                }
+
+        }
+    };
+
+
     return (
         <>
             <FormInput style={style}> 
                 <label>{label}</label>
-                {type !== "textarea" ? <input  //TODO destructure all of the props
-                    name={name}
-                    type={type}
-                    value={value}
-                    placeholder={placeholder}
-                    required={required}
-                    pattern={pattern}
-                    onChange={handleChange} 
-                    onBlur={handleFocus} 
-                    focused={focused.toString()} 
-                /> : <textarea 
-                    name={name}
-                    type={type}
-                    placeholder={placeholder} //TODO remove redundant props
-                    required={required}
-                    pattern={pattern}
-                    onChange={handleChange} 
-                    onBlur={handleFocus} 
-                    focused={focused.toString()} 
-                    value={value}
-                />}
+                {renderInputs(type)}
                 {!isValid(value, pattern) && focused ? <span>{errorMessage}</span> : <span></span>}
             </FormInput>
         </>
