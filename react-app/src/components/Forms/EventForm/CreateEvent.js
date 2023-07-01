@@ -47,15 +47,15 @@ const EventForm = () => {
             id: 1,
             name: "name",
             type: "text",
-            placeholder: "Name",
+            placeholder: "Event Name",
             errorMessage: "Name should be 3-30 characters",
-            label: "Name",
+            label: "Event Name",
             required: true,
             pattern: "^[A-Za-z0-9 ]{3,20}$",
             onChange: setName,
             value: name,
             style: {
-                width: "100%",
+                width: "90%",
                 padding: "8px",
             }
         },
@@ -63,15 +63,15 @@ const EventForm = () => {
             id: 2,
             name: "image_url",
             type: "text",
-            placeholder: "Image",
+            placeholder: "Image URL",
             errorMessage: "Enter a URL containing https://",
-            label: "Image",
+            label: "Banner Image",
             required: true,
             pattern: "^https?://.*",
             onChange: setImageUrl,
             value: image_url,
             style: {
-                width: "100%",
+                width: "90%",
                 padding: "8px",
             }
         },
@@ -80,16 +80,16 @@ const EventForm = () => {
             name: "address",
             type: "google-places",
             placeholder: "Enter Address",
-            errorMessage: "Address should 6-40 characters long",
-            label: "Address",
+            errorMessage: "Please select an address from the dropdown menu",
+            label: "Event Address",
             required: true,
-            pattern: "^[A-Za-z0-9# ]{6,40}$",
+            pattern: "^[A-Za-z0-9#,. ]{6,1000}$",
             onChange: setAddress,
             setLat: setLat,
             setLng: setLng,
             value: address,
             style: {
-                width: "100%",
+                width: "90%",
                 padding: "8px",
             }
         },
@@ -105,7 +105,7 @@ const EventForm = () => {
             onChange: setDescription,
             value: description,
             style: {
-                width: "100%",
+                width: "90%",
                 height: "200px",
                 padding: "8px",
             }
@@ -123,7 +123,7 @@ const EventForm = () => {
         <FormWrapper>
             <NavBar />
             <Form onSubmit={handleSubmit}>
-                <Header>Create Event</Header>
+                <Header>Host Event</Header>
                     {inputs.map((input) => (
                         <FormInputs key={`${input.id}frm-ipt`} {...input} />
                     ))}
@@ -151,9 +151,9 @@ const Form = styled.form`
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    align-items: flex-start;
-    width: 50%;
-    padding: 4vh 3vw 4vh 3vw;
+    align-items: center;
+    width: 30%;
+    padding: 4vh 0vw 4vh 0vw;
     margin: 200px 0 200px 0px;
     border-radius: 10px;
     background-image: linear-gradient(to bottom, #f6f6f6, #f8f8f8, #fafafa, #fdfdfd, #ffffff);
@@ -161,9 +161,11 @@ const Form = styled.form`
 `
 
 const SubmitButton = styled.button`
-    padding: 10px;
-    width: auto;
+    box-sizing: border-box;
+    padding: 10px 40px 10px 40px;
+    /* width: 30%; */
     border: none;
+    font-size: 20px;
     border-radius: 8px;
     background-color: #e7e7e7;
     :hover {

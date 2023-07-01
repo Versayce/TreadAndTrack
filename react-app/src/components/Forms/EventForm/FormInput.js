@@ -115,12 +115,12 @@ const FormInputs = (props) => {
                                         style: style,
                                     })} />
                                     <SuggestionWrapper>
-                                        {loading ? <div>Loading...</div> : null}
+                                        {loading ? <Loader>Loading...</Loader> : null}
                                         {suggestions.map((suggestion) => {
                                             const style = {
-                                                backgroundColor: suggestion.active ? '#41b6e6' : '#fff',
+                                                backgroundColor: suggestion.active ? '#bd345d' : '#fff',
+                                                color: suggestion.active ? '#ffffff' : '#000000',
                                             };
-
                                             return (
                                                 <SuggestionOutput key={suggestion.index} {...getSuggestionItemProps(suggestion, { style })}>
                                                     {suggestion.description}
@@ -191,18 +191,30 @@ const GoogleInput = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
+    border-radius: 10px;
 `
 const SuggestionWrapper = styled.div`
     display: flex;
-    width: 100%;
+    width: 85%;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    background-color: #494949;
+    border-radius: 10px;
+`
+
+const Loader = styled.div`
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    font-size: 12px;
 `
 
 const SuggestionOutput = styled.div`
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 5px;
+    width: 93%;
+    padding: 8px;
 `
