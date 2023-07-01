@@ -61,8 +61,8 @@ const EventForm = () => {
         {
             id: 2,
             name: "address",
-            type: "text",
-            placeholder: "Address",
+            type: "google-places",
+            placeholder: "Enter Address",
             errorMessage: "Address should 6-40 characters",
             label: "Address",
             required: true,
@@ -188,10 +188,7 @@ const EventForm = () => {
             <Form onSubmit={handleSubmit}>
                 <Header>Create Event</Header>
                     {inputs.map((input) => (
-                        <>
-                        <FormInputs key={input.id} {...input} />
-                        {/* <div>{errors}</div> */}
-                        </>
+                        <FormInputs key={`${input.id}frm-ipt`} {...input} />
                     ))}
                 <SubmitButton type="submit">Submit</SubmitButton>
             </Form>
