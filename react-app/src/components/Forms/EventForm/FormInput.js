@@ -16,6 +16,8 @@ const FormInputs = (props) => {
         label, 
         errorMessage, 
         onChange, 
+        setLat,
+        setLng,
         required, 
         id, 
         style, 
@@ -45,9 +47,11 @@ const FormInputs = (props) => {
     const handleSelect = async (value) => {
         const results = await geocodeByAddress(value);
         const latLng = await getLatLng(results[0]);
-        console.log("Initial Input: ", value)
+        // console.log("Initial Input: ", value)
         console.log("Geocoding Results: ", results[0])
-        console.log("LAT LNG: ", latLng.lat, latLng.lng)
+        // console.log("LAT LNG: ", latLng.lat, latLng.lng)
+        setLat?.(latLng.lat)
+        setLng?.(latLng.lng)
         onChange?.(value)
     }
 
@@ -67,6 +71,7 @@ const FormInputs = (props) => {
                             onChange={handleChange} 
                             onBlur={handleFocus} 
                             focused={focused.toString()} 
+                            style={style}
                         />
                     )
                 }
@@ -84,6 +89,7 @@ const FormInputs = (props) => {
                             onBlur={handleFocus} 
                             focused={focused.toString()} 
                             value={value}
+                            style={style}
                         />
                     )
                 }
@@ -98,7 +104,7 @@ const FormInputs = (props) => {
                             onSelect={handleSelect}
                         >
                             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                                <div>
+                                <GoogleInput>
                                     <input {...getInputProps({ 
                                         name: name,
                                         type: "google-maps",
@@ -106,23 +112,23 @@ const FormInputs = (props) => {
                                         required: required,
                                         pattern: pattern,
                                         onBlur: handleFocus,
+                                        style: style,
                                     })} />
-                                    <div>
+                                    <SuggestionWrapper>
                                         {loading ? <div>Loading...</div> : null}
-
                                         {suggestions.map((suggestion) => {
-                                        const style = {
-                                            backgroundColor: suggestion.active ? '#41b6e6' : '#fff'
-                                        };
+                                            const style = {
+                                                backgroundColor: suggestion.active ? '#41b6e6' : '#fff',
+                                            };
 
-                                        return (
-                                            <div key={suggestion.index} {...getSuggestionItemProps(suggestion, { style })}>
-                                            {suggestion.description}
-                                            </div>
-                                        );
+                                            return (
+                                                <SuggestionOutput key={suggestion.index} {...getSuggestionItemProps(suggestion, { style })}>
+                                                    {suggestion.description}
+                                                </SuggestionOutput>
+                                            );
                                         })}
-                                    </div>
-                                </div>
+                                    </SuggestionWrapper>
+                                </GoogleInput>
                             )}
                         </PlacesAutocomplete>
                     )
@@ -149,24 +155,26 @@ const FormInputs = (props) => {
 export default FormInputs
 
 const FormInput = styled.div`
+    box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-    grid-area: ${props => props.style.gridArea};
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
-    align-content: center;
-    width: 100%;
-    input {
-        padding: 8px;
-        margin: 5px 0px;
-        width: ${props => props.style.widthPercent};
-        border-radius: 4px;
-        border: 1px solid grey;
-    }
     label {
         font-size: 12px;
         color: grey;
+    }
+    input {
+        padding: ${props => props.style.padding};
+        width: ${props => props.style.width};
+        border-radius: 6px;
+        border: 1px solid grey;
+    }
+    textarea {
+        width: ${props => props.style.width};
+        padding: ${props => props.style.padding};
+        height: ${props => props.style.height};
+        resize: none;
     }
     span {
         min-height: 16px;
@@ -175,10 +183,27 @@ const FormInput = styled.div`
         margin-bottom: 10px;
         color: #af2d54;
     }
-    textarea {
-        width: ${props => props.style.width};
-        height: ${props => props.style.height};
-        margin-left: 30px;
-        resize: none;
-    }
+`
+
+const GoogleInput = styled.div`
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+`
+const SuggestionWrapper = styled.div`
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+`
+
+const SuggestionOutput = styled.div`
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
 `

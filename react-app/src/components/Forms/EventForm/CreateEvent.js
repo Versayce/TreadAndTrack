@@ -8,38 +8,39 @@ import { useHistory } from "react-router-dom"
 import NavBar from "../../Home/NavBar"
 import Footer from "../../Home/Footer"
 
-const EventForm = () => {
-    const history = useHistory()
-    const currentUser = useSelector(state => state.session.user)
-    const ownerId = currentUser.id
+//TODO remove unused getters/setters 
 
-    const dispatch = useDispatch()
-    // const [errors, setErrors] = useState([])
-    const [name, setName] = useState("")
-    const [address, setAddress] = useState("")
-    const [city, setCity] = useState("")
-    const [state, setState] = useState("")
-    const [country, setCountry] = useState("")
-    const [zipcode, setZipcode] = useState("")
-    const [description, setDescription] = useState("")
-    const [image_url, setImageUrl] = useState("")
+const EventForm = () => {
+    const history = useHistory();
+    const currentUser = useSelector(state => state.session.user);
+    const ownerId = currentUser.id;
+
+    const dispatch = useDispatch();
+    // const [errors, setErrors] = useState([]);
+    const [name, setName] = useState("");
+    const [address, setAddress] = useState("");
+    const [lat, setLat] = useState("");
+    const [lng, setLng] = useState("");
+    // const [city, setCity] = useState("");
+    // const [state, setState] = useState("");
+    // const [country, setCountry] = useState("");
+    // const [zipcode, setZipcode] = useState("");
+    const [description, setDescription] = useState("");
+    const [image_url, setImageUrl] = useState("");
 
     const formData = {
         name,
         address,
-        city,
-        state,
-        country,
-        zipcode,
+        lat,
+        lng,
+        // city,
+        // state,
+        // country,
+        // zipcode,
         description,
         "banner_image_url": image_url,
         "owner_id": ownerId,
-    }
-
-    const styles = {
-        width: "80%",
-        widthDesc: "90%",
-    }
+    };
 
     const inputs = [
         {
@@ -54,92 +55,12 @@ const EventForm = () => {
             onChange: setName,
             value: name,
             style: {
-                gridArea: "nameInput",
-                widthPercent: styles.width
+                width: "100%",
+                padding: "8px",
             }
         },
         {
             id: 2,
-            name: "address",
-            type: "google-places",
-            placeholder: "Enter Address",
-            errorMessage: "Address should 6-40 characters",
-            label: "Address",
-            required: true,
-            pattern: "^[A-Za-z0-9# ]{6,40}$",
-            onChange: setAddress,
-            value: address,
-            style: {
-                gridArea: "addressInput",
-                widthPercent: styles.width
-            }
-        },
-        {
-            id: 3,
-            name: "city",
-            type: "text",
-            placeholder: "City",
-            errorMessage: "City should 4-20 characters",
-            label: "City",
-            required: true,
-            pattern: "^[A-Za-z0-9 ]{4,20}$",
-            onChange: setCity,
-            value: city,
-            style: {
-                gridArea: "cityInput",
-                widthPercent: styles.width
-            }
-        },
-        {
-            id: 4,
-            name: "state",
-            type: "text",
-            placeholder: "State",
-            errorMessage: "State should be 2-20 characters",
-            label: "State",
-            required: true,
-            pattern: "^[A-Za-z0-9 ]{2,20}$",
-            onChange: setState,
-            value: state,
-            style: {
-                gridArea: "stateInput",
-                widthPercent: styles.width
-            }
-        },
-        {
-            id: 5,
-            name: "country",
-            type: "text",
-            placeholder: "Country",
-            errorMessage: "Country should be 2-20 characters",
-            label: "Country",
-            required: true,
-            pattern: "^[A-Za-z0-9 ]{2,20}$",
-            onChange: setCountry,
-            value: country,
-            style: {
-                gridArea: "countryInput",
-                widthPercent: styles.width
-            }
-        },
-        {
-            id: 6,
-            name: "zipcode",
-            type: "text",
-            placeholder: "ZipCode",
-            errorMessage: "Zipcode must be 5 numbers",
-            label: "ZipCode",
-            required: true,
-            pattern: "^[0-9]{5}$",
-            onChange: setZipcode,
-            value: zipcode,
-            style: {
-                gridArea: "zipcodeInput",
-                widthPercent: styles.width
-            }
-        },
-        {
-            id: 7,
             name: "image_url",
             type: "text",
             placeholder: "Image",
@@ -150,12 +71,33 @@ const EventForm = () => {
             onChange: setImageUrl,
             value: image_url,
             style: {
-                gridArea: "imageInput",
-                widthPercent: styles.width
+                width: "100%",
+                padding: "8px",
             }
         },
         {
-            id: 8,
+            id: 3,
+            name: "address",
+            type: "google-places",
+            placeholder: "Enter Address",
+            errorMessage: "Address should 6-40 characters long",
+            label: "Address",
+            required: true,
+            pattern: "^[A-Za-z0-9# ]{6,40}$",
+            onChange: setAddress,
+            setLat: setLat,
+            setLng: setLng,
+            value: address,
+            style: {
+                boxSizing: "content-box",
+                width: "100%",
+                maxWidth: "100%",
+                height: "auto",
+                padding: "8px",
+            }
+        },
+        {
+            id: 4,
             name: "description",
             type: "textarea",
             placeholder: "Description",
@@ -166,14 +108,12 @@ const EventForm = () => {
             onChange: setDescription,
             value: description,
             style: {
-                gridArea: "descInput",
-                widthPercent: styles.widthDesc,
-                width: "95%",
-                height: "100%"
+                width: "100%",
+                height: "200px",
+                padding: "8px",
             }
         }
     ]
-
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -209,35 +149,24 @@ const FormWrapper = styled.div`
 `
 
 const Form = styled.form`
-    /* box-sizing: border-box; */
-    width: 60%;
-    max-width: 850px;
-    display: grid;
-    grid-gap: 0px;
-    padding: 60px;
-    margin: 300px 0 400px 0px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: flex-start;
+    width: 50%;
+    padding: 4vh 3vw 4vh 3vw;
+    margin: 200px 0 200px 0px;
     border-radius: 10px;
     background-image: linear-gradient(to bottom, #f6f6f6, #f8f8f8, #fafafa, #fdfdfd, #ffffff);
     box-shadow: 1px 1px 10px 2px #8f8f8fd6;
-    grid-template-areas:
-        "header header header"
-        "nameInput addressInput cityInput"
-        "stateInput countryInput zipcodeInput"
-        "descInput descInput imageInput"
-        "descInput descInput submit"
-    ;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-content: center;
-    align-items: flex-start;
 `
 
 const SubmitButton = styled.button`
     padding: 10px;
     width: auto;
-    margin: 5% 8% 15% 8%;
     border: none;
-    grid-area: submit;
     border-radius: 8px;
     background-color: #e7e7e7;
     :hover {
