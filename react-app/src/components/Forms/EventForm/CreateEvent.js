@@ -89,10 +89,7 @@ const EventForm = () => {
             setLng: setLng,
             value: address,
             style: {
-                boxSizing: "content-box",
                 width: "100%",
-                maxWidth: "100%",
-                height: "auto",
                 padding: "8px",
             }
         },

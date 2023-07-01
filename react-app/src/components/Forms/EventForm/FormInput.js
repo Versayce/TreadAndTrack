@@ -196,7 +196,6 @@ const SuggestionWrapper = styled.div`
     display: flex;
     width: 100%;
     flex-direction: column;
-    align-items: center;
 `
 
 const SuggestionOutput = styled.div`
