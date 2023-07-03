@@ -31,17 +31,15 @@ const FormInputs = (props) => {
     
     const handleFocus = (e) => {
         setFocused(true)
-        console.log("FOCUS: ", focused)
+        // console.log("FOCUS: ", focused)
     }
 
     const handleChange = (e) => {
-        console.log("handlechange value: ", e.target.value)
         onChange?.(e.target.value)
     }
 
     const handlePlacesChange = (value) => {
         onChange?.(value)
-        console.log("handlePlacesChange value: ", value)
     }
 
     const handleSelect = async (value) => {
@@ -49,10 +47,10 @@ const FormInputs = (props) => {
         const latLng = await getLatLng(results[0]);
         // console.log("Initial Input: ", value)
         console.log("Geocoding Results: ", results[0])
-        // console.log("LAT LNG: ", latLng.lat, latLng.lng)
+        console.log("LAT LNG: ", latLng.lat, latLng.lng)
         setLat?.(latLng.lat)
         setLng?.(latLng.lng)
-        onChange?.(value)
+        onChange?.(results[0].formatted_address)
     }
 
     const renderInputs = (type) => {
@@ -122,7 +120,7 @@ const FormInputs = (props) => {
                                                 color: suggestion.active ? '#ffffff' : '#000000',
                                             };
                                             return (
-                                                <SuggestionOutput key={suggestion.index} {...getSuggestionItemProps(suggestion, { style })}>
+                                                <SuggestionOutput key={suggestion.index} suggestions={suggestions} {...getSuggestionItemProps(suggestion, { style })}>
                                                     {suggestion.description}
                                                 </SuggestionOutput>
                                             );
@@ -195,13 +193,11 @@ const GoogleInput = styled.div`
 `
 const SuggestionWrapper = styled.div`
     display: flex;
-    width: 85%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     align-content: center;
-    background-color: #494949;
-    border-radius: 10px;
+    width: 80%;
 `
 
 const Loader = styled.div`
@@ -215,6 +211,11 @@ const SuggestionOutput = styled.div`
     font-size: 12px;
     display: flex;
     flex-direction: column;
-    width: 93%;
+    width: 100%;
     padding: 8px;
+    border: #0000002b solid 1px;
+    box-shadow: 3px 3px 10px #5858582b;
+    :last-child {
+        border-radius: 0 0 10px 10px;
+    }
 `

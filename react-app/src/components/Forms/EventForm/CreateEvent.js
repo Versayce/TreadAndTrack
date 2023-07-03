@@ -16,15 +16,10 @@ const EventForm = () => {
     const ownerId = currentUser.id;
 
     const dispatch = useDispatch();
-    // const [errors, setErrors] = useState([]);
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
     const [lat, setLat] = useState("");
     const [lng, setLng] = useState("");
-    // const [city, setCity] = useState("");
-    // const [state, setState] = useState("");
-    // const [country, setCountry] = useState("");
-    // const [zipcode, setZipcode] = useState("");
     const [description, setDescription] = useState("");
     const [image_url, setImageUrl] = useState("");
 
@@ -33,10 +28,6 @@ const EventForm = () => {
         address,
         lat,
         lng,
-        // city,
-        // state,
-        // country,
-        // zipcode,
         description,
         "banner_image_url": image_url,
         "owner_id": ownerId,
