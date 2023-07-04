@@ -213,7 +213,9 @@ const SuggestionOutput = styled.div`
     flex-direction: column;
     width: 100%;
     padding: 8px;
-    border: #0000002b solid 1px;
+    border-bottom: #0000002b solid 1px;
+    border-left: #0000002b solid 1px;
+    border-right: #0000002b solid 1px;
     box-shadow: 3px 3px 10px #5858582b;
     :last-child {
         border-radius: 0 0 10px 10px;
