@@ -21,10 +21,11 @@ class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), nullable=False)
     address = db.Column(db.String(40), nullable=False)
-    city = db.Column(db.String(40), nullable=False)
-    state = db.Column(db.String(40), nullable=False)
-    zipcode = db.Column(db.String(40), nullable=False)
-    country = db.Column(db.String(40), nullable=False)
+    #TODO make lat/lng rows for google maps integration and delete unnecessary rows with old address components 
+    # city = db.Column(db.String(40), nullable=False)
+    # state = db.Column(db.String(40), nullable=False)
+    # zipcode = db.Column(db.String(40), nullable=False)
+    # country = db.Column(db.String(40), nullable=False)
     description = db.Column(db.String(755), nullable=False) 
     banner_image_url = db.Column(db.String(755), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow) 
@@ -46,10 +47,12 @@ class Event(db.Model):
             "bannerImage": self.banner_image_url,
             "name": self.name,
             "address": self.address,
-            "city": self.city,
-            "state": self.state,
-            "zipcode": self.zipcode,
-            "country": self.country,
+            #TODO old address components to be removed 
+            # TODO add lat/lng 
+            # "city": self.city,
+            # "state": self.state,
+            # "zipcode": self.zipcode,
+            # "country": self.country,
             "description": self.description,
             "images": [image.to_dict() for image in self.images],
             "messages": [message.to_dict() for message in self.messages],

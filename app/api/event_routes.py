@@ -35,7 +35,7 @@ def new_server():
         return form.errors
 
 
-@event_routes.route('/<int:id>', methods=['GET', 'PUT', 'DELETE']) #TODO - test PUT and DELETE routes
+@event_routes.route('/<int:id>', methods=['GET', 'PUT', 'DELETE']) #TODO - edit routes (remove extra address components for google api)
 def event_by_id(id):
     event = Event.query.get(id)
     
@@ -55,10 +55,11 @@ def event_by_id(id):
                 event.banner_image_url = form.data['banner_image_url']
                 event.name = form.data['name']
                 event.address = form.data['address']
-                event.city = form.data['city']
-                event.state = form.data['state']
-                event.country = form.data['country']
-                event.zipcode = form.data['zipcode']
+                #TODO test new google api address info and remove below: 
+                # event.city = form.data['city']
+                # event.state = form.data['state']
+                # event.country = form.data['country']
+                # event.zipcode = form.data['zipcode']
                 event.description = form.data['description']
                 db.session.commit()
                 return event.to_dict()

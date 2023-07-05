@@ -173,5 +173,4 @@ const Header = styled.h1`
     font-weight: 100;
 `
 
-
 export default EventForm

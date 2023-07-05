@@ -1,6 +1,6 @@
 from app.models import db, environment, SCHEMA, Event, User
 
-
+//TODO adjust event seeding for lat/lng components 
 def seed_events():
 
     event_template = Event(
