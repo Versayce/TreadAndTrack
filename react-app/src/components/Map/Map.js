@@ -9,15 +9,15 @@ const options = {
 }
 
 
-const Map = ({ apiKey }) => {
+const Map = ({ apiKey, latLng }) => {
     const { isLoaded, loadError } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: apiKey,
     })
 
     const center = useMemo(() => ({
-        lat: 33.4949,
-        lng: -111.9260,
+        lat: latLng.lat,
+        lng: latLng.lng,
     }), []);
 
     const styles = {

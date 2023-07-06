@@ -5,19 +5,22 @@ import { getKey } from '../../store/map';
 import Map from './Map';
 
 const MapContainer = () => {
-    const key = useSelector(state => state.mapsKey.key)
-    const dispatch = useDispatch()
+    const key = useSelector(state => state.mapsKey.key);
+    const event = useSelector(state => state.events.oneEvent[1]);
+    const latLng = {lat: event?.lat, lng: event?.lng};
+    const dispatch = useDispatch();
+
     useEffect(() => {
         if (!key) {
             dispatch(getKey())
         }
-    }, [dispatch, key])
+    }, [dispatch, key]);
 
     if (!key) return null
 
     return (
-        <Map apiKey={key} />
-    )
-}
+        <Map apiKey={ key } latLng={ latLng }/>
+    );
+};
 
 export default MapContainer;
