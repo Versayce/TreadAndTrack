@@ -55,6 +55,8 @@ def event_by_id(id):
                 event.banner_image_url = form.data['banner_image_url']
                 event.name = form.data['name']
                 event.address = form.data['address']
+                event.lat = form.data['lat']
+                event.lng = form.data['lng']
                 #TODO test new google api address info and remove below: 
                 # event.city = form.data['city']
                 # event.state = form.data['state']

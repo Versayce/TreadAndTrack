@@ -21,7 +21,9 @@ class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), nullable=False)
     address = db.Column(db.String(40), nullable=False)
-    #TODO make lat/lng rows for google maps integration and delete unnecessary rows with old address components 
+    lat = db.Column(db.Integer, nullable=False)
+    lng = db.Column(db.Integer, nullable=False)
+    #TODO delete unnecessary rows with old address components 
     # city = db.Column(db.String(40), nullable=False)
     # state = db.Column(db.String(40), nullable=False)
     # zipcode = db.Column(db.String(40), nullable=False)
@@ -47,8 +49,9 @@ class Event(db.Model):
             "bannerImage": self.banner_image_url,
             "name": self.name,
             "address": self.address,
-            #TODO old address components to be removed 
-            # TODO add lat/lng 
+            "lat": self.lat,
+            "lng": self.lng,
+            #TODO old address components to be removed: 
             # "city": self.city,
             # "state": self.state,
             # "zipcode": self.zipcode,

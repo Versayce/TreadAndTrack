@@ -10,10 +10,12 @@ class EventForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     address = StringField('Address', validators=[DataRequired()])
     # TODO edit below for google api integration: 
-    # TODO and add lat & lng data rows to db 
+    lat = IntegerField('Latitude', validators=[DataRequired()])
+    lng = IntegerField('Longitude', validators=[DataRequired()])
     # city = StringField('City', validators=[DataRequired()])
     # state = StringField('State', validators=[DataRequired()])
     # zipcode = StringField('Zip', validators=[DataRequired()])
     # country = StringField('Country', validators=[DataRequired()])
+    # TODO END EDIT 
     description = StringField('Description', validators=[DataRequired()])
     submit = SubmitField('Submit')
