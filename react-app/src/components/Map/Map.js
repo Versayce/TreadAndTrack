@@ -21,11 +21,12 @@ const Map = ({ apiKey, latLng }) => {
     }), [latLng]);
 
     const styles = {
-        width: "100%",
+        width: "auto",
         height: "100%",
         borderRadius: 20,
         border: "solid 4px #7924321d",
         boxShadow: "2px 3px 10px 0px #36363621",
+        marginRight: "0px",
     };
     
     const RenderMap = () => {

@@ -119,7 +119,8 @@ const MapWrapper = styled.div`
     width: 50%;
     height: 500px;
     border-radius: 20px;
-    margin: 0 5% 0 5%;
+    margin-left: 5%;
+    margin-right: 40px;
 `
 
 const Wrapper = styled.div`
