@@ -27,7 +27,7 @@ function EventCard() {
                 <h1>{event?.name}</h1>
                 {event.bannerImage ? <img alt='eventimg' src={`${event.bannerImage}`} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/> : <img alt='placeholder' src='/images/placeholderImage.png'/>}
                 <EventLocation>
-                    <p>{`${event.city}, ${event.state} ${event.zipcode}`}</p>
+                    <p>{`${event.address}`}</p>
                 </EventLocation>
                 <div className='event-desc'>{event.description}</div>
             </EventCards>
