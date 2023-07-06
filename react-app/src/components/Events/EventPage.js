@@ -66,8 +66,6 @@ function EventPage() {
                     <StyledDescription>{event?.description}</StyledDescription>
                     <LocationInfo>
                         <p>{event?.address}</p>
-                        {event && <p>{`${event.city}, ${event.state}`}</p>}
-                        <p>{event?.zipcode}</p>
                     </LocationInfo>
                     {event && <EventCommentsSection />}
                 </EventInfoWrapper>
