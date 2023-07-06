@@ -6,7 +6,8 @@ import Map from './Map';
 
 const MapContainer = () => {
     const key = useSelector(state => state.mapsKey.key);
-    const event = useSelector(state => state.events.oneEvent[1]);
+    const currentEventObj = useSelector(state => state.events.oneEvent)
+    const event = Object.values(currentEventObj)[0]
     const latLng = {lat: event?.lat, lng: event?.lng};
     const dispatch = useDispatch();
 
