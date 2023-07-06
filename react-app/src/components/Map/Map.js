@@ -18,7 +18,7 @@ const Map = ({ apiKey, latLng }) => {
     const center = useMemo(() => ({
         lat: latLng.lat,
         lng: latLng.lng,
-    }), []);
+    }), [latLng]);
 
     const styles = {
         width: "100%",

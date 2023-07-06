@@ -19,15 +19,14 @@ function ConditonalModal() {
 
     // console.log('', '\n', '==========Inside of Conditional Modal==========', params, '\n', '')
     const renderComponent = (params) => {
-        console.log('======  MODAL-SWITCH  ======:', params)
         switch (params?.modalToLoad) {
             case "editModal":
                 {
                     return (
                         <ModalBackground onClick={(e) => dispatch(closeModal())}>
-                            <ModalBody onClick={(e) => handleChildClicks(e)}>
+                            <EditEventModalBody onClick={(e) => handleChildClicks(e)}>
                                 <EditEventForm />
-                            </ModalBody>
+                            </EditEventModalBody>
                         </ModalBackground>
                     )
                 }
@@ -97,7 +96,7 @@ const ModalBackground = styled.div`
     margin: none;
 `
 
-const ModalBody = styled.div`
+const EditEventModalBody = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -109,12 +108,9 @@ const ModalBody = styled.div`
     bottom: 0;
     margin: auto;
     /* setting max scaling w/h */
-    height: auto;
+    height: fit-content;
     overflow-y: scroll;
     width: 50%;
-    max-width: 1000px;
-    min-width: 540px;
-    max-height: 45%;
     border-radius: 10px;
     /* Modal Background: */
     background: linear-gradient(180deg, #ffffff, #f8f8f8)

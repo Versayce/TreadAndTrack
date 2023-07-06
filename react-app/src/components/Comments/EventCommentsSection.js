@@ -11,7 +11,6 @@ function EventCommentsSection() {
     const sessionUserId = useSelector(state => state.session.user.id)
     const messagesObj = useSelector(state => state.messages.eventMessages)
     const messages = Object.values(messagesObj)
-    //TODO Fix bug with ref being scrolled to on page load 
     const mostRecentMessage = useRef(null) //For scrolling to most recent message
     
     const handleDelete = (messageId) => {
@@ -66,7 +65,8 @@ const MessageContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 400px;
+    height: fit-content;
+    max-height: 400px;
     overflow-y: scroll;
     overscroll-behavior: contain;
     padding: 10px;
@@ -89,7 +89,7 @@ const LineWrapper = styled.div`
     transition-property: box-shadow, transform;
     &:hover {
         background-color: ${props => 
-            props.user === props.message ? "#b6b6b62f" : "#f3f3f339"
+            props.user.id === props.message.author?.id ? "#b6b6b62f" : "#f3f3f339"
         };
         box-shadow: 2px 2px 5px #30303042;
         transform: scale(1.01);

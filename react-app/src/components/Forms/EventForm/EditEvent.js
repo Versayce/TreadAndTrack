@@ -16,10 +16,8 @@ const EditEventForm = () => {
     // const [errors, setErrors] = useState([])
     const [name, setName] = useState(currentEvent.name)
     const [address, setAddress] = useState(currentEvent.address)
-    const [city, setCity] = useState(currentEvent.city)
-    const [state, setState] = useState(currentEvent.state)
-    const [country, setCountry] = useState(currentEvent.country)
-    const [zipcode, setZipcode] = useState(currentEvent.zipcode)
+    const [lat, setLat] = useState(null);
+    const [lng, setLng] = useState(null);
     const [description, setDescription] = useState(currentEvent.description)
     const [image_url, setImageUrl] = useState(currentEvent.bannerImage)
     
@@ -29,10 +27,8 @@ const EditEventForm = () => {
         "id": currentEvent.id,
         name,
         address,
-        city,
-        state,
-        country,
-        zipcode,
+        lat,
+        lng,
         description,
         "banner_image_url": image_url,
         "owner_id": ownerId
@@ -56,122 +52,59 @@ const EditEventForm = () => {
             onChange: setName,
             value: name,
             style: {
-                gridArea: "nameInput",
-                widthPercent: styles.width
+                width: "90%",
+                padding: "8px",
             }
         },
         {
             id: 2,
-            name: "address",
-            type: "text",
-            placeholder: currentEvent.address,
-            errorMessage: "Address should 6-40 characters",
-            label: "Address",
-            required: true,
-            pattern: "^[A-Za-z0-9# ]{6,40}$",
-            onChange: setAddress,
-            value: address,
-            style: {
-                gridArea: "addressInput",
-                widthPercent: styles.width
-            }
-        },
-        {
-            id: 3,
-            name: "city",
-            type: "text",
-            placeholder: currentEvent.city,
-            errorMessage: "City should 4-20 characters",
-            label: "City",
-            required: true,
-            pattern: "^[A-Za-z0-9 ]{4,20}$",
-            onChange: setCity,
-            value: city,
-            style: {
-                gridArea: "cityInput",
-                widthPercent: styles.width
-            }
-        },
-        {
-            id: 4,
-            name: "state",
-            type: "text",
-            placeholder: currentEvent.state,
-            errorMessage: "State should be 2-10 characters",
-            label: "State",
-            required: true,
-            pattern: "^[A-Za-z0-9 ]{2,10}$",
-            onChange: setState,
-            value: state,
-            style: {
-                gridArea: "stateInput",
-                widthPercent: styles.width
-            }
-        },
-        {
-            id: 5,
-            name: "country",
-            type: "text",
-            placeholder: currentEvent.country,
-            errorMessage: "Country should be 2-20 characters",
-            label: "Country",
-            required: true,
-            pattern: "^[A-Za-z0-9 ]{2,20}$",
-            onChange: setCountry,
-            value: country,
-            style: {
-                gridArea: "countryInput",
-                widthPercent: styles.width
-            }
-        },
-        {
-            id: 6,
-            name: "zipcode",
-            type: "text",
-            placeholder: currentEvent.zipcode,
-            errorMessage: "Zipcode must be 5 numbers",
-            label: "ZipCode",
-            required: true,
-            pattern: "^[0-9]{5}$",
-            onChange: setZipcode,
-            value: zipcode,
-            style: {
-                gridArea: "zipcodeInput",
-                widthPercent: styles.width
-            }
-        },
-        {
-            id: 7,
             name: "image_url",
             type: "text",
             placeholder: currentEvent.bannerImage,
             errorMessage: "Enter a URL containing https://",
-            label: "Image",
+            label: "Update Image",
             required: true,
             pattern: "^https?://.*",
             onChange: setImageUrl,
             value: image_url,
             style: {
-                gridArea: "imageInput",
-                widthPercent: styles.width
+                width: "90%",
+                padding: "8px",
             }
         },
         {
-            id: 8,
+            id: 3,
+            name: "address",
+            type: "google-places",
+            placeholder: currentEvent.address,
+            errorMessage: "Please select an address from the dropdown menu",
+            label: "Update Event Address",
+            required: true,
+            pattern: "^[A-Za-z0-9#, ]{6,1000}$",
+            onChange: setAddress,
+            setLat: setLat,
+            setLng: setLng,
+            value: address,
+            style: {
+                width: "90%",
+                padding: "8px",
+            }
+        },
+        {
+            id: 4,
             name: "description",
             type: "textarea",
             placeholder: currentEvent.description,
             errorMessage: "Max length 700",
-            label: "Description",
+            label: "Update Description",
             required: true,
             pattern: "^[A-Za-z0-9 ]{0,700}$",
             onChange: setDescription,
             value: description,
             style: {
-                gridArea: "descInput",
-                widthPercent: styles.widthDesc,
-                width: "95%",
-                height: "100%"
+                width: "90%",
+                height: "200px",
+                padding: "8px",
             }
         }
     ]
@@ -186,7 +119,7 @@ const EditEventForm = () => {
     }
 
     return (
-        // <FormWrapper>
+        //<FormWrapper>
             <Form onSubmit={handleSubmit}>
                 <Header>Edit Event</Header>
                     {inputs.map((input) => (
@@ -197,33 +130,31 @@ const EditEventForm = () => {
                     ))}
                 <SubmitButton type="submit">Submit</SubmitButton>
             </Form>
-        // </FormWrapper>
+        //</FormWrapper>
     )
 }
 
-
 const Form = styled.form`
-    width: 80%;
-    display: grid;
-    grid-template-areas:
-    "header header header"
-    "nameInput addressInput cityInput"
-    "stateInput countryInput zipcodeInput"
-    "descInput descInput imageInput"
-    "descInput descInput submit"
-    ;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-content: center;
-    align-items: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 4vh 0vw 4vh 0vw;
+    /* margin: 200px 0 200px 0px; */
+    border-radius: 10px;
+    background-image: linear-gradient(to bottom, #f6f6f6, #f8f8f8, #fafafa, #fdfdfd, #ffffff);
+    box-shadow: 1px 1px 10px 2px #8f8f8fd6;
 `
 
 const SubmitButton = styled.button`
-    padding: 10px;
-    width: auto;
-    margin: 5% 8% 15% 8%;
+    box-sizing: border-box;
+    padding: 10px 40px 10px 40px;
+    /* width: 30%; */
     border: none;
-    grid-area: submit;
+    font-size: 20px;
     border-radius: 8px;
     background-color: #e7e7e7;
     :hover {
@@ -239,6 +170,45 @@ const Header = styled.h1`
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 100;
 `
+
+
+// const Form = styled.form`
+//     width: 80%;
+//     display: grid;
+//     grid-template-areas:
+//     "header header header"
+//     "nameInput addressInput cityInput"
+//     "stateInput countryInput zipcodeInput"
+//     "descInput descInput imageInput"
+//     "descInput descInput submit"
+//     ;
+//     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+//     grid-template-columns: 1fr 1fr 1fr;
+//     align-content: center;
+//     align-items: flex-start;
+// `
+
+// const SubmitButton = styled.button`
+//     padding: 10px;
+//     width: auto;
+//     margin: 5% 8% 15% 8%;
+//     border: none;
+//     grid-area: submit;
+//     border-radius: 8px;
+//     background-color: #e7e7e7;
+//     :hover {
+//         background-color: #bd345d;
+//         color: white;
+//         cursor: pointer;
+//     }
+// `
+    
+// const Header = styled.h1`
+//     grid-area: header;
+//     color: #af2d54;
+//     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+//     font-weight: 100;
+// `
 
 
 export default EditEventForm

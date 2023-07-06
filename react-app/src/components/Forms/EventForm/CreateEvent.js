@@ -18,8 +18,8 @@ const EventForm = () => {
     const dispatch = useDispatch();
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
-    const [lat, setLat] = useState("");
-    const [lng, setLng] = useState("");
+    const [lat, setLat] = useState(null);
+    const [lng, setLng] = useState(null);
     const [description, setDescription] = useState("");
     const [image_url, setImageUrl] = useState("");
 
