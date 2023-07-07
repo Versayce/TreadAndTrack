@@ -53,8 +53,8 @@ def seed_events():
         name = "Cars and Coffee Scottsdale",
         banner_image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195159/16151652649d5d7e7634902LIPMAN_723808.jpeg",
         address = "20789 N Pima Rd #210",
-        lat = 33.674646,
-        lng = -111.888867,
+        lat = 33.6746,
+        lng = -111.8888,
         description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 
                         + "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta " 
                         + "sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia " 
@@ -68,8 +68,8 @@ def seed_events():
         name = "Pavillions Car Show",
         banner_image_url = "http://speedhunters-wp-production.s3.amazonaws.com/wp-content/uploads/2021/04/19195113/161516528338117473eb6LIPMAN_723857.jpeg",
         address = "9120 E. Talking Stick Way",
-        lat = 33.538535,
-        lng = -111.879825,
+        lat = 33.5385,
+        lng = -111.8798,
         description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, " 
                         + "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta " 
                         + "sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia " 
