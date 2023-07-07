@@ -10,7 +10,6 @@ import { deleteEvent, getOneEvent } from '../../store/event';
 import MapContainer from '../Map/MapContainer';
 import Footer from '../Home/Footer';
 
-// TODO start filling the page with information and get ready for comments feature.
 function EventPage() {
     const history = useHistory()
     const dispatch = useDispatch()
@@ -66,8 +65,6 @@ function EventPage() {
                     <StyledDescription>{event?.description}</StyledDescription>
                     <LocationInfo>
                         <p>{event?.address}</p>
-                        <p>{event?.lat}</p>
-                        <p>{event?.lng}</p>
                     </LocationInfo>
                     {event && <EventCommentsSection />}
                 </EventInfoWrapper>
