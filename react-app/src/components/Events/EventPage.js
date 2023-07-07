@@ -66,6 +66,8 @@ function EventPage() {
                     <StyledDescription>{event?.description}</StyledDescription>
                     <LocationInfo>
                         <p>{event?.address}</p>
+                        <p>{event?.lat}</p>
+                        <p>{event?.lng}</p>
                     </LocationInfo>
                     {event && <EventCommentsSection />}
                 </EventInfoWrapper>
