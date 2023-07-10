@@ -25,8 +25,6 @@ const FormInputs = (props) => {
         pattern, 
         name, 
         type, 
-        // row, 
-        // col, 
         placeholder } = props
     
     const handleFocus = (e) => {
@@ -91,7 +89,7 @@ const FormInputs = (props) => {
                         />
                     )
                 }
-                
+
             case "google-places":
                 {
                     return (
