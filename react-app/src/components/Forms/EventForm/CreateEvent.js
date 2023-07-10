@@ -76,6 +76,7 @@ const EventForm = () => {
             required: true,
             pattern: "^[A-Za-z0-9#,. ]{6,1000}$",
             onChange: setAddress,
+            address: address,
             setLat: setLat,
             setLng: setLng,
             value: address,
@@ -101,14 +102,14 @@ const EventForm = () => {
                 padding: "8px",
             }
         }
-    ]
+    ];
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         await dispatch(createEvent(formData)) 
         await dispatch(getAllEvents())
         history.push("/")
-    }
+    };
 
     return (
         <FormWrapper>
@@ -122,8 +123,8 @@ const EventForm = () => {
             </Form>
             <Footer />
         </FormWrapper>
-    )
-}
+    );
+};
 
 const FormWrapper = styled.div`
     width: 100%;

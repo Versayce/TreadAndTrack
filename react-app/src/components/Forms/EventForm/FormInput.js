@@ -1,17 +1,22 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
-const isValid = (value, pattern, isSelected) => {
-    const regex = new RegExp(pattern);
-    const result = regex.test(value);
-    return result;
-}
+const isValid = (value, pattern, addressError) => {
+    if (addressError === true) {
+        return false;
+    }
+    else {
+        const regex = new RegExp(pattern);
+        const result = regex.test(value);
+        return result;
+    }
+};
 
 const FormInputs = (props) => {
     const [focused, setFocused] = useState(false);
-    const [addressSelected, setAddressSelected] = useState(false);
+    const [addressError, setAddressError] = useState(false);
+    const [apiError, setApiError] = useState(null);
     const {
         label, 
         errorMessage, 
@@ -37,7 +42,14 @@ const FormInputs = (props) => {
     };
 
     const handlePlacesChange = (value) => {
+        setAddressError(true);
         onChange?.(value);
+    };
+
+    const onError = (status, clearSuggestions) => {
+        setApiError("No matching addresses found")
+        console.log('Google Maps API returned error with status: ', status, apiError)
+        clearSuggestions();
     };
 
     const handleSelect = async (value) => {
@@ -48,7 +60,7 @@ const FormInputs = (props) => {
         setLat?.(latLng.lat);
         setLng?.(latLng.lng);
         onChange?.(results[0].formatted_address);
-        setAddressSelected(true);
+        setAddressError(false);
     };
 
     const renderInputs = (type) => {
@@ -98,6 +110,7 @@ const FormInputs = (props) => {
                             value={value}
                             onChange={handlePlacesChange}
                             onSelect={handleSelect}
+                            onError={onError}
                         >
                             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                                 <GoogleInput>
@@ -110,20 +123,22 @@ const FormInputs = (props) => {
                                         onBlur: handleFocus,
                                         style: style,
                                     })} />
-                                    <SuggestionWrapper>
-                                        {loading ? <Loader>Loading...</Loader> : null}
-                                        {suggestions.map((suggestion) => {
-                                            const style = {
-                                                backgroundColor: suggestion.active ? '#bd345d' : '#fff',
-                                                color: suggestion.active ? '#ffffff' : '#000000',
-                                            };
-                                            return (
-                                                <SuggestionOutput key={suggestion.index} suggestions={suggestions} {...getSuggestionItemProps(suggestion, { style })}>
-                                                    {suggestion.description}
-                                                </SuggestionOutput>
-                                            );
-                                        })}
-                                    </SuggestionWrapper>
+                                    <ListWrapper>
+                                        <SuggestionList>
+                                            {loading ? <Loader>Loading...</Loader> : null}
+                                            {suggestions.map((suggestion) => {
+                                                const style = {
+                                                    backgroundColor: suggestion.active ? '#bd345d' : '#fff',
+                                                    color: suggestion.active ? '#ffffff' : '#000000',
+                                                };
+                                                return (
+                                                    <SuggestionListElement key={suggestion.index} suggestions={suggestions} {...getSuggestionItemProps(suggestion, { style })}>
+                                                        {suggestion.description}
+                                                    </SuggestionListElement>
+                                                );
+                                            })}
+                                        </SuggestionList>
+                                    </ListWrapper>
                                 </GoogleInput>
                             )}
                         </PlacesAutocomplete>
@@ -143,7 +158,7 @@ const FormInputs = (props) => {
         <FormInput style={style}> 
             <label>{label}</label>
             {renderInputs(type)}
-            {!isValid(value, pattern) && focused ? <span>{errorMessage}</span> : <span></span>}
+            {!isValid(value, pattern, addressError) && focused ? <span>{errorMessage}</span> : <span></span>}
         </FormInput>
     )
 }
@@ -189,26 +204,26 @@ const GoogleInput = styled.div`
     width: 100%;
     border-radius: 10px;
 `
-const SuggestionWrapper = styled.div`
+
+const ListWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    align-content: center;
+    justify-content: flex-start;
+    position: relative;
+    width: 100%;
+`
+
+const SuggestionList = styled.ul`
     width: 80%;
+    position: absolute;
+    list-style-type: none;
 `
 
-const Loader = styled.div`
-    font-family: Arial, Helvetica, sans-serif;
-    color: #ffffff;
-    font-size: 12px;
-`
-
-const SuggestionOutput = styled.div`
+const SuggestionListElement = styled.li`
+    position: relative;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
-    display: flex;
-    flex-direction: column;
     width: 100%;
     padding: 8px;
     border-bottom: #0000002b solid 1px;
@@ -218,4 +233,10 @@ const SuggestionOutput = styled.div`
     :last-child {
         border-radius: 0 0 10px 10px;
     }
+`
+
+const Loader = styled.div`
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    font-size: 12px;
 `
