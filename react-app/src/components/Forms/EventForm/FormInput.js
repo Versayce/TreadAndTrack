@@ -10,7 +10,6 @@ const isValid = (value, pattern) => {
 }
 
 const FormInputs = (props) => {
-    const key = useSelector(state => state.mapsKey.key)
     const [focused, setFocused] = useState(false)
     const {
         label, 
