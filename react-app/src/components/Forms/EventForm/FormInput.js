@@ -91,7 +91,7 @@ const FormInputs = (props) => {
                         />
                     )
                 }
-            //TODO add google places input and remove old address field(s) 
+                
             case "google-places":
                 {
                     return (
