@@ -42,7 +42,6 @@ const FormInputs = (props) => {
     const handleSelect = async (value) => {
         const results = await geocodeByAddress(value);
         const latLng = await getLatLng(results[0]);
-        // console.log("Initial Input: ", value)
         console.log("Geocoding Results: ", results[0])
         console.log("LAT LNG: ", latLng.lat, latLng.lng)
         setLat?.(latLng.lat)
