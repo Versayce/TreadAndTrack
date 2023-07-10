@@ -33,12 +33,6 @@ const EditEventForm = () => {
         "banner_image_url": image_url,
         "owner_id": ownerId
     }
-    // console.log('==========EDIT EVENT FORM==========', formData)
-    
-    const styles = {
-        width: "80%",
-        widthDesc: "90%"
-    }
 
     const inputs = [
         {
