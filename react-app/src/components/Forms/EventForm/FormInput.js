@@ -1,16 +1,17 @@
-import styled from "styled-components"
-import { useState } from "react"
+import styled from "styled-components";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
-const isValid = (value, pattern) => {
-    const regex = new RegExp(pattern)
-    const result = regex.test(value)
-    return result
+const isValid = (value, pattern, isSelected) => {
+    const regex = new RegExp(pattern);
+    const result = regex.test(value);
+    return result;
 }
 
 const FormInputs = (props) => {
-    const [focused, setFocused] = useState(false)
+    const [focused, setFocused] = useState(false);
+    const [addressSelected, setAddressSelected] = useState(false);
     const {
         label, 
         errorMessage, 
@@ -24,30 +25,31 @@ const FormInputs = (props) => {
         pattern, 
         name, 
         type, 
-        placeholder } = props
+        placeholder } = props;
     
     const handleFocus = (e) => {
-        setFocused(true)
+        setFocused(true);
         // console.log("FOCUS: ", focused)
-    }
+    };
 
     const handleChange = (e) => {
-        onChange?.(e.target.value)
-    }
+        onChange?.(e.target.value);
+    };
 
     const handlePlacesChange = (value) => {
-        onChange?.(value)
-    }
+        onChange?.(value);
+    };
 
     const handleSelect = async (value) => {
         const results = await geocodeByAddress(value);
         const latLng = await getLatLng(results[0]);
-        console.log("Geocoding Results: ", results[0])
-        console.log("LAT LNG: ", latLng.lat, latLng.lng)
-        setLat?.(latLng.lat)
-        setLng?.(latLng.lng)
-        onChange?.(results[0].formatted_address)
-    }
+        console.log("Geocoding Results: ", results[0]);
+        console.log("LAT LNG: ", latLng.lat, latLng.lng);
+        setLat?.(latLng.lat);
+        setLng?.(latLng.lng);
+        onChange?.(results[0].formatted_address);
+        setAddressSelected(true);
+    };
 
     const renderInputs = (type) => {
         //TODO edit prop assignment 
@@ -67,8 +69,8 @@ const FormInputs = (props) => {
                             focused={focused.toString()} 
                             style={style}
                         />
-                    )
-                }
+                    );
+                };
 
             case "textarea":
                 {
@@ -85,8 +87,8 @@ const FormInputs = (props) => {
                             value={value}
                             style={style}
                         />
-                    )
-                }
+                    );
+                };
 
             case "google-places":
                 {
@@ -125,13 +127,13 @@ const FormInputs = (props) => {
                                 </GoogleInput>
                             )}
                         </PlacesAutocomplete>
-                    )
-                }
+                    );
+                };
                 
             default:
                 {
-                    return null
-                }
+                    return null;
+                };
 
         }
     };
