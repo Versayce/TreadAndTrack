@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { Github } from "@styled-icons/bootstrap/Github";
 import { Portfolio } from "@styled-icons/zondicons/Portfolio"
 import { Linkedin } from "@styled-icons/bootstrap/Linkedin"
+import { Email } from "@styled-icons/material/Email"
 
 
 const Footer = () => {
@@ -11,35 +12,73 @@ const Footer = () => {
         <>
             <Background> 
                 <InfoWrapper>
-                    <h1>Tread && Track</h1>
-                    <IconWrapper>
-                        <p>About: </p>
-                        <a href="https://github.com/Versayce/TreadAndTrack"><GitHubIcon /></a>  
-                        <a href="https://github.com/Versayce/TreadAndTrack">GitHub Repository</a>
-                    </IconWrapper>
-                    <p>Contact: <a href="mailTo: castro.alex@asu.edu">castro.alex@asu.edu</a></p>
-                    <Icons>
-                        <p>Connect:</p> 
-                        <IconWrapper>
-                            <a href="https://github.com/versayce"><GitHubIcon /></a>  
-                            <a href="https://github.com/versayce">GitHub</a>
-                        </IconWrapper>
-                        <IconWrapper>
-                            <a href="https://www.linkedin.com/in/fullstackcastro/"><LinkedInIcon /></a>
-                            <a href="https://www.linkedin.com/in/fullstackcastro/">LinkedIn</a>
-                        </IconWrapper>
-                        <IconWrapper>
-                            <a href="https://versayce.github.io/"><PortfolioIcon /></a>
-                            <a href="https://versayce.github.io/">Portfolio</a>
-                        </IconWrapper>
-                    </Icons>
-                    <h3>Alex Castro</h3>
-                    <p>Copywright</p>
+                    <InfoHead>
+                        <h1>Tread && Track</h1>
+                        <About>
+                            <p>About: </p>
+                            <IconWrapper>
+                                <a href="https://github.com/Versayce/TreadAndTrack"><GitHubIcon /></a>  
+                                <a href="https://github.com/Versayce/TreadAndTrack">GitHub Repository</a>
+                            </IconWrapper>
+                        </About>
+                        <EmailInfo>
+                            <p>Contact:</p>
+                            <IconWrapper>
+                                <a href="mailTo: castro.alex@asu.edu">
+                                    <EmailIcon />
+                                </a>  
+                                <a href="https://github.com/versayce">Email</a>
+                            </IconWrapper>
+                        </EmailInfo>
+                        <Icons>
+                            <p>Connect:</p> 
+                            <IconWrapper>
+                                <a href="https://www.linkedin.com/in/fullstackcastro/">
+                                    <LinkedInIcon />
+                                </a>
+                                <a href="https://www.linkedin.com/in/fullstackcastro/">LinkedIn</a>
+                            </IconWrapper>
+                            <IconWrapper>
+                                <a href="https://versayce.github.io/">
+                                    <PortfolioIcon />
+                                </a>
+                                <a href="https://versayce.github.io/">Portfolio</a>
+                            </IconWrapper>
+                            <IconWrapper>
+                                <a href="https://github.com/versayce">
+                                    <GitHubIcon />
+                                </a>  
+                                <a href="https://github.com/versayce">GitHub</a>
+                            </IconWrapper>
+                        </Icons>
+                    </InfoHead>
+
+                    <AuthorCopywright>
+                        <h3>Versayce</h3>
+                        <p>Copywright © Alex Castro</p>
+                    </AuthorCopywright>
                 </InfoWrapper>
             </Background>
         </>
     )
 }
+
+const LinkedInIcon = styled(Linkedin)`
+    width: 20px;
+    color: #ffffff;
+`
+const GitHubIcon = styled(Github)`
+    width: 20px;
+    color: #ffffff;
+`
+const PortfolioIcon = styled(Portfolio)`
+    width: 20px;
+    color: #ffffff;
+`
+const EmailIcon = styled(Email)`
+    width: 20px;
+    color: #ffffff;
+`
 
 const Background = styled.div`
     display: flex;
@@ -48,9 +87,9 @@ const Background = styled.div`
     align-items: center;
     width: 100%;
     height: 350px;
-    background-color: #2b2b2b;
-    margin-top: 100px;
-`
+    margin-top: 10vh;
+    background-image: linear-gradient(to bottom, #1f1f1f, #212121, #232323, #252525, #272727, #282828, #292929, #2a2a2a, #2a2a2a, #292a29, #292929, #292929);
+    `
 
 const InfoWrapper = styled.div`
     display: flex;
@@ -58,10 +97,47 @@ const InfoWrapper = styled.div`
     align-items: flex-start;
     align-content: flex-start;
     justify-content: center;
-    width: 60%;
-    margin-bottom: 80px;
+    width: 70%;
+    margin-bottom: 10px;
     color: #ffffff;
     gap: 10px;
+`
+
+const InfoHead = styled.div`
+    font-weight: 200 !important;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    margin-top: 5vh;
+    width: 100%;
+    p {
+        width: 80px;
+        margin-right: 1vw;
+        color: #aaaaaa;
+    }
+    a {
+        margin-right: 9px;
+        color: #ffffff4b;
+        text-decoration: none;
+    }
+    a:hover {
+        color: #bd345d;
+    }
+    h1 {
+        letter-spacing: .4rem;
+        margin-bottom: 3vh;
+        color: #8a2339d1;
+    }
+`
+
+const About = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+
+const EmailInfo = styled.div`
+    display: flex;
+    flex-direction: row;
 `
 
 const Icons = styled.div`
@@ -70,7 +146,6 @@ const Icons = styled.div`
     justify-content: flex-start;
     align-items: center;
     width: 80%;
-    gap: 5%;
 `
 
 const IconWrapper = styled.div`
@@ -78,22 +153,33 @@ const IconWrapper = styled.div`
     flex-direction: row;
     align-items: center;
     color: #ffffff;
-    gap: 5px;
+    margin-right: 1.5vw;
+    cursor: pointer;
+    :hover a {
+        color: #bd345d;
+    }
+    &:hover ${GitHubIcon} {
+        color: #bd345d;
+    }
+    &:hover ${LinkedInIcon} {
+        color: #bd345d;
+    }
+    &:hover ${PortfolioIcon} {
+        color: #bd345d;
+    }
+    &:hover ${EmailIcon} {
+        color: #bd345d;
+    }
 `
 
-const LinkedInIcon = styled(Linkedin)`
-    width: 20px;
-    color: #ffffff;
+const AuthorCopywright = styled.div`
+    margin-top: 5vh;
+    color: #464646;
+    p {
+        font-size: 10pt;
+    }
 `
 
-const GitHubIcon = styled(Github)`
-    width: 20px;
-    color: #ffffff;
-`
 
-const PortfolioIcon = styled(Portfolio)`
-    width: 20px;
-    color: #ffffff;
-`
 
 export default Footer
