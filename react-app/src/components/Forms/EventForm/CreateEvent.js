@@ -18,6 +18,8 @@ const EventForm = () => {
     const dispatch = useDispatch();
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
+    const [addressError, setAddressError] = useState(false);
+    const [inputError, setInputError] = useState(false);
     const [lat, setLat] = useState(null);
     const [lng, setLng] = useState(null);
     const [description, setDescription] = useState("");
@@ -38,33 +40,27 @@ const EventForm = () => {
             id: 1,
             name: "name",
             type: "text",
-            placeholder: "Event Name",
+            placeholder: "Enter Event Name",
             errorMessage: "Name should be 3-30 characters",
+            setInputError: setInputError,
             label: "Event Name",
             required: true,
             pattern: "^[A-Za-z0-9 ]{3,20}$",
             onChange: setName,
             value: name,
-            style: {
-                width: "90%",
-                padding: "8px",
-            }
         },
         {
             id: 2,
             name: "image_url",
             type: "text",
-            placeholder: "Image URL",
+            placeholder: "Enter Image URL",
             errorMessage: "Enter a URL containing https://",
+            setInputError: setInputError,
             label: "Banner Image",
             required: true,
             pattern: "^https?://.*",
             onChange: setImageUrl,
             value: image_url,
-            style: {
-                width: "90%",
-                padding: "8px",
-            }
         },
         {
             id: 3,
@@ -77,13 +73,11 @@ const EventForm = () => {
             pattern: "^[A-Za-z0-9#,. ]{6,1000}$",
             onChange: setAddress,
             address: address,
+            addressError: addressError,
+            setAddressError: setAddressError,
             setLat: setLat,
             setLng: setLng,
             value: address,
-            style: {
-                width: "90%",
-                padding: "8px",
-            }
         },
         {
             id: 4,
@@ -91,30 +85,28 @@ const EventForm = () => {
             type: "textarea",
             placeholder: "Description",
             errorMessage: "Max length 700",
+            setInputError: setInputError,
             label: "Description",
-            required: true,
+            required: false,
             pattern: "^[A-Za-z0-9.,! ]{0,700}$",
             onChange: setDescription,
             value: description,
-            style: {
-                width: "90%",
-                height: "200px",
-                padding: "8px",
-            }
         }
     ];
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await dispatch(createEvent(formData)) 
-        await dispatch(getAllEvents())
-        history.push("/")
+        // if (addressError === false && inputError === false) {
+            await dispatch(createEvent(formData)) 
+            await dispatch(getAllEvents())
+            history.push("/")
+        // }
     };
 
     return (
         <FormWrapper>
             <NavBar />
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} >
                 <Header>Host Event</Header>
                     {inputs.map((input) => (
                         <FormInputs key={`${input.id}frm-ipt`} {...input} />

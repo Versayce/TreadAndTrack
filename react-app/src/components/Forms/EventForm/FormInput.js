@@ -2,30 +2,35 @@ import styled from "styled-components";
 import { useState } from "react";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
-const isValid = (value, pattern, addressError) => {
-    if (addressError === true) {
-        return false;
-    }
-    else {
-        const regex = new RegExp(pattern);
-        const result = regex.test(value);
-        return result;
+const isValid = (value, pattern, setInputError) => {
+    const regex = new RegExp(pattern);
+    const result = regex.test(value);
+    setInputError?.(result);
+    console.log(`Input Error for pattern ${pattern} set as:` , result)
+    return !result;
+};
+
+const hasError = (addressError, inputError) => {
+    if (addressError === true || inputError === true) {
+        return true;
     }
 };
 
 const FormInputs = (props) => {
     const [focused, setFocused] = useState(false);
-    const [addressError, setAddressError] = useState(false);
     const [apiError, setApiError] = useState(null);
     const {
         label, 
         errorMessage, 
         onChange, 
+        addressError,
+        setAddressError,
+        inputError,
+        setInputError,
         setLat,
         setLng,
         required, 
         id, 
-        style, 
         value, 
         pattern, 
         name, 
@@ -46,9 +51,9 @@ const FormInputs = (props) => {
         onChange?.(value);
     };
 
-    const onError = (status, clearSuggestions) => {
+    const onApiError = (status, clearSuggestions) => {
         setApiError("No matching addresses found")
-        console.log('Google Maps API returned error with status: ', status, apiError)
+        console.log('Google Maps API returned error with status: ', status)
         clearSuggestions();
     };
 
@@ -79,7 +84,6 @@ const FormInputs = (props) => {
                             onChange={handleChange} 
                             onBlur={handleFocus} 
                             focused={focused.toString()} 
-                            style={style}
                         />
                     );
                 };
@@ -97,7 +101,6 @@ const FormInputs = (props) => {
                             onBlur={handleFocus} 
                             focused={focused.toString()} 
                             value={value}
-                            style={style}
                         />
                     );
                 };
@@ -110,7 +113,7 @@ const FormInputs = (props) => {
                             value={value}
                             onChange={handlePlacesChange}
                             onSelect={handleSelect}
-                            onError={onError}
+                            onError={onApiError}
                         >
                             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                                 <GoogleInput>
@@ -121,7 +124,7 @@ const FormInputs = (props) => {
                                         required: required,
                                         pattern: pattern,
                                         onBlur: handleFocus,
-                                        style: style,
+                                        // style: style,
                                     })} />
                                     <ListWrapper>
                                         <SuggestionList>
@@ -132,7 +135,7 @@ const FormInputs = (props) => {
                                                     color: suggestion.active ? '#ffffff' : '#000000',
                                                 };
                                                 return (
-                                                    <SuggestionListElement key={suggestion.index} suggestions={suggestions} {...getSuggestionItemProps(suggestion, { style })}>
+                                                    <SuggestionListElement key={suggestion.index} suggestions={suggestions} error={apiError} {...getSuggestionItemProps(suggestion, { style })}>
                                                         {suggestion.description}
                                                     </SuggestionListElement>
                                                 );
@@ -155,17 +158,28 @@ const FormInputs = (props) => {
 
 
     return (
-        <FormInput style={style}> 
-            <label>{label}</label>
+        <FormInput > 
+            <Test>
+                <label>{label}</label>
+            </Test>
             {renderInputs(type)}
-            {!isValid(value, pattern, addressError) && focused ? <span>{errorMessage}</span> : <span></span>}
+            {(isValid(value, pattern, setInputError) || hasError(addressError, inputError)) && focused ? <span>{errorMessage}</span> : <span></span>}
         </FormInput>
     )
 }
 
 export default FormInputs
 
+const Test = styled.div`
+    box-sizing: border-box;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+`
+
 const FormInput = styled.div`
+    width: 95%;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
@@ -174,18 +188,24 @@ const FormInput = styled.div`
     label {
         font-size: 12px;
         color: grey;
+        margin-bottom: 3px;
     }
     input {
-        padding: ${props => props.style.padding};
-        width: ${props => props.style.width};
+        padding: 8px;
+        width: 90%;
         border-radius: 6px;
         border: 1px solid grey;
+    }    
+    input::placeholder {
+        opacity: 30%;
     }
-    textarea {
-        width: ${props => props.style.width};
-        padding: ${props => props.style.padding};
-        height: ${props => props.style.height};
-        resize: none;
+    textarea{
+        width: 90%;
+        height: 200px;
+        padding: 8px;
+    }    
+    textarea::placeholder {
+        opacity: 30%;
     }
     span {
         min-height: 16px;
@@ -199,10 +219,9 @@ const FormInput = styled.div`
 const GoogleInput = styled.div`
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     width: 100%;
-    border-radius: 10px;
 `
 
 const ListWrapper = styled.div`
