@@ -6,7 +6,8 @@ import { closeModal } from '../../store/modal';
 import styled from 'styled-components';
 
 const LoginForm = () => {
-  const [errors, setErrors] = useState([]);
+  const [emailError, setEmailError] = useState([]);
+  const [passwordError, setPasswordError] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
@@ -18,20 +19,20 @@ const LoginForm = () => {
     if (data) {
       const emailError = data[0]?.split(":")[1]
       const passwordError = data[1]?.split(":")[1]
-      let authErrors = []
-      authErrors.push(emailError, passwordError)
-      setErrors(authErrors);
-      console.log("ERROR DATA ================= ::::: ", errors)
+      setPasswordError(passwordError)
+      setEmailError(emailError)
     }
     else dispatch(closeModal())
   };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
+    setEmailError(null)
   };
 
   const updatePassword = (e) => {
     setPassword(e.target.value);
+    setPasswordError(null)
   };
 
   const handleDemoLogin = () => {
@@ -47,34 +48,43 @@ const LoginForm = () => {
 
   return (
     <StyledForm onSubmit={onLogin}>
-      <h1>Login</h1>
-      <InputWrapper>
-        <label htmlFor='email'>Email</label>
-        <StyledInput
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
-      </InputWrapper>
-
-      <InputWrapper>
-        <label htmlFor='password'>Password</label>
-        <StyledInput
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
-      </InputWrapper>
-      {errors && <ErrorMessages>{errors.map((error, idx) => <div key={idx}>{error}</div>)}</ErrorMessages>}
-      <StyledButton type='submit'>Login</StyledButton>
-      <StyledButton onClick={handleDemoLogin}>Demo</StyledButton>
-    </StyledForm>
+        <h1>Login</h1>
+        <InputWrapper>
+          <label htmlFor='email'>Email</label>
+          <StyledInput
+            name='email'
+            type='text'
+            placeholder='Email'
+            value={email}
+            onChange={updateEmail}
+            />
+        </InputWrapper>
+        {emailError ? <ErrorMessages>{emailError}</ErrorMessages> : <span></span>}
+        <InputWrapper>
+          <label htmlFor='password'>Password</label>
+          <StyledInput
+            name='password'
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={updatePassword}
+            />
+        </InputWrapper>
+        {passwordError ? <ErrorMessages>{passwordError}</ErrorMessages> : <span></span>}
+        <ButtonWrapper>
+          <StyledButton type='submit'>Login</StyledButton>
+          <StyledButton onClick={handleDemoLogin}>Demo</StyledButton>
+        </ButtonWrapper>
+      </StyledForm>
   );
 };
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+`
 
 const StyledForm = styled.form`
   display: flex;
@@ -84,18 +94,23 @@ const StyledForm = styled.form`
   h1 {
     color: #421221;
   }
-  `
+  span {
+    min-height: 16px;
+    padding: 3px;
+  }
+`
 
 const InputWrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-    margin-bottom: 10px;
-    `
+`
 
 const ErrorMessages = styled.div`
-  flex-direction: column;
-  height: 70px;
+  min-height: 16px;
+  font-size: 12px;
+  padding: 3px;
+  color: #af2d54;
   div {
     margin-top: 7px;
     margin-bottom: 7px;
