@@ -1,9 +1,10 @@
+import React from "react";
 import styled from "styled-components"
 import { Github } from "@styled-icons/bootstrap/Github";
 import { Portfolio } from "@styled-icons/zondicons/Portfolio"
 import { Linkedin } from "@styled-icons/bootstrap/Linkedin"
 import { Email } from "@styled-icons/material/Email"
-
+import NurburgringSVG from "./NurburgringSVG";
 
 const Footer = () => {
 
@@ -13,55 +14,65 @@ const Footer = () => {
             <Background> 
                 <InfoWrapper>
                     <InfoHead>
-                        <h1>Tread && Track</h1>
-                        <About>
-                            <p>About: </p>
-                            <IconWrapper>
-                                <a href="https://github.com/Versayce/TreadAndTrack"><GitHubIcon /></a>  
-                                <a href="https://github.com/Versayce/TreadAndTrack">GitHub Repository</a>
-                            </IconWrapper>
-                        </About>
-                        <EmailInfo>
-                            <p>Contact:</p>
-                            <IconWrapper>
-                                <a href="mailTo: castro.alex@asu.edu">
-                                    <EmailIcon />
-                                </a>  
-                                <a href="https://github.com/versayce">Email</a>
-                            </IconWrapper>
-                        </EmailInfo>
-                        <Icons>
-                            <p>Connect:</p> 
-                            <IconWrapper>
-                                <a href="https://www.linkedin.com/in/fullstackcastro/">
-                                    <LinkedInIcon />
-                                </a>
-                                <a href="https://www.linkedin.com/in/fullstackcastro/">LinkedIn</a>
-                            </IconWrapper>
-                            <IconWrapper>
-                                <a href="https://versayce.github.io/">
-                                    <PortfolioIcon />
-                                </a>
-                                <a href="https://versayce.github.io/">Portfolio</a>
-                            </IconWrapper>
-                            <IconWrapper>
-                                <a href="https://github.com/versayce">
-                                    <GitHubIcon />
-                                </a>  
-                                <a href="https://github.com/versayce">GitHub</a>
-                            </IconWrapper>
-                        </Icons>
+                        <MainInfo>
+                            <h1>Tread && Track</h1>
+                            <About>
+                                <p>About: </p>
+                                <IconWrapper>
+                                    <a href="https://github.com/Versayce/TreadAndTrack"><GitHubIcon /></a>  
+                                    <a href="https://github.com/Versayce/TreadAndTrack">GitHub Repository</a>
+                                </IconWrapper>
+                            </About>
+                            <EmailInfo>
+                                <p>Contact: </p>
+                                <IconWrapper>
+                                    <a href="mailTo: castro.alex@asu.edu">
+                                        <EmailIcon />
+                                    </a>  
+                                    <a href="https://github.com/versayce">Email</a>
+                                </IconWrapper>
+                            </EmailInfo>
+                            <Icons>
+                                <p>Connect: </p> 
+                                <IconWrapper>
+                                    <a href="https://www.linkedin.com/in/fullstackcastro/">
+                                        <LinkedInIcon />
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/fullstackcastro/">LinkedIn</a>
+                                </IconWrapper>
+                                <IconWrapper>
+                                    <a href="https://versayce.github.io/">
+                                        <PortfolioIcon />
+                                    </a>
+                                    <a href="https://versayce.github.io/">Portfolio</a>
+                                </IconWrapper>
+                                <IconWrapper>
+                                    <a href="https://github.com/versayce">
+                                        <GitHubIcon />
+                                    </a>  
+                                    <a href="https://github.com/versayce">GitHub</a>
+                                </IconWrapper>
+                            </Icons>
+                            <AuthorCopyright>
+                                <h3>Versayce</h3>
+                                <p>Copyright © Alex Castro</p>
+                            </AuthorCopyright>
+                        </MainInfo>
                     </InfoHead>
-
-                    <AuthorCopywright>
-                        <h3>Versayce</h3>
-                        <p>Copywright © Alex Castro</p>
-                    </AuthorCopywright>
                 </InfoWrapper>
+
+                <StyleWrapper>
+                    <SVG><NurburgringSVG /></SVG>
+                </StyleWrapper>
             </Background>
         </>
     )
 }
+
+const SVG = styled.div`
+    fill: white;
+    width: 300px;
+`
 
 const LinkedInIcon = styled(Linkedin)`
     width: 20px;
@@ -82,39 +93,42 @@ const EmailIcon = styled(Email)`
 
 const Background = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 350px;
+    width: 100vw;
+    height: fit-content;
     margin-top: 10vh;
     background-image: linear-gradient(to bottom, #1f1f1f, #212121, #232323, #252525, #272727, #282828, #292929, #2a2a2a, #2a2a2a, #292a29, #292929, #292929);
-    `
+`
 
 const InfoWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     align-content: flex-start;
-    justify-content: center;
-    width: 70%;
-    margin-bottom: 10px;
-    color: #ffffff;
-    gap: 10px;
-`
-
-const InfoHead = styled.div`
-    font-weight: 200 !important;
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
+    width: 40%;
     margin-top: 5vh;
-    width: 100%;
+    margin-bottom: 2vh;
     p {
-        width: 80px;
+        width: 90px;
         margin-right: 1vw;
         color: #aaaaaa;
     }
+`
+
+const StyleWrapper = styled.div`
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+`
+
+const MainInfo = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2vh;
     a {
         margin-right: 9px;
         color: #ffffff4b;
@@ -128,6 +142,12 @@ const InfoHead = styled.div`
         margin-bottom: 3vh;
         color: #8a2339d1;
     }
+`
+
+const InfoHead = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 const About = styled.div`
@@ -145,7 +165,7 @@ const Icons = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    width: 80%;
+    width: 100%;
 `
 
 const IconWrapper = styled.div`
@@ -172,11 +192,14 @@ const IconWrapper = styled.div`
     }
 `
 
-const AuthorCopywright = styled.div`
-    margin-top: 5vh;
-    color: #464646;
+const AuthorCopyright = styled.div`
+    width: 100%;
+    color: #585858;
+    margin-top: 1vh;
     p {
+        width: 100%;
         font-size: 10pt;
+        color: #585858;
     }
 `
 
