@@ -2,31 +2,31 @@ import styled from "styled-components";
 import { useState } from "react";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
-const isValid = (value, pattern, setInputError) => {
+const isValid = (value, pattern, errorHandler) => {
     const regex = new RegExp(pattern);
     const result = regex.test(value);
-    setInputError?.(result);
-    console.log(`Input Error for pattern ${pattern} set as:` , result)
+    console.log(`Input Error for pattern ${pattern} set as:` , !result)
+    errorHandler?.(!result);
     return !result;
 };
 
-const hasError = (addressError, inputError) => {
-    if (addressError === true || inputError === true) {
-        return true;
+const hasError = (errorStatus) => {
+    if (errorStatus === true) {
+        return false;
     }
 };
 
 const FormInputs = (props) => {
     const [focused, setFocused] = useState(false);
-    const [apiError, setApiError] = useState(null);
+    const [apiError, setApiError] = useState(false);
+    const [apiErrorMessage, setApiErrorMessage] = useState("")
+    //Destructuring props passed
     const {
         label, 
         errorMessage, 
         onChange, 
-        addressError,
-        setAddressError,
-        inputError,
-        setInputError,
+        errorHandler,
+        errorStatus,
         setLat,
         setLng,
         required, 
@@ -39,7 +39,6 @@ const FormInputs = (props) => {
     
     const handleFocus = (e) => {
         setFocused(true);
-        // console.log("FOCUS: ", focused)
     };
 
     const handleChange = (e) => {
@@ -47,13 +46,15 @@ const FormInputs = (props) => {
     };
 
     const handlePlacesChange = (value) => {
-        setAddressError(true);
         onChange?.(value);
+        errorHandler?.(true);
     };
 
     const onApiError = (status, clearSuggestions) => {
-        setApiError("No matching addresses found")
-        console.log('Google Maps API returned error with status: ', status)
+        setApiError(true)
+        if(status === "ZERO_RESULTS") {
+            setApiErrorMessage("No matching addresses found")
+        }
         clearSuggestions();
     };
 
@@ -65,7 +66,7 @@ const FormInputs = (props) => {
         setLat?.(latLng.lat);
         setLng?.(latLng.lng);
         onChange?.(results[0].formatted_address);
-        setAddressError(false);
+        errorHandler?.(false);
     };
 
     const renderInputs = (type) => {
@@ -124,11 +125,11 @@ const FormInputs = (props) => {
                                         required: required,
                                         pattern: pattern,
                                         onBlur: handleFocus,
-                                        // style: style,
                                     })} />
                                     <ListWrapper>
                                         <SuggestionList>
-                                            {loading ? <Loader>Loading...</Loader> : null}
+                                            {apiError ? <ApiError>{apiErrorMessage}</ApiError> : null}
+                                            {loading ? <Loader>Loading Results...</Loader> : null}
                                             {suggestions.map((suggestion) => {
                                                 const style = {
                                                     backgroundColor: suggestion.active ? '#bd345d' : '#fff',
@@ -163,7 +164,7 @@ const FormInputs = (props) => {
                 <label>{label}</label>
             </Test>
             {renderInputs(type)}
-            {(isValid(value, pattern, setInputError) || hasError(addressError, inputError)) && focused ? <span>{errorMessage}</span> : <span></span>}
+            {(isValid(value, pattern, errorHandler) || hasError(errorStatus)) && focused ? <span>{errorMessage}</span> : <span></span>}
         </FormInput>
     )
 }
@@ -236,7 +237,10 @@ const ListWrapper = styled.div`
 const SuggestionList = styled.ul`
     width: 80%;
     position: absolute;
+    justify-content: center;
     list-style-type: none;
+    z-index: 3;
+    cursor: pointer;
 `
 
 const SuggestionListElement = styled.li`
@@ -255,7 +259,36 @@ const SuggestionListElement = styled.li`
 `
 
 const Loader = styled.div`
-    font-family: Arial, Helvetica, sans-serif;
-    color: #ffffff;
+    display: flex;
     font-size: 12px;
+    width: 100%;
+    padding: 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: #0000002b solid 1px;
+    border-left: #0000002b solid 1px;
+    border-right: #0000002b solid 1px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #008c9e;
+    background-color: #ffffff;
+    font-size: 12px;
+`
+
+const ApiError = styled.div`
+    display: flex;
+    font-size: 12px;
+    width: 100%;
+    padding: 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: #0000002b solid 1px;
+    border-left: #0000002b solid 1px;
+    border-right: #0000002b solid 1px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #bd345d;
+    background-color: #ffffff;
+    font-size: 12px;
+    border-radius: 0 0 10px 10px;
 `

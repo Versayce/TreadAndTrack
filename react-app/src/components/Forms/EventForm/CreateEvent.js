@@ -12,19 +12,23 @@ import Footer from "../../Home/Footer"
 
 const EventForm = () => {
     const history = useHistory();
+    const dispatch = useDispatch();
+    //State Vars
     const currentUser = useSelector(state => state.session.user);
     const ownerId = currentUser.id;
-
-    const dispatch = useDispatch();
+    //Form Input Vars
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
-    const [addressError, setAddressError] = useState(false);
-    const [inputError, setInputError] = useState(false);
     const [lat, setLat] = useState(null);
     const [lng, setLng] = useState(null);
     const [description, setDescription] = useState("");
     const [image_url, setImageUrl] = useState("");
-
+    //Error Handling Vars
+    const [nameError, setNameError] = useState(false);
+    const [imageError, setImageError] = useState(false);
+    const [addressError, setAddressError] = useState(false);
+    const [descriptionError, setDescriptionError] = useState(false);
+    
     const formData = {
         name,
         address,
@@ -42,10 +46,11 @@ const EventForm = () => {
             type: "text",
             placeholder: "Enter Event Name",
             errorMessage: "Name should be 3-30 characters",
-            setInputError: setInputError,
+            errorHandler: setNameError,
+            errorStatus: nameError,
             label: "Event Name",
             required: true,
-            pattern: "^[A-Za-z0-9 ]{3,20}$",
+            pattern: "^[A-Za-z0-9&#! ]{3,20}$",
             onChange: setName,
             value: name,
         },
@@ -55,7 +60,8 @@ const EventForm = () => {
             type: "text",
             placeholder: "Enter Image URL",
             errorMessage: "Enter a URL containing https://",
-            setInputError: setInputError,
+            errorHandler: setImageError,
+            errorStatus: imageError,
             label: "Banner Image",
             required: true,
             pattern: "^https?://.*",
@@ -68,13 +74,13 @@ const EventForm = () => {
             type: "google-places",
             placeholder: "Enter Address",
             errorMessage: "Please select an address from the dropdown menu",
+            errorHandler: setAddressError,
+            errorStatus: addressError,
             label: "Event Address",
             required: true,
             pattern: "^[A-Za-z0-9#,. ]{6,1000}$",
             onChange: setAddress,
             address: address,
-            addressError: addressError,
-            setAddressError: setAddressError,
             setLat: setLat,
             setLng: setLng,
             value: address,
@@ -85,10 +91,11 @@ const EventForm = () => {
             type: "textarea",
             placeholder: "Description",
             errorMessage: "Max length 700",
-            setInputError: setInputError,
+            errorHandler: setDescriptionError,
+            errorStatus: descriptionError,
             label: "Description",
             required: false,
-            pattern: "^[A-Za-z0-9.,! ]{0,700}$",
+            pattern: "^[A-Za-z0-9.,!& ]{0,700}$",
             onChange: setDescription,
             value: description,
         }
@@ -96,11 +103,16 @@ const EventForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // if (addressError === false && inputError === false) {
+        if (
+                nameError === false && 
+                imageError === false && 
+                addressError === false && 
+                descriptionError === false
+            ) {
             await dispatch(createEvent(formData)) 
             await dispatch(getAllEvents())
             history.push("/")
-        // }
+        }
     };
 
     return (
