@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import TextEditor from "../TextEditor";
 
 const isValid = (value, pattern, errorHandler) => {
     const regex = new RegExp(pattern);
@@ -12,7 +13,7 @@ const isValid = (value, pattern, errorHandler) => {
 
 const hasError = (errorStatus) => {
     if (errorStatus === true) {
-        return true;
+        return !true;
     }
 };
 
@@ -21,7 +22,7 @@ const FormInputs = (props) => {
     const [blur, setBlur] = useState(false);
     const [apiError, setApiError] = useState(false);
     const [apiErrorMessage, setApiErrorMessage] = useState("")
-    //Destructuring props passed
+    //Destructuring props passed from form components
     const {
         label, 
         errorMessage, 
@@ -100,18 +101,21 @@ const FormInputs = (props) => {
             case "textarea":
                 {
                     return (
-                        <textarea 
-                            name={name}
-                            type={type}
-                            placeholder={placeholder}
-                            required={required}
-                            pattern={pattern}
-                            onChange={handleChange} 
-                            onBlur={handleBlur} 
-                            onFocus={handleFocus}
-                            focused={focused.toString()} 
-                            value={value}
-                        />
+                        // <textarea 
+                        //     name={name}
+                        //     type={type}
+                        //     placeholder={placeholder}
+                        //     required={required}
+                        //     pattern={pattern}
+                        //     onChange={handleChange} 
+                        //     onBlur={handleBlur} 
+                        //     onFocus={handleFocus}
+                        //     focused={focused.toString()} 
+                        //     value={value}
+                        // />
+                        <TextEditorWrapper>
+                            <TextEditor />
+                        </TextEditorWrapper>
                     );
                 };
 
@@ -183,7 +187,7 @@ export default FormInputs;
 
 const Test = styled.div`
     box-sizing: border-box;
-    width: 90%;
+    width: 92%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -225,6 +229,12 @@ const FormInput = styled.div`
         margin-bottom: 10px;
         color: #af2d54;
     }
+`
+
+const TextEditorWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
 `
 
 const GoogleInput = styled.div`
