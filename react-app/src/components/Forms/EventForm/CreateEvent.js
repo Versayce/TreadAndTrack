@@ -78,7 +78,7 @@ const EventForm = () => {
             errorStatus: addressError,
             label: "Event Address",
             required: true,
-            pattern: "^[A-Za-z0-9#,. ]{6,1000}$",
+            // pattern: "^[A-Za-z0-9#,. ]{6,1000}$",
             onChange: setAddress,
             address: address,
             setLat: setLat,
@@ -118,7 +118,7 @@ const EventForm = () => {
     return (
         <FormWrapper>
             <NavBar />
-            <Form onSubmit={handleSubmit} >
+            <Form onSubmit={handleSubmit} noValidate>
                 <Header>Host Event</Header>
                     {inputs.map((input) => (
                         <FormInputs key={`${input.id}frm-ipt`} {...input} />

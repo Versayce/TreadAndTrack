@@ -19,7 +19,6 @@ const hasError = (errorStatus) => {
 const FormInputs = (props) => {
     const [focused, setFocused] = useState(false);
     const [blur, setBlur] = useState(false);
-    const [wasFocused, setWasFocused] = useState(false);
     const [apiError, setApiError] = useState(false);
     const [apiErrorMessage, setApiErrorMessage] = useState("")
     //Destructuring props passed
@@ -46,7 +45,6 @@ const FormInputs = (props) => {
 
     const handleFocus = (e) => {
         setFocused(true);
-        setWasFocused(true);
     };
 
     const handleChange = (e) => {
@@ -62,8 +60,8 @@ const FormInputs = (props) => {
     const onApiError = (status, clearSuggestions) => {
         setApiError(true)
         if(status === "ZERO_RESULTS") {
-            setApiErrorMessage("No matching addresses found")
-        }
+            setApiErrorMessage("No matching addresses found");
+        };
         clearSuggestions();
     };
 
@@ -75,12 +73,11 @@ const FormInputs = (props) => {
         setLat?.(latLng.lat);
         setLng?.(latLng.lng);
         onChange?.(results[0].formatted_address);
-        setApiError(false)
+        setApiError(false);
         errorHandler?.(false);
     };
 
     const renderInputs = (type) => {
-        //TODO edit prop assignment 
         switch (type) {
             case "text":
                 {
@@ -171,19 +168,18 @@ const FormInputs = (props) => {
         }
     };
 
-
     return (
         <FormInput > 
             <Test>
                 <label>{label}</label>
             </Test>
             {renderInputs(type)}
-            {(isValid(value, pattern, errorHandler) || hasError(errorStatus)) && blur ? <span>{errorMessage}</span> : <span></span>}
+            {(hasError(errorStatus) && blur) || (isValid(value, pattern, errorHandler) && blur)  ? <span>{errorMessage}</span> : <span></span>}
         </FormInput>
-    )
-}
+    );
+};
 
-export default FormInputs
+export default FormInputs;
 
 const Test = styled.div`
     box-sizing: border-box;
