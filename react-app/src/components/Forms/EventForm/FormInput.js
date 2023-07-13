@@ -18,6 +18,7 @@ const hasError = (errorStatus) => {
 
 const FormInputs = (props) => {
     const [focused, setFocused] = useState(false);
+    const [wasFocused, setWasFocused] = useState(false);
     const [apiError, setApiError] = useState(false);
     const [apiErrorMessage, setApiErrorMessage] = useState("")
     //Destructuring props passed
@@ -37,16 +38,22 @@ const FormInputs = (props) => {
         type, 
         placeholder } = props;
     
+    const handleBlur = (e) => {
+        setFocused(false);
+    };
+
     const handleFocus = (e) => {
         setFocused(true);
+        setWasFocused(true);
     };
 
     const handleChange = (e) => {
         onChange?.(e.target.value);
     };
-
+    
     const handlePlacesChange = (value) => {
         onChange?.(value);
+        setApiError(false)
         errorHandler?.(true);
     };
 
@@ -66,6 +73,7 @@ const FormInputs = (props) => {
         setLat?.(latLng.lat);
         setLng?.(latLng.lng);
         onChange?.(results[0].formatted_address);
+        setApiError(false)
         errorHandler?.(false);
     };
 
@@ -83,7 +91,8 @@ const FormInputs = (props) => {
                             required={required}
                             pattern={pattern}
                             onChange={handleChange} 
-                            onBlur={handleFocus} 
+                            onBlur={handleBlur} 
+                            onFocus={handleFocus}
                             focused={focused.toString()} 
                         />
                     );
@@ -99,7 +108,8 @@ const FormInputs = (props) => {
                             required={required}
                             pattern={pattern}
                             onChange={handleChange} 
-                            onBlur={handleFocus} 
+                            onBlur={handleBlur} 
+                            onFocus={handleFocus}
                             focused={focused.toString()} 
                             value={value}
                         />
@@ -115,6 +125,8 @@ const FormInputs = (props) => {
                             onChange={handlePlacesChange}
                             onSelect={handleSelect}
                             onError={onApiError}
+                            onBlur={handleBlur} 
+                            onFocus={handleFocus}
                         >
                             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                                 <GoogleInput>
@@ -128,7 +140,7 @@ const FormInputs = (props) => {
                                     })} />
                                     <ListWrapper>
                                         <SuggestionList>
-                                            {apiError ? <ApiError>{apiErrorMessage}</ApiError> : null}
+                                            {apiError && wasFocused ? <ApiError>{apiErrorMessage}</ApiError> : null}
                                             {loading ? <Loader>Loading Results...</Loader> : null}
                                             {suggestions.map((suggestion) => {
                                                 const style = {
@@ -164,7 +176,7 @@ const FormInputs = (props) => {
                 <label>{label}</label>
             </Test>
             {renderInputs(type)}
-            {(isValid(value, pattern, errorHandler) || hasError(errorStatus)) && focused ? <span>{errorMessage}</span> : <span></span>}
+            {(isValid(value, pattern, errorHandler) || hasError(errorStatus)) && wasFocused ? <span>{errorMessage}</span> : <span></span>}
         </FormInput>
     )
 }
