@@ -24,41 +24,41 @@ const Footer = () => {
                                     <a href="mailTo: castro.alex@asu.edu">
                                         <EmailIcon />
                                     </a>  
-                                    <a href="https://github.com/versayce">Email</a>
+                                    <a href="mailTo: castro.alex@asu.edu">Email</a>
                                 </IconWrapper>
                             </About>
 
                             <Icons>
                                 <p>Connect with me: </p> 
                                 <IconWrapper>
-                                    <a href="https://www.linkedin.com/in/fullstackcastro/">
+                                    <a href="https://www.linkedin.com/in/fullstackcastro/" target="_blank">
                                         <LinkedInIcon />
                                     </a>
-                                    <a href="https://www.linkedin.com/in/fullstackcastro/">LinkedIn</a>
+                                    <a href="https://www.linkedin.com/in/fullstackcastro/" target="_blank">LinkedIn</a>
                                 </IconWrapper>
                                 <IconWrapper>
-                                    <a href="https://github.com/versayce">
+                                    <a href="https://github.com/versayce" target="_blank">
                                         <GitHubIcon />
                                     </a>  
-                                    <a href="https://github.com/versayce">GitHub</a>
+                                    <a href="https://github.com/versayce" target="_blank">GitHub</a>
                                 </IconWrapper>
                             </Icons>
 
                             <About>
                                 <p>More of my work: </p>
                                 <IconWrapper>
-                                    <a href="https://versayce.github.io/">
+                                    <a href="https://versayce.github.io/" target="_blank">
                                         <PortfolioIcon />
                                     </a>
-                                    <a href="https://versayce.github.io/">Portfolio</a>
+                                    <a href="https://versayce.github.io/" target="_blank">Portfolio</a>
                                 </IconWrapper>
                             </About>
 
                             <About>
                                 <p>Codebase: </p>
                                 <IconWrapper>
-                                    <a href="https://github.com/Versayce/TreadAndTrack"><GitHubIcon /></a>  
-                                    <a href="https://github.com/Versayce/TreadAndTrack">Application GitHub Repository</a>
+                                    <a href="https://github.com/Versayce/TreadAndTrack" target="_blank"><GitHubIcon /></a>  
+                                    <a href="https://github.com/Versayce/TreadAndTrack" target="_blank">Application GitHub Repository</a>
                                 </IconWrapper>
                             </About>
 
