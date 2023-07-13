@@ -15,7 +15,7 @@ const Footer = () => {
                         <MainInfo>
                             <Header>
                                 <h1>Tread && Track</h1>
-                                <p>Created By: Alex Castro</p>  
+                                <p>Project Created By: Alex Castro</p>  
                             </Header>
                             
                             <About>
