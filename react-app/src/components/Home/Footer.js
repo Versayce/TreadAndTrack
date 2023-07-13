@@ -71,16 +71,19 @@ const Footer = () => {
                 </InfoWrapper>
 
                 <StyleWrapper>
-                    <SVG><NurburgringSVG /></SVG>
+                    <SVG href="https://github.com/Versayce/TreadAndTrack" target="blank"><NurburgringSVG /></SVG>
                 </StyleWrapper>
             </Background>
         </>
     )
 }
 
-const SVG = styled.div`
+const SVG = styled.a`
     fill: #b6b6b6;
     width: 300px;
+    :hover {
+        fill: #8a2339e4;
+    }
 `
 const LinkedInIcon = styled(Linkedin)`
     width: 20px;
@@ -136,7 +139,7 @@ const MainInfo = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 3vh;
+    gap: 25px;
     a {
         margin-right: 9px;
         color: #ffffff4b;
@@ -151,12 +154,12 @@ const Header = styled.div`
     margin-bottom: 2vh;
     h1 {
         letter-spacing: .4rem;
-        color: #8a2339d1;
+        color: #8a2339e4;
     }
     p {
         width: 100%;
         font-size: 10pt;
-        color: #ffffff45;
+        color: #ffffff44;
         margin-top: 5px;
     }
 `
