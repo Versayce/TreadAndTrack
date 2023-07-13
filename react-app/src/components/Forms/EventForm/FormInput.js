@@ -174,7 +174,7 @@ const FormInputs = (props) => {
                 <label>{label}</label>
             </Test>
             {renderInputs(type)}
-            {(hasError(errorStatus) && blur) || (isValid(value, pattern, errorHandler) && blur)  ? <span>{errorMessage}</span> : <span></span>}
+            {(hasError(errorStatus) && blur) || (isValid(value, pattern, errorHandler) && blur) ? <span>{errorMessage}</span> : <span></span>}
         </FormInput>
     );
 };
