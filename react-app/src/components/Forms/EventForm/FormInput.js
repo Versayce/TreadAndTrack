@@ -12,12 +12,13 @@ const isValid = (value, pattern, errorHandler) => {
 
 const hasError = (errorStatus) => {
     if (errorStatus === true) {
-        return false;
+        return true;
     }
 };
 
 const FormInputs = (props) => {
     const [focused, setFocused] = useState(false);
+    const [blur, setBlur] = useState(false);
     const [wasFocused, setWasFocused] = useState(false);
     const [apiError, setApiError] = useState(false);
     const [apiErrorMessage, setApiErrorMessage] = useState("")
@@ -40,6 +41,7 @@ const FormInputs = (props) => {
     
     const handleBlur = (e) => {
         setFocused(false);
+        setBlur(true);
     };
 
     const handleFocus = (e) => {
@@ -52,9 +54,9 @@ const FormInputs = (props) => {
     };
     
     const handlePlacesChange = (value) => {
-        onChange?.(value);
-        setApiError(false)
         errorHandler?.(true);
+        onChange?.(value);
+        setApiError?.(false);
     };
 
     const onApiError = (status, clearSuggestions) => {
@@ -136,11 +138,11 @@ const FormInputs = (props) => {
                                         placeholder: placeholder, 
                                         required: required,
                                         pattern: pattern,
-                                        onBlur: handleFocus,
+                                        onBlur: handleBlur,
                                     })} />
                                     <ListWrapper>
                                         <SuggestionList>
-                                            {apiError && wasFocused ? <ApiError>{apiErrorMessage}</ApiError> : null}
+                                            {apiError ? <ApiError>{apiErrorMessage}</ApiError> : null}
                                             {loading ? <Loader>Loading Results...</Loader> : null}
                                             {suggestions.map((suggestion) => {
                                                 const style = {
@@ -176,7 +178,7 @@ const FormInputs = (props) => {
                 <label>{label}</label>
             </Test>
             {renderInputs(type)}
-            {(isValid(value, pattern, errorHandler) || hasError(errorStatus)) && wasFocused ? <span>{errorMessage}</span> : <span></span>}
+            {(isValid(value, pattern, errorHandler) || hasError(errorStatus)) && blur ? <span>{errorMessage}</span> : <span></span>}
         </FormInput>
     )
 }
