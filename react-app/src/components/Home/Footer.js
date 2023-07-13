@@ -4,7 +4,7 @@ import { Github } from "@styled-icons/bootstrap/Github";
 import { Portfolio } from "@styled-icons/zondicons/Portfolio"
 import { Linkedin } from "@styled-icons/bootstrap/Linkedin"
 import { Email } from "@styled-icons/material/Email"
-import NurburgringSVG from "./NurburgringSVG";
+import NurburgringSVG from "./NurburgringSVG.js";
 
 const Footer = () => {
     return (
