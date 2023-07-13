@@ -7,44 +7,34 @@ import { Email } from "@styled-icons/material/Email"
 import NurburgringSVG from "./NurburgringSVG";
 
 const Footer = () => {
-
-
     return (
         <>
             <Background> 
                 <InfoWrapper>
                     <InfoHead>
                         <MainInfo>
-                            <h1>Tread && Track</h1>
+                            <Header>
+                                <h1>Tread && Track</h1>
+                                <p>Created By: Alex Castro</p>  
+                            </Header>
+                            
                             <About>
-                                <p>About: </p>
-                                <IconWrapper>
-                                    <a href="https://github.com/Versayce/TreadAndTrack"><GitHubIcon /></a>  
-                                    <a href="https://github.com/Versayce/TreadAndTrack">GitHub Repository</a>
-                                </IconWrapper>
-                            </About>
-                            <EmailInfo>
-                                <p>Contact: </p>
+                                <p>Contact me: </p>
                                 <IconWrapper>
                                     <a href="mailTo: castro.alex@asu.edu">
                                         <EmailIcon />
                                     </a>  
                                     <a href="https://github.com/versayce">Email</a>
                                 </IconWrapper>
-                            </EmailInfo>
+                            </About>
+
                             <Icons>
-                                <p>Connect: </p> 
+                                <p>Connect with me: </p> 
                                 <IconWrapper>
                                     <a href="https://www.linkedin.com/in/fullstackcastro/">
                                         <LinkedInIcon />
                                     </a>
                                     <a href="https://www.linkedin.com/in/fullstackcastro/">LinkedIn</a>
-                                </IconWrapper>
-                                <IconWrapper>
-                                    <a href="https://versayce.github.io/">
-                                        <PortfolioIcon />
-                                    </a>
-                                    <a href="https://versayce.github.io/">Portfolio</a>
                                 </IconWrapper>
                                 <IconWrapper>
                                     <a href="https://github.com/versayce">
@@ -53,9 +43,28 @@ const Footer = () => {
                                     <a href="https://github.com/versayce">GitHub</a>
                                 </IconWrapper>
                             </Icons>
+
+                            <About>
+                                <p>More of my work: </p>
+                                <IconWrapper>
+                                    <a href="https://versayce.github.io/">
+                                        <PortfolioIcon />
+                                    </a>
+                                    <a href="https://versayce.github.io/">Portfolio</a>
+                                </IconWrapper>
+                            </About>
+
+                            <About>
+                                <p>Codebase: </p>
+                                <IconWrapper>
+                                    <a href="https://github.com/Versayce/TreadAndTrack"><GitHubIcon /></a>  
+                                    <a href="https://github.com/Versayce/TreadAndTrack">Application GitHub Repository</a>
+                                </IconWrapper>
+                            </About>
+
                             <AuthorCopyright>
                                 <h3>Versayce</h3>
-                                <p>Copyright © Alex Castro</p>
+                                <p>©2023 Alex Castro</p>
                             </AuthorCopyright>
                         </MainInfo>
                     </InfoHead>
@@ -70,25 +79,24 @@ const Footer = () => {
 }
 
 const SVG = styled.div`
-    fill: white;
+    fill: #b6b6b6;
     width: 300px;
 `
-
 const LinkedInIcon = styled(Linkedin)`
     width: 20px;
-    color: #ffffff;
+    color: #c5c5c5;
 `
 const GitHubIcon = styled(Github)`
     width: 20px;
-    color: #ffffff;
+    color: #c5c5c5;
 `
 const PortfolioIcon = styled(Portfolio)`
     width: 20px;
-    color: #ffffff;
+    color: #c5c5c5;
 `
 const EmailIcon = styled(Email)`
     width: 20px;
-    color: #ffffff;
+    color: #c5c5c5;
 `
 
 const Background = styled.div`
@@ -110,9 +118,9 @@ const InfoWrapper = styled.div`
     margin-top: 5vh;
     margin-bottom: 2vh;
     p {
-        width: 90px;
+        width: 140px;
         margin-right: 1vw;
-        color: #aaaaaa;
+        color: #999999;
     }
 `
 
@@ -128,7 +136,7 @@ const MainInfo = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 2vh;
+    gap: 3vh;
     a {
         margin-right: 9px;
         color: #ffffff4b;
@@ -137,10 +145,19 @@ const MainInfo = styled.div`
     a:hover {
         color: #bd345d;
     }
+    `
+
+const Header = styled.div`
+    margin-bottom: 2vh;
     h1 {
         letter-spacing: .4rem;
-        margin-bottom: 3vh;
         color: #8a2339d1;
+    }
+    p {
+        width: 100%;
+        font-size: 10pt;
+        color: #ffffff45;
+        margin-top: 5px;
     }
 `
 
@@ -151,11 +168,6 @@ const InfoHead = styled.div`
 `
 
 const About = styled.div`
-    display: flex;
-    flex-direction: row;
-`
-
-const EmailInfo = styled.div`
     display: flex;
     flex-direction: row;
 `
@@ -172,7 +184,6 @@ const IconWrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    color: #ffffff;
     margin-right: 1.5vw;
     cursor: pointer;
     :hover a {
@@ -194,15 +205,13 @@ const IconWrapper = styled.div`
 
 const AuthorCopyright = styled.div`
     width: 100%;
-    color: #585858;
+    color: #585858ad;
     margin-top: 1vh;
     p {
         width: 100%;
         font-size: 10pt;
-        color: #585858;
+        color: #585858ad;
     }
 `
-
-
 
 export default Footer
