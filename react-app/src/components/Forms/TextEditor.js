@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react"
 
 const TextEditor = ( props ) => {
@@ -16,8 +16,6 @@ const TextEditor = ( props ) => {
         placeholder,
     } = props;
 
-    console.log("PROPS: ", props);
-
     return (
         <Editor 
             apiKey="0odlwwnxu0rcj0rpw4zx4vdpztu7bvb36smfhl44l4lhdlsq"
@@ -29,7 +27,6 @@ const TextEditor = ( props ) => {
             }}
             // initialValue={placeholder}
             value={value}
-            // onChange={onChange}
             onEditorChange={onChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
