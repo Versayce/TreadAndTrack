@@ -60,8 +60,9 @@ function EventPage() {
             </HeaderWrapper>}
             <EventBody>
                 <EventInfoWrapper>
-                    <StyledDescription>{event?.description}</StyledDescription>
+                    <StyledDescription dangerouslySetInnerHTML={{ __html: event?.description }}></StyledDescription>
                     <LocationInfo>
+                        <p>Address:</p>
                         <p>{event?.address}</p>
                     </LocationInfo>
                     {event && <EventCommentsSection />}
@@ -76,11 +77,6 @@ function EventPage() {
     ); 
 }
 
-const StyledDescription = styled.div`
-    word-wrap: break-word;
-    font-size: 14pt;
-    margin-left: 40px;
-`
 
 const LocationInfo = styled.div`
     word-wrap: break-word;
@@ -88,8 +84,7 @@ const LocationInfo = styled.div`
     margin: 10px;
     color: #919191;
     font-style: italic;
-    margin-top: 60px;
-`
+    `
 
 const HeaderWrapper = styled.div`
     display: flex;
@@ -97,27 +92,52 @@ const HeaderWrapper = styled.div`
     align-items: center;
     background: linear-gradient(to top, #f0f0f0, #f8f8f8); 
     border-radius: 0 0 30px 30px;
-`
+    h1 {
+        font-size: 40pt;
+        align-items: flex-start;
+        margin: 40px 0;
+        margin-left: 25px;
+        color: #27000c;
+    }
+    `
 
 const EventBody = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
-    margin-top: 100px;
+    margin-top: 50px;
 `
 
 const EventInfoWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
+    margin: 0 0 0 3%;
+`
+
+const StyledDescription = styled.div`
+    margin-left: 0px;
+    h1 {
+        margin: 20px 0 20px 0;
+    }
+    h2 {
+
+    }
+    h3 {
+
+    }
+    p {
+        word-wrap: break-word;
+        font-size: 14pt;
+        margin: 10px 0px 10px 0px;
+    }
 `
 
 const MapWrapper = styled.div`
-    width: 50%;
+    width: 40%;
     height: 500px;
     border-radius: 20px;
-    margin-left: 5%;
-    margin-right: 40px;
+    margin: 120px 3% 0px 3%;
 `
 
 const Wrapper = styled.div`
@@ -127,20 +147,6 @@ const Wrapper = styled.div`
     width: 70%;
     margin-left: 15%;
     margin-right: 15%;
-    & h1 {
-        font-size: 40pt;
-        align-items: flex-start;
-        margin: 40px 0;
-        margin-left: 25px;
-        color: #27000c;
-    }
-    & p {
-        max-width: 850px;
-        word-wrap: break-word;
-        font-size: 14pt;
-        margin: 10px;
-        margin-left: 30px;
-    }
 `
 
 const EventImage = styled.img`

@@ -1,6 +1,6 @@
 import FormInputs from "./FormInput"
 import styled from "styled-components"
-import { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { createEvent, getAllEvents } from "../../../store/event"
 import { useSelector } from "react-redux"
@@ -28,7 +28,7 @@ const EventForm = () => {
     const [imageError, setImageError] = useState(false);
     const [addressError, setAddressError] = useState(false);
     const [descriptionError, setDescriptionError] = useState(false);
-    
+    //Object sent to api for storing in DB
     const formData = {
         name,
         address,
@@ -38,7 +38,7 @@ const EventForm = () => {
         "banner_image_url": image_url,
         "owner_id": ownerId,
     };
-
+    //Inputs array for FormInput component 
     const inputs = [
         {
             id: 1,
@@ -93,9 +93,9 @@ const EventForm = () => {
             errorMessage: "Max length 700",
             errorHandler: setDescriptionError,
             errorStatus: descriptionError,
-            label: "Description",
+            label: "Event Description",
             required: false,
-            pattern: "^[A-Za-z0-9.,!& ]{0,700}$",
+            // pattern: "^[A-Za-z0-9.,!& ]{0,700}$",
             onChange: setDescription,
             value: description,
         }
@@ -148,7 +148,7 @@ const Form = styled.form`
     justify-content: center;
     align-content: center;
     align-items: center;
-    width: 30%;
+    width: 50%;
     padding: 4vh 0vw 4vh 0vw;
     margin: 200px 0 200px 0px;
     border-radius: 10px;

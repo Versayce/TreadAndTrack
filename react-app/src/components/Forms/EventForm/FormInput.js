@@ -6,7 +6,6 @@ import TextEditor from "../TextEditor";
 const isValid = (value, pattern, errorHandler) => {
     const regex = new RegExp(pattern);
     const result = regex.test(value);
-    console.log(`Input Error for pattern ${pattern} set as:` , !result)
     errorHandler?.(!result);
     return !result;
 };
@@ -51,6 +50,10 @@ const FormInputs = (props) => {
     const handleChange = (e) => {
         onChange?.(e.target.value);
     };
+
+    const handleEditorChange = (value) => {
+        onChange?.(value);
+    }
     
     const handlePlacesChange = (value) => {
         errorHandler?.(true);
@@ -100,22 +103,19 @@ const FormInputs = (props) => {
 
             case "textarea":
                 {
-                    return (
-                        <textarea 
+                    return ( 
+                        <TextEditor 
                             name={name}
                             type={type}
+                            value={value}
                             placeholder={placeholder}
                             required={required}
                             pattern={pattern}
-                            onChange={handleChange} 
+                            onChange={handleEditorChange} 
                             onBlur={handleBlur} 
                             onFocus={handleFocus}
                             focused={focused.toString()} 
-                            value={value}
                         />
-                        // <TextEditorWrapper>
-                        //     <TextEditor />
-                        // </TextEditorWrapper>
                     );
                 };
 
@@ -174,9 +174,7 @@ const FormInputs = (props) => {
 
     return (
         <FormInput > 
-            <Test>
-                <label>{label}</label>
-            </Test>
+            <label>{label}</label>
             {renderInputs(type)}
             {(hasError(errorStatus) && blur) || (isValid(value, pattern, errorHandler) && blur) ? <span>{errorMessage}</span> : <span></span>}
         </FormInput>
@@ -184,14 +182,6 @@ const FormInputs = (props) => {
 };
 
 export default FormInputs;
-
-const Test = styled.div`
-    box-sizing: border-box;
-    width: 92%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-`
 
 const FormInput = styled.div`
     width: 95%;
@@ -204,6 +194,11 @@ const FormInput = styled.div`
         font-size: 12px;
         color: grey;
         margin-bottom: 3px;
+        box-sizing: border-box;
+        width: 92%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
     input {
         padding: 8px;
@@ -229,12 +224,6 @@ const FormInput = styled.div`
         margin-bottom: 10px;
         color: #af2d54;
     }
-`
-
-const TextEditorWrapper = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
 `
 
 const GoogleInput = styled.div`
