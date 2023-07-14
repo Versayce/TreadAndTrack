@@ -12,14 +12,12 @@ function EventCard() {
     const eventsObj = useSelector(state => state.events.allEvents)
     const events = Object.values(eventsObj)
 
-
     const setActiveEventPage = (eventId) => {
         dispatch(clearEventMessages())
         dispatch(clearOneEvent())
         dispatch(getOneEvent(eventId))
         history.push(`/events/${eventId}`)
     };
-
 
     const eventCards = events?.map((event) => {
         return (

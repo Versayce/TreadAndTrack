@@ -7,11 +7,9 @@ import { renderCreateEventModal } from '../../store/modal';
 // import { useHistory } from 'react-router-dom';
 
 
-function CarCard() {
+function CarCard({ cars }) {
     // const history = useHistory()
     const dispatch = useDispatch();
-    const carsObj = useSelector(state => state.cars.allCars)
-    const cars = Object.values(carsObj)
     const sessionUser = useSelector(state => state.session.user)
 
     const setActiveCarPage = async (carId) => {

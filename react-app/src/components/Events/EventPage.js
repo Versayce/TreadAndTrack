@@ -22,17 +22,15 @@ function EventPage() {
     // console.log("EVENTPAGE=====================", event)
 
     useEffect(() => {
-        
         const fetcher = async () => {
             await dispatch(getOneEvent(eventId))
             await dispatch(getEventMessages(eventId))
         }
         fetcher();
-
     },[dispatch, eventId])
 
-    const handleDelete = (eventId) => {
-        dispatch(deleteEvent(eventId))
+    const handleDelete = async (eventId) => {
+        await dispatch(deleteEvent(eventId))
         history.push("/")
     };
 

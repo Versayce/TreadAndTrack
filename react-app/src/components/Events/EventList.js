@@ -8,15 +8,15 @@ import { getAllCars } from '../../store/car';
 
 function EventList() { 
     const dispatch = useDispatch()
-
     // pulling session user from state
     const sessionUser = useSelector(state => state.session.user)
     const userId = sessionUser?.id
-
+    const eventsObj = useSelector(state => state.events.allEvents)
+    const events = Object.values(eventsObj)
     const carObj = useSelector(state => state.cars.oneCar)
     const car = Object.values(carObj)[0]
-    
-    // console.log('', '\n', '==========Event List Component==========', '\n', car , '\n', '') 
+    const carsObj = useSelector(state => state.cars.allCars)
+    const cars = Object.values(carsObj)
 
     useEffect(() => {
         if(!userId) return;
@@ -33,19 +33,16 @@ function EventList() {
         <>
         <StyledHeading>Main Events</StyledHeading>
         <Wrapper>
-            <EventCard /> 
+            <EventCard events={events} /> 
         </Wrapper>
 
         <StyledHeading>Featured Cars</StyledHeading>
         <Wrapper>
-            <CarCard /> 
+            <CarCard cars={cars} /> 
         </Wrapper>
         </>
     );
 }
-
-
-// TODO //========== STYLING ==========//
 
 const Wrapper = styled.div`
     display: flex;
@@ -68,6 +65,5 @@ const StyledHeading = styled.h1`
     justify-content: flex-start;
     width: 100%;
 `
-
 
 export default EventList

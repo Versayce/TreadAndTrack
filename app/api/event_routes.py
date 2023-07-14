@@ -57,11 +57,6 @@ def event_by_id(id):
                 event.address = form.data['address']
                 event.lat = form.data['lat']
                 event.lng = form.data['lng']
-                #TODO test new google api address info and remove below: 
-                # event.city = form.data['city']
-                # event.state = form.data['state']
-                # event.country = form.data['country']
-                # event.zipcode = form.data['zipcode']
                 event.description = form.data['description']
                 db.session.commit()
                 return event.to_dict()

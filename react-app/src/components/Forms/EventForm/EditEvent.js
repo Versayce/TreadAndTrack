@@ -16,11 +16,15 @@ const EditEventForm = () => {
     // const [errors, setErrors] = useState([])
     const [name, setName] = useState(currentEvent.name)
     const [address, setAddress] = useState(currentEvent.address)
-    const [lat, setLat] = useState(null);
-    const [lng, setLng] = useState(null);
+    const [lat, setLat] = useState(currentEvent.lat);
+    const [lng, setLng] = useState(currentEvent.lng);
     const [description, setDescription] = useState(currentEvent.description)
     const [image_url, setImageUrl] = useState(currentEvent.bannerImage)
-    
+    //Error Handling Vars
+    const [nameError, setNameError] = useState(false);
+    const [imageError, setImageError] = useState(false);
+    const [addressError, setAddressError] = useState(false);
+    const [descriptionError, setDescriptionError] = useState(false);
 
     
     const formData = {
@@ -40,6 +44,8 @@ const EditEventForm = () => {
             name: "name",
             type: "text",
             errorMessage: "Name should be 3-30 characters",
+            errorHandler: setNameError,
+            errorStatus: nameError,
             label: "Name",
             required: true,
             pattern: "^[A-Za-z0-9 ]{3,30}$",
@@ -56,6 +62,8 @@ const EditEventForm = () => {
             type: "text",
             placeholder: currentEvent.bannerImage,
             errorMessage: "Enter a URL containing https://",
+            errorHandler: setImageError,
+            errorStatus: imageError,
             label: "Update Image",
             required: true,
             pattern: "^https?://.*",
@@ -72,6 +80,8 @@ const EditEventForm = () => {
             type: "google-places",
             placeholder: currentEvent.address,
             errorMessage: "Please select an address from the dropdown menu",
+            errorHandler: setAddressError,
+            errorStatus: addressError,
             label: "Update Event Address",
             required: true,
             pattern: "^[A-Za-z0-9#, ]{6,1000}$",
@@ -90,8 +100,10 @@ const EditEventForm = () => {
             type: "textarea",
             placeholder: currentEvent.description,
             errorMessage: "Max length 700",
+            errorHandler: setDescriptionError,
+            errorStatus: descriptionError,
             label: "Update Description",
-            required: true,
+            required: false,
             pattern: "^[A-Za-z0-9 ]{0,700}$",
             onChange: setDescription,
             value: description,
@@ -113,18 +125,13 @@ const EditEventForm = () => {
     }
 
     return (
-        //<FormWrapper>
-            <Form onSubmit={handleSubmit}>
-                <Header>Edit Event</Header>
-                    {inputs.map((input) => (
-                        <>
-                        <FormInputs key={input.id} {...input} />
-                        {/* <div>{errors}</div> */}
-                        </>
-                    ))}
-                <SubmitButton type="submit">Submit</SubmitButton>
-            </Form>
-        //</FormWrapper>
+        <Form onSubmit={handleSubmit}>
+            <Header>Edit Event</Header>
+                {inputs.map((input) => (
+                    <FormInputs key={input.id} {...input} />
+                ))}
+            <SubmitButton type="submit">Submit</SubmitButton>
+        </Form>
     )
 }
 

@@ -101,21 +101,21 @@ const FormInputs = (props) => {
             case "textarea":
                 {
                     return (
-                        // <textarea 
-                        //     name={name}
-                        //     type={type}
-                        //     placeholder={placeholder}
-                        //     required={required}
-                        //     pattern={pattern}
-                        //     onChange={handleChange} 
-                        //     onBlur={handleBlur} 
-                        //     onFocus={handleFocus}
-                        //     focused={focused.toString()} 
-                        //     value={value}
-                        // />
-                        <TextEditorWrapper>
-                            <TextEditor />
-                        </TextEditorWrapper>
+                        <textarea 
+                            name={name}
+                            type={type}
+                            placeholder={placeholder}
+                            required={required}
+                            pattern={pattern}
+                            onChange={handleChange} 
+                            onBlur={handleBlur} 
+                            onFocus={handleFocus}
+                            focused={focused.toString()} 
+                            value={value}
+                        />
+                        // <TextEditorWrapper>
+                        //     <TextEditor />
+                        // </TextEditorWrapper>
                     );
                 };
 
