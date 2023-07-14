@@ -16,8 +16,6 @@ function ConditonalModal() {
         e.stopPropagation()
     }
 
-
-    // console.log('', '\n', '==========Inside of Conditional Modal==========', params, '\n', '')
     const renderComponent = (params) => {
         switch (params?.modalToLoad) {
             case "editModal":
@@ -71,8 +69,6 @@ function ConditonalModal() {
 
         }
     };
-
-
 
     return (
         <>
@@ -182,6 +178,5 @@ const SignupModalBody = styled.div`
     /* Modal Background: */
     background: linear-gradient(180deg, #ffffff, #f8f8f8)
 `
-
 
 export default ConditonalModal
