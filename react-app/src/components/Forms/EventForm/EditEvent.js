@@ -51,10 +51,6 @@ const EditEventForm = () => {
             pattern: "^[A-Za-z0-9 ]{3,30}$",
             onChange: setName,
             value: name,
-            style: {
-                width: "90%",
-                padding: "8px",
-            }
         },
         {
             id: 2,
@@ -69,10 +65,6 @@ const EditEventForm = () => {
             pattern: "^https?://.*",
             onChange: setImageUrl,
             value: image_url,
-            style: {
-                width: "90%",
-                padding: "8px",
-            }
         },
         {
             id: 3,
@@ -89,10 +81,6 @@ const EditEventForm = () => {
             setLat: setLat,
             setLng: setLng,
             value: address,
-            style: {
-                width: "90%",
-                padding: "8px",
-            }
         },
         {
             id: 4,
@@ -107,11 +95,6 @@ const EditEventForm = () => {
             pattern: "^[A-Za-z0-9 ]{0,700}$",
             onChange: setDescription,
             value: description,
-            style: {
-                width: "90%",
-                height: "200px",
-                padding: "8px",
-            }
         }
     ]
 
