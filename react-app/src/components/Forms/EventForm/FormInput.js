@@ -83,92 +83,87 @@ const FormInputs = (props) => {
 
     const renderInputs = (type) => {
         switch (type) {
-            case "text":
-                {
-                    return (
-                        <input  
-                            name={name}
-                            type={type}
-                            value={value}
-                            placeholder={placeholder}
-                            required={required}
-                            pattern={pattern}
-                            onChange={handleChange} 
-                            onBlur={handleBlur} 
-                            onFocus={handleFocus}
-                            focused={focused.toString()} 
-                        />
-                    );
-                };
+            case "text": {
+                return (
+                    <input  
+                        name={name}
+                        type={type}
+                        value={value}
+                        placeholder={placeholder}
+                        required={required}
+                        pattern={pattern}
+                        onChange={handleChange} 
+                        onBlur={handleBlur} 
+                        onFocus={handleFocus}
+                        focused={focused.toString()} 
+                    />
+                );
+            };
 
-            case "textarea":
-                {
-                    return ( 
-                        <TextEditor 
-                            name={name}
-                            type={type}
-                            value={value}
-                            placeholder={placeholder}
-                            required={required}
-                            pattern={pattern}
-                            onChange={handleEditorChange} 
-                            onBlur={handleBlur} 
-                            onFocus={handleFocus}
-                            focused={focused.toString()} 
-                        />
-                    );
-                };
+            case "textarea": {
+                return ( 
+                    <TextEditor 
+                        name={name}
+                        type={type}
+                        value={value}
+                        placeholder={placeholder}
+                        required={required}
+                        pattern={pattern}
+                        onChange={handleEditorChange} 
+                        onBlur={handleBlur} 
+                        onFocus={handleFocus}
+                        focused={focused.toString()} 
+                    />
+                );
+            };
 
-            case "google-places":
-                {
-                    return (
-                        <PlacesAutocomplete
-                            id={id}
-                            value={value}
-                            onChange={handlePlacesChange}
-                            onSelect={handleSelect}
-                            onError={onApiError}
-                            onBlur={handleBlur} 
-                            onFocus={handleFocus}
-                        >
-                            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                                <GoogleInput>
-                                    <input {...getInputProps({ 
-                                        name: name,
-                                        type: "google-maps",
-                                        placeholder: placeholder, 
-                                        required: required,
-                                        pattern: pattern,
-                                        onBlur: handleBlur,
-                                    })} />
-                                    <ListWrapper>
-                                        <SuggestionList>
-                                            {apiError ? <ApiError>{apiErrorMessage}</ApiError> : null}
-                                            {loading ? <Loader>Loading Results...</Loader> : null}
-                                            {suggestions.map((suggestion) => {
-                                                const style = {
-                                                    backgroundColor: suggestion.active ? '#bd345d' : '#fff',
-                                                    color: suggestion.active ? '#ffffff' : '#000000',
-                                                };
-                                                return (
-                                                    <SuggestionListElement key={suggestion.index} suggestions={suggestions} error={apiError} {...getSuggestionItemProps(suggestion, { style })}>
-                                                        {suggestion.description}
-                                                    </SuggestionListElement>
-                                                );
-                                            })}
-                                        </SuggestionList>
-                                    </ListWrapper>
-                                </GoogleInput>
-                            )}
-                        </PlacesAutocomplete>
-                    );
-                };
+            case "google-places": {
+                return (
+                    <PlacesAutocomplete
+                        id={id}
+                        value={value}
+                        onChange={handlePlacesChange}
+                        onSelect={handleSelect}
+                        onError={onApiError}
+                        onBlur={handleBlur} 
+                        onFocus={handleFocus}
+                    >
+                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                            <GoogleInput>
+                                <input {...getInputProps({ 
+                                    name: name,
+                                    type: "google-maps",
+                                    placeholder: placeholder, 
+                                    required: required,
+                                    pattern: pattern,
+                                    onBlur: handleBlur,
+                                })} />
+                                <ListWrapper>
+                                    <SuggestionList>
+                                        {apiError ? <ApiError>{apiErrorMessage}</ApiError> : null}
+                                        {loading ? <Loader>Loading Results...</Loader> : null}
+                                        {suggestions.map((suggestion) => {
+                                            const style = {
+                                                backgroundColor: suggestion.active ? '#bd345d' : '#fff',
+                                                color: suggestion.active ? '#ffffff' : '#000000',
+                                            };
+                                            return (
+                                                <SuggestionListElement key={suggestion.index} suggestions={suggestions} error={apiError} {...getSuggestionItemProps(suggestion, { style })}>
+                                                    {suggestion.description}
+                                                </SuggestionListElement>
+                                            );
+                                        })}
+                                    </SuggestionList>
+                                </ListWrapper>
+                            </GoogleInput>
+                        )}
+                    </PlacesAutocomplete>
+                );
+            };
                 
-            default:
-                {
-                    return null;
-                };
-
+            default: {
+                return null;
+            };
         }
     };
 

@@ -27,7 +27,7 @@ function EventCard() {
                 <EventLocation>
                     <p>{`${event.address}`}</p>
                 </EventLocation>
-                <div className='event-desc'>{event.description}</div>
+                <div className='event-desc' dangerouslySetInnerHTML={{ __html: event?.description }}></div>
             </EventCards>
         );
     });

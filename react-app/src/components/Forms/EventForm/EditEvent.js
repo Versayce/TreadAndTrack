@@ -46,7 +46,7 @@ const EditEventForm = () => {
             errorMessage: "Name should be 3-30 characters",
             errorHandler: setNameError,
             errorStatus: nameError,
-            label: "Name",
+            label: "Update Name",
             required: true,
             pattern: "^[A-Za-z0-9 ]{3,30}$",
             onChange: setName,

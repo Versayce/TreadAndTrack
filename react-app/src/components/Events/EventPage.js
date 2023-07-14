@@ -136,7 +136,6 @@ const StyledDescription = styled.div`
 const MapWrapper = styled.div`
     width: 40%;
     height: 500px;
-    border-radius: 20px;
     margin: 120px 3% 0px 3%;
 `
 
