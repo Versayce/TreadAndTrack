@@ -12,8 +12,7 @@ const EditEventForm = () => {
     const currentEvent = Object.values(currentEventObj)[0]
     const currentUser = useSelector(state => state.session.user)
     const ownerId = currentUser.id
-
-    // const [errors, setErrors] = useState([])
+    //Form Input Vars
     const [name, setName] = useState(currentEvent.name)
     const [address, setAddress] = useState(currentEvent.address)
     const [lat, setLat] = useState(currentEvent.lat);
@@ -26,7 +25,7 @@ const EditEventForm = () => {
     const [addressError, setAddressError] = useState(false);
     const [descriptionError, setDescriptionError] = useState(false);
 
-    
+    //Data to be sent to API 
     const formData = {
         "id": currentEvent.id,
         name,
@@ -37,7 +36,7 @@ const EditEventForm = () => {
         "banner_image_url": image_url,
         "owner_id": ownerId
     }
-
+    //Inputs to be spread into child component
     const inputs = [
         {
             id: 1,
@@ -98,7 +97,6 @@ const EditEventForm = () => {
         }
     ]
 
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         await dispatch(editEventById(formData)) 
@@ -107,6 +105,7 @@ const EditEventForm = () => {
         dispatch(closeModal())
     }
 
+    //For closing the modal if user decides not to edit
     const handleCancel = () => {
         dispatch(closeModal())
     }
@@ -125,7 +124,7 @@ const EditEventForm = () => {
     )
 }
 
-export default EditEventForm
+export default EditEventForm;
 
 const Form = styled.form`
     box-sizing: border-box;
@@ -136,7 +135,6 @@ const Form = styled.form`
     align-items: center;
     width: 100%;
     padding: 4vh 0vw 4vh 0vw;
-    /* margin: 200px 0 200px 0px; */
     border-radius: 10px;
     background-image: linear-gradient(to bottom, #f6f6f6, #f8f8f8, #fafafa, #fdfdfd, #ffffff);
     box-shadow: 1px 1px 10px 2px #8f8f8fd6;
@@ -152,7 +150,6 @@ const Button = styled.button`
     box-sizing: border-box;
     padding: 10px 40px 10px 40px;
     margin-bottom: 10px;
-    /* width: 30%; */
     border: none;
     font-size: 20px;
     border-radius: 8px;
