@@ -28,7 +28,7 @@ class Event(db.Model):
     # state = db.Column(db.String(40), nullable=False)
     # zipcode = db.Column(db.String(40), nullable=False)
     # country = db.Column(db.String(40), nullable=False)
-    description = db.Column(db.String(755), nullable=False) 
+    description = db.Column(db.String(5000), nullable=False) 
     banner_image_url = db.Column(db.String(755), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow) 
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow) 
