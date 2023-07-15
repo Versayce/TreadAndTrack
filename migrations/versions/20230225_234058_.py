@@ -49,7 +49,7 @@ def upgrade():
     sa.Column('address', sa.String(length=40), nullable=False),
     sa.Column('lat', sa.Float(), nullable=False),
     sa.Column('lng', sa.Float(), nullable=False),
-    sa.Column('description', sa.String(length=755), nullable=False),
+    sa.Column('description', sa.String(length=5000), nullable=False),
     sa.Column('banner_image_url', sa.String(length=755), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
