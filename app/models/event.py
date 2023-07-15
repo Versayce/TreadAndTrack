@@ -23,11 +23,6 @@ class Event(db.Model):
     address = db.Column(db.String(40), nullable=False)
     lat = db.Column(db.Float, nullable=False)
     lng = db.Column(db.Float, nullable=False)
-    #TODO delete unnecessary rows with old address components 
-    # city = db.Column(db.String(40), nullable=False)
-    # state = db.Column(db.String(40), nullable=False)
-    # zipcode = db.Column(db.String(40), nullable=False)
-    # country = db.Column(db.String(40), nullable=False)
     description = db.Column(db.String(5000), nullable=False) 
     banner_image_url = db.Column(db.String(755), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow) 
