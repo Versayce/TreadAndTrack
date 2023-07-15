@@ -121,10 +121,10 @@ const StyledDescription = styled.div`
         margin: 20px 0 20px 0;
     }
     h2 {
-
+        margin: 20px 0 20px 0;
     }
     h3 {
-
+        margin: 20px 0 20px 0;
     }
     p {
         word-wrap: break-word;
