@@ -24,6 +24,11 @@ const TextEditor = ( props ) => {
                 width: "93%",
                 menuBar: false,
                 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+                menubar: 'file edit view insert format tools table help',
+                plugins: 'autolink lists link image charmap print preview anchor table',
+                toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright |'
+                       + 'bullist numlist | outdent indent | table tabledelete | link image',
+                lists_indent_on_tab: true,
             }}
             // initialValue={placeholder}
             value={value}

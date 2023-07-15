@@ -81,10 +81,10 @@ function EventPage() {
 const LocationInfo = styled.div`
     word-wrap: break-word;
     font-size: 12pt;
-    margin: 10px;
-    color: #919191;
+    margin: 50px 0 0 0;
+    color: #d14770;
     font-style: italic;
-    `
+`
 
 const HeaderWrapper = styled.div`
     display: flex;
@@ -130,6 +130,16 @@ const StyledDescription = styled.div`
         word-wrap: break-word;
         font-size: 14pt;
         margin: 10px 0px 10px 0px;
+    }
+    ul {
+        margin-left: 50px;
+    }
+    ol {
+        margin-left: 50px;
+    }
+    li {
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
 `
 
