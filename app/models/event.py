@@ -46,11 +46,6 @@ class Event(db.Model):
             "address": self.address,
             "lat": self.lat,
             "lng": self.lng,
-            #TODO old address components to be removed: 
-            # "city": self.city,
-            # "state": self.state,
-            # "zipcode": self.zipcode,
-            # "country": self.country,
             "description": self.description,
             "images": [image.to_dict() for image in self.images],
             "messages": [message.to_dict() for message in self.messages],

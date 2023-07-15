@@ -40,10 +40,10 @@ const TextEditor = ( props ) => {
                     menubar: 'file edit view insert format tools table help',
                     plugins: 'autolink lists link image charmap print preview anchor table',
                     toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright |'
-                        + 'bullist numlist | outdent indent | table tabledelete | link image',
+                           + 'bullist numlist | outdent indent | table tabledelete | link image',
                     lists_indent_on_tab: true,
                 }}
-                // initialValue={placeholder}
+                initialValue={placeholder}
                 value={value}
                 onEditorChange={onChange}
                 onFocus={handleFocus}
