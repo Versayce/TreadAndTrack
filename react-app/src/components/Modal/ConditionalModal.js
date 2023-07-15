@@ -105,6 +105,7 @@ const EditEventModalBody = styled.div`
     margin: auto;
     /* setting max scaling w/h */
     height: fit-content;
+    max-height: 100%;
     overflow-y: scroll;
     width: 50%;
     border-radius: 10px;

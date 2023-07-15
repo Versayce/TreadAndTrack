@@ -34,7 +34,7 @@ const TextEditor = ( props ) => {
                     editorRef.current = editor
                 }}
                 init={{
-                    width: "93%",
+                    width: "92%",
                     menuBar: false,
                     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
                     menubar: 'file edit view insert format tools table',
