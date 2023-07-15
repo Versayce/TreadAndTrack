@@ -95,7 +95,7 @@ const EventForm = () => {
             errorStatus: descriptionError,
             label: "Event Description",
             required: false,
-            pattern: "^[A-Za-z0-9.,!&<>#$ ]{0,5000}$",
+            pattern: "<.*?>",
             onChange: setDescription,
             value: description,
         }
