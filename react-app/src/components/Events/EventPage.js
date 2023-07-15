@@ -19,7 +19,7 @@ function EventPage() {
     const event = Object.values(currentEventObj)[0]
     const eventImageUrl = event?.bannerImage
 
-    // console.log("EVENTPAGE=====================", event)
+    console.log("EVENTPAGE=====================", event?.description)
 
     useEffect(() => {
         const fetcher = async () => {
