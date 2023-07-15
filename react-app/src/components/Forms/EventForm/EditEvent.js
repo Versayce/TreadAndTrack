@@ -107,16 +107,25 @@ const EditEventForm = () => {
         dispatch(closeModal())
     }
 
+    const handleCancel = () => {
+        dispatch(closeModal())
+    }
+
     return (
         <Form onSubmit={handleSubmit}>
             <Header>Edit Event</Header>
                 {inputs.map((input) => (
                     <FormInputs key={input.id} {...input} />
                 ))}
-            <SubmitButton type="submit">Submit</SubmitButton>
+                <ButtonWrapper>
+                    <Button type="submit">Submit</Button>
+                    <Button type="button" onClick={handleCancel} >Cancel</Button>
+                </ButtonWrapper>
         </Form>
     )
 }
+
+export default EditEventForm
 
 const Form = styled.form`
     box-sizing: border-box;
@@ -133,9 +142,16 @@ const Form = styled.form`
     box-shadow: 1px 1px 10px 2px #8f8f8fd6;
 `
 
-const SubmitButton = styled.button`
+const ButtonWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+`
+
+const Button = styled.button`
     box-sizing: border-box;
     padding: 10px 40px 10px 40px;
+    margin-bottom: 10px;
     /* width: 30%; */
     border: none;
     font-size: 20px;
@@ -154,45 +170,3 @@ const Header = styled.h1`
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 100;
 `
-
-
-// const Form = styled.form`
-//     width: 80%;
-//     display: grid;
-//     grid-template-areas:
-//     "header header header"
-//     "nameInput addressInput cityInput"
-//     "stateInput countryInput zipcodeInput"
-//     "descInput descInput imageInput"
-//     "descInput descInput submit"
-//     ;
-//     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-//     grid-template-columns: 1fr 1fr 1fr;
-//     align-content: center;
-//     align-items: flex-start;
-// `
-
-// const SubmitButton = styled.button`
-//     padding: 10px;
-//     width: auto;
-//     margin: 5% 8% 15% 8%;
-//     border: none;
-//     grid-area: submit;
-//     border-radius: 8px;
-//     background-color: #e7e7e7;
-//     :hover {
-//         background-color: #bd345d;
-//         color: white;
-//         cursor: pointer;
-//     }
-// `
-    
-// const Header = styled.h1`
-//     grid-area: header;
-//     color: #af2d54;
-//     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-//     font-weight: 100;
-// `
-
-
-export default EditEventForm

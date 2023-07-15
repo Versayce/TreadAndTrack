@@ -21,7 +21,7 @@ function ConditonalModal() {
             case "editModal":
                 {
                     return (
-                        <ModalBackground onClick={(e) => dispatch(closeModal())}>
+                        <ModalBackground>
                             <EditEventModalBody onClick={(e) => handleChildClicks(e)}>
                                 <EditEventForm />
                             </EditEventModalBody>
@@ -77,6 +77,8 @@ function ConditonalModal() {
     )
 };
 
+export default ConditonalModal
+
 const ModalBackground = styled.div`
     box-sizing: border-box;
     position: fixed;
@@ -88,7 +90,7 @@ const ModalBackground = styled.div`
     height: 100%;
     width: 100%;
     background-color: #000000d8;
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(2px);
     margin: none;
 `
 
@@ -110,7 +112,7 @@ const EditEventModalBody = styled.div`
     width: 50%;
     border-radius: 10px;
     /* Modal Background: */
-    background: linear-gradient(180deg, #ffffff, #f8f8f8)
+    background: linear-gradient(180deg, #ffffff, #f8f8f8);
 `
 
 const LoginModalBody = styled.div`
@@ -133,7 +135,7 @@ const LoginModalBody = styled.div`
     max-height: 450px;
     border-radius: 10px;
     /* Modal Background: */
-    background: linear-gradient(180deg, #ffffff, #f8f8f8)
+    background: linear-gradient(180deg, #ffffff, #f8f8f8);
 `
 
 const EditModalBody = styled.div`
@@ -155,7 +157,7 @@ const EditModalBody = styled.div`
     max-height: 750px;
     border-radius: 10px;
     /* Modal Background: */
-    background: linear-gradient(180deg, #ffffff, #f8f8f8)
+    background: linear-gradient(180deg, #ffffff, #f8f8f8);
 `
 
 const SignupModalBody = styled.div`
@@ -177,7 +179,5 @@ const SignupModalBody = styled.div`
     max-height: 47%;
     border-radius: 10px;
     /* Modal Background: */
-    background: linear-gradient(180deg, #ffffff, #f8f8f8)
+    background: linear-gradient(180deg, #ffffff, #f8f8f8);
 `
-
-export default ConditonalModal
