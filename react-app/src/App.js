@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/Auth/LoginForm';
 import SignUpForm from './components/Auth/SignUpForm';
-
 import ProtectedRoute from './components/Auth/ProtectedRoute';
 import User from './components/Users/User';
 import EventList from './components/Events/EventList'
@@ -14,9 +13,6 @@ import HomePage from './components/Home/HomePage';
 import EventForm from './components/Forms/EventForm/CreateEvent';
 import NavBar from './components/Home/NavBar';
 import CarForm from './components/Forms/CarForm/CreateCar';
-import MapContainer from './components/Map/MapContainer';
-
-
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -68,6 +64,5 @@ function App() {
 	</>
   )
 }
-
 
 export default App;
