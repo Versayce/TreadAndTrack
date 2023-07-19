@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { closeModal } from '../../store/modal';
 import styled from 'styled-components';
+//Firebase analytics for demo login event tracking:
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 const LoginForm = () => {
   const [emailError, setEmailError] = useState([]);
@@ -12,6 +14,17 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  //Firebase analytics for event logging
+  const analytics = getAnalytics();
+  function trackDemoLoginButtonClick() {
+    analytics.logEvent('demo_login', {
+      button_text: 'Demo',
+    });
+  }
+  //Event listener for demo login button:
+  var demoLoginButton = document.getElementById("demoLogin");
+  loginButton.addEventListener('click', trackDemoLoginButtonClick);
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -40,6 +53,7 @@ const LoginForm = () => {
     const password = "password"
     dispatch(login(email, password))
     dispatch(closeModal())
+
   }
 
   if (user) {
@@ -73,7 +87,7 @@ const LoginForm = () => {
         {passwordError ? <ErrorMessages>{passwordError}</ErrorMessages> : <span></span>}
         <ButtonWrapper>
           <StyledButton type='submit'>Login</StyledButton>
-          <StyledButton onClick={handleDemoLogin}>Demo</StyledButton>
+          <StyledButton id="demoLogin" onClick={handleDemoLogin}>Demo</StyledButton>
         </ButtonWrapper>
       </StyledForm>
   );
