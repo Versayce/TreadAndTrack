@@ -23,8 +23,10 @@ const LoginForm = () => {
     });
   }
   //Event listener for demo login button:
-  var demoLoginButton = document.getElementById("demoLogin");
-  demoLoginButton.addEventListener('click', trackDemoLoginButtonClick);
+  const demoLoginButton = document.getElementById("demoLogin");
+  if(demoLoginButton) {
+    demoLoginButton.addEventListener('click', trackDemoLoginButtonClick);
+  }
 
   const onLogin = async (e) => {
     e.preventDefault();
