@@ -2,40 +2,41 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import NavBar from '../Home/NavBar';
-import EventCommentsSection from '../Comments/EventCommentsSection';
 import { getEventMessages } from '../../store/message';
 import { renderCreateEventModal } from '../../store/modal';
 import { deleteEvent, getOneEvent } from '../../store/event';
+import NavBar from '../Home/NavBar';
 import MapContainer from '../Map/MapContainer';
 import Footer from '../Home/Footer';
+import JoinEvent from './JoinEvent';
+import EventUserList from './EventUserList';
+import EventCommentsSection from '../Comments/EventCommentsSection';
 
 function EventPage() {
-    const history = useHistory()
-    const dispatch = useDispatch()
+    const history = useHistory();
+    const dispatch = useDispatch();
     let { eventId } = useParams();
-    const currentUser = useSelector(state => state.session.user)
-    const currentEventObj = useSelector(state => state.events.oneEvent)
-    const event = Object.values(currentEventObj)[0]
-    const eventImageUrl = event?.bannerImage
-
-    console.log("EVENTPAGE=====================", event?.description)
+    const currentUser = useSelector(state => state.session.user);
+    const currentEventObj = useSelector(state => state.events.oneEvent);
+    const event = Object.values(currentEventObj)[0];
+    const eventImageUrl = event?.bannerImage;
+    const eventUsers = event?.users;
 
     useEffect(() => {
         const fetcher = async () => {
-            await dispatch(getOneEvent(eventId))
-            await dispatch(getEventMessages(eventId))
+            await dispatch(getOneEvent(eventId));
+            await dispatch(getEventMessages(eventId));
         }
         fetcher();
-    },[dispatch, eventId])
+    },[dispatch, eventId]);
 
     const handleDelete = async (eventId) => {
-        await dispatch(deleteEvent(eventId))
-        history.push("/")
+        await dispatch(deleteEvent(eventId));
+        history.push("/");
     };
 
     const showModalEvent = (params) => {
-        dispatch(renderCreateEventModal(params))
+        dispatch(renderCreateEventModal(params));
     };
 
     const editModal = {
@@ -44,7 +45,7 @@ function EventPage() {
             width: "",
             height: ""
         }
-    }
+    };
   
     return (
         <>
@@ -67,22 +68,24 @@ function EventPage() {
                     </LocationInfo>
                     {event && <EventCommentsSection />}
                 </EventInfoWrapper>
-                <MapWrapper>
+                <RightContentWrapper>
                     {event && <MapContainer />}
-                </MapWrapper>
+                    {/* <EventUserList userList={eventUsers}/>
+                    <JoinEvent /> */}
+                </RightContentWrapper>
             </EventBody>
         </Wrapper>
         <Footer />
         </>
     ); 
-}
+};
 
 
 const LocationInfo = styled.div`
     word-wrap: break-word;
     font-size: 12pt;
     margin: 50px 0 0 0;
-    color: #d14770;
+    color: #7c7c7c;
     font-style: italic;
 `
 
@@ -143,10 +146,12 @@ const StyledDescription = styled.div`
     }
 `
 
-const MapWrapper = styled.div`
+const RightContentWrapper = styled.div`
     width: 40%;
-    height: 500px;
-    margin: 120px 3% 0px 3%;
+    height: auto;
+    margin: 150px 3% 0px 3%;
+    display: flex;
+    flex-direction: column;
 `
 
 const Wrapper = styled.div`
@@ -189,7 +194,7 @@ const StyledButton = styled.button`
     border-radius: 15px;
     background-color: #353535;
     color: white;
-    &:hover {
+    :hover {
         background-color: #ca3e68;
         color: white;
         cursor: pointer;

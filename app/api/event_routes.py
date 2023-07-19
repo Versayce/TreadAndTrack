@@ -14,7 +14,6 @@ event_routes = Blueprint('events', __name__)
 @event_routes.route('')
 def event_home():
     all_events = Event.query.all()
-    print('==============CHECKING WITHIN GET ALL EVENTS ROUTE=======================', all_events)
     return {'events': [event.to_dict() for event in all_events]}
 
 
@@ -35,7 +34,7 @@ def new_server():
         return form.errors
 
 
-@event_routes.route('/<int:id>', methods=['GET', 'PUT', 'DELETE']) #TODO - edit routes (remove extra address components for google api)
+@event_routes.route('/<int:id>', methods=['GET', 'PUT', 'DELETE']) 
 def event_by_id(id):
     event = Event.query.get(id)
     
@@ -98,3 +97,14 @@ def get_event_messages(id):
     else:
         return { 'error': 'Event not found', 'errorCode': 404}, 404
         
+
+# @event_routes.route('/users')
+# def get_event_users(id):
+#     event = Event.query.get(id)
+#     if event: 
+#         event_users = EventUser.query.filter(EventUser.event_id === id).all()
+#         event_user_list = {'users' : [user.to_dict() for user in event_users]}
+#         return event_user_list
+#     else: 
+#         return { 'error': 'Event not found', 'errorCode': 404}, 404
+    

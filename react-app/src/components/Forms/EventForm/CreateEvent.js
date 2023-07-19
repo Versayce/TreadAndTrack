@@ -90,7 +90,7 @@ const EventForm = () => {
             name: "description",
             type: "textarea",
             placeholder: "",
-            errorMessage: "Max length 5000",
+            errorMessage: "Please enter a description",
             errorHandler: setDescriptionError,
             errorStatus: descriptionError,
             label: "Event Description",

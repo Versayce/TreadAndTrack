@@ -22,9 +22,9 @@ const Map = ({ apiKey, latLng }) => {
 
     const styles = {
         width: "auto",
-        height: "100%",
+        height: "40%",
         borderRadius: 10,
-        border: "solid 4px #7924321d",
+        border: "solid 6px #fafafa",
         boxShadow: "2px 3px 10px 0px #36363621",
         marginRight: "0px",
     };

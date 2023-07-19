@@ -67,8 +67,8 @@ const Wrapper = styled.div`
     border-radius: 10px;
     width: 100%;
     height: 100px;
-    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, #f7f7f7 100%);
-    box-shadow: 1px 1px 5px 1px #d4d4d465;
+    background: radial-gradient(at center top, #ffffff, #fafafa);
+    box-shadow: 2px 3px 10px 0px #36363621;
     margin-top: 10px;
 `
 
