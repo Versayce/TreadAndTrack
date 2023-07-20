@@ -16,17 +16,17 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   //Firebase analytics for event logging
-  const analytics = getAnalytics();
-  function trackDemoLoginButtonClick() {
-    analytics.logEvent('demo_login', {
-      button_text: 'Demo',
+  const trackDemoLoginButtonClick = () => {
+    const analytics = getAnalytics();
+    console.log("Demo Login Clicked - Logging Data to Firebase")
+    logEvent(analytics, "demo_login", {
+      button_text: "Demo",
+      button_name: "demoLogin",
     });
-  }
+  };
   //Event listener for demo login button:
-  const demoLoginButton = document.getElementById("demoLogin");
-  if(demoLoginButton) {
-    demoLoginButton.addEventListener('click', trackDemoLoginButtonClick);
-  }
+  // const demoLoginButton = document.getElementById("demoLogin");
+  // demoLoginButton?.addEventListener('click', trackDemoLoginButtonClick);
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -40,6 +40,14 @@ const LoginForm = () => {
     else dispatch(closeModal())
   };
 
+  const handleDemoLogin = () => {
+    trackDemoLoginButtonClick()
+    const email = "demo@aa.io"
+    const password = "password"
+    dispatch(login(email, password))
+    dispatch(closeModal())
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
     setEmailError(null)
@@ -50,17 +58,9 @@ const LoginForm = () => {
     setPasswordError(null)
   };
 
-  const handleDemoLogin = () => {
-    const email = "demo@aa.io"
-    const password = "password"
-    dispatch(login(email, password))
-    dispatch(closeModal())
-
-  }
-
   if (user) {
     return <Redirect to='/' />;
-  }
+  };
 
   return (
     <StyledForm onSubmit={onLogin}>

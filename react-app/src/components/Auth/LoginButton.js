@@ -7,7 +7,6 @@ const LoginButton = () => {
     const dispatch = useDispatch()
 
     const onLogin = async (modalProps) => {
-        console.log('onlogin function', modalProps)
         await dispatch(renderCreateEventModal(modalProps))
     };
 
