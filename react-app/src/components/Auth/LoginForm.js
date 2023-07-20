@@ -21,7 +21,7 @@ const LoginForm = () => {
     console.log("Demo Login Clicked - Logging Data to Firebase")
     logEvent(analytics, "demo_login", {
       button_text: "Demo",
-      button_name: "demoLogin",
+      button_id: "demoLogin",
     });
   };
   //Event listener for demo login button:
