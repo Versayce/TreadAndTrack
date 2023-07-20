@@ -27,8 +27,7 @@ function App() {
 		projectId: "tread-and-track",
 		storageBucket: "tread-and-track.appspot.com",
 		messagingSenderId: "614394649059",
-		appId: "1:614394649059:web:c5a892f5c7a54e7745e8d6",
-		measurementId: "G-TX04PP9NR0"
+		appId: "1:614394649059:web:c5a892f5c7a54e7745e8d6"
 	};
 
   	const app = initializeApp(firebaseConfig);
