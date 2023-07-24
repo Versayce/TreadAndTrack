@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneCar, clearOneCar, LikeCar, deleteCar } from '../../store/car';
 import { renderCreateEventModal } from '../../store/modal';
-
 // import { useHistory } from 'react-router-dom';
-
 
 function CarCard({ cars }) {
     // const history = useHistory()
@@ -28,7 +26,6 @@ function CarCard({ cars }) {
     }
 
     const showModalEvent = (params, carId) => {
-        console.log('params================', carId)
         dispatch(getOneCar(carId))
         dispatch(renderCreateEventModal(params))
     };
@@ -36,7 +33,7 @@ function CarCard({ cars }) {
     const carCards = cars?.map((car) => {
         let liked;
         for(const like of car.likes) {
-            if (like.userId === sessionUser.id) {
+            if (like.userId === sessionUser?.id) {
                 liked = true
             }
         }
@@ -45,8 +42,8 @@ function CarCard({ cars }) {
             <CarCards onClick={() => setActiveCarPage(car.id)} key={car.id} car={car}>
                 <TopInfo>
                     <h1>{car?.name}</h1>
-                    {sessionUser.id === car.ownerId && <StyledButton as="button" onClick={() => showModalEvent(editCarModal, car.id)}>Edit Car</StyledButton>}
-                    {sessionUser.id === car.ownerId && <StyledButton as="button" onClick={() => dispatch(deleteCar(car.id))}>Delete</StyledButton>}
+                    {sessionUser?.id === car.ownerId && <StyledButton as="button" onClick={() => showModalEvent(editCarModal, car.id)}>Edit Car</StyledButton>}
+                    {sessionUser?.id === car.ownerId && <StyledButton as="button" onClick={() => dispatch(deleteCar(car.id))}>Delete</StyledButton>}
                 </TopInfo>
                 {/* {car.previewImage ? <img alt='eventimg' src={`${car.previewImage}`} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/> : <img alt='placeholder' src='/images/placeholderImage.png'/>} */}
                 <BottomInfo>

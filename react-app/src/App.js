@@ -60,10 +60,10 @@ function App() {
 				<ProtectedRoute path='/users/:userId' exact={true}>
 					<User />
 				</ProtectedRoute>
-				<ProtectedRoute path='/events' exact={true}>
+				<Route path='/events' exact={true}>
 					<NavBar />
 					<EventList />
-				</ProtectedRoute>
+				</Route>
 				<ProtectedRoute path='/events/create' exact={true}>
 					<EventForm />
 				</ProtectedRoute>

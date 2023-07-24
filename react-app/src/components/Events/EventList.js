@@ -19,12 +19,10 @@ function EventList() {
     const cars = Object.values(carsObj)
 
     useEffect(() => {
-        if(!userId) return;
         dispatch(getAllEvents())
     }, [ dispatch, userId ]);
 
     useEffect(() => {
-        if(!userId) return;
         dispatch(getAllCars())
     }, [ dispatch, userId, car?.likeCount ]);
 
