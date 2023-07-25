@@ -5,7 +5,7 @@ import Spinner from "../Spinner/Spinner";
 const Map = ({ apiKey, latLng }) => {
     const { isLoaded, loadError } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyBkhhJI1Ut2H-dWP6W8gKw-KGcTbxRLYlE",
+        googleMapsApiKey: apiKey,
     })
     
     const onLoad = useCallback(
@@ -29,7 +29,7 @@ const Map = ({ apiKey, latLng }) => {
     };
     
     const RenderMap = () => {
-        return <GoogleMap 
+        return (<GoogleMap 
                     // options={options}
                     onload={onLoad} 
                     center={center} //Add center object
@@ -40,8 +40,8 @@ const Map = ({ apiKey, latLng }) => {
                 //Map Components:
                 <Marker position={center} />
             }
-        </GoogleMap>
-}
+        </GoogleMap>)
+    }
     if (loadError) {
         return <div>Map cannot be loaded at this time</div>
     }
