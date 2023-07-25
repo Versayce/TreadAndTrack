@@ -2,18 +2,17 @@ import React, { useMemo, useCallback, useState, useRef } from "react";
 import { GoogleMap, useJsApiLoader, useLoadScript, Marker } from "@react-google-maps/api";
 import Spinner from "../Spinner/Spinner";
 
-const options = {
-    zoomControlOptions: {
-        // position: google.maps.ControlPosition.RIGHT_CENTER
-    }
-}
-
-
 const Map = ({ apiKey, latLng }) => {
     const { isLoaded, loadError } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: apiKey,
+        googleMapsApiKey: "AIzaSyBkhhJI1Ut2H-dWP6W8gKw-KGcTbxRLYlE",
     })
+    
+    const onLoad = useCallback(
+        function onLoad (mapInstance) {
+            console.log("...Google Map Loaded...");
+        }
+    )
 
     const center = useMemo(() => ({
         lat: latLng.lat,
@@ -22,7 +21,7 @@ const Map = ({ apiKey, latLng }) => {
 
     const styles = {
         width: "auto",
-        height: "40%",
+        height: "500px",
         borderRadius: 10,
         border: "solid 6px #fafafa",
         boxShadow: "2px 3px 10px 0px #36363621",
@@ -30,14 +29,9 @@ const Map = ({ apiKey, latLng }) => {
     };
     
     const RenderMap = () => {
-        // const onLoad = useCallback(
-        //     function onLoad (mapInstance) {
-        //         console.log("...Google Map Loaded...");
-        //     }
-        // )
         return <GoogleMap 
-                    options={options}
-                    // onload={onLoad} 
+                    // options={options}
+                    onload={onLoad} 
                     center={center} //Add center object
                     zoom={16}
                     mapContainerStyle={styles} //Add style object

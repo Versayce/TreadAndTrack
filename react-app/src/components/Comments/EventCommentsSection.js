@@ -8,7 +8,8 @@ import { deleteMessage, getOneMessage } from '../../store/message';
 function EventCommentsSection() {
     const dispatch = useDispatch();
     const [ formType, setFormType ] = useState("createForm")
-    const sessionUserId = useSelector(state => state.session.user.id)
+    const sessionUser = useSelector(state => state.session.user)
+    const sessionUserId = sessionUser?.id
     const messagesObj = useSelector(state => state.messages.eventMessages)
     const messages = Object.values(messagesObj)
     const mostRecentMessage = useRef(null) //For scrolling to most recent message
@@ -29,15 +30,15 @@ function EventCommentsSection() {
         <MessageBoxWrapper>
             <MessageContainer>
                 {messages && messages.map(message => (
-                    <LineWrapper key={message.id} user={sessionUserId} message={message.author.id}>
+                    <LineWrapper key={message.id} user={sessionUserId} message={message.author?.id}>
                         <Message>
                             <div>{`${message?.author.username}: `}{message.updatedAt}</div>
                             <div>{message.body}</div>
                         </Message>
         
                         <ButtonWrapper>
-                            {sessionUserId === message.author.id && <CustomButton onClick={() => handleDelete(message?.id)} >Delete</CustomButton>}
-                            {sessionUserId === message.author.id && <CustomButton onClick={() => handleEdit(message?.id)} >Edit</CustomButton>}
+                            {sessionUserId === message.author?.id && <CustomButton onClick={() => handleDelete(message?.id)} >Delete</CustomButton>}
+                            {sessionUserId === message.author?.id && <CustomButton onClick={() => handleEdit(message?.id)} >Edit</CustomButton>}
                         </ButtonWrapper>
                     </LineWrapper>
                 ))}
@@ -46,8 +47,8 @@ function EventCommentsSection() {
 
             </MessageContainer>
         </MessageBoxWrapper>
-        {formType === "createForm" && <MessageForm mostRecentMessage={mostRecentMessage}/>}
-        {formType === "editForm" && <EditMessageForm setFormType={setFormType} mostRecentMessage={mostRecentMessage} />}
+        {sessionUser && formType === "createForm" && <MessageForm mostRecentMessage={mostRecentMessage}/>}
+        {sessionUser && formType === "editForm" && <EditMessageForm setFormType={setFormType} mostRecentMessage={mostRecentMessage} />}
         </>
     ); 
 }
@@ -89,7 +90,7 @@ const LineWrapper = styled.div`
     transition-property: box-shadow, transform;
     &:hover {
         background-color: ${props => 
-            props.user.id === props.message.author?.id ? "#b6b6b62f" : "#f3f3f339"
+            props.user?.id === props.message.author?.id ? "#b6b6b62f" : "#f3f3f339"
         };
         box-shadow: 2px 2px 5px #30303042;
         transform: scale(1.01);

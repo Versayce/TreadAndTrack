@@ -14,7 +14,7 @@ function MessageForm({ mostRecentMessage }) {
     const currentEventObj = useSelector(state => state.events.oneEvent)
     const eventId = Object.values(currentEventObj)[0]?.id
     const sessionUser = useSelector(state => state.session.user)
-    const authorId = sessionUser.id
+    const authorId = sessionUser?.id
     // const { body, channelId, authorId } = message;
 
     const formData = {body, "event_id": eventId, "author_id": authorId}
@@ -85,7 +85,7 @@ const FormWrapper = styled.form`
 const MainForm = styled.div`
     display: flex;
     width: 100%;
-    padding: 10px 0px 0px 0px
+    padding: 10px 0px 0px 0px;
 `
 
 const CommentInput = styled.input`

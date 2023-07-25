@@ -54,7 +54,7 @@ function EventPage() {
             {eventImageUrl && <EventImage src={eventImageUrl} onError={e => {e.currentTarget.src = "/images/placeholderImage.png";}}/>}
             {event && <HeaderWrapper>
                 <h1>{event?.name}</h1>
-                {event?.owner?.id === currentUser.id && <ButtonWrapper>
+                {event?.owner?.id === currentUser?.id && <ButtonWrapper>
                     <StyledButton as="button" onClick={() => handleDelete(event?.id)}> Delete Event </StyledButton>
                     <StyledButton as="button" onClick={() => showModalEvent(editModal)}> Edit Event </StyledButton>
                 </ButtonWrapper>}
