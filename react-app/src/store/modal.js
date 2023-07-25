@@ -10,7 +10,6 @@ const CLOSE_MODAL = 'modals/closeModal'
 
 //------------------------------   ACTIONS   ------------------------------//
 export const renderCreateEventModal = (params) => { 
-    console.log('inside of CREATE modal action', params)
     return {
         type: CREATE_EVENT_FORM_MODAL,
         params
@@ -18,7 +17,6 @@ export const renderCreateEventModal = (params) => {
 };
 
 export const closeModal = () => {
-    console.log('inside of CLOSE modal action')
     return {
         type: CLOSE_MODAL,
     }

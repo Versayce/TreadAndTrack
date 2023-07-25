@@ -1,5 +1,5 @@
-import React, { useMemo, useCallback, useState, useRef } from "react";
-import { GoogleMap, useJsApiLoader, useLoadScript, Marker } from "@react-google-maps/api";
+import React, { useMemo, useCallback } from "react";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import Spinner from "../Spinner/Spinner";
 
 const Map = ({ apiKey, latLng }) => {
