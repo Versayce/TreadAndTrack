@@ -1,5 +1,4 @@
 from flask import Blueprint, request
-
 from app.forms.event_form import EventForm
 from app.forms.event_image_form import EventImageForm
 from app.forms.event_message_form import EventMessageForm

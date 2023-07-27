@@ -11,13 +11,10 @@ function EditMessageForm({ setFormType }) {
     const messageId = currentMessage.id
     const [body, setBody] = useState(currentMessage?.body)
     const [error, setError] = useState([])
-    
     const currentEventObj = useSelector(state => state.events.oneEvent)
     const event_id = Object.values(currentEventObj)[0]?.id
-
     const sessionUser = useSelector(state => state.session.user)
     const author_id = sessionUser.id
-
     const formData = {"id": messageId, body, event_id, author_id}
     // console.log("===========EDIT FORM COMPONENT==================", currentMessage)
 

@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 
-
 function EventUserList({ userList }) {
     console.log(userList)
     const eventUsers = userList?.map((user) => {
