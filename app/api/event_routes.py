@@ -1,13 +1,21 @@
-from flask import Blueprint, request
+import os
+from flask import Blueprint, request, jsonify
 from app.forms.event_form import EventForm
 from app.forms.event_image_form import EventImageForm
 from app.forms.event_message_form import EventMessageForm
 from app.models.event_message import EventMessage
 from app.models.event_image import EventImage
 from ..models import db, Event, EventMessage
-
+import boto3
 
 event_routes = Blueprint('events', __name__)
+# Defining AWS bucket for use in routes
+aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID')
+aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
+bucket_name = 'tread.track-bucket'
+banner_object_key = 's3://tread.track-bucket/event_images/banners/'
+photos_object_key = 's3://tread.track-bucket/event_images/photos/'
+s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
 
 
 @event_routes.route('')
@@ -31,6 +39,13 @@ def create_new_event():
 
     else:
         return form.errors
+
+
+@event_routes.route('/list_buckets', methods=['GET'])
+def list_buckets():
+    response = s3.list_buckets()
+    bucket_names = [bucket['Name'] for bucket in response['Buckets']]
+    return jsonify(bucket_names)
 
 
 @event_routes.route('/<int:id>', methods=['GET', 'PUT', 'DELETE']) 
