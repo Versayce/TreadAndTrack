@@ -11,13 +11,13 @@ event_routes = Blueprint('events', __name__)
 
 
 @event_routes.route('')
-def event_home():
+def all_events():
     all_events = Event.query.all()
     return {'events': [event.to_dict() for event in all_events]}
 
 
 @event_routes.route('', methods=['POST'])
-def new_event():
+def create_new_event():
     form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -34,7 +34,7 @@ def new_event():
 
 
 @event_routes.route('/<int:id>', methods=['GET', 'PUT', 'DELETE']) 
-def event_by_id(id):
+def get_event_by_id(id):
     event = Event.query.get(id)
     
     if event:
