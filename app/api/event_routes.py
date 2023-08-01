@@ -17,7 +17,7 @@ def event_home():
 
 
 @event_routes.route('', methods=['POST'])
-def new_server():
+def new_event():
     form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
