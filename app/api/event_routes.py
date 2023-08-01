@@ -1,4 +1,5 @@
 import os
+import boto3
 from flask import Blueprint, request, jsonify
 from app.forms.event_form import EventForm
 from app.forms.event_image_form import EventImageForm
@@ -6,7 +7,6 @@ from app.forms.event_message_form import EventMessageForm
 from app.models.event_message import EventMessage
 from app.models.event_image import EventImage
 from ..models import db, Event, EventMessage
-import boto3
 
 event_routes = Blueprint('events', __name__)
 # Defining AWS bucket for use in routes
