@@ -1,5 +1,5 @@
 .env
-.flaskenv
+*.flaskenv
 __pycache__/
 *.py[cod]
 .venv
