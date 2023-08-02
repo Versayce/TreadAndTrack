@@ -51,7 +51,3 @@ Full-stack web application concept for hosting car-based events. Users can creat
 - Boto3 (AWS S3)
 - WTForms
 
-
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
