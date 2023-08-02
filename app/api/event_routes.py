@@ -1,6 +1,6 @@
 import os
 import boto3
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 from app.forms.event_form import EventForm
 from app.forms.event_image_form import EventImageForm
 from app.forms.event_message_form import EventMessageForm
@@ -45,7 +45,7 @@ def create_new_event():
 def list_buckets():
     response = s3.list_buckets()
     bucket_names = [bucket['Name'] for bucket in response['Buckets']]
-    return jsonify(bucket_names)
+    return {'Buckets': bucket_names}
 
 
 @event_routes.route('/<int:id>', methods=['GET', 'PUT', 'DELETE']) 
