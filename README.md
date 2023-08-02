@@ -23,12 +23,13 @@ Full-stack web application concept for hosting car-based events. Users can creat
    - User submitted car images to be featured on respective page and can be liked by other users. <span style="color:#f0305c">(Updates in progress)</span>
 
 &nbsp;
-### Implementation Queue <span style="color:#34ebc3">(In order of priority)</span>:
-- Complete routes for AWS image hosting.
-- Complete backend routes for joining events.
-- Complete responsiveness for mobile.
-- Create a car stats page feature.
-- Add additional options for users to filter events or cars by.
+### Implementation/Update Queue <span style="color:#34ebc3">(In order of priority)</span>:
+- 🔵 Complete routes for AWS image hosting for event images. 
+- 🟢 Complete backend routes for joining events. 
+- 🟡 Complete responsiveness for mobile. 
+- 🟠 Create a car stats page feature. 
+- 🔴 Add additional options for users to filter events or cars by. 
+- 🟣 Additional styling adjustments and UX changes.
 
 &nbsp;
 ## Tech Stack:
@@ -50,4 +51,3 @@ Full-stack web application concept for hosting car-based events. Users can creat
 - AWS S3
 - Boto3 (AWS S3)
 - WTForms
-
