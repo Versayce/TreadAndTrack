@@ -1,5 +1,8 @@
 # Tread&&Track Project
 
+### Demo The Application Here! 
+### &nbsp; https://tread-andand-track.onrender.com/ 
+
 ## Description:
 
 Full-stack web application concept for hosting car-based events. Users can create their own events, join other events, and host a page for their car which includes images and specs.
@@ -20,8 +23,11 @@ Full-stack web application concept for hosting car-based events. Users can creat
    - User submitted car images to be featured on respective page and can be liked by other users. <span style="color:#f0305c">(Updates in progress)</span>
 
 &nbsp;
-### Future feature/functionality plans <span style="color:#34ebc3">(In order of priority)</span>:
+### Implementation Queue <span style="color:#34ebc3">(In order of priority)</span>:
+- Complete routes for AWS image hosting.
+- Complete backend routes for joining events.
 - Complete responsiveness for mobile.
+- Create a car stats page feature.
 - Add additional options for users to filter events or cars by.
 
 &nbsp;
@@ -44,7 +50,6 @@ Full-stack web application concept for hosting car-based events. Users can creat
 - AWS S3
 - WTForms
 - Boto3
-### You can find the demo application hosted on: https://tread-andand-track.onrender.com/ 
 
 
 
