@@ -48,8 +48,8 @@ Full-stack web application concept for hosting car-based events. Users can creat
 - Flask
 - SqlAlchemy
 - AWS S3
+- Boto3 (AWS S3)
 - WTForms
-- Boto3
 
 
 
