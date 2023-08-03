@@ -5,7 +5,6 @@ import { clearOneEvent, getOneEvent } from '../../store/event';
 import { useHistory } from 'react-router-dom';
 import { clearEventMessages } from '../../store/message';
 
-
 function EventCard() {
     const history = useHistory()
     const dispatch = useDispatch();

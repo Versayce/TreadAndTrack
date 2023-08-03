@@ -11,7 +11,7 @@ Full-stack web application concept for hosting car-based events. Users can creat
 - Forms 
    - Google-Places Autocomplete
    - TinyMCE Rich Text Editor
-   - AWS S3 bucket functionality <span style="color:#f0305c">(Updates in progress)</span>
+   - AWS S3 bucket functionality. (Updates in progress)
 
 &nbsp;
 - Events
@@ -20,10 +20,10 @@ Full-stack web application concept for hosting car-based events. Users can creat
 
 &nbsp;
 - Cars
-   - User submitted car images to be featured on respective page and can be liked by other users. <span style="color:#f0305c">(Updates in progress)</span>
+   - User submitted car images to be featured on respective page and can be liked by other users. (Updates in progress)
 
 &nbsp;
-### Implementation/Update Queue <span style="color:#34ebc3">(In order of priority)</span>:
+### Implementation/Update Queue (In order of priority):
 - 🔵 Complete routes for AWS image hosting for event images. 
 - 🟢 Complete backend routes for joining events. 
 - 🟡 Complete responsiveness for mobile. 
@@ -42,7 +42,7 @@ Full-stack web application concept for hosting car-based events. Users can creat
 - Node
 - Google-Places Autocomplete
 - Google Maps
-- Google Firebase
+- Google Firebase (Analytics)
 - TinyMCE
 - Styled Components
 #### Back-end Technologies:

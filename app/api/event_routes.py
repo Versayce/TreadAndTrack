@@ -1,6 +1,7 @@
 import os
 import boto3
-from flask import Blueprint, request
+import botocore
+from flask import Blueprint, jsonify, request
 from app.forms.event_form import EventForm
 from app.forms.event_image_form import EventImageForm
 from app.forms.event_message_form import EventMessageForm
@@ -25,6 +26,21 @@ def all_events():
 
 
 @event_routes.route('', methods=['POST'])
+#Todo add logic for AWS services
+def upload_image():
+    if 'file' not in request.files:
+        return {'error': 'No file part in the request.', 'errorCode': 400}, 400
+    file = request.files['file']
+    
+    if file.filename == '':
+        return { 'error': 'No file selected.', 'errorCode': 400}, 400
+    
+    try:
+        s3.upload_fileobj(file, bucket_name, file.filename)
+        return { 'message': f'File {file.filename} uploaded succesfully'}, 200
+    except botocore.exceptions.ClientError as e:
+        return { 'error': str(e), 'errorCode': 500}, 500
+    
 def create_new_event():
     form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -81,7 +97,7 @@ def get_event_by_id(id):
             db.session.commit()
             return {'message': 'Event Deleted!'}
     
-    return { "error": "Event not found", "errorCode" : 404 }, 404
+    return { 'error': 'Event not found', 'errorCode' : 404 }, 404
 
 
 @event_routes.route('/images', methods=['POST'])
