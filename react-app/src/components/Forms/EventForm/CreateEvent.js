@@ -62,7 +62,7 @@ const EventForm = () => {
             errorMessage: "Please upload an image",
             errorHandler: setImageError,
             errorStatus: imageError,
-            label: "Banner Image",
+            label: "Upload Banner Image",
             required: true,
             // pattern: "^https?://.*",
             onChange: setImageUrl,

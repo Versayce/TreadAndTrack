@@ -118,12 +118,10 @@ const FormInputs = (props) => {
             case "file": {
                 return ( 
                     <>
-                        <label htmlFor="file" className="sr-only">
-                            Choose a file
-                        </label>
-                        <FileUpload 
+                        <input 
                             name={name}
                             type={type}
+                            id={type}
                             value={value}
                             placeholder={placeholder}
                             required={required}
@@ -189,7 +187,7 @@ const FormInputs = (props) => {
 
     return (
         <FormInput > 
-            <label>{label}</label>
+            <label htmlFor="file">{label}</label>
             {renderInputs(type)}
             {(hasError(errorStatus) && blur) || (isValid(value, pattern, errorHandler) && blur) ? <span>{errorMessage}</span> : <span></span>}
         </FormInput>
