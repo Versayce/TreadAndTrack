@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useState } from "react";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import TextEditor from "../TextEditor";
 
@@ -115,6 +115,28 @@ const FormInputs = (props) => {
                 );
             };
 
+            case "file": {
+                return ( 
+                    <>
+                        <label htmlFor="file" className="sr-only">
+                            Choose a file
+                        </label>
+                        <FileUpload 
+                            name={name}
+                            type={type}
+                            value={value}
+                            placeholder={placeholder}
+                            required={required}
+                            // pattern={pattern}
+                            onChange={handleEditorChange} 
+                            onBlur={handleBlur} 
+                            onFocus={handleFocus}
+                            focused={focused.toString()} 
+                        />
+                    </>
+                );
+            };
+
             case "google-places": {
                 return (
                     <PlacesAutocomplete
@@ -220,6 +242,14 @@ const FormInput = styled.div`
 `
 
 const GoogleInput = styled.div`
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+`
+
+const FileUpload = styled.div`
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     align-items: center;
