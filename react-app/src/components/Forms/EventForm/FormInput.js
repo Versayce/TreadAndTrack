@@ -36,7 +36,8 @@ const FormInputs = (props) => {
         pattern, 
         name, 
         type, 
-        placeholder } = props;
+        placeholder,
+        file } = props;
     
     const handleBlur = (e) => {
         setFocused(false);
@@ -58,28 +59,29 @@ const FormInputs = (props) => {
         handleFileUpload(e.target.files)
     };
 
-    const handleFileUpload = async (file) => {
-        if (file) {
+    const handleFileUpload = async (fileData) => {
+        if (fileData) {
             console.log("Uploading file...");
         
             const formData = new FormData();
             formData.append("file", file);
         
             try {
-            // You can write the URL of your server or any other endpoint used for file upload
-            const result = await fetch("https://httpbin.org/post", {
-                method: "POST",
-                body: formData,
-            });
-        
-            const data = await result.json();
-        
-            console.log(data);
+                // Handle uploading to AWS through api endpoint
+                //TODO update event endpoints 
+                const result = await fetch("/api/events/bannerUpload", {
+                    method: "POST",
+                    body: formData,
+                });
+            
+                const data = await result.json();
+            
+                console.log(data);
             } catch (error) {
             console.error(error);
             }
         }
-        onChange?.(file);
+        onChange?.(fileData);
     }
 
     const handleEditorChange = (value) => {

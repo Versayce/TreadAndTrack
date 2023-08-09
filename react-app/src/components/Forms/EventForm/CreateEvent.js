@@ -66,7 +66,8 @@ const EventForm = () => {
             required: true,
             // pattern: "^https?://.*",
             onChange: setFile,
-            value: file.filename,
+            file: file,
+            value: file?.filename,
         },
         {
             id: 3,
@@ -109,6 +110,7 @@ const EventForm = () => {
                 addressError === false && 
                 descriptionError === false
             ) {
+            //TODO add dispatch for AWS upload and use public URL in formData
             await dispatch(createEvent(formData)) 
             await dispatch(getAllEvents())
             history.push("/")
