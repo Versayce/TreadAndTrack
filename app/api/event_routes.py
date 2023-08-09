@@ -41,6 +41,10 @@ def upload_image():
     except botocore.exceptions.ClientError as e:
         return { 'error': str(e), 'errorCode': 500}, 500
     
+def get_image_url(bucket_name, photos_object_key, file):
+    url = f'https://{bucket_name}.s3.{"us-west-1"}.amazonaws.com/{f"s3://tread.track-bucket/event_images/banners/{file.filename}"}'
+    return url
+
 def create_new_event():
     form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
