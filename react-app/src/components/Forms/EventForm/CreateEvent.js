@@ -22,7 +22,7 @@ const EventForm = () => {
     const [lat, setLat] = useState(null);
     const [lng, setLng] = useState(null);
     const [description, setDescription] = useState("");
-    const [image_url, setImageUrl] = useState("");
+    const [file, setFile] = useState("");
     //Error Handling Vars
     const [nameError, setNameError] = useState(false);
     const [imageError, setImageError] = useState(false);
@@ -35,7 +35,7 @@ const EventForm = () => {
         lat,
         lng,
         description,
-        "banner_image_url": image_url,
+        "banner_image_url": file,
         "owner_id": ownerId,
     };
     //Inputs array for FormInput component 
@@ -56,7 +56,7 @@ const EventForm = () => {
         },
         {
             id: 2,
-            name: "image_url",
+            name: "Banner Image",
             type: "file",
             placeholder: "Upload an Image",
             errorMessage: "Please upload an image",
@@ -65,8 +65,8 @@ const EventForm = () => {
             label: "Upload Banner Image",
             required: true,
             // pattern: "^https?://.*",
-            onChange: setImageUrl,
-            value: image_url,
+            onChange: setFile,
+            value: file.filename,
         },
         {
             id: 3,

@@ -51,6 +51,37 @@ const FormInputs = (props) => {
         onChange?.(e.target.value);
     };
 
+    const handleFileChange = (e) => {
+        if (e.target.files) {
+            onChange?.(e.target.files[0]);
+        }
+        handleFileUpload(e.target.files)
+    };
+
+    const handleFileUpload = async (file) => {
+        if (file) {
+            console.log("Uploading file...");
+        
+            const formData = new FormData();
+            formData.append("file", file);
+        
+            try {
+            // You can write the URL of your server or any other endpoint used for file upload
+            const result = await fetch("https://httpbin.org/post", {
+                method: "POST",
+                body: formData,
+            });
+        
+            const data = await result.json();
+        
+            console.log(data);
+            } catch (error) {
+            console.error(error);
+            }
+        }
+        onChange?.(file);
+    }
+
     const handleEditorChange = (value) => {
         onChange?.(value);
     }
@@ -126,7 +157,7 @@ const FormInputs = (props) => {
                             placeholder={placeholder}
                             required={required}
                             // pattern={pattern}
-                            onChange={handleEditorChange} 
+                            onChange={handleFileChange} 
                             onBlur={handleBlur} 
                             onFocus={handleFocus}
                             focused={focused.toString()} 
