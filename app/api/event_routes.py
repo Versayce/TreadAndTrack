@@ -49,7 +49,7 @@ def upload_banner():
         file_key = os.path.join(BASE_FOLDER, BANNERS_SUBFOLDER, file.filename)
         s3.upload_fileobj(
             file, 
-            BUCKET_NAME, 
+            AWS_BUCKET_NAME, 
             file_key,
             ExtraArgs={
                 'ContentType': content_type
