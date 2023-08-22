@@ -11,12 +11,19 @@ from ..models import db, Event, EventMessage
 
 event_routes = Blueprint('events', __name__)
 # Defining AWS bucket for use in routes
-aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID')
-aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
-bucket_name = 'tread.track-bucket'
-banner_object_key = 's3://tread.track-bucket/event_images/banners/'
-photos_object_key = 's3://tread.track-bucket/event_images/photos/'
-s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+BUCKET_NAME = 'tread.track-bucket'
+BANNER_OBJECT_KEY = 's3://tread.track-bucket/event_images/banners/'
+PHOTOS_OBJECT_KEY = 's3://tread.track-bucket/event_images/photos/'
+BASE_FOLDER = 'event_images'
+BANNERS_SUBFOLDER = 'banners'
+PHOTOS_SUBFOLDER = 'photos'
+s3 = boto3.client(
+    's3', 
+    aws_access_key_id=AWS_ACCESS_KEY_ID, 
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY
+)
 
 
 @event_routes.route('')
@@ -38,13 +45,14 @@ def upload_banner():
         return { 'error': 'No file selected.', 'errorCode': 400}, 400
     
     try:
-        s3.upload_fileobj(file, bucket_name, file.filename)
+        file_key = os.path.join(BASE_FOLDER, BANNERS_SUBFOLDER, file.filename)
+        s3.upload_fileobj(file, BUCKET_NAME, file_key)
         return { 'message': f'File {file.filename} uploaded succesfully'}, 200
     except botocore.exceptions.ClientError as e:
         return { 'error': str(e), 'errorCode': 500}, 500
     
-def get_image_url(bucket_name, photos_object_key, file):
-    url = f'https://{bucket_name}.s3.{"us-west-1"}.amazonaws.com/{f"s3://tread.track-bucket/event_images/banners/{file.filename}"}'
+def get_image_url(BUCKET_NAME, PHOTOS_OBJECT_KEY, file):
+    url = f'https://{BUCKET_NAME}.s3.{"us-west-1"}.amazonaws.com/{f"s3://tread.track-bucket/event_images/banners/{file.filename}"}'
     return {'S3 URL': url}
     
 
