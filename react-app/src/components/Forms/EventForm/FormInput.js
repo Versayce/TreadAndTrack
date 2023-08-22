@@ -74,6 +74,7 @@ const FormInputs = (props) => {
                 const response = await fetch("/api/events/banner_upload", {
                     method: "POST",
                     body: imageData,
+                    "Content-Type": "image/jpeg",
                 });
                 console.log("response data: ", response.files);
 

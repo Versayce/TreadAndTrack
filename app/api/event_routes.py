@@ -1,6 +1,7 @@
 import os
 import boto3
 import botocore
+import mimetypes
 from flask import Blueprint, jsonify, request
 from app.forms.event_form import EventForm
 from app.forms.event_image_form import EventImageForm
@@ -35,25 +36,35 @@ def all_events():
 @event_routes.route('banner_upload', methods=['POST'])
 def upload_banner():
     #Todo add logic for AWS services
-    print('************  file  ************', request.files);
-    
     if 'file' not in request.files:
         return {'error': 'No file part in the request.', 'errorCode': 400}, 400
+    
     file = request.files['file']
+    content_type = mimetypes.guess_type(file.filename)[0] or 'application/octet-stream'
     
     if file.name == '':
         return { 'error': 'No file selected.', 'errorCode': 400}, 400
     
     try:
         file_key = os.path.join(BASE_FOLDER, BANNERS_SUBFOLDER, file.filename)
-        s3.upload_fileobj(file, BUCKET_NAME, file_key)
+        s3.upload_fileobj(
+            file, 
+            BUCKET_NAME, 
+            file_key,
+            ExtraArgs={
+                'ContentType': content_type
+            }
+        )
+        
         return { 'message': f'File {file.filename} uploaded succesfully'}, 200
+    
     except botocore.exceptions.ClientError as e:
         return { 'error': str(e), 'errorCode': 500}, 500
-    
-def get_image_url(BUCKET_NAME, PHOTOS_OBJECT_KEY, file):
-    url = f'https://{BUCKET_NAME}.s3.{"us-west-1"}.amazonaws.com/{f"s3://tread.track-bucket/event_images/banners/{file.filename}"}'
-    return {'S3 URL': url}
+   
+#TODO edit for pulling url and adding to DB for use 
+# def get_image_url(BUCKET_NAME, PHOTOS_OBJECT_KEY, file):
+#     url = f'https://{BUCKET_NAME}.s3.{"us-west-1"}.amazonaws.com/{f"s3://tread.track-bucket/event_images/banners/{file.filename}"}'
+#     return {'S3 URL': url}
     
 
 @event_routes.route('', methods=['POST'])
