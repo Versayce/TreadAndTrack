@@ -14,9 +14,9 @@ event_routes = Blueprint('events', __name__)
 # Defining AWS bucket for use in routes
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-BUCKET_NAME = 'tread.track-bucket'
-BANNER_OBJECT_KEY = 's3://tread.track-bucket/event_images/banners/'
-PHOTOS_OBJECT_KEY = 's3://tread.track-bucket/event_images/photos/'
+AWS_BUCKET_NAME = os.environ.get('AWS_BUCKET_NAME')
+BANNER_OBJECT_KEY = os.environ.get('BANNER_OBJECT_KEY')
+PHOTOS_OBJECT_KEY = os.environ.get('PHOTOS_OBJECT_KEY')
 BASE_FOLDER = 'event_images'
 BANNERS_SUBFOLDER = 'banners'
 PHOTOS_SUBFOLDER = 'photos'
