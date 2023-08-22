@@ -15,17 +15,22 @@ event_routes = Blueprint('events', __name__)
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_BUCKET_NAME = os.environ.get('AWS_BUCKET_NAME')
+AWS_SERVER_LOCATION = os.environ.get('AWS_SERVER_LOCATION')
 BANNER_OBJECT_KEY = os.environ.get('BANNER_OBJECT_KEY')
 PHOTOS_OBJECT_KEY = os.environ.get('PHOTOS_OBJECT_KEY')
 BASE_FOLDER = 'event_images'
 BANNERS_SUBFOLDER = 'banners'
 PHOTOS_SUBFOLDER = 'photos'
+ALLOWED_IMAGE_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
 s3 = boto3.client(
     's3', 
     aws_access_key_id=AWS_ACCESS_KEY_ID, 
     aws_secret_access_key=AWS_SECRET_ACCESS_KEY
 )
 
+def check_if_image(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_IMAGE_EXTENSIONS
 
 @event_routes.route('')
 def all_events():
@@ -34,6 +39,7 @@ def all_events():
 
 
 @event_routes.route('banner_upload', methods=['POST'])
+
 def upload_banner():
     #Todo add logic for AWS services
     if 'file' not in request.files:
@@ -45,25 +51,32 @@ def upload_banner():
     if file.name == '':
         return { 'error': 'No file selected.', 'errorCode': 400}, 400
     
+    if not check_if_image(file.filename):
+        return {'error': 'Invalid file format', 'errorCode': 400}, 400
+    
     try:
         file_key = os.path.join(BASE_FOLDER, BANNERS_SUBFOLDER, file.filename)
+        image_url = f'https://s3.{AWS_SERVER_LOCATION}.amazonaws.com/{AWS_BUCKET_NAME}/{BASE_FOLDER}/{BANNERS_SUBFOLDER}/{file.filename.replace(" ", "+")}'
         s3.upload_fileobj(
             file, 
             AWS_BUCKET_NAME, 
             file_key,
             ExtraArgs={
-                'ContentType': content_type
+                'ContentType': content_type,
             }
         )
         
-        return { 'message': f'File {file.filename} uploaded succesfully'}, 200
+        return {
+            'message': f'File {file.filename} uploaded succesfully',
+            'URL': image_url
+            }, 200
     
     except botocore.exceptions.ClientError as e:
         return { 'error': str(e), 'errorCode': 500}, 500
    
 #TODO edit for pulling url and adding to DB for use 
-# def get_image_url(BUCKET_NAME, PHOTOS_OBJECT_KEY, file):
-#     url = f'https://{BUCKET_NAME}.s3.{"us-west-1"}.amazonaws.com/{f"s3://tread.track-bucket/event_images/banners/{file.filename}"}'
+# def get_image_url(AWS_BUCKET_NAME, BASE_FOLDER, PHOTOS_SUBFOLDER, file):
+#     url = f'https://{AWS_BUCKET_NAME}.s3.{"us-west-1"}.amazonaws.com/{f"s3://{AWS_BUCKET_NAME}/{BASE_FOLDER}/{PHOTOS_SUBFOLDER}/{file.filename}"}'
 #     return {'S3 URL': url}
     
 

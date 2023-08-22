@@ -73,8 +73,7 @@ const FormInputs = (props) => {
                 // Handle uploading to AWS through api endpoint
                 const response = await fetch("/api/events/banner_upload", {
                     method: "POST",
-                    body: imageData,
-                    "Content-Type": "image/jpeg",
+                    body: imageData
                 });
                 console.log("response data: ", response.files);
 
