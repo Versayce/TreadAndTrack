@@ -25,14 +25,16 @@ def all_events():
     return {'events': [event.to_dict() for event in all_events]}
 
 
-@event_routes.route('', methods=['POST'])
-#Todo add logic for AWS services
-def upload_image():
+@event_routes.route('banner_upload', methods=['POST'])
+def upload_banner():
+    #Todo add logic for AWS services
+    print('************  file  ************', request.files);
+    
     if 'file' not in request.files:
         return {'error': 'No file part in the request.', 'errorCode': 400}, 400
     file = request.files['file']
     
-    if file.filename == '':
+    if file.name == '':
         return { 'error': 'No file selected.', 'errorCode': 400}, 400
     
     try:
@@ -43,8 +45,10 @@ def upload_image():
     
 def get_image_url(bucket_name, photos_object_key, file):
     url = f'https://{bucket_name}.s3.{"us-west-1"}.amazonaws.com/{f"s3://tread.track-bucket/event_images/banners/{file.filename}"}'
-    return url
+    return {'S3 URL': url}
+    
 
+@event_routes.route('', methods=['POST'])
 def create_new_event():
     form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']

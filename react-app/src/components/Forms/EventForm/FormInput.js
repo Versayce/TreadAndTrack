@@ -56,32 +56,35 @@ const FormInputs = (props) => {
         if (e.target.files) {
             onChange?.(e.target.files[0]);
         }
-        handleFileUpload(e.target.files)
+        console.log("checking file information", e.target.files[0])
+        handleFileUpload(e.target.files[0])
     };
 
     const handleFileUpload = async (fileData) => {
+        console.log("handleFileUpload", fileData)
         if (fileData) {
             console.log("Uploading file...");
-        
-            const formData = new FormData();
-            formData.append("file", file);
+            
+            const imageData = new FormData();
+            imageData.append("file", fileData, fileData.name);
+            console.log("Image Data", imageData.get("file"))
         
             try {
                 // Handle uploading to AWS through api endpoint
-                //TODO update event endpoints 
-                const result = await fetch("/api/events/bannerUpload", {
+                const response = await fetch("/api/events/banner_upload", {
                     method: "POST",
-                    body: formData,
+                    body: imageData,
                 });
-            
-                const data = await result.json();
-            
-                console.log(data);
+                console.log("response data: ", response.files);
+
+                const data = await response.json();
+                console.log("File Uploaded!");
+                console.log("Upload Data: ", data);
             } catch (error) {
-            console.error(error);
+                console.error("An error occured while uploading file: ", error);
             }
         }
-        onChange?.(fileData);
+        // onChange?.(fileData);
     }
 
     const handleEditorChange = (value) => {
@@ -150,21 +153,19 @@ const FormInputs = (props) => {
 
             case "file": {
                 return ( 
-                    <>
-                        <input 
-                            name={name}
-                            type={type}
-                            id={type}
-                            value={value}
-                            placeholder={placeholder}
-                            required={required}
-                            // pattern={pattern}
-                            onChange={handleFileChange} 
-                            onBlur={handleBlur} 
-                            onFocus={handleFocus}
-                            focused={focused.toString()} 
-                        />
-                    </>
+                    <input
+                        name={name}
+                        type={type}
+                        id={type}
+                        value={value}
+                        placeholder={placeholder}
+                        required={required}
+                        // pattern={pattern}
+                        onChange={handleFileChange} 
+                        onBlur={handleBlur} 
+                        onFocus={handleFocus}
+                        focused={focused.toString()} 
+                    />
                 );
             };
 
