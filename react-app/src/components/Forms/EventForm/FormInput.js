@@ -56,7 +56,6 @@ const FormInputs = (props) => {
         if (e.target.files) {
             onChange?.(e.target.files[0]);
         }
-        console.log("checking file information", e.target.files[0])
         handleFileUpload(e.target.files[0])
     };
 
@@ -67,7 +66,6 @@ const FormInputs = (props) => {
             
             const imageData = new FormData();
             imageData.append("file", fileData, fileData.name);
-            console.log("Image Data", imageData.get("file"))
         
             try {
                 // Handle uploading to AWS through api endpoint
@@ -75,11 +73,8 @@ const FormInputs = (props) => {
                     method: "POST",
                     body: imageData
                 });
-                console.log("response data: ", response.files);
-
                 const data = await response.json();
-                console.log("File Uploaded!");
-                console.log("Upload Data: ", data);
+
             } catch (error) {
                 console.error("An error occured while uploading file: ", error);
             }

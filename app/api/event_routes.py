@@ -29,8 +29,7 @@ s3 = boto3.client(
     aws_secret_access_key=AWS_SECRET_ACCESS_KEY
 )
 
-def check_if_image(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_IMAGE_EXTENSIONS
+
 
 @event_routes.route('')
 def all_events():
@@ -41,6 +40,8 @@ def all_events():
 @event_routes.route('banner_upload', methods=['POST'])
 
 def upload_banner():
+    def check_if_image(filename):
+        return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_IMAGE_EXTENSIONS
     #Todo add logic for AWS services
     if 'file' not in request.files:
         return {'error': 'No file part in the request.', 'errorCode': 400}, 400
@@ -67,7 +68,7 @@ def upload_banner():
         )
         
         return {
-            'message': f'File {file.filename} uploaded succesfully',
+            'message': f'File: {file.filename} uploaded succesfully',
             'URL': image_url
             }, 200
     
@@ -76,7 +77,7 @@ def upload_banner():
    
 #TODO edit for pulling url and adding to DB for use 
 # def get_image_url(AWS_BUCKET_NAME, BASE_FOLDER, PHOTOS_SUBFOLDER, file):
-#     url = f'https://{AWS_BUCKET_NAME}.s3.{"us-west-1"}.amazonaws.com/{f"s3://{AWS_BUCKET_NAME}/{BASE_FOLDER}/{PHOTOS_SUBFOLDER}/{file.filename}"}'
+#     image_url = f'https://s3.{AWS_SERVER_LOCATION}.amazonaws.com/{AWS_BUCKET_NAME}/{BASE_FOLDER}/{BANNERS_SUBFOLDER}/{file.filename.replace(" ", "+")}'
 #     return {'S3 URL': url}
     
 
