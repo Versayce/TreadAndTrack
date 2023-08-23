@@ -56,9 +56,10 @@ const FormInputs = (props) => {
         if (e.target.files) {
             onChange?.(e.target.files[0]);
         }
-        handleFileUpload(e.target.files[0])
+        handleFileUpload(e.target.files[0]) //TODO move to onSubmit
     };
 
+    //TODO have handleUpload happen onSubmit
     const handleFileUpload = async (fileData) => {
         console.log("handleFileUpload", fileData)
         if (fileData) {
@@ -74,7 +75,10 @@ const FormInputs = (props) => {
                     body: imageData
                 });
                 const data = await response.json();
-
+                if (!response.ok) {
+                    throw new Error(`${data.error}`);
+                }
+                //TODO Send data with image URL to servers on submit
             } catch (error) {
                 console.error("An error occured while uploading file: ", error);
             }
