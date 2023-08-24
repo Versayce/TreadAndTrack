@@ -63,7 +63,7 @@ const FormInputs = (props) => {
     const handleFileUpload = async (fileData) => {
         console.log("handleFileUpload", fileData)
         if (fileData) {
-            console.log("Uploading file...");
+            console.log("File upload in progress...");
             
             const imageData = new FormData();
             imageData.append("file", fileData, fileData.name);
@@ -74,11 +74,16 @@ const FormInputs = (props) => {
                     method: "POST",
                     body: imageData
                 });
+
                 const data = await response.json();
+
                 if (!response.ok) {
                     throw new Error(`${data.error}`);
+                } else {
+                    console.log("Upload complete!")
                 }
-                //TODO Send data with image URL to servers on submit
+                //TODO Send data with image URL to servers on submit (data.url) 
+                
             } catch (error) {
                 console.error("An error occured while uploading file: ", error);
             }

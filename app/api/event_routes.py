@@ -97,12 +97,12 @@ def create_new_event():
     else:
         return form.errors
 
-
-@event_routes.route('/list_buckets', methods=['GET'])
-def list_buckets():
-    response = s3.list_buckets()
-    bucket_names = [bucket['Name'] for bucket in response['Buckets']]
-    return {'Buckets': bucket_names}
+# #For Testing amazon s3 bucket connection
+# @event_routes.route('/list_buckets', methods=['GET'])
+# def list_buckets():
+#     response = s3.list_buckets()
+#     bucket_names = [bucket['Name'] for bucket in response['Buckets']]
+#     return {'Buckets': bucket_names}
 
 
 @event_routes.route('/<int:id>', methods=['GET', 'PUT', 'DELETE']) 
