@@ -40,7 +40,8 @@ const FormInputs = (props) => {
         type, 
         placeholder,
         previewUrl,
-        file } = props;
+        file 
+    } = props;
     
     const handleBlur = (e) => {
         setFocused(false);
@@ -94,7 +95,6 @@ const FormInputs = (props) => {
                     reader.readAsDataURL(fileData);
                     console.log("Upload complete! ");
                 }
-                //TODO Send data with image URL to servers on submit (data.url) 
                 
             } catch (error) {
                 console.error("An error occured while uploading file: ", error);
@@ -169,19 +169,22 @@ const FormInputs = (props) => {
 
             case "file": {
                 return ( 
-                    <input
-                        name={name}
-                        type={type}
-                        id={type}
-                        value={value}
-                        placeholder={placeholder}
-                        required={required}
-                        // pattern={pattern}
-                        onChange={handleFileChange} 
-                        onBlur={handleBlur} 
-                        onFocus={handleFocus}
-                        focused={focused.toString()} 
-                    />
+                    <>
+                        <input
+                            name={name}
+                            type={type}
+                            id={type}
+                            value={value}
+                            placeholder={placeholder}
+                            required={required}
+                            // pattern={pattern}
+                            onChange={handleFileChange} 
+                            onBlur={handleBlur} 
+                            onFocus={handleFocus}
+                            focused={focused.toString()} 
+                        />
+                        {previewUrl ? <img src={previewUrl} /> : null}
+                    </>
                 );
             };
 
@@ -240,7 +243,6 @@ const FormInputs = (props) => {
             <label htmlFor="file">{label}</label>
             {renderInputs(type)}
             {(hasError(errorStatus) && blur) || (isValid(value, pattern, errorHandler) && blur) ? <span>{errorMessage}</span> : <span></span>}
-            {previewUrl ? <img src={previewUrl} /> : null}
         </FormInput>
     );
 };

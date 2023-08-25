@@ -19,12 +19,13 @@ const EventForm = () => {
     //Form Input Vars
     const [name, setName] = useState("");
     const [bannerUrl, setBannerUrl] = useState(null);
-    const [previewUrl, setPreviewUrl] = useState(null);
     const [address, setAddress] = useState("");
     const [lat, setLat] = useState(null);
     const [lng, setLng] = useState(null);
     const [description, setDescription] = useState("");
     const [file, setFile] = useState("");
+    //Preview image variable containing temporary URL of local file for display
+    const [previewUrl, setPreviewUrl] = useState(null);
     //Error Handling Vars
     const [nameError, setNameError] = useState(false);
     const [imageError, setImageError] = useState(false);
