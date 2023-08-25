@@ -30,7 +30,6 @@ s3 = boto3.client(
 )
 
 
-
 @event_routes.route('')
 def all_events():
     all_events = Event.query.all()
@@ -38,7 +37,6 @@ def all_events():
 
 
 @event_routes.route('banner_upload', methods=['POST'])
-
 def upload_banner():
     def check_if_image(filename):
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_IMAGE_EXTENSIONS
@@ -69,7 +67,7 @@ def upload_banner():
         
         return {
             'message': f'File: {file.filename} uploaded succesfully',
-            'URL': image_url
+            'url': image_url
             }, 200
     
     except botocore.exceptions.ClientError as e:

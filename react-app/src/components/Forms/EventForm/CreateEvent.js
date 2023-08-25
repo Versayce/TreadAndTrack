@@ -18,6 +18,8 @@ const EventForm = () => {
     const ownerId = currentUser.id;
     //Form Input Vars
     const [name, setName] = useState("");
+    const [bannerUrl, setBannerUrl] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(null);
     const [address, setAddress] = useState("");
     const [lat, setLat] = useState(null);
     const [lng, setLng] = useState(null);
@@ -35,9 +37,19 @@ const EventForm = () => {
         lat,
         lng,
         description,
-        "banner_image_url": file,
+        "banner_image_url": bannerUrl,
         "owner_id": ownerId,
     };
+    //useEffect for revoking the preview image url when it changes.
+    useEffect(() => {
+        return () => {
+            if (previewUrl) {
+                URL.revokeObjectURL(previewUrl);
+                console.log("URL REVOKED")
+            }
+        };
+    }, [previewUrl])
+    
     //Inputs array for FormInput component 
     const inputs = [
         {
@@ -65,8 +77,12 @@ const EventForm = () => {
             label: "Upload Banner Image",
             required: true,
             // pattern: "^https?://.*",
-            onChange: setFile,
+            onChange: setBannerUrl,
+            onPreviewChange: setPreviewUrl,
+            onFileChange: setFile,
             file: file,
+            bannerUrl: bannerUrl,
+            previewUrl: previewUrl,
             value: file?.filename,
         },
         {

@@ -25,7 +25,9 @@ const FormInputs = (props) => {
     const {
         label, 
         errorMessage, 
-        onChange, 
+        onChange,
+        onFileChange, 
+        onPreviewChange,
         errorHandler,
         errorStatus,
         setLat,
@@ -37,6 +39,7 @@ const FormInputs = (props) => {
         name, 
         type, 
         placeholder,
+        previewUrl,
         file } = props;
     
     const handleBlur = (e) => {
@@ -54,9 +57,9 @@ const FormInputs = (props) => {
 
     const handleFileChange = (e) => {
         if (e.target.files) {
-            onChange?.(e.target.files[0]);
+            onFileChange?.(e.target.files[0]);
         }
-        handleFileUpload(e.target.files[0]) //TODO move to onSubmit
+        handleFileUpload(e.target.files[0]) //TODO move to onSubmit in CreateEvent component 
     };
 
     //TODO have handleUpload happen onSubmit
@@ -80,7 +83,16 @@ const FormInputs = (props) => {
                 if (!response.ok) {
                     throw new Error(`${data.error}`);
                 } else {
-                    console.log("Upload complete!")
+                    //Creating a tempUrl to use as a preview
+                    const reader = new FileReader();
+                    reader.onload = async () => {
+                        const tempUrl = URL.createObjectURL(fileData);
+                        onChange?.(data.url);
+                        await onPreviewChange?.(tempUrl);
+                        console.log("preview complete! ", tempUrl);
+                    }
+                    reader.readAsDataURL(fileData);
+                    console.log("Upload complete! ");
                 }
                 //TODO Send data with image URL to servers on submit (data.url) 
                 
@@ -101,7 +113,7 @@ const FormInputs = (props) => {
         setApiError?.(false);
     };
 
-    const onApiError = (status, clearSuggestions) => {
+    const onPlacesApiError = (status, clearSuggestions) => {
         setApiError(true)
         if(status === "ZERO_RESULTS") {
             setApiErrorMessage("No matching addresses found");
@@ -109,7 +121,7 @@ const FormInputs = (props) => {
         clearSuggestions();
     };
 
-    const handleSelect = async (value) => {
+    const handlePlacesSelect = async (value) => {
         const results = await geocodeByAddress(value);
         const latLng = await getLatLng(results[0]);
         setLat?.(latLng.lat);
@@ -179,8 +191,8 @@ const FormInputs = (props) => {
                         id={id}
                         value={value}
                         onChange={handlePlacesChange}
-                        onSelect={handleSelect}
-                        onError={onApiError}
+                        onSelect={handlePlacesSelect}
+                        onError={onPlacesApiError}
                         onBlur={handleBlur} 
                         onFocus={handleFocus}
                     >
@@ -228,6 +240,7 @@ const FormInputs = (props) => {
             <label htmlFor="file">{label}</label>
             {renderInputs(type)}
             {(hasError(errorStatus) && blur) || (isValid(value, pattern, errorHandler) && blur) ? <span>{errorMessage}</span> : <span></span>}
+            {previewUrl ? <img src={previewUrl} /> : null}
         </FormInput>
     );
 };
@@ -274,6 +287,9 @@ const FormInput = styled.div`
         padding: 3px;
         margin-bottom: 10px;
         color: #af2d54;
+    }
+    img {
+        width: 30%;
     }
 `
 
