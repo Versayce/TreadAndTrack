@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import TextEditor from "../TextEditor";
+import Spinner from "../../Spinner/Spinner";
 
 const isValid = (value, pattern, errorHandler) => {
     const regex = new RegExp(pattern);
@@ -21,6 +22,7 @@ const FormInputs = (props) => {
     const [blur, setBlur] = useState(false);
     const [apiError, setApiError] = useState(false);
     const [apiErrorMessage, setApiErrorMessage] = useState("")
+    const [imageLoading, setImageLoading] = useState(false)
     //Destructuring props passed from form components
     const {
         label, 
@@ -67,8 +69,9 @@ const FormInputs = (props) => {
     const handleFileUpload = async (fileData) => {
         console.log("handleFileUpload", fileData)
         if (fileData) {
+            await onPreviewChange?.("") //Setting our preview image url to nothing
+            setImageLoading(true);
             console.log("File upload in progress...");
-            
             const imageData = new FormData();
             imageData.append("file", fileData, fileData.name);
         
@@ -85,11 +88,13 @@ const FormInputs = (props) => {
                     throw new Error(`${data.error}`);
                 } else {
                     //Creating a tempUrl to use as a preview
+                    
                     const reader = new FileReader();
                     reader.onload = async () => {
                         const tempUrl = URL.createObjectURL(fileData);
-                        onChange?.(data.url);
+                        await onChange?.(data.url);
                         await onPreviewChange?.(tempUrl);
+                        setImageLoading(false);
                         console.log("preview complete! ", tempUrl);
                     }
                     reader.readAsDataURL(fileData);
@@ -184,6 +189,8 @@ const FormInputs = (props) => {
                             focused={focused.toString()} 
                         />
                         {previewUrl ? <img src={previewUrl} /> : null}
+                        {imageLoading ? <LoadingIcon><Spinner /></LoadingIcon> : null}
+                        {imageLoading ? <span>Preview Loading...</span> : null}
                     </>
                 );
             };
@@ -291,8 +298,14 @@ const FormInput = styled.div`
         color: #af2d54;
     }
     img {
+        margin-top: 30px;
         width: 30%;
+        border-radius: 20px;
     }
+`
+
+const LoadingIcon = styled.div`
+    margin-top: 30px;
 `
 
 const GoogleInput = styled.div`
