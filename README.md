@@ -6,6 +6,8 @@
 ## How to demo the application:
 For a quick demo of the application without having to create an account, click the login button on the top right and click "Demo" at the bottom.
 
+note: some features may not be complete as mostly everything is a wip. Check back frequently to see new features and UI changes.
+
 ## Description:
 
 Full-stack web application concept for hosting car-based events. Users can create their own events, join other events, and host a page for their car which includes images and specs.
