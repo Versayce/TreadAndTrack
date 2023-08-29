@@ -49,7 +49,7 @@ const EventForm = () => {
                 console.log("URL REVOKED")
             }
         };
-    }, [previewUrl])
+    }, [previewUrl, file])
     
     //Inputs array for FormInput component 
     const inputs = [

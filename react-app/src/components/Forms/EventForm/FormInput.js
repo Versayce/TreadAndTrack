@@ -14,15 +14,15 @@ const isValid = (value, pattern, errorHandler) => {
 const hasError = (errorStatus) => {
     if (errorStatus === true) {
         return !true;
-    }
+    };
 };
 
 const FormInputs = (props) => {
     const [focused, setFocused] = useState(false);
     const [blur, setBlur] = useState(false);
     const [apiError, setApiError] = useState(false);
-    const [apiErrorMessage, setApiErrorMessage] = useState("")
-    const [imageLoading, setImageLoading] = useState(false)
+    const [apiErrorMessage, setApiErrorMessage] = useState("");
+    const [imageLoading, setImageLoading] = useState(false);
     //Destructuring props passed from form components
     const {
         label, 
@@ -42,7 +42,7 @@ const FormInputs = (props) => {
         type, 
         placeholder,
         previewUrl,
-        file 
+        file,
     } = props;
     
     const handleBlur = (e) => {
@@ -61,15 +61,15 @@ const FormInputs = (props) => {
     const handleFileChange = (e) => {
         if (e.target.files) {
             onFileChange?.(e.target.files[0]);
-        }
-        handleFileUpload(e.target.files[0]) //TODO move to onSubmit in CreateEvent component 
+        };
+        handleFileUpload(e.target.files[0]); //TODO move to onSubmit in CreateEvent component 
     };
 
     //TODO have handleUpload happen onSubmit
     const handleFileUpload = async (fileData) => {
-        console.log("handleFileUpload", fileData)
+        console.log("handleFileUpload Data: ", fileData);
         if (fileData) {
-            await onPreviewChange?.("") //Setting our preview image url to nothing
+            await onPreviewChange?.("") //Setting our preview image url to nothing so loading animation plays
             setImageLoading(true);
             console.log("File upload in progress...");
             const imageData = new FormData();
@@ -103,14 +103,14 @@ const FormInputs = (props) => {
                 
             } catch (error) {
                 console.error("An error occured while uploading file: ", error);
-            }
-        }
+            };
+        };
         // onChange?.(fileData);
-    }
+    };
 
     const handleEditorChange = (value) => {
         onChange?.(value);
-    }
+    };
     
     const handlePlacesChange = (value) => {
         errorHandler?.(true);
@@ -147,10 +147,10 @@ const FormInputs = (props) => {
                         placeholder={placeholder}
                         required={required}
                         pattern={pattern}
-                        onChange={handleChange} 
-                        onBlur={handleBlur} 
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                         onFocus={handleFocus}
-                        focused={focused.toString()} 
+                        focused={focused.toString()}
                     />
                 );
             };
@@ -164,10 +164,10 @@ const FormInputs = (props) => {
                         placeholder={placeholder}
                         required={required}
                         pattern={pattern}
-                        onChange={handleEditorChange} 
-                        onBlur={handleBlur} 
+                        onChange={handleEditorChange}
+                        onBlur={handleBlur}
                         onFocus={handleFocus}
-                        focused={focused.toString()} 
+                        focused={focused.toString()}
                     />
                 );
             };
@@ -182,11 +182,11 @@ const FormInputs = (props) => {
                             value={value}
                             placeholder={placeholder}
                             required={required}
-                            // pattern={pattern}
-                            onChange={handleFileChange} 
-                            onBlur={handleBlur} 
+                            // pattern={pattern} //TODO adjust error handling for if file is selected for upload or not
+                            onChange={handleFileChange}
+                            onBlur={handleBlur}
                             onFocus={handleFocus}
-                            focused={focused.toString()} 
+                            focused={focused.toString()}
                         />
                         {previewUrl ? <img src={previewUrl} /> : null}
                         {imageLoading ? <LoadingIcon><Spinner /></LoadingIcon> : null}
@@ -203,7 +203,7 @@ const FormInputs = (props) => {
                         onChange={handlePlacesChange}
                         onSelect={handlePlacesSelect}
                         onError={onPlacesApiError}
-                        onBlur={handleBlur} 
+                        onBlur={handleBlur}
                         onFocus={handleFocus}
                     >
                         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (

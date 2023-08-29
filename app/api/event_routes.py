@@ -9,6 +9,7 @@ from app.forms.event_message_form import EventMessageForm
 from app.models.event_message import EventMessage
 from app.models.event_image import EventImage
 from ..models import db, Event, EventMessage
+from flask_login import login_required
 
 event_routes = Blueprint('events', __name__)
 # Defining AWS bucket for use in routes
@@ -37,6 +38,7 @@ def all_events():
 
 
 @event_routes.route('banner_upload', methods=['POST'])
+@login_required
 def upload_banner():
     def check_if_image(filename):
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_IMAGE_EXTENSIONS
