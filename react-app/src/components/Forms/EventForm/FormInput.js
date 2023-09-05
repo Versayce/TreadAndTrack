@@ -42,6 +42,7 @@ const FormInputs = (props) => {
         type, 
         placeholder,
         previewUrl,
+        bannerUrl,
         file,
     } = props;
     
@@ -100,6 +101,16 @@ const FormInputs = (props) => {
                     reader.readAsDataURL(fileData);
                     console.log("Upload complete! ");
                 }
+
+                //TODO test deletion of the file with public url 
+                const deleteResponse = await fetch("/api/events/banner_delete", {
+                    method: "POST",
+                    body: data.url
+                });
+                const data2 = await deleteResponse.json();
+                if (!response.ok) {
+                    throw new Error(`something went wrong`);
+                }
                 
             } catch (error) {
                 console.error("An error occured while uploading file: ", error);
@@ -107,6 +118,10 @@ const FormInputs = (props) => {
         };
         // onChange?.(fileData);
     };
+
+    const handeFileDelete = async (fileData) => {
+
+    }
 
     const handleEditorChange = (value) => {
         onChange?.(value);

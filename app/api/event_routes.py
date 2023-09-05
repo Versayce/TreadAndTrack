@@ -2,7 +2,7 @@ import os
 import boto3
 import botocore
 import mimetypes
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, Flask
 from app.forms.event_form import EventForm
 from app.forms.event_image_form import EventImageForm
 from app.forms.event_message_form import EventMessageForm
@@ -37,6 +37,22 @@ def all_events():
     return {'events': [event.to_dict() for event in all_events]}
 
 
+@event_routes.route('banner_delete', methods=['POST'])
+@login_required
+def delete_banner():
+    data = request.json
+    url = data
+    print('this is the request data: ', url)
+    return {"message": url}
+    # public_object_url = 'https://your-bucket-name.s3.amazonaws.com/path/to/object.txt'
+    # # Parse the URL to extract bucket name and object key
+    # bucket_name = public_object_url.split('//')[1].split('.')[0]
+    # object_key = '/'.join(public_object_url.split('/')[3:])
+    # # Delete the object
+    # s3.delete_object(Bucket=bucket_name, Key=object_key)
+    # print(f"Object {object_key} deleted from {bucket_name}")
+
+
 @event_routes.route('banner_upload', methods=['POST'])
 @login_required
 def upload_banner():
@@ -47,6 +63,7 @@ def upload_banner():
         return {'error': 'No file part in the request.', 'errorCode': 400}, 400
     
     file = request.files['file']
+    # Checking the sent file for extensions to set content_type
     content_type = mimetypes.guess_type(file.filename)[0] or 'application/octet-stream'
     
     if file.name == '':
@@ -66,7 +83,6 @@ def upload_banner():
                 'ContentType': content_type,
             }
         )
-        
         return {
             'message': f'File: {file.filename} uploaded succesfully',
             'url': image_url
@@ -74,11 +90,6 @@ def upload_banner():
     
     except botocore.exceptions.ClientError as e:
         return { 'error': str(e), 'errorCode': 500}, 500
-   
-#TODO edit for pulling url and adding to DB for use 
-# def get_image_url(AWS_BUCKET_NAME, BASE_FOLDER, PHOTOS_SUBFOLDER, file):
-#     image_url = f'https://s3.{AWS_SERVER_LOCATION}.amazonaws.com/{AWS_BUCKET_NAME}/{BASE_FOLDER}/{BANNERS_SUBFOLDER}/{file.filename.replace(" ", "+")}'
-#     return {'S3 URL': url}
     
 
 @event_routes.route('', methods=['POST'])

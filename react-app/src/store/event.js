@@ -2,7 +2,7 @@
 const LOAD_ALL_EVENTS = 'events/LOAD_ALL'
 const LOAD_ONE_EVENT = 'events/LOAD_ONE'
 const ADD_EVENT = 'events/ADD'
-// const ADD_IMAGE = 'events/ADDIMAGE'
+const ADD_IMAGE_AWS = 'events/ADDIMAGEAWS'
 const EDIT_EVENT = 'events/EDIT'
 const DELETE_EVENT = 'events/DELETE'
 
@@ -34,13 +34,13 @@ export const addEvent = (event) => {
         event
     };
 };
-//TODO delete unused action
-// export const addImage = (image) => {
-//     return {
-//         type: ADD_IMAGE,
-//         image
-//     }
-// }
+
+export const addImageAWS = (image) => {
+    return {
+        type: ADD_IMAGE_AWS,
+        image
+    }
+}
 
 export const editEvent = (event) => {
     console.log('EDIT EVENT ACTION DATA', event)
@@ -102,18 +102,18 @@ export const createEvent = (event) => async (dispatch) => {
     };
 };
 
-// export const createEventImage = (image_url, name, event_id) => async (dispatch) => {
-//     const imageData = {name, image_url, event_id}
-//     const res = await fetch('/api/events/images', {
-//         method: 'POST',
-//         headers: {'Content-Type': 'application/json'},
-//         body: JSON.stringify(imageData)
-//     });
+//TODO decide whether or not to use
+export const createEventImage = (imageData) => async (dispatch) => {
+    const res = await fetch("/api/events/banner_upload", {
+        method: "POST",
+        body: imageData
+    });
     
-//     if(res.ok) {
-//         const data = await res.json();
-//     };
-// }
+    if(res.ok) {
+        const data = await res.json();
+        dispatch(addImageAWS(data));
+    };
+}
 
 
 export const editEventById = (event) => async (dispatch) => {
