@@ -89,7 +89,6 @@ const FormInputs = (props) => {
                     throw new Error(`${data.error}`);
                 } else {
                     //Creating a tempUrl to use as a preview
-                    
                     const reader = new FileReader();
                     reader.onload = async () => {
                         const tempUrl = URL.createObjectURL(fileData);
@@ -101,15 +100,16 @@ const FormInputs = (props) => {
                     reader.readAsDataURL(fileData);
                     console.log("Upload complete! ");
                 }
-
+                const keyUrl = `${data.s3Key}`
                 //TODO test deletion of the file with public url 
                 const deleteResponse = await fetch("/api/events/banner_delete", {
-                    method: "POST",
-                    body: data.url
+                    method: "DELETE",
+                    body: keyUrl
                 });
                 const data2 = await deleteResponse.json();
-                if (!response.ok) {
-                    throw new Error(`something went wrong`);
+                console.log('Testing Data2', data2)
+                if (!deleteResponse.ok) {
+                    throw new Error(`${data2.error}`);
                 }
                 
             } catch (error) {

@@ -12,6 +12,7 @@ from ..models import db, Event, EventMessage
 from flask_login import login_required
 
 event_routes = Blueprint('events', __name__)
+
 # Defining AWS bucket for use in routes
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
@@ -37,13 +38,21 @@ def all_events():
     return {'events': [event.to_dict() for event in all_events]}
 
 
-@event_routes.route('banner_delete', methods=['POST'])
+@event_routes.route('banner_delete', methods=['DELETE'])
 @login_required
 def delete_banner():
-    data = request.json
-    url = data
-    print('this is the request data: ', url)
-    return {"message": url}
+    s3_key = request.data.decode('utf-8')
+    
+    if s3_key:
+        # TODO edit where deletion request is called on frontend 
+        print('this is the request url: ', f'{s3_key}')
+        deleteResponse = s3.delete_object(
+            Bucket=AWS_BUCKET_NAME, 
+            Key=s3_key
+        )
+        return {'Deletion Response': f'{deleteResponse}'}
+    else: 
+        return {'error:': 'No url data provided in JSON body', 'errorcode': 400}, 400
     # public_object_url = 'https://your-bucket-name.s3.amazonaws.com/path/to/object.txt'
     # # Parse the URL to extract bucket name and object key
     # bucket_name = public_object_url.split('//')[1].split('.')[0]
@@ -73,20 +82,21 @@ def upload_banner():
         return {'error': 'Invalid file format', 'errorCode': 400}, 400
     
     try:
-        file_key = os.path.join(BASE_FOLDER, BANNERS_SUBFOLDER, file.filename)
+        object_key = os.path.join(BASE_FOLDER, BANNERS_SUBFOLDER, file.filename)
         image_url = f'https://s3.{AWS_SERVER_LOCATION}.amazonaws.com/{AWS_BUCKET_NAME}/{BASE_FOLDER}/{BANNERS_SUBFOLDER}/{file.filename.replace(" ", "+")}'
         s3.upload_fileobj(
             file, 
             AWS_BUCKET_NAME, 
-            file_key,
+            object_key,
             ExtraArgs={
                 'ContentType': content_type,
             }
         )
         return {
             'message': f'File: {file.filename} uploaded succesfully',
-            'url': image_url
-            }, 200
+            'url': image_url,
+            's3Key': object_key,
+        }, 200
     
     except botocore.exceptions.ClientError as e:
         return { 'error': str(e), 'errorCode': 500}, 500
