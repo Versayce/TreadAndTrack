@@ -4,7 +4,7 @@
 ### &nbsp; https://tread-andand-track.onrender.com/ 
 
 ## How to demo the application:
-For a quick demo of the application without having to create an account, click the login button on the top right and click "Demo" at the bottom.
+For a quick demo of the application without having to create an account, click the login button in the top right corner and click "Demo" at the bottom of the modal.
 
 note: some features may not be complete as mostly everything is a wip. Check back frequently to see new features and UI changes.
 
@@ -16,7 +16,7 @@ Full-stack web application concept for hosting car-based events. Users can creat
 - Forms 
    - Google-Places Autocomplete
    - TinyMCE Rich Text Editor
-   - AWS S3 bucket functionality. (Updates in progress)
+   - AWS S3 bucket functionality <span style="color:#f0305c">(Updates in progress)</span>
 
 &nbsp;
 - Events
@@ -25,11 +25,11 @@ Full-stack web application concept for hosting car-based events. Users can creat
 
 &nbsp;
 - Cars
-   - User submitted car images to be featured on respective page and can be liked by other users. (Updates in progress)
+   - User submitted car images to be featured on respective page and can be liked by other users. <span style="color:#f0305c">(Updates in progress)</span>
 
 &nbsp;
-### Implementation/Update Queue (In order of priority):
-- 🔵 Complete routes for AWS image hosting for event images. 
+### Implementation/Update Queue <span style="color:#34ebc3">(In order of priority)</span>:
+- 🔵 Complete routes for AWS image hosting for event images. (70% - currently refactoring)
 - 🟢 Complete backend routes for joining events. 
 - 🟡 Complete responsiveness for mobile. 
 - 🟠 Create a car stats page feature. 
@@ -47,7 +47,7 @@ Full-stack web application concept for hosting car-based events. Users can creat
 - Node
 - Google-Places Autocomplete
 - Google Maps
-- Google Firebase (Analytics)
+- Google Firebase
 - TinyMCE
 - Styled Components
 #### Back-end Technologies:
