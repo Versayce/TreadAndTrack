@@ -4,7 +4,7 @@
 ### &nbsp; https://tread-andand-track.onrender.com/ 
 
 ## How to demo the application:
-For a quick demo of the application without having to create an account, click the login button on the top right and click "Demo" at the bottom.
+For a quick demo of the application without having to create an account, click the login button in the top right corner and click "Demo" at the bottom of the modal.
 
 note: some features may not be complete as mostly everything is a wip. Check back frequently to see new features and UI changes.
 
@@ -29,7 +29,7 @@ Full-stack web application concept for hosting car-based events. Users can creat
 
 &nbsp;
 ### Implementation/Update Queue <span style="color:#34ebc3">(In order of priority)</span>:
-- 🔵 Complete routes for AWS image hosting for event images. 
+- 🔵 Complete routes for AWS image hosting for event images. (70% - currently refactoring)
 - 🟢 Complete backend routes for joining events. 
 - 🟡 Complete responsiveness for mobile. 
 - 🟠 Create a car stats page feature. 
