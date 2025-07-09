@@ -7,7 +7,6 @@ import MainInfo from "./Splash/MainInfo"
 import SecondaryInformation from "./Splash/SecondaryInformation"
 import ThirdInfoBox from "./Splash/ThirdInfoBox"
 
-//TODO refactor to split non-logged in components into another file. 
 
 const HomePage = () => {
     const currentUser = useSelector(state => state.session.user)
